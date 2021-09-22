@@ -1,0 +1,10 @@
+disabled_rules:
+- line_length
+- trailing_whitespace
+- orphaned_doc_comment
+- nesting
+included:
+excluded:
+- Pods
+- everyBody-iOS/Resource/Support/AppDelegate.swift
+- everyBody-iOS/Resource/Support/SceneDelegate.swift
