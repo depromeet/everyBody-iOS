@@ -21,7 +21,7 @@
 		AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3726FB0A6100106DC2 /* SceneDelegate.swift */; };
 		AA7E0A3A26FB0A6100106DC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3926FB0A6100106DC2 /* ViewController.swift */; };
 		AA7E0A4026FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3E26FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld */; };
-		AA7E0A4226FB0A6200106DC2 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A4126FB0A6200106DC2 /* Image.xcassets */; };
+		AA7E0A4226FB0A6200106DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */; };
 		AA7E0A4526FB0A6200106DC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A4326FB0A6200106DC2 /* LaunchScreen.storyboard */; };
 		AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A5726FB0BA600106DC2 /* ViewSample.swift */; };
 		AA7E0A5A26FB0BAD00106DC2 /* CellSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A5926FB0BAD00106DC2 /* CellSample.swift */; };
@@ -44,6 +44,7 @@
 		AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A41462715EC2C002BBE15 /* Camera.swift */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
+		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -76,7 +77,7 @@
 		AA7E0A3726FB0A6100106DC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AA7E0A3926FB0A6100106DC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA7E0A3F26FB0A6100106DC2 /* everyBody_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = everyBody_iOS.xcdatamodel; sourceTree = "<group>"; };
-		AA7E0A4126FB0A6200106DC2 /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA7E0A4426FB0A6200106DC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA7E0A4626FB0A6200106DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7E0A5726FB0BA600106DC2 /* ViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSample.swift; sourceTree = "<group>"; };
@@ -96,6 +97,7 @@
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
+		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +191,8 @@
 			children = (
 				AA5B85D9271700CA002276C3 /* Constants */,
 				AA7E0A4326FB0A6200106DC2 /* LaunchScreen.storyboard */,
-				AA7E0A4126FB0A6200106DC2 /* Image.xcassets */,
+				AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */,
+				AAF2D4282724137E0029219D /* Image.xcassets */,
 				AA5B85D52716F4FF002276C3 /* Color.xcassets */,
 				AA7E0A4E26FB0B2D00106DC2 /* Support */,
 			);
@@ -450,10 +453,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
+				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
 				AAF2D42527240CC00029219D /* swiftgen.yml in Resources */,
 				AA5B85D62716F4FF002276C3 /* Color.xcassets in Resources */,
 				AA7E0A4526FB0A6200106DC2 /* LaunchScreen.storyboard in Resources */,
-				AA7E0A4226FB0A6200106DC2 /* Image.xcassets in Resources */,
+				AA7E0A4226FB0A6200106DC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
