@@ -62,7 +62,7 @@ class CameraViewController: UIViewController {
     }
     
     private func initAttributes() {
-        takeButton.makeRoundedWithBorder(radius: takeButton.bounds.height / 2, color: UIColor.mainPurple.cgColor, borderWith: 6)
+        takeButton.makeRoundedWithBorder(radius: takeButton.bounds.height / 2, color: Asset.Color.keyPurple.color.cgColor, borderWith: 6)
     }
     
     private func addPinchGesture() {
