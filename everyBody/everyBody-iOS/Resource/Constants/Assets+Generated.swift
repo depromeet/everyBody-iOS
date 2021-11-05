@@ -34,16 +34,26 @@ internal enum Asset {
     internal static let keyPurple = ColorAsset(name: "KeyPurple")
   }
   internal enum Image {
-    internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let add = ImageAsset(name: "Add")
     internal static let album = ImageAsset(name: "Album")
     internal static let arrowDown = ImageAsset(name: "ArrowDown")
     internal static let grid = ImageAsset(name: "Grid")
     internal static let list = ImageAsset(name: "List")
+    internal static let photo = ImageAsset(name: "Photo")
+    internal static let pose = ImageAsset(name: "Pose")
     internal static let back = ImageAsset(name: "back")
-    internal static let backButton = ImageAsset(name: "backButton")
+    internal static let gridIndicator = ImageAsset(name: "gridIndicator")
+    internal static let manLower01 = ImageAsset(name: "man_lower01")
+    internal static let manUpper02 = ImageAsset(name: "man_upper02")
+    internal static let manWhole = ImageAsset(name: "man_whole")
+    internal static let manWhole01 = ImageAsset(name: "man_whole01")
     internal static let refresh = ImageAsset(name: "refresh")
+    internal static let sample = ImageAsset(name: "sample")
+    internal static let samplePose = ImageAsset(name: "samplePose")
     internal static let setting = ImageAsset(name: "setting")
+    internal static let womanLower01 = ImageAsset(name: "woman_lower01")
+    internal static let womanUpper02 = ImageAsset(name: "woman_upper02")
+    internal static let womanWhole01 = ImageAsset(name: "woman_whole01")
   }
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

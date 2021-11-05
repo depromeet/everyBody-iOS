@@ -12,6 +12,8 @@ extension Constant {
     struct Size {
         static let screenWidth = UIScreen.main.bounds.width
         static let screenHeight = UIScreen.main.bounds.height
+        static let figmaWidth: CGFloat = 375
+        static let figmaHeight: CGFloat = 812
     }
     
 }

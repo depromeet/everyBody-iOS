@@ -2,8 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Gilroy-Light.ttf</string>
+		<string>Gilroy-Bold.ttf</string>
+		<string>Gilroy-Regular.ttf</string>
 		<string>Pretendard-SemiBold.ttf</string>
 		<string>Pretendard-Regular.ttf</string>
 		<string>Pretendard-Bold.ttf</string>
