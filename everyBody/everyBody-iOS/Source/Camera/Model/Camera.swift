@@ -8,18 +8,21 @@
 import UIKit
 import AVFoundation
 
+import RxCocoa
+import RxSwift
+
 enum CameraType {
     case front
     case back
 }
 
-class Camera: NSObject, AVCapturePhotoCaptureDelegate {
+class Camera: NSObject {
     
     // MARK: - Properties
     
     static let shared = Camera()
     
-    private var type: CameraType
+    private var cameraType: CameraType
     private var gridMode: Bool
     
     var session: AVCaptureSession!
@@ -34,14 +37,21 @@ class Camera: NSObject, AVCapturePhotoCaptureDelegate {
     let maximumZoom: CGFloat = 3.0
     var lastZoomFactor: CGFloat = 1.0
     
+    var outputImage = UIImage()
+    var outputImageRelay = PublishRelay<UIImage>()
+    
+    var creationDate = PublishSubject<String>()
+    var meridiemTime = PublishSubject<String>()
+    
     // MARK: - Initalizer
     
     init(cameraMode: CameraType = .back) {
-        self.type = cameraMode
+        self.cameraType = cameraMode
         self.gridMode = false
         session = AVCaptureSession()
         output = AVCapturePhotoOutput()
         session.sessionPreset = .photo
+        
     }
     
     // MARK: - Methods
@@ -68,6 +78,7 @@ class Camera: NSObject, AVCapturePhotoCaptureDelegate {
         if let device = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
             backCamera = device
         } else {
+            //            return
             fatalError("cannot use the back camera")
         }
         
@@ -97,18 +108,18 @@ class Camera: NSObject, AVCapturePhotoCaptureDelegate {
     }
     
     func switchCameraInput() {
-        switch type {
+        switch cameraType {
         case .front:
             session.removeInput(frontInput)
             session.addInput(backInput)
-            type = .back
+            cameraType = .back
         case .back:
             session.removeInput(backInput)
             session.addInput(frontInput)
-            type = .front
+            cameraType = .front
         }
         
-        output.connections.first?.isVideoMirrored = type == .front ? true : false
+        output.connections.first?.isVideoMirrored = cameraType == .front ? true : false
     }
     
     func gridToggleDidTap() {
@@ -121,16 +132,14 @@ class Camera: NSObject, AVCapturePhotoCaptureDelegate {
         }
     }
     
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let imageData = photo.fileDataRepresentation() else { return }
-        
-        savePicture(pictureData: imageData)
-    }
-    
     func savePicture(pictureData: Data) {
+        
         let image = UIImage(data: pictureData)!
         
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        outputImage = image
+        outputImageRelay.accept(outputImage)
+        
+        //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil) // 앨범에 이미지 저장
     }
     
     // MARK: - Actions
@@ -163,4 +172,33 @@ class Camera: NSObject, AVCapturePhotoCaptureDelegate {
         default: break
         }
     }
+}
+
+extension Camera: AVCapturePhotoCaptureDelegate {
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        
+        createDateTime(photo: photo)
+        
+        savePicture(pictureData: imageData)
+    }
+    
+    /* __nsdictionaryI 값을 string 형태로 변환 */
+    func createDateTime(photo: AVCapturePhoto) {
+        let dateString = photo.metadata.filter { dics in
+            dics.key == "{TIFF}"
+        }.map {
+            "\($0.value)"
+        }[0].split(separator: ";")[0]
+        
+        let convertedDate = dateString[dateString.firstIndex(of: "\"")!..<dateString.endIndex]
+            .replacingOccurrences(of: "\"", with: "")
+        
+        let date = AppDate(formattedDate: String(convertedDate.split(separator: " ")[0]), with: ":")
+        
+        creationDate.onNext(date.getFormattedDate(with: "."))
+        meridiemTime.onNext(String(convertedDate.split(separator: " ")[1]))
+    }
+    
 }
