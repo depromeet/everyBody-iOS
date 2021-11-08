@@ -34,14 +34,14 @@ internal enum Asset {
     internal static let keyPurple = ColorAsset(name: "KeyPurple")
   }
   internal enum Image {
-    internal static let accentColor = ColorAsset(name: "AccentColor")
     internal static let add = ImageAsset(name: "Add")
     internal static let album = ImageAsset(name: "Album")
     internal static let arrowDown = ImageAsset(name: "ArrowDown")
+    internal static let create = ImageAsset(name: "Create")
     internal static let grid = ImageAsset(name: "Grid")
     internal static let list = ImageAsset(name: "List")
+    internal static let share = ImageAsset(name: "Share")
     internal static let back = ImageAsset(name: "back")
-    internal static let backButton = ImageAsset(name: "backButton")
     internal static let refresh = ImageAsset(name: "refresh")
     internal static let setting = ImageAsset(name: "setting")
   }

@@ -32,10 +32,6 @@
 		AA7E0A7826FB0DAA00106DC2 /* CellSample3.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7726FB0DAA00106DC2 /* CellSample3.swift */; };
 		AA7E0A7A26FB0DB400106DC2 /* ViewModelSample3.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7926FB0DB400106DC2 /* ViewModelSample3.swift */; };
 		AA7E0A7C26FB0DBD00106DC2 /* ViewControllerSample3.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7B26FB0DBD00106DC2 /* ViewControllerSample3.swift */; };
-		AA7E0A7E26FB0DC800106DC2 /* ViewControllerSample4.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7D26FB0DC800106DC2 /* ViewControllerSample4.swift */; };
-		AA7E0A8026FB0DD400106DC2 /* ViewModelSample4.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7F26FB0DD400106DC2 /* ViewModelSample4.swift */; };
-		AA7E0A8326FB0DDF00106DC2 /* CellSample4.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A8226FB0DDF00106DC2 /* CellSample4.swift */; };
-		AA7E0A8526FB0DEA00106DC2 /* ViewSample4.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A8426FB0DEA00106DC2 /* ViewSample4.swift */; };
 		AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8726FB126C00106DC2 /* SnapKit */; };
 		AA7E0A8B26FB128100106DC2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8A26FB128100106DC2 /* Then */; };
 		AA7E0A8E26FB12B100106DC2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8D26FB12B100106DC2 /* RxCocoa */; };
@@ -45,6 +41,11 @@
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
+		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
+		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
+		FCA92EE92731C9360070CA2A /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA92EE82731C9360070CA2A /* AlbumCollectionViewCell.swift */; };
+		FCB27001273532C200D8B056 /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB27000273532C200D8B056 /* AlbumViewController.swift */; };
+		FCB27003273532D300D8B056 /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB27002273532D300D8B056 /* GridViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -89,15 +90,16 @@
 		AA7E0A7726FB0DAA00106DC2 /* CellSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSample3.swift; sourceTree = "<group>"; };
 		AA7E0A7926FB0DB400106DC2 /* ViewModelSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSample3.swift; sourceTree = "<group>"; };
 		AA7E0A7B26FB0DBD00106DC2 /* ViewControllerSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSample3.swift; sourceTree = "<group>"; };
-		AA7E0A7D26FB0DC800106DC2 /* ViewControllerSample4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSample4.swift; sourceTree = "<group>"; };
-		AA7E0A7F26FB0DD400106DC2 /* ViewModelSample4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSample4.swift; sourceTree = "<group>"; };
-		AA7E0A8226FB0DDF00106DC2 /* CellSample4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSample4.swift; sourceTree = "<group>"; };
-		AA7E0A8426FB0DEA00106DC2 /* ViewSample4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSample4.swift; sourceTree = "<group>"; };
 		AA7E0A9326FB135300106DC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
+		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
+		FCA92EE82731C9360070CA2A /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		FCB27000273532C200D8B056 /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
+		FCB27002273532D300D8B056 /* GridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,7 +354,9 @@
 		AA7E0A6526FB0BFD00106DC2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA7E0A7D26FB0DC800106DC2 /* ViewControllerSample4.swift */,
+				FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */,
+				FCB27000273532C200D8B056 /* AlbumViewController.swift */,
+				FCB27002273532D300D8B056 /* GridViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -360,7 +364,7 @@
 		AA7E0A6626FB0C0300106DC2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AA7E0A7F26FB0DD400106DC2 /* ViewModelSample4.swift */,
+				FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -368,7 +372,7 @@
 		AA7E0A6726FB0C0800106DC2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				AA7E0A8226FB0DDF00106DC2 /* CellSample4.swift */,
+				FCA92EE82731C9360070CA2A /* AlbumCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -376,7 +380,6 @@
 		AA7E0A6826FB0C0C00106DC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA7E0A8426FB0DEA00106DC2 /* ViewSample4.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -508,13 +511,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA7E0A6E26FB0D3200106DC2 /* ViewModelSample2.swift in Sources */,
-				AA7E0A8026FB0DD400106DC2 /* ViewModelSample4.swift in Sources */,
 				AA7E0A7A26FB0DB400106DC2 /* ViewModelSample3.swift in Sources */,
 				AA5B85D82716F539002276C3 /* UIColor+Extension.swift in Sources */,
 				AA7E0A7C26FB0DBD00106DC2 /* ViewControllerSample3.swift in Sources */,
 				AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
-				AA7E0A7E26FB0DC800106DC2 /* ViewControllerSample4.swift in Sources */,
 				AA7E0A7226FB0D4B00106DC2 /* ViewSample3.swift in Sources */,
 				AA7E0A3A26FB0A6100106DC2 /* ViewController.swift in Sources */,
 				AA5B85E127171072002276C3 /* TabbarViewController.swift in Sources */,
@@ -524,17 +525,20 @@
 				AA7E0A6C26FB0C3C00106DC2 /* Cells2.swift in Sources */,
 				AA7E0A4026FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld in Sources */,
 				AA7E0A5A26FB0BAD00106DC2 /* CellSample.swift in Sources */,
-				AA7E0A8326FB0DDF00106DC2 /* CellSample4.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
 				AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */,
 				AA5B85DF27170F27002276C3 /* UINavigationController+Extensions.swift in Sources */,
+				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
+				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
-				AA7E0A8526FB0DEA00106DC2 /* ViewSample4.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
 				AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */,
+				FCB27003273532D300D8B056 /* GridViewController.swift in Sources */,
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
+				FCA92EE92731C9360070CA2A /* AlbumCollectionViewCell.swift in Sources */,
+				FCB27001273532C200D8B056 /* AlbumViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -589,6 +593,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -650,6 +655,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTING_SEARCH_PATHS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
