@@ -22,12 +22,9 @@
 		AA7E0A3A26FB0A6100106DC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3926FB0A6100106DC2 /* ViewController.swift */; };
 		AA7E0A4026FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3E26FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld */; };
 		AA7E0A4226FB0A6200106DC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */; };
-		AA7E0A4526FB0A6200106DC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A4326FB0A6200106DC2 /* LaunchScreen.storyboard */; };
 		AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A5726FB0BA600106DC2 /* ViewSample.swift */; };
 		AA7E0A5A26FB0BAD00106DC2 /* CellSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A5926FB0BAD00106DC2 /* CellSample.swift */; };
 		AA7E0A5C26FB0BB400106DC2 /* ViewModelSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A5B26FB0BB400106DC2 /* ViewModelSample.swift */; };
-		AA7E0A6C26FB0C3C00106DC2 /* Cells2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A6B26FB0C3C00106DC2 /* Cells2.swift */; };
-		AA7E0A6E26FB0D3200106DC2 /* ViewModelSample2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A6D26FB0D3200106DC2 /* ViewModelSample2.swift */; };
 		AA7E0A7226FB0D4B00106DC2 /* ViewSample3.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7126FB0D4B00106DC2 /* ViewSample3.swift */; };
 		AA7E0A7826FB0DAA00106DC2 /* CellSample3.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7726FB0DAA00106DC2 /* CellSample3.swift */; };
 		AA7E0A7A26FB0DB400106DC2 /* ViewModelSample3.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A7926FB0DB400106DC2 /* ViewModelSample3.swift */; };
@@ -38,6 +35,32 @@
 		AA7E0A9026FB12B100106DC2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8F26FB12B100106DC2 /* RxSwift */; };
 		AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A9326FB135300106DC2 /* .swiftlint.yml */; };
 		AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A41462715EC2C002BBE15 /* Camera.swift */; };
+		AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACA22729DFC700B2BE1E /* BaseViewController.swift */; };
+		AAC7ACA72729E91400B2BE1E /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */; };
+		AAC7ACA92729EB1600B2BE1E /* TextWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */; };
+		AAC7ACAC2729EE2000B2BE1E /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACAB2729EE2000B2BE1E /* Pretendard-SemiBold.ttf */; };
+		AAC7ACAE2729EE2600B2BE1E /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACAD2729EE2600B2BE1E /* Pretendard-Bold.ttf */; };
+		AAC7ACB02729EE3A00B2BE1E /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACAF2729EE3A00B2BE1E /* Pretendard-Regular.ttf */; };
+		AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB12729F2B100B2BE1E /* Fonts.swift */; };
+		AAC7ACB4272D474E00B2BE1E /* CaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */; };
+		AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */; };
+		AAC7ACBA272D5E3E00B2BE1E /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */; };
+		AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */; };
+		AAC7ACBE272D7DF400B2BE1E /* PoseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */; };
+		AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACBF272D7E0400B2BE1E /* Pose.swift */; };
+		AAC7ACE0272D947000B2BE1E /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */; };
+		AAC7ACE2272DBEDC00B2BE1E /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */; };
+		AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = AAC7ACE4272DC28100B2BE1E /* RxGesture */; };
+		AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */; };
+		AAC7ACF12733F51B00B2BE1E /* NBSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */; };
+		AAC7ACF72733FFF300B2BE1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACF62733FFF300B2BE1E /* LaunchScreen.storyboard */; };
+		AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */; };
+		AAC7ACFB27342C3600B2BE1E /* NBSegmentedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */; };
+		AAC7ACFD2734336000B2BE1E /* NBBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */; };
+		AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD172735A11B00B2BE1E /* AppDate.swift */; };
+		AAC7AD1A2735B39200B2BE1E /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7AD192735B39100B2BE1E /* Gilroy-Bold.ttf */; };
+		AAC7AD1C2735B39800B2BE1E /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7AD1B2735B39800B2BE1E /* Gilroy-Light.ttf */; };
+		AAC7AD1E2735B39E00B2BE1E /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7AD1D2735B39E00B2BE1E /* Gilroy-Regular.ttf */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -79,19 +102,41 @@
 		AA7E0A3926FB0A6100106DC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AA7E0A3F26FB0A6100106DC2 /* everyBody_iOS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = everyBody_iOS.xcdatamodel; sourceTree = "<group>"; };
 		AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA7E0A4426FB0A6200106DC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA7E0A4626FB0A6200106DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7E0A5726FB0BA600106DC2 /* ViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSample.swift; sourceTree = "<group>"; };
 		AA7E0A5926FB0BAD00106DC2 /* CellSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSample.swift; sourceTree = "<group>"; };
 		AA7E0A5B26FB0BB400106DC2 /* ViewModelSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSample.swift; sourceTree = "<group>"; };
-		AA7E0A6B26FB0C3C00106DC2 /* Cells2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells2.swift; sourceTree = "<group>"; };
-		AA7E0A6D26FB0D3200106DC2 /* ViewModelSample2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSample2.swift; sourceTree = "<group>"; };
 		AA7E0A7126FB0D4B00106DC2 /* ViewSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSample3.swift; sourceTree = "<group>"; };
 		AA7E0A7726FB0DAA00106DC2 /* CellSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSample3.swift; sourceTree = "<group>"; };
 		AA7E0A7926FB0DB400106DC2 /* ViewModelSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelSample3.swift; sourceTree = "<group>"; };
 		AA7E0A7B26FB0DBD00106DC2 /* ViewControllerSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSample3.swift; sourceTree = "<group>"; };
 		AA7E0A9326FB135300106DC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		AAC7ACA22729DFC700B2BE1E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextWithIconView.swift; path = "everyBody-iOS/Source/Camera/ViewModels/TextWithIconView.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACAB2729EE2000B2BE1E /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.ttf"; path = "../../../../../../../../Downloads/Pretendard-1.2.1/public/static/alternative/Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
+		AAC7ACAD2729EE2600B2BE1E /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.ttf"; path = "../../../../../../../../Downloads/Pretendard-1.2.1/public/static/alternative/Pretendard-Bold.ttf"; sourceTree = "<group>"; };
+		AAC7ACAF2729EE3A00B2BE1E /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.ttf"; path = "../../../../../../../../Downloads/Pretendard-1.2.1/public/static/alternative/Pretendard-Regular.ttf"; sourceTree = "<group>"; };
+		AAC7ACB12729F2B100B2BE1E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaptureButton.swift; path = "everyBody-iOS/Resource/Constants/CaptureButton.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+hasNotch.swift"; sourceTree = "<group>"; };
+		AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomSheetView.swift; path = "everyBody-iOS/Source/Extensions/BottomSheetView.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseCollectionViewCell.swift; sourceTree = "<group>"; };
+		AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseViewModel.swift; sourceTree = "<group>"; };
+		AAC7ACBF272D7E0400B2BE1E /* Pose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pose.swift; sourceTree = "<group>"; };
+		AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSwitch.swift; path = "everyBody-iOS/Source/Camera/Model/CustomSwitch.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = "everyBody-iOS/Source/Camera/Model/ToastView.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOutputViewController.swift; sourceTree = "<group>"; };
+		AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBSegmentedControl.swift; path = "everyBody-iOS/Source/Camera/ViewControllers/NBSegmentedControl.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACF62733FFF300B2BE1E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ../../../../../../../.Trash/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+addArrangedSubviews.swift"; sourceTree = "<group>"; };
+		AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBSegmentedButton.swift; path = "everyBody-iOS/Source/Extensions/NBSegmentedButton.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBBasicButton.swift; path = "everyBody-iOS/Source/Extensions/NBBasicButton.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7AD172735A11B00B2BE1E /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
+		AAC7AD192735B39100B2BE1E /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Bold.ttf"; path = "../../../../../../../../Downloads/font-collection-master/Gilroy/Gilroy-Bold.ttf"; sourceTree = "<group>"; };
+		AAC7AD1B2735B39800B2BE1E /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Light.ttf"; path = "../../../../../../../../Downloads/font-collection-master/Gilroy/Gilroy-Light.ttf"; sourceTree = "<group>"; };
+		AAC7AD1D2735B39E00B2BE1E /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Regular.ttf"; path = "../../../../../../../../Downloads/font-collection-master/Gilroy/Gilroy-Regular.ttf"; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -109,6 +154,7 @@
 			files = (
 				AA7E0A8E26FB12B100106DC2 /* RxCocoa in Frameworks */,
 				AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */,
+				AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */,
 				AA7E0A9026FB12B100106DC2 /* RxSwift in Frameworks */,
 				AA7E0A8B26FB128100106DC2 /* Then in Frameworks */,
 			);
@@ -122,6 +168,8 @@
 			children = (
 				AA9A41462715EC2C002BBE15 /* Camera.swift */,
 				AA5B85E227173DC0002276C3 /* ViewFinder.swift */,
+				AAC7ACBF272D7E0400B2BE1E /* Pose.swift */,
+				AAC7AD172735A11B00B2BE1E /* AppDate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -133,6 +181,8 @@
 				AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */,
 				AA5B85D72716F539002276C3 /* UIColor+Extension.swift */,
 				AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */,
+				AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */,
+				AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -178,6 +228,7 @@
 		AA7E0A4C26FB0AE200106DC2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				AAC7AC9D2729D83A00B2BE1E /* Base */,
 				AA5B85D02716D4BE002276C3 /* Extensions */,
 				AA7E0A5226FB0B6900106DC2 /* Panorama */,
 				AA7E0A5126FB0B5E00106DC2 /* Feed */,
@@ -191,10 +242,11 @@
 		AA7E0A4D26FB0B1E00106DC2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				AAC7ACAA2729EDF100B2BE1E /* Font */,
 				AA5B85D9271700CA002276C3 /* Constants */,
-				AA7E0A4326FB0A6200106DC2 /* LaunchScreen.storyboard */,
 				AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */,
 				AAF2D4282724137E0029219D /* Image.xcassets */,
+				AAC7ACF62733FFF300B2BE1E /* LaunchScreen.storyboard */,
 				AA5B85D52716F4FF002276C3 /* Color.xcassets */,
 				AA7E0A4E26FB0B2D00106DC2 /* Support */,
 			);
@@ -291,6 +343,14 @@
 		AA7E0A5D26FB0BC600106DC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */,
+				AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */,
+				AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */,
+				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
+				AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */,
+				AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */,
+				AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */,
+				AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,7 +358,7 @@
 		AA7E0A5E26FB0BCC00106DC2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				AA7E0A6B26FB0C3C00106DC2 /* Cells2.swift */,
+				AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -306,7 +366,8 @@
 		AA7E0A5F26FB0BD000106DC2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AA7E0A6D26FB0D3200106DC2 /* ViewModelSample2.swift */,
+				AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */,
+				AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -315,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				AA5B85CE2716D068002276C3 /* CameraViewController.swift */,
+				AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -384,6 +446,28 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		AAC7AC9D2729D83A00B2BE1E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				AAC7ACA22729DFC700B2BE1E /* BaseViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		AAC7ACAA2729EDF100B2BE1E /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				AAC7ACAF2729EE3A00B2BE1E /* Pretendard-Regular.ttf */,
+				AAC7AD1B2735B39800B2BE1E /* Gilroy-Light.ttf */,
+				AAC7AD192735B39100B2BE1E /* Gilroy-Bold.ttf */,
+				AAC7ACAD2729EE2600B2BE1E /* Pretendard-Bold.ttf */,
+				AAC7ACAB2729EE2000B2BE1E /* Pretendard-SemiBold.ttf */,
+				AAC7AD1D2735B39E00B2BE1E /* Gilroy-Regular.ttf */,
+				AAC7ACB12729F2B100B2BE1E /* Fonts.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -408,6 +492,7 @@
 				AA7E0A8A26FB128100106DC2 /* Then */,
 				AA7E0A8D26FB12B100106DC2 /* RxCocoa */,
 				AA7E0A8F26FB12B100106DC2 /* RxSwift */,
+				AAC7ACE4272DC28100B2BE1E /* RxGesture */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* everyBody-iOS.app */;
@@ -440,6 +525,7 @@
 				AA7E0A8626FB126C00106DC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				AA7E0A8926FB128100106DC2 /* XCRemoteSwiftPackageReference "Then" */,
 				AA7E0A8C26FB12B100106DC2 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -455,11 +541,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAC7AD1C2735B39800B2BE1E /* Gilroy-Light.ttf in Resources */,
+				AAC7ACF72733FFF300B2BE1E /* LaunchScreen.storyboard in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
 				AAF2D42527240CC00029219D /* swiftgen.yml in Resources */,
 				AA5B85D62716F4FF002276C3 /* Color.xcassets in Resources */,
-				AA7E0A4526FB0A6200106DC2 /* LaunchScreen.storyboard in Resources */,
+				AAC7ACAC2729EE2000B2BE1E /* Pretendard-SemiBold.ttf in Resources */,
+				AAC7AD1E2735B39E00B2BE1E /* Gilroy-Regular.ttf in Resources */,
+				AAC7ACB02729EE3A00B2BE1E /* Pretendard-Regular.ttf in Resources */,
+				AAC7AD1A2735B39200B2BE1E /* Gilroy-Bold.ttf in Resources */,
+				AAC7ACAE2729EE2600B2BE1E /* Pretendard-Bold.ttf in Resources */,
 				AA7E0A4226FB0A6200106DC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,19 +602,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA7E0A6E26FB0D3200106DC2 /* ViewModelSample2.swift in Sources */,
 				AA7E0A7A26FB0DB400106DC2 /* ViewModelSample3.swift in Sources */,
 				AA5B85D82716F539002276C3 /* UIColor+Extension.swift in Sources */,
+				AAC7ACA72729E91400B2BE1E /* CameraViewModel.swift in Sources */,
 				AA7E0A7C26FB0DBD00106DC2 /* ViewControllerSample3.swift in Sources */,
 				AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
 				AA7E0A7226FB0D4B00106DC2 /* ViewSample3.swift in Sources */,
+				AAC7ACA92729EB1600B2BE1E /* TextWithIconView.swift in Sources */,
+				AAC7ACFB27342C3600B2BE1E /* NBSegmentedButton.swift in Sources */,
 				AA7E0A3A26FB0A6100106DC2 /* ViewController.swift in Sources */,
 				AA5B85E127171072002276C3 /* TabbarViewController.swift in Sources */,
 				AA7E0A5C26FB0BB400106DC2 /* ViewModelSample.swift in Sources */,
+				AAC7ACBE272D7DF400B2BE1E /* PoseViewModel.swift in Sources */,
 				AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */,
 				AA7E0A7826FB0DAA00106DC2 /* CellSample3.swift in Sources */,
-				AA7E0A6C26FB0C3C00106DC2 /* Cells2.swift in Sources */,
+				AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */,
+				AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */,
+				AAC7ACFD2734336000B2BE1E /* NBBasicButton.swift in Sources */,
+				AAC7ACF12733F51B00B2BE1E /* NBSegmentedControl.swift in Sources */,
+				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
+				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
 				AA7E0A4026FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld in Sources */,
 				AA7E0A5A26FB0BAD00106DC2 /* CellSample.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
@@ -532,28 +632,25 @@
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
+				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
+				AAC7ACE0272D947000B2BE1E /* CustomSwitch.swift in Sources */,
+				AAC7ACE2272DBEDC00B2BE1E /* ToastView.swift in Sources */,
+				AAC7ACBA272D5E3E00B2BE1E /* BottomSheetView.swift in Sources */,
+				AAC7ACB4272D474E00B2BE1E /* CaptureButton.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
+				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,
+				AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */,
 				AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */,
 				FCB27003273532D300D8B056 /* GridViewController.swift in Sources */,
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* AlbumCollectionViewCell.swift in Sources */,
 				FCB27001273532C200D8B056 /* AlbumViewController.swift in Sources */,
+				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		AA7E0A4326FB0A6200106DC2 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA7E0A4426FB0A6200106DC2 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AA7E0A4726FB0A6200106DC2 /* Debug */ = {
@@ -760,6 +857,14 @@
 				minimumVersion = 6.2.0;
 			};
 		};
+		AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxGesture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -782,6 +887,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA7E0A8C26FB12B100106DC2 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		AAC7ACE4272DC28100B2BE1E /* RxGesture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */;
+			productName = RxGesture;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -24,6 +24,11 @@ enum NBWeight: String {
     case regular = "Regular"
 }
 
+enum FontType: String {
+    case gilroy = "Gilory"
+    case pretendard = "Pretendard"
+}
+
 extension UIFont {
     
     static func nbFont(type: TextStyles) -> UIFont {
@@ -37,7 +42,7 @@ extension UIFont {
         case .body1:
             return UIFont(name: "Pretendard-Regular", size: 18)!
         case .body2:
-            return UIFont(name: "Pretendard-Regular", size: 18)!
+            return UIFont(name: "Pretendard-Regular", size: 16)!
         case .body3:
             return UIFont(name: "Pretendard-Regular", size: 14)!
         case .caption1:
@@ -47,8 +52,8 @@ extension UIFont {
         }
     }
     
-    static func nbFont(ofSize fontSize: CGFloat, weight: NBWeight = .regular) -> UIFont {
-        return UIFont(name: "Pretendard-\(weight)", size: fontSize)!
+    static func nbFont(ofSize fontSize: CGFloat, weight: NBWeight = .regular, type: FontType = .pretendard) -> UIFont {
+        return UIFont(name: "\(type)-\(weight)", size: fontSize)!
     }
     
 }
