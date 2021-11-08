@@ -5,9 +5,10 @@
 //  Created by kong on 2021/11/05.
 //
 
+import UIKit
+
 import SnapKit
 import Then
-import UIKit
 import RxSwift
 
 class AlbumViewController: UIViewController {
@@ -44,7 +45,7 @@ class AlbumViewController: UIViewController {
         initNavigationBar()
         setupViewHierarchy()
         setupConstraint()
-        setView()
+        setCollectinViewDelegate()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -56,7 +57,7 @@ class AlbumViewController: UIViewController {
     private func initNavigationBar() {
         self.navigationController?.initWithRightBarTwoButtons(navigationItem: self.navigationItem, rightButtonImage: [UIImage(named: "Create")!, UIImage(named: "Share")!], action: [#selector(tapEditButton), #selector(tapSaveButton)])
         
-        //나중에 뷰모델에서 가져올 것
+        // 나중에 뷰모델에서 가져올 것
         self.title = "Album Title"
     }
 
@@ -75,10 +76,9 @@ class AlbumViewController: UIViewController {
 
 // MARK: - View Layout
 
-
 extension AlbumViewController {
     
-    private func setView() {
+    private func setCollectinViewDelegate() {
         albumCollectionView.dataSource = self
         albumCollectionView.delegate = self
     }
@@ -90,7 +90,7 @@ extension AlbumViewController {
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(panoramaImage,albumCollectionView)
+        view.addSubviews(panoramaImage, albumCollectionView)
     }
     
     private func setupConstraint() {
@@ -128,19 +128,25 @@ extension AlbumViewController: UICollectionViewDelegateFlowLayout {
         let centerPoint = CGPoint(x: centerX, y: centerY)
 
         if let indexPath = self.albumCollectionView.indexPathForItem(at: centerPoint), self.centerCell == nil {
+            /// 중간 좌표에 있는 셀이 있을 때, 센터 셀이 nil이라면
+            /// 그 아이템을 얘를 센터 셀에 넣어주고 함수 실행
             self.centerCell = self.albumCollectionView.cellForItem(at: indexPath) as? AlbumCollectionViewCell
             self.centerCell?.transformToCenter()
             panoramaImage.image = viewModel.phothArray[indexPath.row]
             tagSelectedIdx = indexPath
+            print("A")
         } else if self.centerCell == nil {
-            //셀 중간에 걸렸을 때 처리
+            /// 중간에 걸려있는 인덱스가 없는데 센터 셀이 비어있을 때, itemspacing 사이에 걸려있는 상황
+            print("B")
         }
 
         if let cell = centerCell {
             let offsetX = centerPoint.x - cell.center.x
             if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
+                /// 중간에 있던 셀이 좌표를 벗어나면 nil로 만들어주고 원래 상태로 돌아가는 함수 실행
                 cell.transformToStandard()
                 self.centerCell = nil
+                print("C")
             }
         }
     }

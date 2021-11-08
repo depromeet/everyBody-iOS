@@ -5,9 +5,10 @@
 //  Created by kong on 2021/10/30.
 //
 
+import UIKit
+
 import SnapKit
 import Then
-import UIKit
 import RxSwift
 
 class PanoramaViewController: UIViewController {
@@ -45,14 +46,14 @@ class PanoramaViewController: UIViewController {
     // MARK: - Methods
     
     private func initNavigationBar() {
-        self.navigationController?.initWithRightBarTwoButtons(navigationItem: self.navigationItem, rightButtonImage: [UIImage(named: "Share")!, UIImage(named: "Create")!], action: [#selector(tapEditButton), #selector(tapSaveButton)])
+        self.navigationController?.initWithRightBarTwoButtons(navigationItem: self.navigationItem, rightButtonImage: [Asset.Image.share.image, Asset.Image.create.image], action: [#selector(tapEditButton), #selector(tapSaveButton)])
         
-        //나중에 뷰모델에서 가져올 것
+        // 나중에 뷰모델에서 가져올 것
         self.title = "Album Title"
     }
     
     private func setPanoramaView() {
-        let views = [albumView,gridView]
+        let views = [albumView, gridView]
         for parentView in views {
             let viewController = parentView == albumView ? AlbumViewController() : GridViewController()
             viewController.view.frame = parentView.frame
@@ -87,7 +88,7 @@ class PanoramaViewController: UIViewController {
 extension PanoramaViewController {
     
     private func setupViewHierarchy() {
-        view.addSubviews(gridButton,gridView,albumView)
+        view.addSubviews(gridButton, gridView, albumView)
     }
     
     private func setupConstraint() {
@@ -102,7 +103,7 @@ extension PanoramaViewController {
             $0.leading.trailing.bottom.equalToSuperview()
         }
         
-        [albumView,gridView].forEach { view in
+        [albumView, gridView].forEach { view in
             view.snp.makeConstraints {
                 $0.top.equalTo(gridButton.snp.bottom)
                 $0.leading.trailing.bottom.equalToSuperview()

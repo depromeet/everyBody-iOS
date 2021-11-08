@@ -5,12 +5,12 @@
 //  Created by kong on 2021/11/05.
 //
 
-import SnapKit
-import Then
 import UIKit
 
+import SnapKit
+import Then
+
 class GridViewController: UIViewController {
-    
     
     // MARK: - UI Components
     
@@ -46,15 +46,10 @@ class GridViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
 
-        
     }
-    
     
     // MARK: - Actions
     
-    
 }
 
-
 // MARK: - View Layout
-

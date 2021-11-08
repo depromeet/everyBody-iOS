@@ -44,7 +44,7 @@ extension UINavigationController {
         let rightBarFirstButton = UIBarButtonItem(image: rightButtonImage[0], style: .plain, target: self.topViewController, action: action[0])
         let rightBarSecondButton = UIBarButtonItem(image: rightButtonImage[1], style: .plain, target: self.topViewController, action: action[1])
         
-        navigationItem?.rightBarButtonItems = [rightBarFirstButton,rightBarSecondButton]
+        navigationItem?.rightBarButtonItems = [rightBarFirstButton, rightBarSecondButton]
     }
 
 }
