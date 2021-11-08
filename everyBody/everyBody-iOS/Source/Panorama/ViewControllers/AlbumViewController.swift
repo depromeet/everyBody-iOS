@@ -134,10 +134,8 @@ extension AlbumViewController: UICollectionViewDelegateFlowLayout {
             self.centerCell?.transformToCenter()
             panoramaImage.image = viewModel.phothArray[indexPath.row]
             tagSelectedIdx = indexPath
-            print("A")
         } else if self.centerCell == nil {
             /// 중간에 걸려있는 인덱스가 없는데 센터 셀이 비어있을 때, itemspacing 사이에 걸려있는 상황
-            print("B")
         }
 
         if let cell = centerCell {
@@ -146,7 +144,6 @@ extension AlbumViewController: UICollectionViewDelegateFlowLayout {
                 /// 중간에 있던 셀이 좌표를 벗어나면 nil로 만들어주고 원래 상태로 돌아가는 함수 실행
                 cell.transformToStandard()
                 self.centerCell = nil
-                print("C")
             }
         }
     }
