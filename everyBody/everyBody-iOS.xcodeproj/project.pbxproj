@@ -38,9 +38,6 @@
 		AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACA22729DFC700B2BE1E /* BaseViewController.swift */; };
 		AAC7ACA72729E91400B2BE1E /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */; };
 		AAC7ACA92729EB1600B2BE1E /* TextWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */; };
-		AAC7ACAC2729EE2000B2BE1E /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACAB2729EE2000B2BE1E /* Pretendard-SemiBold.ttf */; };
-		AAC7ACAE2729EE2600B2BE1E /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACAD2729EE2600B2BE1E /* Pretendard-Bold.ttf */; };
-		AAC7ACB02729EE3A00B2BE1E /* Pretendard-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACAF2729EE3A00B2BE1E /* Pretendard-Regular.ttf */; };
 		AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB12729F2B100B2BE1E /* Fonts.swift */; };
 		AAC7ACB4272D474E00B2BE1E /* CaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */; };
 		AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */; };
@@ -53,14 +50,10 @@
 		AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = AAC7ACE4272DC28100B2BE1E /* RxGesture */; };
 		AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */; };
 		AAC7ACF12733F51B00B2BE1E /* NBSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */; };
-		AAC7ACF72733FFF300B2BE1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAC7ACF62733FFF300B2BE1E /* LaunchScreen.storyboard */; };
 		AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */; };
 		AAC7ACFB27342C3600B2BE1E /* NBSegmentedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */; };
 		AAC7ACFD2734336000B2BE1E /* NBBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */; };
 		AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD172735A11B00B2BE1E /* AppDate.swift */; };
-		AAC7AD1A2735B39200B2BE1E /* Gilroy-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7AD192735B39100B2BE1E /* Gilroy-Bold.ttf */; };
-		AAC7AD1C2735B39800B2BE1E /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7AD1B2735B39800B2BE1E /* Gilroy-Light.ttf */; };
-		AAC7AD1E2735B39E00B2BE1E /* Gilroy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAC7AD1D2735B39E00B2BE1E /* Gilroy-Regular.ttf */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -112,31 +105,30 @@
 		AA7E0A7B26FB0DBD00106DC2 /* ViewControllerSample3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSample3.swift; sourceTree = "<group>"; };
 		AA7E0A9326FB135300106DC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		AABEA2AC273A642E00A06A8C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
+		AABEA2AD273A642E00A06A8C /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
+		AABEA2AE273A642E00A06A8C /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
+		AABEA2AF273A642F00A06A8C /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.ttf"; sourceTree = "<group>"; };
+		AABEA2B0273A642F00A06A8C /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Regular.ttf"; sourceTree = "<group>"; };
+		AABEA2B1273A642F00A06A8C /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Bold.ttf"; sourceTree = "<group>"; };
 		AAC7ACA22729DFC700B2BE1E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
-		AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextWithIconView.swift; path = "everyBody-iOS/Source/Camera/ViewModels/TextWithIconView.swift"; sourceTree = SOURCE_ROOT; };
-		AAC7ACAB2729EE2000B2BE1E /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-SemiBold.ttf"; path = "../../../../../../../../Downloads/Pretendard-1.2.1/public/static/alternative/Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
-		AAC7ACAD2729EE2600B2BE1E /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Bold.ttf"; path = "../../../../../../../../Downloads/Pretendard-1.2.1/public/static/alternative/Pretendard-Bold.ttf"; sourceTree = "<group>"; };
-		AAC7ACAF2729EE3A00B2BE1E /* Pretendard-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Pretendard-Regular.ttf"; path = "../../../../../../../../Downloads/Pretendard-1.2.1/public/static/alternative/Pretendard-Regular.ttf"; sourceTree = "<group>"; };
+		AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextWithIconView.swift; path = "everyBody-iOS/Source/Camera/Views/TextWithIconView.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7ACB12729F2B100B2BE1E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
-		AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaptureButton.swift; path = "everyBody-iOS/Resource/Constants/CaptureButton.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CaptureButton.swift; path = "everyBody-iOS/Source/Camera/Views/CaptureButton.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+hasNotch.swift"; sourceTree = "<group>"; };
-		AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomSheetView.swift; path = "everyBody-iOS/Source/Extensions/BottomSheetView.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BottomSheetView.swift; path = "everyBody-iOS/Source/Camera/Views/BottomSheetView.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseViewModel.swift; sourceTree = "<group>"; };
 		AAC7ACBF272D7E0400B2BE1E /* Pose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pose.swift; sourceTree = "<group>"; };
-		AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSwitch.swift; path = "everyBody-iOS/Source/Camera/Model/CustomSwitch.swift"; sourceTree = SOURCE_ROOT; };
-		AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = "everyBody-iOS/Source/Camera/Model/ToastView.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSwitch.swift; path = "everyBody-iOS/Source/Camera/Views/CustomSwitch.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = "everyBody-iOS/Source/Camera/Views/ToastView.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOutputViewController.swift; sourceTree = "<group>"; };
-		AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBSegmentedControl.swift; path = "everyBody-iOS/Source/Camera/ViewControllers/NBSegmentedControl.swift"; sourceTree = SOURCE_ROOT; };
-		AAC7ACF62733FFF300B2BE1E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ../../../../../../../.Trash/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBSegmentedControl.swift; path = "everyBody-iOS/Source/Camera/Views/NBSegmentedControl.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+addArrangedSubviews.swift"; sourceTree = "<group>"; };
-		AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBSegmentedButton.swift; path = "everyBody-iOS/Source/Extensions/NBSegmentedButton.swift"; sourceTree = SOURCE_ROOT; };
-		AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBBasicButton.swift; path = "everyBody-iOS/Source/Extensions/NBBasicButton.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBSegmentedButton.swift; path = "everyBody-iOS/Source/Camera/Views/NBSegmentedButton.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBBasicButton.swift; path = "everyBody-iOS/Source/Camera/Views/NBBasicButton.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7AD172735A11B00B2BE1E /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
-		AAC7AD192735B39100B2BE1E /* Gilroy-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Bold.ttf"; path = "../../../../../../../../Downloads/font-collection-master/Gilroy/Gilroy-Bold.ttf"; sourceTree = "<group>"; };
-		AAC7AD1B2735B39800B2BE1E /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Light.ttf"; path = "../../../../../../../../Downloads/font-collection-master/Gilroy/Gilroy-Light.ttf"; sourceTree = "<group>"; };
-		AAC7AD1D2735B39E00B2BE1E /* Gilroy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Gilroy-Regular.ttf"; path = "../../../../../../../../Downloads/font-collection-master/Gilroy/Gilroy-Regular.ttf"; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -246,7 +238,6 @@
 				AA5B85D9271700CA002276C3 /* Constants */,
 				AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */,
 				AAF2D4282724137E0029219D /* Image.xcassets */,
-				AAC7ACF62733FFF300B2BE1E /* LaunchScreen.storyboard */,
 				AA5B85D52716F4FF002276C3 /* Color.xcassets */,
 				AA7E0A4E26FB0B2D00106DC2 /* Support */,
 			);
@@ -277,6 +268,7 @@
 		AA7E0A5026FB0B5800106DC2 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				AABEA2A5273A62C400A06A8C /* Views */,
 				AA5B85CD2716D043002276C3 /* Model */,
 				AA7E0A6026FB0BD500106DC2 /* ViewControllers */,
 				AA7E0A5F26FB0BD000106DC2 /* ViewModels */,
@@ -343,14 +335,6 @@
 		AA7E0A5D26FB0BC600106DC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */,
-				AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */,
-				AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */,
-				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
-				AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */,
-				AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */,
-				AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */,
-				AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -446,6 +430,21 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		AABEA2A5273A62C400A06A8C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */,
+				AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */,
+				AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */,
+				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
+				AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */,
+				AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */,
+				AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */,
+				AAC7ACFA27342C3600B2BE1E /* NBSegmentedButton.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		AAC7AC9D2729D83A00B2BE1E /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,12 +456,12 @@
 		AAC7ACAA2729EDF100B2BE1E /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				AAC7ACAF2729EE3A00B2BE1E /* Pretendard-Regular.ttf */,
-				AAC7AD1B2735B39800B2BE1E /* Gilroy-Light.ttf */,
-				AAC7AD192735B39100B2BE1E /* Gilroy-Bold.ttf */,
-				AAC7ACAD2729EE2600B2BE1E /* Pretendard-Bold.ttf */,
-				AAC7ACAB2729EE2000B2BE1E /* Pretendard-SemiBold.ttf */,
-				AAC7AD1D2735B39E00B2BE1E /* Gilroy-Regular.ttf */,
+				AABEA2AF273A642F00A06A8C /* Pretendard-Regular.ttf */,
+				AABEA2AE273A642E00A06A8C /* Gilroy-Light.ttf */,
+				AABEA2B1273A642F00A06A8C /* Gilroy-Bold.ttf */,
+				AABEA2AC273A642E00A06A8C /* Pretendard-Bold.ttf */,
+				AABEA2AD273A642E00A06A8C /* Pretendard-SemiBold.ttf */,
+				AABEA2B0273A642F00A06A8C /* Gilroy-Regular.ttf */,
 				AAC7ACB12729F2B100B2BE1E /* Fonts.swift */,
 			);
 			path = Font;
@@ -541,17 +540,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAC7AD1C2735B39800B2BE1E /* Gilroy-Light.ttf in Resources */,
-				AAC7ACF72733FFF300B2BE1E /* LaunchScreen.storyboard in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
 				AAF2D42527240CC00029219D /* swiftgen.yml in Resources */,
 				AA5B85D62716F4FF002276C3 /* Color.xcassets in Resources */,
-				AAC7ACAC2729EE2000B2BE1E /* Pretendard-SemiBold.ttf in Resources */,
-				AAC7AD1E2735B39E00B2BE1E /* Gilroy-Regular.ttf in Resources */,
-				AAC7ACB02729EE3A00B2BE1E /* Pretendard-Regular.ttf in Resources */,
-				AAC7AD1A2735B39200B2BE1E /* Gilroy-Bold.ttf in Resources */,
-				AAC7ACAE2729EE2600B2BE1E /* Pretendard-Bold.ttf in Resources */,
 				AA7E0A4226FB0A6200106DC2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
