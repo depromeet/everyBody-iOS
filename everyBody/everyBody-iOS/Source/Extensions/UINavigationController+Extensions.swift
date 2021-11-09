@@ -38,6 +38,16 @@ extension UINavigationController {
         navigationItem?.rightBarButtonItem = rightBarButton
     }
     
+    /// 오른쪽에 버튼이 두개인 네비게이션 바
+    func initWithRightBarTwoButtons(navigationItem: UINavigationItem?, rightButtonImage: [UIImage], action: [Selector]) {
+        initNaviBarWithBackButton()
+        
+        let rightBarFirstButton = UIBarButtonItem(image: rightButtonImage[0], style: .plain, target: self.topViewController, action: action[0])
+        let rightBarSecondButton = UIBarButtonItem(image: rightButtonImage[1], style: .plain, target: self.topViewController, action: action[1])
+        
+        navigationItem?.rightBarButtonItems = [rightBarFirstButton, rightBarSecondButton]
+    }
+
 }
 
 extension UINavigationBarAppearance {
