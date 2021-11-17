@@ -22,7 +22,7 @@ class FolderSelectionViewController: BaseViewController {
         $0.backgroundColor = .white
         $0.showsHorizontalScrollIndicator = false
         $0.collectionViewLayout = layout
-        $0.register(FolderCollectionViewCell.self, forCellWithReuseIdentifier: FolderCollectionViewCell.className)
+        $0.register(FolderCollectionViewCell.self)
     }
     
     // MARK: - Properties

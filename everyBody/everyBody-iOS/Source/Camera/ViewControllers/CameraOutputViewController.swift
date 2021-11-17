@@ -31,11 +31,14 @@ class CameraOutputViewController: BaseViewController {
         $0.backgroundColor = .black
         $0.contentMode = .scaleAspectFill
     }
-    let partAndTimeSegmentedControl = NBSegmentedControl(buttonStyle: .basic, numOfButton: 2)
-    let photoTimeSegemntedControl = NBSegmentedControl(buttonStyle: .background, numOfButton: 3).then {
+    let partAndTimeSegmentedControl = NBSegmentedControl(buttonStyle: .basic,
+                                                         numOfButton: 2)
+    let photoTimeSegemntedControl = NBSegmentedControl(buttonStyle: .background,
+                                                       numOfButton: 3).then {
         $0.isHidden = true
     }
-    let partSegmentedControl = NBSegmentedControl(buttonStyle: .background, numOfButton: 3).then {
+    let partSegmentedControl = NBSegmentedControl(buttonStyle: .background,
+                                                  numOfButton: 3).then {
         $0.spacing = 9
     }
     let descriptionLabel = UILabel().then {
@@ -72,8 +75,12 @@ class CameraOutputViewController: BaseViewController {
     // MARK: - Methods
     
     func initNavigationBar() {
-        self.navigationController?.initNaviBarWithBackButton()
-        self.title = "사진 확인"
+        navigationController?.initNaviBarWithBackButton()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(pushToNext))
+        title = "사진 확인"
     }
     
     func initSegmentedControl() {
@@ -98,13 +105,19 @@ class CameraOutputViewController: BaseViewController {
             .bind(to: photoOutputImageView.rx.image)
             .disposed(by: disposeBag)
         
-        camera.creationDate
+        cameraViewModel.creationTime
             .bind(to: dateTimeLabel.rx.text)
             .disposed(by: disposeBag)
         
         cameraViewModel.meridiemTime
             .bind(to: meridiemLabel.rx.text)
             .disposed(by: disposeBag)
+    }
+    
+    @objc
+    func pushToNext() {
+        let viewController = FolderSelectionViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -113,7 +126,13 @@ class CameraOutputViewController: BaseViewController {
 extension CameraOutputViewController {
     
     private func setViewHierarchy() {
-        contentsView.addSubviews(photoOutputImageView, partAndTimeSegmentedControl, partSegmentedControl, descriptionLabel, photoTimeSegemntedControl, dateTimeLabel, meridiemLabel)
+        contentsView.addSubviews(photoOutputImageView,
+                                 partAndTimeSegmentedControl,
+                                 partSegmentedControl,
+                                 descriptionLabel,
+                                 photoTimeSegemntedControl,
+                                 dateTimeLabel,
+                                 meridiemLabel)
         scrollView.addSubview(contentsView)
         view.addSubview(scrollView)
     }
@@ -163,8 +182,9 @@ extension CameraOutputViewController {
             $0.trailing.equalToSuperview().inset(20)
             $0.bottom.equalTo(photoOutputImageView.snp.bottom).inset(12)
         }
+        
     }
-    
+
 }
 
 // MARK: - NBSegementedControlDelegate
@@ -175,13 +195,9 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
         if segmentControl == partAndTimeSegmentedControl {
             switch index {
             case 0:
-                partSegmentedControl.isHidden = false
-                photoTimeSegemntedControl.isHidden = true
-                descriptionLabel.isHidden = false
+                hidePartComponents()
             case 1:
-                partSegmentedControl.isHidden = true
-                photoTimeSegemntedControl.isHidden = false
-                descriptionLabel.isHidden = true
+                showPartComponents()
             default:
                 return
             }
@@ -210,4 +226,15 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
         }
     }
         
+    func hidePartComponents() {
+        partSegmentedControl.isHidden = false
+        photoTimeSegemntedControl.isHidden = true
+        descriptionLabel.isHidden = false
+    }
+    
+    func showPartComponents() {
+        partSegmentedControl.isHidden = true
+        photoTimeSegemntedControl.isHidden = false
+        descriptionLabel.isHidden = true
+    }
 }

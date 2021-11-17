@@ -32,7 +32,7 @@ class BottomSheetView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        poseCollectionView.register(PoseCollectionViewCell.self, forCellWithReuseIdentifier: "PoseCollectionViewCell")
+        poseCollectionView.register(PoseCollectionViewCell.self)
         render()
         setLayout()
         bind()
@@ -65,7 +65,7 @@ class BottomSheetView: UIView {
     
     private func bind() {
         viewModel.poseSubject
-            .bind(to: poseCollectionView.rx.items(cellIdentifier: "PoseCollectionViewCell", cellType: PoseCollectionViewCell.self)) { row, element, cell in
+            .bind(to: poseCollectionView.rx.items(cellIdentifier: PoseCollectionViewCell.className, cellType: PoseCollectionViewCell.self)) { row, element, cell in
                 if row == 0 {
                     cell.backgroundColor = Asset.Color.gray30.color
                 } else {
