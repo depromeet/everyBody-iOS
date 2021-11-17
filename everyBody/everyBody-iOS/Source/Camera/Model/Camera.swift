@@ -51,7 +51,7 @@ class Camera: NSObject {
         session = AVCaptureSession()
         output = AVCapturePhotoOutput()
         session.sessionPreset = .photo
-        
+        session.startRunning()
     }
     
     // MARK: - Methods
@@ -73,12 +73,11 @@ class Camera: NSObject {
     }
     
     func setUp() {
-        session.beginConfiguration()
+        session.startRunning()
         
         if let device = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
             backCamera = device
         } else {
-            //            return
             fatalError("cannot use the back camera")
         }
         
@@ -103,8 +102,6 @@ class Camera: NSObject {
             session.addInput(backInput)
             session.addOutput(output)
         }
-        
-        session.commitConfiguration()
     }
     
     func switchCameraInput() {
@@ -118,14 +115,14 @@ class Camera: NSObject {
             session.addInput(frontInput)
             cameraType = .front
         }
-        
-        output.connections.first?.isVideoMirrored = cameraType == .front ? true : false
+
+        output.connections.first?.isVideoMirrored = (cameraType == .front) ? true : false
     }
-    
+
     func gridToggleDidTap() {
         gridMode.toggle()
     }
-    
+
     func takePicture() {
         DispatchQueue.global(qos: .background).async {
             self.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
@@ -133,25 +130,26 @@ class Camera: NSObject {
     }
     
     func savePicture(pictureData: Data) {
-        
+
         let image = UIImage(data: pictureData)!
         
         outputImage = image
         outputImageRelay.accept(outputImage)
-        
+
         //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil) // 앨범에 이미지 저장
     }
-    
+
     // MARK: - Actions
     
     @objc
     func pinchToZoom(_ pinch: UIPinchGestureRecognizer) {
         let device = backInput.device
-        
+
         func minMaxZoom(_ factor: CGFloat) -> CGFloat {
-            return min(min(max(factor, minimumZoom), maximumZoom), device.activeFormat.videoMaxZoomFactor)
+            return min(min(max(factor, minimumZoom), maximumZoom),
+                       device.activeFormat.videoMaxZoomFactor)
         }
-        
+
         func update(scale factor: CGFloat) {
             do {
                 try device.lockForConfiguration()
@@ -161,7 +159,7 @@ class Camera: NSObject {
                 print("\(error.localizedDescription)")
             }
         }
-        
+
         let newScaleFactor = minMaxZoom(pinch.scale * lastZoomFactor)
         
         switch pinch.state {
@@ -180,7 +178,6 @@ extension Camera: AVCapturePhotoCaptureDelegate {
         guard let imageData = photo.fileDataRepresentation() else { return }
         
         createDateTime(photo: photo)
-        
         savePicture(pictureData: imageData)
     }
     

@@ -13,8 +13,12 @@ enum TextStyles {
     case subtitle
     case body1
     case body2
+    case body2Bold
+    case body2SemiBold
     case body3
+    case body3Semibold
     case caption1
+    case caption1Semibold
     case caption2
 }
 
@@ -43,10 +47,18 @@ extension UIFont {
             return UIFont(name: "Pretendard-Regular", size: 18)!
         case .body2:
             return UIFont(name: "Pretendard-Regular", size: 16)!
+        case .body2Bold:
+            return UIFont(name: "Pretendard-Bold", size: 16)!
+        case .body2SemiBold:
+            return UIFont(name: "Pretendard-Semibold", size: 16)!
         case .body3:
             return UIFont(name: "Pretendard-Regular", size: 14)!
+        case .body3Semibold:
+            return UIFont(name: "Pretendard-SemiBold", size: 14)!
         case .caption1:
             return UIFont(name: "Pretendard-Regular", size: 12)!
+        case .caption1Semibold:
+            return UIFont(name: "Pretendard-SemiBold", size: 12)!
         case .caption2:
             return UIFont(name: "Pretendard-Regular", size: 10)!
         }

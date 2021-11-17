@@ -44,6 +44,8 @@ internal enum Asset {
     internal static let pose = ImageAsset(name: "Pose")
     internal static let share = ImageAsset(name: "Share")
     internal static let back = ImageAsset(name: "back")
+    internal static let check = ImageAsset(name: "check")
+    internal static let checkCircle = ImageAsset(name: "check_circle")
     internal static let gridIndicator = ImageAsset(name: "gridIndicator")
     internal static let manLower01 = ImageAsset(name: "man_lower01")
     internal static let manUpper02 = ImageAsset(name: "man_upper02")

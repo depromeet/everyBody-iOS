@@ -9,27 +9,34 @@ import UIKit
 
 class PoseCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Components
+    
     private let poseThumnailImageView = UIImageView()
-    private let selectedView = UIView().then {
-        $0.backgroundColor = Asset.Color.keyPurple.color.withAlphaComponent(0.6)
-    }
+    private let selectedView = SelectedView(style: .basic)
+    
+    // MARK: - Properties
+    
     override var isSelected: Bool {
         didSet {
             isSelected ? setSelectedCell() : setUnselectedCell()
         }
     }
     
+    // MARK: - Initalizer
+    
     override init(frame: CGRect) {
-         super.init(frame: frame)
-         
-         setLayout()
-         render()
-     }
-     
-     required init?(coder: NSCoder) {
-         fatalError("init(coder:) has not been implemented")
-     }
-     
+        super.init(frame: frame)
+        
+        setLayout()
+        render()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    
     private func render() {
         backgroundColor = .white
         makeRounded(radius: 4)

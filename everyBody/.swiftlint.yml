@@ -3,8 +3,14 @@ disabled_rules:
 - trailing_whitespace
 - orphaned_doc_comment
 - nesting
+- todo
+
 included:
 excluded:
 - Pods
 - everyBody-iOS/Resource/Support/AppDelegate.swift
 - everyBody-iOS/Resource/Support/SceneDelegate.swift
+
+identifier_name:
+  excluded:
+    - id

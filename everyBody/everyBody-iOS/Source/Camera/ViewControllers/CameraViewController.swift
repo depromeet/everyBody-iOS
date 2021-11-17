@@ -54,6 +54,10 @@ class CameraViewController: BaseViewController {
         initAttributes()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        camera.session.startRunning()
+    }
+    
     // MARK: - Methods
     
     private func checkPermission() {
@@ -61,16 +65,20 @@ class CameraViewController: BaseViewController {
     }
     
     private func initNavigationBar() {
-        navigationController?.initWithRightBarButton(navigationItem: self.navigationItem, rightButtonImage: Asset.Image.refresh.image, action: #selector(switchCameraMode))
+        navigationController?.initWithRightBarButton(navigationItem: self.navigationItem,
+                                                     rightButtonImage: Asset.Image.refresh.image,
+                                                     action: #selector(switchCameraMode))
         title = "사진 촬영"
     }
     
     private func initAttributes() {
-        takeButton.makeRoundedWithBorder(radius: takeButton.bounds.height / 2, color: Asset.Color.keyPurple.color.cgColor, borderWith: 6)
+        takeButton.makeRoundedWithBorder(radius: takeButton.bounds.height / 2,
+                                         color: Asset.Color.keyPurple.color.cgColor, borderWith: 6)
     }
     
     private func addPinchGesture() {
-        let pinchRecognizer = UIPinchGestureRecognizer(target: camera.self, action: #selector(camera.pinchToZoom(_:)))
+        let pinchRecognizer = UIPinchGestureRecognizer(target: camera.self,
+                                                       action: #selector(camera.pinchToZoom(_:)))
         self.previewView.addGestureRecognizer(pinchRecognizer)
     }
     
@@ -80,7 +88,7 @@ class CameraViewController: BaseViewController {
             .bind { [self] in
                 camera.takePicture()
                 let viewController = CameraOutputViewController()
-                self.navigationController?.pushViewController(viewController, animated: false)
+                navigationController?.pushViewController(viewController, animated: false)
             }
             .disposed(by: disposeBag)
         
@@ -163,7 +171,13 @@ class CameraViewController: BaseViewController {
 extension CameraViewController {
     
     private func setupViewHierarchy() {
-        view.addSubviews(previewView, poseButtonView, albumButtonView, gridSwitch, toastView, bottomSheetView, takeButton)
+        view.addSubviews(previewView,
+                         poseButtonView,
+                         albumButtonView,
+                         gridSwitch,
+                         toastView,
+                         bottomSheetView,
+                         takeButton)
         previewView.addSubviews(gridIndicatorView, guideImageView)
     }
     

@@ -19,7 +19,7 @@ class CustomSwitch: UIView {
     }
     var descriptionLabel = UILabel().then {
         $0.text = "그리드"
-        $0.font = .nbFont(ofSize: 10, weight: .semibold)
+        $0.font = .nbFont(type: .caption1Semibold)
         $0.textColor = .white
         $0.isHidden = true
     }
