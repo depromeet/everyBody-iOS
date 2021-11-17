@@ -41,6 +41,7 @@
 		AA95911D27444F4F007772BD /* PopUpActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95911C27444F4F007772BD /* PopUpActionDelegate.swift */; };
 		AA95911F27445CD0007772BD /* className.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95911E27445CD0007772BD /* className.swift */; };
 		AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */; };
+		AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */; };
 		AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A41462715EC2C002BBE15 /* Camera.swift */; };
 		AABEA2DD273C4A3300A06A8C /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */; };
 		AABEA2DE273C4A3300A06A8C /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */; };
@@ -129,6 +130,7 @@
 		AA95911C27444F4F007772BD /* PopUpActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpActionDelegate.swift; sourceTree = "<group>"; };
 		AA95911E27445CD0007772BD /* className.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = className.swift; sourceTree = "<group>"; };
 		AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Generic.swift"; sourceTree = "<group>"; };
+		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
 		AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				AA95911727443FB9007772BD /* UIViewController+hideKeyboard.swift */,
 				AA95911E27445CD0007772BD /* className.swift */,
 				AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */,
+				AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
+				AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */,
 				AAC7AD262737B84400B2BE1E /* FolderCollectionViewCell.swift in Sources */,
 				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,

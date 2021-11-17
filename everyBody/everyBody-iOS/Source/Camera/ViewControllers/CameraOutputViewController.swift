@@ -22,43 +22,44 @@ class CameraOutputViewController: BaseViewController {
     
     // MARK: - UI Components
     
-    let scrollView = UIScrollView().then {
+    private let scrollView = UIScrollView().then {
         $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = false
     }
-    let contentsView = UIView()
-    var photoOutputImageView = UIImageView().then {
+    private let contentsView = UIView()
+    private let containerView = UIView()
+    private let photoOutputImageView = UIImageView().then {
         $0.backgroundColor = .black
         $0.contentMode = .scaleAspectFill
     }
-    let partAndTimeSegmentedControl = NBSegmentedControl(buttonStyle: .basic,
-                                                         numOfButton: 2)
-    let photoTimeSegemntedControl = NBSegmentedControl(buttonStyle: .background,
-                                                       numOfButton: 3).then {
+    private let partAndTimeSegmentedControl = NBSegmentedControl(buttonStyle: .basic,
+                                                                 numOfButton: 2)
+    private let photoTimeSegemntedControl = NBSegmentedControl(buttonStyle: .background,
+                                                               numOfButton: 3).then {
         $0.isHidden = true
     }
-    let partSegmentedControl = NBSegmentedControl(buttonStyle: .background,
-                                                  numOfButton: 3).then {
+    private let partSegmentedControl = NBSegmentedControl(buttonStyle: .background,
+                                                          numOfButton: 3).then {
         $0.spacing = 9
     }
-    let descriptionLabel = UILabel().then {
+    private let descriptionLabel = UILabel().then {
         $0.text = "해당 부위로 사진이 분류됩니다."
         $0.font = .nbFont(type: .caption1)
         $0.textColor = Asset.Color.gray60.color
     }
-    var dateTimeLabel = UILabel().then {
+    private lazy var dateTimeLabel = UILabel().then {
         $0.font = .nbFont(ofSize: 24, weight: .bold, type: .gilroy)
         $0.textColor = .white
     }
-    var meridiemLabel = UILabel().then {
+    private lazy var meridiemLabel = UILabel().then {
         $0.font = .nbFont(ofSize: 24, weight: .bold, type: .gilroy)
         $0.textColor = .white
     }
     
     // MARK: - Properties
     
-    var cameraViewModel = CameraViewModel()
-    var camera = Camera.shared
+    private var cameraViewModel = CameraViewModel()
+    private let camera = Camera.shared
     
     // MARK: - View Life Cyle
     
@@ -74,7 +75,7 @@ class CameraOutputViewController: BaseViewController {
     
     // MARK: - Methods
     
-    func initNavigationBar() {
+    private func initNavigationBar() {
         navigationController?.initNaviBarWithBackButton()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료",
                                                             style: .plain,
@@ -83,12 +84,12 @@ class CameraOutputViewController: BaseViewController {
         title = "사진 확인"
     }
     
-    func initSegmentedControl() {
+    private func initSegmentedControl() {
         partAndTimeSegmentedControl.delegate = self
         photoTimeSegemntedControl.delegate = self
     }
     
-    func initSegementData() {
+    private func initSegementData() {
         let segmentControls = [partAndTimeSegmentedControl: ["부위 선택", "시간 입력"],
                                photoTimeSegemntedControl: ["사진 시간", "현재 시간", "직접 입력"],
                                partSegmentedControl: ["전신", "상체", "하체"]]
@@ -100,7 +101,7 @@ class CameraOutputViewController: BaseViewController {
         }
     }
     
-    func bind() {
+    private func bind() {
         camera.outputImageRelay
             .bind(to: photoOutputImageView.rx.image)
             .disposed(by: disposeBag)
@@ -114,8 +115,17 @@ class CameraOutputViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    private func mergeLabelToImage() {
+        // TODO: - 갤러리에 이미지 저장, 나중에 환경설정 앱 만들면 갤러리 저장할 지 여부 UserDefault 값에 저장해서 값에 따라 분기처리
+        UIImageWriteToSavedPhotosAlbum(containerView.renderToImageView(), nil, nil, nil)
+    }
+    
+    // MARK: - Actions
+    
     @objc
     func pushToNext() {
+        mergeLabelToImage()
+        
         let viewController = FolderSelectionViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -126,13 +136,12 @@ class CameraOutputViewController: BaseViewController {
 extension CameraOutputViewController {
     
     private func setViewHierarchy() {
-        contentsView.addSubviews(photoOutputImageView,
+        contentsView.addSubviews(containerView,
                                  partAndTimeSegmentedControl,
                                  partSegmentedControl,
                                  descriptionLabel,
-                                 photoTimeSegemntedControl,
-                                 dateTimeLabel,
-                                 meridiemLabel)
+                                 photoTimeSegemntedControl)
+        containerView.addSubviews(photoOutputImageView, dateTimeLabel, meridiemLabel)
         scrollView.addSubview(contentsView)
         view.addSubview(scrollView)
     }
@@ -142,10 +151,14 @@ extension CameraOutputViewController {
             $0.edges.equalTo(0)
         }
         
-        photoOutputImageView.snp.makeConstraints {
+        containerView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Constant.Size.screenWidth * (4.0 / 3.0))
+        }
+        
+        photoOutputImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         contentsView.snp.makeConstraints {
