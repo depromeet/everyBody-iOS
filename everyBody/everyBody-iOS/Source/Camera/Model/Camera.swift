@@ -39,9 +39,9 @@ class Camera: NSObject {
     
     var outputImage = UIImage()
     var outputImageRelay = PublishRelay<UIImage>()
-    
     var creationDate = PublishSubject<String>()
     var meridiemTime = PublishSubject<String>()
+    var fullDate = PublishSubject<String>()
     
     // MARK: - Initalizer
     
@@ -130,13 +130,8 @@ class Camera: NSObject {
     }
     
     func savePicture(pictureData: Data) {
-
         let image = UIImage(data: pictureData)!
-        
-        outputImage = image
-        outputImageRelay.accept(outputImage)
-
-        //        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil) // 앨범에 이미지 저장
+        outputImageRelay.accept(image)
     }
 
     // MARK: - Actions
