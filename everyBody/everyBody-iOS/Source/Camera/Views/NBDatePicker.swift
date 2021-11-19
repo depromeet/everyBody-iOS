@@ -164,7 +164,9 @@ extension NBDatePicker: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case yearPickerView:
+            guard let month = Int(selectedMonth) else { return }
             selectedYear = dateViewModel.yearList[row]
+            setDayDate(with: Month.init(rawValue: month) ?? .jan)
         case monthPickerView:
             setDayDate(with: dateViewModel.monthList[row])
             selectedMonth = dateViewModel.monthList[row].toNumberMonth()
