@@ -29,6 +29,7 @@ class CameraOutputViewController: BaseViewController {
     }
     private let contentsView = UIView()
     private let containerView = UIView()
+    
     private let photoOutputImageView = UIImageView().then {
         $0.backgroundColor = .black
         $0.contentMode = .scaleAspectFill
@@ -277,23 +278,23 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
         }
     }
     
-    func hidePartComponents() {
+    private func hidePartComponents() {
         partSegmentedControl.isHidden = true
         photoTimeSegemntedControl.isHidden = false
         descriptionLabel.isHidden = true
     }
     
-    func showPartComponents() {
+    private func showPartComponents() {
         partSegmentedControl.isHidden = false
         photoTimeSegemntedControl.isHidden = true
         descriptionLabel.isHidden = false
     }
     
-    func hidePhotoComponents() {
+    private func hidePhotoComponents() {
         pickerView.isHidden = true
     }
     
-    func showPhotoComponents() {
+    private func showPhotoComponents() {
         pickerView.isHidden = false
     }
 }
