@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 class CameraOutputViewController: BaseViewController {
-
+    
     enum Part: Int {
         case whole = 0, upper, lower
     }
@@ -25,9 +25,11 @@ class CameraOutputViewController: BaseViewController {
     private let scrollView = UIScrollView().then {
         $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = false
+        $0.isScrollEnabled = false
     }
     private let contentsView = UIView()
     private let containerView = UIView()
+    
     private let photoOutputImageView = UIImageView().then {
         $0.backgroundColor = .black
         $0.contentMode = .scaleAspectFill
@@ -55,11 +57,21 @@ class CameraOutputViewController: BaseViewController {
         $0.font = .nbFont(ofSize: 24, weight: .bold, type: .gilroy)
         $0.textColor = .white
     }
+    private lazy var pickerView = NBDatePicker().then {
+        $0.isUserInteractionEnabled = false
+        $0.isHidden = true
+        $0.delegate = self
+    }
     
     // MARK: - Properties
     
     private var cameraViewModel = CameraViewModel()
     private let camera = Camera.shared
+    private var metaDataArray: [String] = [] {
+        didSet {
+            if metaDataArray.count == 6 { pickerView.setMetaDataTime(dataArray: metaDataArray) }
+        }
+    }
     
     // MARK: - View Life Cyle
     
@@ -91,8 +103,8 @@ class CameraOutputViewController: BaseViewController {
     
     private func initSegementData() {
         let segmentControls = [partAndTimeSegmentedControl: ["부위 선택", "시간 입력"],
-                               photoTimeSegemntedControl: ["사진 시간", "현재 시간", "직접 입력"],
-                               partSegmentedControl: ["전신", "상체", "하체"]]
+                                 photoTimeSegemntedControl: ["사진 시간", "현재 시간", "직접 입력"],
+                                      partSegmentedControl: ["전신", "상체", "하체"]]
         
         for segmentControl in segmentControls {
             for (index, title) in segmentControl.value.enumerated() {
@@ -112,6 +124,18 @@ class CameraOutputViewController: BaseViewController {
         
         cameraViewModel.meridiemTime
             .bind(to: meridiemLabel.rx.text)
+            .disposed(by: disposeBag)
+        
+        cameraViewModel.creationTime
+            .subscribe {
+                self.metaDataArray = $0.split(separator: ".").map { String($0) }
+            }
+            .disposed(by: disposeBag)
+        
+        camera.meridiemTime
+            .subscribe {
+                self.metaDataArray += $0.split(separator: ":").map { String($0) }
+            }
             .disposed(by: disposeBag)
     }
     
@@ -140,7 +164,8 @@ extension CameraOutputViewController {
                                  partAndTimeSegmentedControl,
                                  partSegmentedControl,
                                  descriptionLabel,
-                                 photoTimeSegemntedControl)
+                                 photoTimeSegemntedControl,
+                                 pickerView)
         containerView.addSubviews(photoOutputImageView, dateTimeLabel, meridiemLabel)
         scrollView.addSubview(contentsView)
         view.addSubview(scrollView)
@@ -196,8 +221,15 @@ extension CameraOutputViewController {
             $0.bottom.equalTo(photoOutputImageView.snp.bottom).inset(12)
         }
         
+        pickerView.snp.makeConstraints {
+            $0.top.equalTo(photoTimeSegemntedControl.snp.bottom).offset(22)
+            $0.width.equalTo(300)
+            $0.height.equalTo(100)
+            $0.centerX.equalToSuperview()
+        }
+        
     }
-
+    
 }
 
 // MARK: - NBSegementedControlDelegate
@@ -208,19 +240,26 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
         if segmentControl == partAndTimeSegmentedControl {
             switch index {
             case 0:
-                hidePartComponents()
-            case 1:
                 showPartComponents()
+                hidePhotoComponents()
+            case 1:
+                hidePartComponents()
+                showPhotoComponents()
             default:
                 return
             }
         } else if segmentControl == photoTimeSegemntedControl {
             switch Time.init(rawValue: index) {
             case .photo:
+                pickerView.setMetaDataTime(dataArray: metaDataArray)
+                pickerView.isUserInteractionEnabled = false
                 return
             case .current:
+                pickerView.setCurrnetTime()
+                pickerView.isUserInteractionEnabled = false
                 return
             case .custom:
+                pickerView.isUserInteractionEnabled = true
                 return
             default:
                 return
@@ -238,16 +277,40 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
             }
         }
     }
-        
-    func hidePartComponents() {
+    
+    private func hidePartComponents() {
+        partSegmentedControl.isHidden = true
+        photoTimeSegemntedControl.isHidden = false
+        descriptionLabel.isHidden = true
+    }
+    
+    private func showPartComponents() {
         partSegmentedControl.isHidden = false
         photoTimeSegemntedControl.isHidden = true
         descriptionLabel.isHidden = false
     }
     
-    func showPartComponents() {
-        partSegmentedControl.isHidden = true
-        photoTimeSegemntedControl.isHidden = false
-        descriptionLabel.isHidden = true
+    private func hidePhotoComponents() {
+        pickerView.isHidden = true
     }
+    
+    private func showPhotoComponents() {
+        pickerView.isHidden = false
+    }
+}
+
+extension CameraOutputViewController: DatePickerDelegate {
+    
+    func pickerViewSelected(_ dateArray: [String]) {
+        dateTimeLabel.text = "\(dateArray[0]).\(dateArray[1]).\(dateArray[2])"
+        
+        guard let hour = Int(dateArray[3]) else { return }
+        if hour < 12 {
+            meridiemLabel.text = "AM \(dateArray[3]):\(dateArray[4])"
+        } else {
+            let hourString = "\(hour - 12)".convertTo2Digit()
+            meridiemLabel.text = "PM \(hourString):\(dateArray[4])"
+        }
+    }
+    
 }
