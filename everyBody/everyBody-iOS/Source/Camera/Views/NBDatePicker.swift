@@ -89,7 +89,7 @@ class NBDatePicker: UIView {
         }
         
         colonLabel.snp.makeConstraints {
-            $0.leading.equalTo(hourPickerView.snp.trailing).offset(-7)
+            $0.leading.equalTo(hourPickerView.snp.trailing).offset(-8)
             $0.top.equalTo(36)
         }
     }
@@ -104,14 +104,27 @@ class NBDatePicker: UIView {
     }
     
     private func setDayDate(with month: Month) {
+        guard let day = Int(selectedDay) else { return }
         switch month {
         case .jan, .mar, .may, .july, .aug, .oct, .dec:
+            // 1, 3, 5, 7, 8, 10, 12월은 31일.
             dayType = 0
         case .feb:
+            // 2월은 윤년 여부에 따라 29일 혹은 28일
+            // 31일 혹은 30일인 채로 당월로 바뀌었을 경우 selectedMonth 값을 2월의 마지막 날짜(29일 혹은 28일)로 업데이트 해주어야 함
             guard let year = Int(selectedYear) else { return }
             dayType = isLeapYear(year) ? 2 : 3
+            if day == 31 || day == 30 {
+                selectedDay = String("\(dateViewModel.dayList[dayType].last!)")
+            }
         case .apr, .june, .sep, .nov:
+            // 4, 6, 9, 11월은 30일
+            // 31일인 채로 당월로 바뀌었을 경우 selectedMonth 값을 4, 6, 9, 11월의 마지막 날짜(30일)로 업데이트해주어야 함.
+            guard let day = Int(selectedDay) else { return }
             dayType = 1
+            if day == 31 {
+                selectedDay = String("\(dateViewModel.dayList[dayType].last!)")
+            }
         }
         dayPickerView.reloadComponent(0)
     }
