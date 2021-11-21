@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PopUpViewController: UIViewController {
+class PopUpViewController: BaseViewController {
     
     enum Style {
         case delete
@@ -37,17 +37,23 @@ class PopUpViewController: UIViewController {
     
     private lazy var textField = NBTextField().then {
         $0.font = .nbFont(type: .body2)
+        $0.setPlaceHoder(placehoder: "폴더명을 입력해주세요")
+    }
+    
+    private lazy var datePicker = UIDatePicker().then {
+        $0.datePickerMode = .time
+        $0.preferredDatePickerStyle = .wheels
     }
     
     private let cancelButton = UIButton().then {
-        $0.setTitle("Cancel", for: .normal)
+        $0.setTitle("취소", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body2)
         $0.setTitleColor(Asset.Color.gray80.color, for: .normal)
         $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
     }
     
     private let confirmButton = UIButton().then {
-        $0.setTitle("Confirm", for: .normal)
+        $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body2SemiBold)
         $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
         $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
@@ -57,6 +63,7 @@ class PopUpViewController: UIViewController {
     
     var type: Style?
     weak var delegate: PopUpActionProtocol?
+    var initalDate: [String] = []
     
     // MARK: - Initalizer
     
@@ -91,7 +98,7 @@ class PopUpViewController: UIViewController {
     
     private func setViewHierachy() {
         view.addSubview(containerView)
-        containerView.addSubviews(titleLabel, descriptionLabel, textField, cancelButton, confirmButton)
+        containerView.addSubviews(titleLabel, descriptionLabel, textField, datePicker, cancelButton, confirmButton)
     }
     
     private func setUI() {
@@ -118,7 +125,11 @@ class PopUpViewController: UIViewController {
             }
             
             if type == .picker {
-                // TODO: - custom picker
+                datePicker.snp.makeConstraints {
+                    $0.top.equalToSuperview().offset(37)
+                    $0.centerX.equalToSuperview()
+                    $0.height.equalTo(120)
+                }
             } else {
                 titleLabel.snp.makeConstraints {
                     $0.top.equalToSuperview().offset(32)
@@ -164,7 +175,9 @@ class PopUpViewController: UIViewController {
                 delegate?.confirmButtonDidTap(confirmButton, textInfo: text)
             }
         case .picker:
-            return
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "HH:mm"
+            delegate?.confirmButtonDidTap(confirmButton, textInfo: dateFormatter.string(from: datePicker.date))
         case .save:
             return
         }
