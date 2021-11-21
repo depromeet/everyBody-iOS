@@ -10,7 +10,7 @@ import UIKit.UIImage
 extension UIView {
     func renderToImageView() -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: self.bounds.size)
-        let image = renderer.image { context in
+        let image = renderer.image { _ in
             drawHierarchy(in: bounds, afterScreenUpdates: true)
         }
         
