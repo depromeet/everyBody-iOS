@@ -5,11 +5,12 @@
 //  Created by kong on 2021/11/03.
 //
 
-import SnapKit
 import UIKit
+
+import SnapKit
 import Then
 
-class AlbumCollectionViewCell: UICollectionViewCell {
+class BottomCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "AlbumCollectionViewCell"
     
@@ -18,11 +19,9 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     var panoramaCellImage = UIImageView().then {
         $0.makeRounded(radius: 4)
         $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
-    
-    var tagView = UIView().then {
-        $0.makeRounded(radius: 10)
-    }
+    var tagView = UIView()
     var tagLabel = UILabel().then {
         $0.textColor = Asset.Color.gray50.color
         $0.textAlignment = .center
@@ -55,17 +54,15 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func setupViewHierarchy() {
+    private func setupViewHierarchy() {
         contentView.addSubviews(panoramaCellImage, tagView)
         tagView.addSubview(tagLabel)
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         panoramaCellImage.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(48 * Constant.Size.screenWidth / 375)
-            $0.height.equalTo(64 * Constant.Size.screenHeight / 812)
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(contentView.frame.width * (4/3) )
         }
         
         tagView.snp.makeConstraints {
@@ -89,13 +86,15 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     func transformToCenter() {
         tagView.backgroundColor = Asset.Color.keyPurple.color
         tagLabel.textColor = .white
-        panoramaCellImage.makeRoundedWithBorder(radius: tagLabel.frame.height/2, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
+        panoramaCellImage.makeRoundedWithBorder(radius: 4, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
+        tagView.makeRoundedWithBorder(radius: tagView.frame.height/2, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
     }
     
     func transformToStandard() {
         tagView.backgroundColor = .clear
         tagLabel.textColor = Asset.Color.gray50.color
-        panoramaCellImage.makeRoundedWithBorder(radius: tagLabel.frame.height/2, color: UIColor.clear.cgColor)
+        panoramaCellImage.makeRoundedWithBorder(radius: 4, color: UIColor.clear.cgColor)
+        tagView.makeRoundedWithBorder(radius: tagView.frame.height/2, color: UIColor.clear.cgColor)
     }
     
 }
