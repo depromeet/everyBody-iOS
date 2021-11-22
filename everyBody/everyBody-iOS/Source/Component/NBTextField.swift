@@ -22,7 +22,6 @@ class NBTextField: UITextField {
         render()
         addLeftPadding()
         setBorder()
-        setPlaceHoder()
     }
     
     public required init?(coder: NSCoder) {
@@ -39,10 +38,8 @@ class NBTextField: UITextField {
         layer.borderColor = borderColor.cgColor
     }
     
-    private func setPlaceHoder() {
-        attributedPlaceholder = NSAttributedString(string: "폴더명을 입력해주세요", attributes: [
-            .foregroundColor: Asset.Color.gray60.color
-        ])
+    func setPlaceHoder(placehoder: String) {
+        addPlaceHolderAttributed(text: placehoder)
     }
 }
 

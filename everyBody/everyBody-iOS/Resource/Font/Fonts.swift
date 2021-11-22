@@ -20,6 +20,7 @@ enum TextStyles {
     case caption1
     case caption1Semibold
     case caption2
+    case caption2Semibold
 }
 
 enum NBWeight: String {
@@ -61,6 +62,8 @@ extension UIFont {
             return UIFont(name: "Pretendard-SemiBold", size: 12)!
         case .caption2:
             return UIFont(name: "Pretendard-Regular", size: 10)!
+        case .caption2Semibold:
+            return UIFont(name: "Pretendard-SemiBold", size: 10)!
         }
     }
     

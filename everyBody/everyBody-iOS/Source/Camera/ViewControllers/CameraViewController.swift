@@ -19,7 +19,9 @@ class CameraViewController: BaseViewController {
     // MARK: - UI Components
     
     private lazy var takeButton = UIButton()
-    private lazy var gridSwitch = CustomSwitch(width: 59, height: 24)
+    private lazy var gridSwitch = CustomSwitch(width: 59, height: 24).then {
+        $0.type = .text
+    }
     private lazy var previewView = ViewFinder(camera: camera,
                                               height: Constant.Size.screenWidth * (4.0 / 3.0)).makeUIView()
     private var gridIndicatorView = UIImageView().then {
