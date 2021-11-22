@@ -14,7 +14,7 @@
 		AA5B85DB271700D5002276C3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85DA271700D5002276C3 /* Constant.swift */; };
 		AA5B85DD271700E6002276C3 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85DC271700E6002276C3 /* Size.swift */; };
 		AA5B85DF27170F27002276C3 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */; };
-		AA5B85E127171072002276C3 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E027171072002276C3 /* TabbarViewController.swift */; };
+		AA5B85E127171072002276C3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E027171072002276C3 /* HomeViewController.swift */; };
 		AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E227173DC0002276C3 /* ViewFinder.swift */; };
 		AA7366512746BD53002B726D /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7366502746BD53002B726D /* DateViewModel.swift */; };
 		AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73665227485C3D002B726D /* String+2DigitFormat.swift */; };
@@ -117,7 +117,7 @@
 		AA5B85DA271700D5002276C3 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		AA5B85DC271700E6002276C3 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
-		AA5B85E027171072002276C3 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		AA5B85E027171072002276C3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AA5B85E227173DC0002276C3 /* ViewFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinder.swift; sourceTree = "<group>"; };
 		AA7366502746BD53002B726D /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		AA73665227485C3D002B726D /* String+2DigitFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+2DigitFormat.swift"; sourceTree = "<group>"; };
@@ -320,7 +320,6 @@
 				AA7E0A5226FB0B6900106DC2 /* Panorama */,
 				AA7E0A5026FB0B5800106DC2 /* Camera */,
 				AA7E0A4F26FB0B4F00106DC2 /* Home */,
-				AA5B85E027171072002276C3 /* TabbarViewController.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -391,6 +390,7 @@
 			children = (
 				AA74A0D927495E2300FA6678 /* PreferenceViewController.swift */,
 				AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */,
+				AA5B85E027171072002276C3 /* HomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -699,7 +699,7 @@
 				AA95910F27442999007772BD /* PopUpViewController.swift in Sources */,
 				AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */,
 				AA959116274436A4007772BD /* UIView+addShadow.swift in Sources */,
-				AA5B85E127171072002276C3 /* TabbarViewController.swift in Sources */,
+				AA5B85E127171072002276C3 /* HomeViewController.swift in Sources */,
 				AA9591122744339D007772BD /* NBTextField.swift in Sources */,
 				AA74A0FD274AD66300FA6678 /* UIImageView+setImage.swift in Sources */,
 				AAC7ACBE272D7DF400B2BE1E /* PoseViewModel.swift in Sources */,

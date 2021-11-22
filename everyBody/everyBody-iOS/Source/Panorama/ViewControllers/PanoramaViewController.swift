@@ -114,12 +114,21 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
     // MARK: - Methods
     
     private func initNavigationBar() {
-        self.navigationController?.initWithRightBarTwoButtons(navigationItem: self.navigationItem, rightButtonImage: [Asset.Image.share.image, Asset.Image.create.image], action: [#selector(tapSaveButton), #selector(tapEditOrCloseButton)])
-        self.title = viewModel.albumTitle
+        navigationController?.initNavigationBar(navigationItem: self.navigationItem,
+                                                rightButtonImages: [Asset.Image.share.image,
+                                                                    Asset.Image.create.image],
+                                                rightActions: [#selector(tapSaveButton),
+                                                               #selector(tapEditOrCloseButton)])
+        navigationItem.leftBarButtonItems = nil
+        title = viewModel.albumTitle
     }
     
     private func initEditNavigationBar() {
-        self.navigationController?.initNaviBarWithCloseButton(navigationItem: self.navigationItem, rightButtonImage: Asset.Image.del.image, action: #selector(tapDeleteButton), closeAction: #selector(tapEditOrCloseButton))
+        navigationController?.initNavigationBar(navigationItem: self.navigationItem,
+                                                leftButtonImages: [Asset.Image.clear.image],
+                                                rightButtonImages: [Asset.Image.del.image],
+                                                leftActions: [#selector(tapEditOrCloseButton)],
+                                                rightActions: [#selector(tapDeleteButton)])
         self.title = "\(viewModel.phothArray.count)장"
     }
     
