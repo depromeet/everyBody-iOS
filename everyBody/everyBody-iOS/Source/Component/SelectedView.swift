@@ -49,7 +49,7 @@ class SelectedView: UIView {
         switch style {
         case .fill:
             checkImage.snp.makeConstraints {
-                $0.top.leading.equalToSuperview().inset(8)
+                $0.top.trailing.equalToSuperview().inset(8)
             }
         case .basic:
             checkImage.snp.makeConstraints {

@@ -31,6 +31,13 @@ extension UINavigationController {
         self.navigationBar.tintColor = .black
     }
     
+    func initNaviBarWithCloseButton(navigationItem: UINavigationItem?, rightButtonImage: UIImage, action: Selector, closeAction: Selector) {
+        let closeButton = UIBarButtonItem(image: Asset.Image.clear.image, style: .plain, target: self.topViewController, action: closeAction)
+        let rightBarButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self.topViewController, action: action)
+        navigationItem?.leftBarButtonItem = closeButton
+        navigationItem?.rightBarButtonItems = [rightBarButton]
+    }
+    
     func initWithRightBarButton(navigationItem: UINavigationItem?, rightButtonImage: UIImage, action: Selector) {
         initNaviBarWithBackButton()
         
@@ -40,11 +47,13 @@ extension UINavigationController {
     
     /// 오른쪽에 버튼이 두개인 네비게이션 바
     func initWithRightBarTwoButtons(navigationItem: UINavigationItem?, rightButtonImage: [UIImage], action: [Selector]) {
+        print("initWithRightBarTwoButtons")
         initNaviBarWithBackButton()
         
-        let rightBarFirstButton = UIBarButtonItem(image: rightButtonImage[0], style: .plain, target: self.topViewController, action: action[0])
-        let rightBarSecondButton = UIBarButtonItem(image: rightButtonImage[1], style: .plain, target: self.topViewController, action: action[1])
-        
+        /// 코드 반복문으로 바꿔야겟다
+        guard let rightBarFirstButton = navigationItem?.makeCustomBarItem(self.topViewController, action: action[0], image: rightButtonImage[0]) else { return }
+        guard let rightBarSecondButton = navigationItem?.makeCustomBarItem(self.topViewController, action: action[1], image: rightButtonImage[1]) else { return }
+        navigationItem?.leftBarButtonItem = nil
         navigationItem?.rightBarButtonItems = [rightBarFirstButton, rightBarSecondButton]
     }
 

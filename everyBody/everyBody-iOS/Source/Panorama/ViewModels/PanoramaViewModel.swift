@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 class PanoramaViewModel {
-    // 그냥 테스트할라고 넣은 사진 배열!
-    var phothArray: [UIImage] = [Asset.Image.add.image, Asset.Image.album.image, Asset.Image.arrowDown.image, Asset.Image.add.image, Asset.Image.album.image, Asset.Image.arrowDown.image, Asset.Image.add.image, Asset.Image.album.image, Asset.Image.arrowDown.image, Asset.Image.add.image, Asset.Image.album.image, Asset.Image.arrowDown.image, Asset.Image.add.image, Asset.Image.album.image, Asset.Image.arrowDown.image, Asset.Image.add.image, Asset.Image.album.image, Asset.Image.arrowDown.image]
+    var albumTitle: String = "예꽁이의 섹시눈바디"
+    var phothArray: [UIImage] = [Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image]
 
     var wholebody: [UIImage] = []
     var upperbody: [UIImage] = []
