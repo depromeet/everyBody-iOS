@@ -67,9 +67,9 @@ class CameraViewController: BaseViewController {
     }
     
     private func initNavigationBar() {
-        navigationController?.initWithRightBarButton(navigationItem: self.navigationItem,
-                                                     rightButtonImage: Asset.Image.refresh.image,
-                                                     action: #selector(switchCameraMode))
+        navigationController?.initNavigationBar(navigationItem: self.navigationItem,
+                                                rightButtonImages: [Asset.Image.refresh.image],
+                                                rightActions: [#selector(switchCameraMode)])
         title = "사진 촬영"
     }
     

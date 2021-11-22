@@ -15,8 +15,8 @@ extension UINavigationItem {
         
         let barButtonItem = UIBarButtonItem(customView: button)
         barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
-        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 26).isActive = true
-        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 26).isActive = true
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 32).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 32).isActive = true
         
         return barButtonItem
     }

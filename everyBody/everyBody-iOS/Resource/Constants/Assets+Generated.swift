@@ -58,7 +58,6 @@ internal enum Asset {
     internal static let refresh = ImageAsset(name: "refresh")
     internal static let sample = ImageAsset(name: "sample")
     internal static let samplePose = ImageAsset(name: "samplePose")
-    internal static let sampleSanghoon = ImageAsset(name: "sampleSanghoon")
     internal static let setting = ImageAsset(name: "setting")
     internal static let womanLower01 = ImageAsset(name: "woman_lower01")
     internal static let womanUpper02 = ImageAsset(name: "woman_upper02")

@@ -6,24 +6,13 @@
 //
 
 import UIKit
+import SwiftUI
 
 extension UINavigationController {
-    
-    /// 투명한 네비게이션 바
-    
-    func initTransparentNavBar() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        self.navigationBar.standardAppearance = appearance
-        self.navigationBar.scrollEdgeAppearance = appearance
-    }
-    
-    /// 뒤로가기 버튼이 있는 네비게이션 바
     
     func initNaviBarWithBackButton() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.initBackButtonAppearance()
         appearance.backgroundColor = .white
         
         self.navigationBar.standardAppearance = appearance
@@ -31,49 +20,49 @@ extension UINavigationController {
         self.navigationBar.tintColor = .black
     }
     
-    func initNaviBarWithCloseButton(navigationItem: UINavigationItem?, rightButtonImage: UIImage, action: Selector, closeAction: Selector) {
-        let closeButton = UIBarButtonItem(image: Asset.Image.clear.image, style: .plain, target: self.topViewController, action: closeAction)
-        let rightBarButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self.topViewController, action: action)
-        navigationItem?.leftBarButtonItem = closeButton
-        navigationItem?.rightBarButtonItems = [rightBarButton]
-    }
-    
-    func initWithRightBarButton(navigationItem: UINavigationItem?, rightButtonImage: UIImage, action: Selector) {
+    func initNavigationBar(navigationItem: UINavigationItem?,
+                           leftButtonImages: [UIImage]? = nil,
+                           rightButtonImages: [UIImage]? = nil,
+                           leftActions: [Selector]? = nil,
+                           rightActions: [Selector]? = nil) {
+        
         initNaviBarWithBackButton()
         
-        let rightBarButton = UIBarButtonItem(image: rightButtonImage, style: .plain, target: self.topViewController, action: action)
-        navigationItem?.rightBarButtonItem = rightBarButton
+        makeBarButtons(navigationItem: navigationItem,
+                       buttonImage: leftButtonImages,
+                       actions: leftActions,
+                       isLeft: true)
+        
+        makeBarButtons(navigationItem: navigationItem,
+                       buttonImage: rightButtonImages,
+                       actions: rightActions,
+                       isLeft: false)
+        
+        let backBarButtton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem?.backBarButtonItem = backBarButtton
     }
     
-    /// 오른쪽에 버튼이 두개인 네비게이션 바
-    func initWithRightBarTwoButtons(navigationItem: UINavigationItem?, rightButtonImage: [UIImage], action: [Selector]) {
-        print("initWithRightBarTwoButtons")
-        initNaviBarWithBackButton()
+    func makeBarButtons(navigationItem: UINavigationItem?,
+                        buttonImage: [UIImage]?,
+                        actions: [Selector]?,
+                        isLeft: Bool
+    ) {
+        guard let buttonImage = buttonImage,
+              let actions = actions else { return }
         
-        /// 코드 반복문으로 바꿔야겟다
-        guard let rightBarFirstButton = navigationItem?.makeCustomBarItem(self.topViewController, action: action[0], image: rightButtonImage[0]) else { return }
-        guard let rightBarSecondButton = navigationItem?.makeCustomBarItem(self.topViewController, action: action[1], image: rightButtonImage[1]) else { return }
-        navigationItem?.leftBarButtonItem = nil
-        navigationItem?.rightBarButtonItems = [rightBarFirstButton, rightBarSecondButton]
+        var barButtonItems: [UIBarButtonItem] = []
+        buttonImage.enumerated().forEach { index, image in
+            guard let button = navigationItem?.makeCustomBarItem(self.topViewController,
+                                                                 action: actions[index],
+                                                                 image: image) else { return }
+            barButtonItems.append(button)
+        }
+        
+        if isLeft {
+            navigationItem?.leftBarButtonItems = barButtonItems
+        } else {
+            navigationItem?.rightBarButtonItems = barButtonItems
+        }
     }
-
-}
-
-extension UINavigationBarAppearance {
     
-    func initBackButtonAppearance() {
-        var backButtonImage: UIImage? {
-            return Asset.Image.back.image
-        }
-        
-        var backButtonAppearance: UIBarButtonItemAppearance {
-            let backButtonAppearance = UIBarButtonItemAppearance()
-            backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.clear, .font: UIFont.systemFont(ofSize: 0.0)]
-            
-            return backButtonAppearance
-        }
-        
-        self.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
-        self.backButtonAppearance = backButtonAppearance
-    }
 }
