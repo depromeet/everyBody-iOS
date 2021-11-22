@@ -76,21 +76,34 @@ class AppDate {
         return hour
     }
     
+    func getMinute() -> Int {
+        guard let minute = Int(self.getDateComponent(with: "mm")) else { return 0 }
+        return minute
+    }
+    
     func getWeekday() -> String {
         guard let weekday = self.weekday else { return "" }
         return weekday
     }
 
     func getDayToString() -> String {
-        return "\(self.getDay())"
+        return self.getDateComponent(with: "dd")
     }
     
     func getMonthToString() -> String {
-        return "\(self.getMonth())"
+        return self.getDateComponent(with: "MM")
     }
     
     func getYearToString() -> String {
         return "\(self.getYear())"
+    }
+    
+    func getHourToString() -> String {
+        return self.getDateComponent(with: "HH")
+    }
+    
+    func getMinuteToString() -> String {
+        return self.getDateComponent(with: "mm")
     }
     
     private func getDateComponent(with format: String) -> String {

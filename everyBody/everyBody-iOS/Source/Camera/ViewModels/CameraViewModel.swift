@@ -10,6 +10,7 @@ import Foundation
 import RxSwift
 
 struct CameraViewModel {
+    
     var camera = Camera.shared
     var creationTime: PublishSubject<String> {
         return camera.creationDate
@@ -24,4 +25,5 @@ struct CameraViewModel {
             }
         }
     }
+    
 }

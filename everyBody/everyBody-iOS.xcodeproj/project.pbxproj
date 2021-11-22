@@ -16,6 +16,8 @@
 		AA5B85DF27170F27002276C3 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */; };
 		AA5B85E127171072002276C3 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E027171072002276C3 /* TabbarViewController.swift */; };
 		AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E227173DC0002276C3 /* ViewFinder.swift */; };
+		AA7366512746BD53002B726D /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7366502746BD53002B726D /* DateViewModel.swift */; };
+		AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73665227485C3D002B726D /* String+2DigitFormat.swift */; };
 		AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3526FB0A6100106DC2 /* AppDelegate.swift */; };
 		AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3726FB0A6100106DC2 /* SceneDelegate.swift */; };
 		AA7E0A3A26FB0A6100106DC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A3926FB0A6100106DC2 /* ViewController.swift */; };
@@ -41,6 +43,8 @@
 		AA95911D27444F4F007772BD /* PopUpActionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95911C27444F4F007772BD /* PopUpActionDelegate.swift */; };
 		AA95911F27445CD0007772BD /* className.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95911E27445CD0007772BD /* className.swift */; };
 		AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */; };
+		AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */; };
+		AA9591252746ABE2007772BD /* NBDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591242746ABE2007772BD /* NBDatePicker.swift */; };
 		AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A41462715EC2C002BBE15 /* Camera.swift */; };
 		AABEA2DD273C4A3300A06A8C /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */; };
 		AABEA2DE273C4A3300A06A8C /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */; };
@@ -108,6 +112,8 @@
 		AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		AA5B85E027171072002276C3 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		AA5B85E227173DC0002276C3 /* ViewFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinder.swift; sourceTree = "<group>"; };
+		AA7366502746BD53002B726D /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
+		AA73665227485C3D002B726D /* String+2DigitFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+2DigitFormat.swift"; sourceTree = "<group>"; };
 		AA7E0A3226FB0A6100106DC2 /* everyBody-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "everyBody-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7E0A3526FB0A6100106DC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA7E0A3726FB0A6100106DC2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +137,8 @@
 		AA95911C27444F4F007772BD /* PopUpActionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpActionDelegate.swift; sourceTree = "<group>"; };
 		AA95911E27445CD0007772BD /* className.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = className.swift; sourceTree = "<group>"; };
 		AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Generic.swift"; sourceTree = "<group>"; };
+		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
+		AA9591242746ABE2007772BD /* NBDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDatePicker.swift; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
 		AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
@@ -215,6 +223,8 @@
 				AA95911E27445CD0007772BD /* className.swift */,
 				AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */,
 				FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */,
+				AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */,
+				AA73665227485C3D002B726D /* String+2DigitFormat.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +393,7 @@
 				AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */,
 				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
 				AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */,
+				AA9591242746ABE2007772BD /* NBDatePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -402,6 +413,7 @@
 				AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */,
 				AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */,
 				AABEA2E6273C585C00A06A8C /* AlbumViewModel.swift */,
+				AA7366502746BD53002B726D /* DateViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -696,6 +708,7 @@
 				AA95911827443FB9007772BD /* UIViewController+hideKeyboard.swift in Sources */,
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
+				AA9591252746ABE2007772BD /* NBDatePicker.swift in Sources */,
 				AA7E0A4026FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld in Sources */,
 				AA7E0A5A26FB0BAD00106DC2 /* CellSample.swift in Sources */,
 				AAC7AD242737B6CB00B2BE1E /* FolderSelectionViewController.swift in Sources */,
@@ -709,6 +722,7 @@
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
+				AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */,
 				AAC7AD262737B84400B2BE1E /* FolderCollectionViewCell.swift in Sources */,
 				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
@@ -716,6 +730,7 @@
 				AAC7AD282737B9E900B2BE1E /* SelectedView.swift in Sources */,
 				AA95911F27445CD0007772BD /* className.swift in Sources */,
 				AAC7ACE2272DBEDC00B2BE1E /* ToastView.swift in Sources */,
+				AA7366512746BD53002B726D /* DateViewModel.swift in Sources */,
 				AABEA2E5273C578E00A06A8C /* Album.swift in Sources */,
 				AAC7ACBA272D5E3E00B2BE1E /* BottomSheetView.swift in Sources */,
 				AAC7ACB4272D474E00B2BE1E /* CaptureButton.swift in Sources */,
@@ -731,6 +746,7 @@
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
 				FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */,
 				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
+				AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
