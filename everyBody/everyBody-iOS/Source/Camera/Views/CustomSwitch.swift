@@ -12,6 +12,11 @@ import RxGesture
 
 class CustomSwitch: UIView {
     
+    enum Style {
+        case basic
+        case text
+    }
+    
     // MARK: - UI Components
     
     var circleView = UIView().then {
@@ -19,16 +24,17 @@ class CustomSwitch: UIView {
     }
     var descriptionLabel = UILabel().then {
         $0.text = "그리드"
-        $0.font = .nbFont(type: .caption1Semibold)
+        $0.font = .nbFont(type: .caption2Semibold)
         $0.textColor = .white
-        $0.isHidden = true
     }
     
     // MARK: - Properties
     
     let disposeBag = DisposeBag()
     var isToggleSubject = BehaviorSubject<Bool>(value: false)
-    var isSwitchOn: Bool = false
+    var isOn: Bool = true
+    
+    var type: Style = .basic
     
     // MARK: - Initializer
     
@@ -44,9 +50,9 @@ class CustomSwitch: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        bind()
         render()
         setLayout()
-        bind()
     }
     
     required init?(coder: NSCoder) {
@@ -56,7 +62,7 @@ class CustomSwitch: UIView {
     // MARK: - Methods
     
     private func render() {
-        backgroundColor = Asset.Color.gray60.color
+        backgroundColor = Asset.Color.keyPurple.color
     }
     
     func setAttribute() {
@@ -68,7 +74,7 @@ class CustomSwitch: UIView {
         addSubviews(circleView, descriptionLabel)
         
         circleView.snp.makeConstraints {
-            $0.top.leading.bottom.equalToSuperview().inset(2)
+            $0.top.trailing.bottom.equalToSuperview().inset(2)
             $0.width.height.equalTo(20)
             circleView.makeRounded(radius: 10)
         }
@@ -84,7 +90,7 @@ class CustomSwitch: UIView {
             .tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [self] _ in
-                isToggleSubject.onNext(isSwitchOn)
+                isToggleSubject.onNext(isOn)
             })
             .disposed(by: disposeBag)
         
@@ -92,7 +98,7 @@ class CustomSwitch: UIView {
             .map { $0 }
             .subscribe(onNext: { [self] in
                 $0 ? toggleSwitchOn() : toggleSwitchOff()
-                self.isSwitchOn.toggle()
+                self.isOn.toggle()
             })
             .disposed(by: disposeBag)
     }
@@ -101,17 +107,17 @@ class CustomSwitch: UIView {
     
     func toggleSwitchOn() {
         UIView.animate(withDuration: 0.2) { [self] in
-            circleView.center.x += 35
+            circleView.center.x += self.frame.width - self.circleView.frame.width - 4
             backgroundColor = Asset.Color.keyPurple.color
-            descriptionLabel.isHidden = false
+            descriptionLabel.isHidden = type == .basic ? true : false
         }
     }
     
     func toggleSwitchOff() {
         UIView.animate(withDuration: 0.2) { [self] in
-            circleView.center.x -= 35
+            circleView.center.x -= self.frame.width - self.circleView.frame.width - 4
             backgroundColor = Asset.Color.gray60.color
-            descriptionLabel.isHidden = true
+            descriptionLabel.isHidden = type == .basic ? true : true
         }
     }
 
