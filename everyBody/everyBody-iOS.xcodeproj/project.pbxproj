@@ -173,7 +173,7 @@
 		AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseViewModel.swift; sourceTree = "<group>"; };
 		AAC7ACBF272D7E0400B2BE1E /* Pose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pose.swift; sourceTree = "<group>"; };
-		AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSwitch.swift; path = "everyBody-iOS/Source/Component/CustomSwitch.swift"; sourceTree = SOURCE_ROOT; };
+		AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomSwitch.swift; path = "everyBody-iOS/Source/Camera/Views/CustomSwitch.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = "everyBody-iOS/Source/Camera/Views/ToastView.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOutputViewController.swift; sourceTree = "<group>"; };
 		AAC7ACF02733F51B00B2BE1E /* NBSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBSegmentedControl.swift; path = "everyBody-iOS/Source/Component/NBSegmentedControl.swift"; sourceTree = SOURCE_ROOT; };
@@ -425,6 +425,7 @@
 		AA7E0A5D26FB0BC600106DC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
 				AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */,
 				AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */,
 				AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */,
@@ -515,7 +516,6 @@
 				AA9591112744339D007772BD /* NBTextField.swift */,
 				AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */,
 				AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */,
-				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
