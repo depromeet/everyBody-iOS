@@ -56,7 +56,7 @@ class HomeViewController: BaseViewController {
     @objc
     private func pushToPreferenceViewController() {
         let viewController = PreferenceViewController()
-        self.navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
