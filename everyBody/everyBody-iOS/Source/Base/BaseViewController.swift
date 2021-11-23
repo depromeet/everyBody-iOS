@@ -19,7 +19,6 @@ class BaseViewController: UIViewController {
         
         render()
         initNavigationBar()
-        hideKeyboard()
     }
     
     private func render() {

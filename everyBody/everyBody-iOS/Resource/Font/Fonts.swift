@@ -10,6 +10,7 @@ import UIKit
 enum TextStyles {
     case header1
     case header2
+    case header2Semibold
     case subtitle
     case body1
     case body2
@@ -41,6 +42,8 @@ extension UIFont {
         case .header1:
             return UIFont(name: "Pretendard-Bold", size: 28)!
         case .header2:
+            return UIFont(name: "Pretendard-Bold", size: 24)!
+        case .header2Semibold:
             return UIFont(name: "Pretendard-Bold", size: 24)!
         case .subtitle:
             return UIFont(name: "Pretendard-SemiBold", size: 20)!
