@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA4033D3274C36FC009C4A7E /* FolderCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4033D2274C36FC009C4A7E /* FolderCreationViewController.swift */; };
 		AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85CE2716D068002276C3 /* CameraViewController.swift */; };
 		AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */; };
 		AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */; };
@@ -110,6 +111,7 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		AA4033D2274C36FC009C4A7E /* FolderCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCreationViewController.swift; sourceTree = "<group>"; };
 		AA5B85CE2716D068002276C3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addSubviews.swift"; sourceTree = "<group>"; };
 		AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+makeRounded.swift"; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 				AA74A0D927495E2300FA6678 /* PreferenceViewController.swift */,
 				AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */,
 				AA5B85E027171072002276C3 /* HomeViewController.swift */,
+				AA4033D2274C36FC009C4A7E /* FolderCreationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -422,10 +425,10 @@
 		AA7E0A5D26FB0BC600106DC2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
 				AAC7ACA82729EB1600B2BE1E /* TextWithIconView.swift */,
 				AAC7ACB3272D474E00B2BE1E /* CaptureButton.swift */,
 				AAC7ACB9272D5E3E00B2BE1E /* BottomSheetView.swift */,
-				AAC7ACDF272D947000B2BE1E /* CustomSwitch.swift */,
 				AAC7ACE1272DBEDC00B2BE1E /* ToastView.swift */,
 				AA9591242746ABE2007772BD /* NBDatePicker.swift */,
 			);
@@ -745,6 +748,7 @@
 				AAC7ACB4272D474E00B2BE1E /* CaptureButton.swift in Sources */,
 				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
+				AA4033D3274C36FC009C4A7E /* FolderCreationViewController.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,

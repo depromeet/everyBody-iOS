@@ -32,11 +32,13 @@ class NBPrimaryButton: UIButton {
     }
     
     private func setEnableButtonUI() {
+        isUserInteractionEnabled = true
         backgroundColor = Asset.Color.keyPurple.color
         setTitleColor(.white, for: .normal)
     }
     
     private func setDisableButtonUI() {
+        isUserInteractionEnabled = false
         backgroundColor = Asset.Color.gray30.color
         setTitleColor(Asset.Color.gray50.color, for: .normal)
     }

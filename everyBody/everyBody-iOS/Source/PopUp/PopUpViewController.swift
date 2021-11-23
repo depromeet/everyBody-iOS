@@ -98,7 +98,7 @@ class PopUpViewController: BaseViewController {
     
     private func setViewHierachy() {
         view.addSubview(containerView)
-        containerView.addSubviews(titleLabel, descriptionLabel, textField, datePicker, cancelButton, confirmButton)
+        containerView.addSubviews(titleLabel, descriptionLabel, textField, cancelButton, confirmButton)
     }
     
     private func setUI() {
@@ -125,6 +125,7 @@ class PopUpViewController: BaseViewController {
             }
             
             if type == .picker {
+                containerView.addSubview(datePicker)
                 datePicker.snp.makeConstraints {
                     $0.top.equalToSuperview().offset(37)
                     $0.centerX.equalToSuperview()
