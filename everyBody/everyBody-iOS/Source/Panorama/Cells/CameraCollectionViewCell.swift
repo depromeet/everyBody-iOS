@@ -11,8 +11,6 @@ import SnapKit
 
 class CameraCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "CameraCollectionViewCell"
-    
     // MARK: - UIComponenets
     
     var cameraButton = UIButton().then {
@@ -38,11 +36,6 @@ class CameraCollectionViewCell: UICollectionViewCell {
     
     // MARK: - LifeCycle
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setupViewHierarchy()
-    }
-    
     // MARK: - Actions
     
     // MARK: - Methods
@@ -56,13 +49,4 @@ class CameraCollectionViewCell: UICollectionViewCell {
             $0.edges.equalToSuperview()
         }
     }
-    
-    func transformToCenter() {
-
-    }
-    
-    func transformToStandard() {
-
-    }
-    
 }
