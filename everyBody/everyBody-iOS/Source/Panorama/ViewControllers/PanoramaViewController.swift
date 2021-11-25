@@ -12,19 +12,7 @@ import Then
 import RxSwift
 import RxRelay
 
-class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
-    func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
-        switch index {
-            case 0:
-            return
-            case 1:
-            return
-            case 2:
-            return
-            default:
-            return
-    }
-}
+class PanoramaViewController: BaseViewController {
     
     // MARK: - UI Components
     
@@ -34,7 +22,7 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
         $0.addTarget(self, action: #selector(gridButtonDidTap), for: .touchUpInside)
     }
     
-    private let bodyParts = NBSegmentedControl(buttonStyle: .basic, numOfButton: 3).then {
+    private let bodyPartSegmentControl = NBSegmentedControl(buttonStyle: .basic, numOfButton: 3).then {
         $0.spacing = 10
     }
     
@@ -45,7 +33,6 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
         $0.showsHorizontalScrollIndicator = false
         $0.bounces = false
         $0.isScrollEnabled = false
-        $0.cellForItem(at: IndexPath(row: 0, section: 0))?.isSelected = true
     }
     
     var bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
@@ -55,13 +42,19 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
         $0.register(BottomCollectionViewCell.self)
         $0.backgroundColor = .white
         $0.showsHorizontalScrollIndicator = false
+        $0.allowsMultipleSelection = false
         $0.collectionViewLayout = layout
-        $0.cellForItem(at: IndexPath(row: 0, section: 0))?.isSelected = true
+        
+    }
+    
+    var stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 22
+        $0.distribution = .fill
     }
     
     // MARK: - Properties
     
-    let disposeBag = DisposeBag()
     var viewModel = PanoramaViewModel()
     
     var gridMode = false {
@@ -75,8 +68,7 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
                 topCollectionView.allowsSelection = true
                 topCollectionView.bounces = false
                 topCollectionView.isScrollEnabled = false
-                topCollectionView.cellForItem(at: tagSelectedIdx)?.isSelected = true
-                bottomCollectionView.cellForItem(at: tagSelectedIdx)?.isSelected = true
+                bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
             }
         }
     }
@@ -85,6 +77,7 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
         didSet {
             topCollectionView.reloadData()
             topCollectionView.allowsMultipleSelection = editMode
+            topCollectionView.isScrollEnabled = editMode
             gridButton.isHidden = editMode
         }
     }
@@ -98,8 +91,9 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
     }
     
     var tagSelectedIdx = IndexPath(row: 0, section: 0)
+    
     var centerCell: BottomCollectionViewCell?
-
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
@@ -109,6 +103,15 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
         setupConstraint()
         initSegementData()
         initSegmentedControl()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        initBottomCollectionView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        topCollectionView.reloadData()
+        bottomCollectionView.reloadData()
     }
     
     // MARK: - Methods
@@ -133,45 +136,32 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
     }
     
     private func initSegmentedControl() {
-        bodyParts.delegate = self
+        bodyPartSegmentControl.delegate = self
     }
     
     private func initSegementData() {
         let bodyPartsArray = ["전신", "상체", "하체"]
-            for (index, title) in bodyPartsArray.enumerated() {
-                bodyParts.setTitle(at: index, title: title)
+        for (index, title) in bodyPartsArray.enumerated() {
+            bodyPartSegmentControl.setTitle(at: index, title: title)
         }
+    }
+    
+    private func initBottomCollectionView() {
+        centerCell = bottomCollectionView.cellForItem(at: tagSelectedIdx) as? BottomCollectionViewCell
+        centerCell?.transformToCenter()
     }
     
     private func switchPanoramaMode() {
         if gridMode || editMode {
             topCollectionView.setCollectionViewLayout(verticalFlowLayout, animated: false)
-            topCollectionView.snp.remakeConstraints {
-                $0.top.equalTo(bodyParts.snp.bottom)
-                $0.leading.trailing.bottom.equalToSuperview()
-            }
-
-            bottomCollectionView.snp.remakeConstraints {
-                $0.top.equalTo(topCollectionView.snp.bottom)
-                $0.leading.trailing.bottom.equalToSuperview()
-                $0.height.equalTo(0)
-            }
+            bottomCollectionView.isHidden = true
         } else {
             topCollectionView.setCollectionViewLayout(horizontalFlowLayout, animated: false)
-            topCollectionView.snp.remakeConstraints {
-                $0.top.equalTo(bodyParts.snp.bottom)
-                $0.leading.trailing.equalToSuperview()
-                $0.height.equalTo(Constant.Size.screenWidth * (4.0 / 3.0))
-            }
-            
-            bottomCollectionView.snp.remakeConstraints {
-                $0.top.equalTo(topCollectionView.snp.bottom).offset(20)
-                $0.leading.trailing.equalToSuperview()
-                $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(22)
-            }
+            bottomCollectionView.isHidden = false
         }
-        topCollectionView.reloadData()
+        
         self.view.layoutIfNeeded()
+        bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
     }
     
     // MARK: - Actions
@@ -191,7 +181,13 @@ class PanoramaViewController: UIViewController, NBSegmentedControlDelegate {
     
     @objc
     private func tapDeleteButton() {
-        /// edit 내비에서 deleteButton 눌렀을 때 처리
+        let popUp = PopUpViewController(type: .delete)
+        popUp.modalTransitionStyle = .crossDissolve
+        popUp.modalPresentationStyle = .overCurrentContext
+        popUp.delegate = self
+        popUp.titleLabel.text = "장의 사진을 삭제하시겠어요?"
+        popUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
+        self.present(popUp, animated: true, completion: nil)
     }
     
     @objc
@@ -215,11 +211,13 @@ extension PanoramaViewController {
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(bodyParts, gridButton, topCollectionView, bottomCollectionView)
+        view.addSubviews(bodyPartSegmentControl, gridButton, stackView)
+        stackView.addArrangedSubviews([topCollectionView, bottomCollectionView])
+        
     }
     
     private func setupConstraint() {
-        bodyParts.snp.makeConstraints {
+        bodyPartSegmentControl.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(56)
@@ -229,19 +227,53 @@ extension PanoramaViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             $0.trailing.equalToSuperview().offset(-22)
             $0.height.width.equalTo(24)
-            $0.centerY.equalTo(bodyParts)
+            $0.centerY.equalTo(bodyPartSegmentControl)
+        }
+        
+        stackView.snp.makeConstraints {
+            $0.top.equalTo(bodyPartSegmentControl.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
         
         topCollectionView.snp.makeConstraints {
-            $0.top.equalTo(bodyParts.snp.bottom)
-            $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Constant.Size.screenWidth * (4.0 / 3.0))
         }
-        
-        bottomCollectionView.snp.makeConstraints {
-            $0.top.equalTo(topCollectionView.snp.bottom).offset(20)
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(22)
+    }
+}
+
+extension PanoramaViewController: NBSegmentedControlDelegate {
+    func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
+        switch index {
+        case 0:
+            return
+        case 1:
+            return
+        case 2:
+            return
+        default:
+            return
         }
+    }
+}
+
+extension PanoramaViewController: PopUpActionProtocol {
+    func cancelButtonDidTap(_ button: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func confirmButtonDidTap(_ button: UIButton) {
+        let deleteData = viewModel.deleteArray
+        if !deleteData.isEmpty {
+            for index in deleteData {
+                viewModel.phothArray.remove(at: index-1)
+            }
+        }
+        
+        viewModel.deleteArray = []
+        topCollectionView.reloadData()
+        bottomCollectionView.reloadData()
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
