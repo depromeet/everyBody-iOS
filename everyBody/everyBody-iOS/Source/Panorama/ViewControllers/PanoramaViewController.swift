@@ -12,38 +12,7 @@ import Then
 import RxSwift
 import RxRelay
 
-class PanoramaViewController: BaseViewController, NBSegmentedControlDelegate, PopUpActionProtocol {
-    func cancelButtonDidTap(_ button: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func confirmButtonDidTap(_ button: UIButton) {
-        let deleteData = viewModel.deleteArray
-        if !deleteData.isEmpty {
-            for index in deleteData {
-                viewModel.phothArray.remove(at: index-1)
-            }
-        }
-        
-        viewModel.deleteArray = []
-        topCollectionView.reloadData()
-        bottomCollectionView.reloadData()
-        
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
-        switch index {
-        case 0:
-            return
-        case 1:
-            return
-        case 2:
-            return
-        default:
-            return
-        }
-    }
+class PanoramaViewController: BaseViewController {
     
     // MARK: - UI Components
     
@@ -53,7 +22,7 @@ class PanoramaViewController: BaseViewController, NBSegmentedControlDelegate, Po
         $0.addTarget(self, action: #selector(gridButtonDidTap), for: .touchUpInside)
     }
     
-    private let bodyParts = NBSegmentedControl(buttonStyle: .basic, numOfButton: 3).then {
+    private let bodyPartSegmentControl = NBSegmentedControl(buttonStyle: .basic, numOfButton: 3).then {
         $0.spacing = 10
     }
     
@@ -167,13 +136,13 @@ class PanoramaViewController: BaseViewController, NBSegmentedControlDelegate, Po
     }
     
     private func initSegmentedControl() {
-        bodyParts.delegate = self
+        bodyPartSegmentControl.delegate = self
     }
     
     private func initSegementData() {
         let bodyPartsArray = ["전신", "상체", "하체"]
         for (index, title) in bodyPartsArray.enumerated() {
-            bodyParts.setTitle(at: index, title: title)
+            bodyPartSegmentControl.setTitle(at: index, title: title)
         }
     }
     
@@ -242,13 +211,13 @@ extension PanoramaViewController {
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(bodyParts, gridButton, stackView)
+        view.addSubviews(bodyPartSegmentControl, gridButton, stackView)
         stackView.addArrangedSubviews([topCollectionView, bottomCollectionView])
         
     }
     
     private func setupConstraint() {
-        bodyParts.snp.makeConstraints {
+        bodyPartSegmentControl.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(56)
@@ -258,11 +227,11 @@ extension PanoramaViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             $0.trailing.equalToSuperview().offset(-22)
             $0.height.width.equalTo(24)
-            $0.centerY.equalTo(bodyParts)
+            $0.centerY.equalTo(bodyPartSegmentControl)
         }
         
         stackView.snp.makeConstraints {
-            $0.top.equalTo(bodyParts.snp.bottom)
+            $0.top.equalTo(bodyPartSegmentControl.snp.bottom)
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
@@ -270,5 +239,41 @@ extension PanoramaViewController {
         topCollectionView.snp.makeConstraints {
             $0.height.equalTo(Constant.Size.screenWidth * (4.0 / 3.0))
         }
+    }
+}
+
+extension PanoramaViewController: NBSegmentedControlDelegate {
+    func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
+        switch index {
+        case 0:
+            return
+        case 1:
+            return
+        case 2:
+            return
+        default:
+            return
+        }
+    }
+}
+
+extension PanoramaViewController: PopUpActionProtocol {
+    func cancelButtonDidTap(_ button: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func confirmButtonDidTap(_ button: UIButton) {
+        let deleteData = viewModel.deleteArray
+        if !deleteData.isEmpty {
+            for index in deleteData {
+                viewModel.phothArray.remove(at: index-1)
+            }
+        }
+        
+        viewModel.deleteArray = []
+        topCollectionView.reloadData()
+        bottomCollectionView.reloadData()
+        
+        self.dismiss(animated: true, completion: nil)
     }
 }
