@@ -93,7 +93,7 @@ class HomeViewController: BaseViewController {
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(cameraButton, nicknameLabel, mottoLabel, emptyView, albumCollectionView)
+        view.addSubviews(nicknameLabel, mottoLabel, emptyView, albumCollectionView, cameraButton)
         emptyView.addSubviews(emptyDescription, createButton)
     }
 
