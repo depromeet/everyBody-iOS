@@ -19,13 +19,21 @@
 		AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E227173DC0002276C3 /* ViewFinder.swift */; };
 		AA7366512746BD53002B726D /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7366502746BD53002B726D /* DateViewModel.swift */; };
 		AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73665227485C3D002B726D /* String+2DigitFormat.swift */; };
-		AA74A0DA27495E2300FA6678 /* PreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0D927495E2300FA6678 /* PreferenceViewController.swift */; };
+		AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */; };
+		AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFAF274FE31B00FD7C70 /* MyPageService.swift */; };
+		AA73AFB2274FE32700FD7C70 /* MyPageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFB1274FE32700FD7C70 /* MyPageAPI.swift */; };
+		AA73AFB7274FF78000FD7C70 /* HTTPMethodURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFB6274FF78000FD7C70 /* HTTPMethodURL.swift */; };
+		AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFB8274FF8AC00FD7C70 /* BaseTargetType.swift */; };
+		AA73AFBD274FF9A000FD7C70 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA73AFBC274FF9A000FD7C70 /* Moya */; };
+		AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */; };
+		AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFC527518B8900FD7C70 /* MultiMoyaProvider.swift */; };
+		AA74A0DA27495E2300FA6678 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0D927495E2300FA6678 /* ProfileViewController.swift */; };
 		AA74A0DC274962F400FA6678 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0DB274962F400FA6678 /* ProfileTableViewCell.swift */; };
 		AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0DD27496F8E00FA6678 /* UITableView+Generic.swift */; };
-		AA74A0E1274971BF00FA6678 /* PreferenceDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E0274971BF00FA6678 /* PreferenceDataType.swift */; };
+		AA74A0E1274971BF00FA6678 /* ProfileDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */; };
 		AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */; };
 		AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */; };
-		AA74A0E9274993CF00FA6678 /* PreferenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E8274993CF00FA6678 /* PreferenceRepository.swift */; };
+		AA74A0E9274993CF00FA6678 /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E8274993CF00FA6678 /* ProfileRepository.swift */; };
 		AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0ED2749960300FA6678 /* UserInfo.swift */; };
 		AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */; };
 		AA74A0F4274A696E00FA6678 /* PushSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */; };
@@ -123,13 +131,20 @@
 		AA5B85E227173DC0002276C3 /* ViewFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinder.swift; sourceTree = "<group>"; };
 		AA7366502746BD53002B726D /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		AA73665227485C3D002B726D /* String+2DigitFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+2DigitFormat.swift"; sourceTree = "<group>"; };
-		AA74A0D927495E2300FA6678 /* PreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceViewController.swift; sourceTree = "<group>"; };
+		AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
+		AA73AFAF274FE31B00FD7C70 /* MyPageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageService.swift; sourceTree = "<group>"; };
+		AA73AFB1274FE32700FD7C70 /* MyPageAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageAPI.swift; sourceTree = "<group>"; };
+		AA73AFB6274FF78000FD7C70 /* HTTPMethodURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodURL.swift; sourceTree = "<group>"; };
+		AA73AFB8274FF8AC00FD7C70 /* BaseTargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTargetType.swift; sourceTree = "<group>"; };
+		AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRequestModel.swift; sourceTree = "<group>"; };
+		AA73AFC527518B8900FD7C70 /* MultiMoyaProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiMoyaProvider.swift; sourceTree = "<group>"; };
+		AA74A0D927495E2300FA6678 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AA74A0DB274962F400FA6678 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		AA74A0DD27496F8E00FA6678 /* UITableView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Generic.swift"; sourceTree = "<group>"; };
-		AA74A0E0274971BF00FA6678 /* PreferenceDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceDataType.swift; sourceTree = "<group>"; };
+		AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataType.swift; sourceTree = "<group>"; };
 		AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+ViewWillAppear.swift"; sourceTree = "<group>"; };
-		AA74A0E8274993CF00FA6678 /* PreferenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceRepository.swift; sourceTree = "<group>"; };
+		AA74A0E8274993CF00FA6678 /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
 		AA74A0ED2749960300FA6678 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+attributedPlaceholder.swift"; sourceTree = "<group>"; };
 		AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingViewController.swift; sourceTree = "<group>"; };
@@ -155,6 +170,7 @@
 		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9591242746ABE2007772BD /* NBDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDatePicker.swift; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		AAA9A4F42751BBDB00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
 		AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		AABEA2D9273C4A3300A06A8C /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -206,6 +222,7 @@
 				AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */,
 				AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */,
 				AA7E0A9026FB12B100106DC2 /* RxSwift in Frameworks */,
+				AA73AFBD274FF9A000FD7C70 /* Moya in Frameworks */,
 				AA7E0A8B26FB128100106DC2 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,10 +276,55 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		AA73AFA8274FB9F300FD7C70 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		AA73AFAD274FE2E200FD7C70 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				AA73AFBE27502B4E00FD7C70 /* Request */,
+				AA73AFB3274FE33000FD7C70 /* Base */,
+				AA73AFAE274FE30C00FD7C70 /* MyPage */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		AA73AFAE274FE30C00FD7C70 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				AA73AFAF274FE31B00FD7C70 /* MyPageService.swift */,
+				AA73AFB1274FE32700FD7C70 /* MyPageAPI.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		AA73AFB3274FE33000FD7C70 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				AA73AFB6274FF78000FD7C70 /* HTTPMethodURL.swift */,
+				AA73AFB8274FF8AC00FD7C70 /* BaseTargetType.swift */,
+				AA73AFC527518B8900FD7C70 /* MultiMoyaProvider.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		AA73AFBE27502B4E00FD7C70 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
 		AA74A0DF274971B200FA6678 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0E0274971BF00FA6678 /* PreferenceDataType.swift */,
+				AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -270,7 +332,7 @@
 		AA74A0E7274993BE00FA6678 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0E8274993CF00FA6678 /* PreferenceRepository.swift */,
+				AA74A0E8274993CF00FA6678 /* ProfileRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -314,6 +376,7 @@
 		AA7E0A4C26FB0AE200106DC2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				AA73AFAD274FE2E200FD7C70 /* Network */,
 				AA95911B27444F3D007772BD /* Protocol */,
 				AA9591102744336D007772BD /* Component */,
 				AA95910B27442973007772BD /* PopUp */,
@@ -335,6 +398,7 @@
 				AAF2D4282724137E0029219D /* Image.xcassets */,
 				AA5B85D52716F4FF002276C3 /* Color.xcassets */,
 				AA7E0A4E26FB0B2D00106DC2 /* Support */,
+				AAA9A4F42751BBDB00FE92DB /* Config.xcconfig */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -352,6 +416,7 @@
 		AA7E0A4F26FB0B4F00106DC2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				AA73AFA8274FB9F300FD7C70 /* UseCase */,
 				AA74A0EC274995F900FA6678 /* Model */,
 				AA74A0E7274993BE00FA6678 /* Repository */,
 				AA74A0DF274971B200FA6678 /* Data */,
@@ -390,7 +455,7 @@
 		AA7E0A5326FB0B7100106DC2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0D927495E2300FA6678 /* PreferenceViewController.swift */,
+				AA74A0D927495E2300FA6678 /* ProfileViewController.swift */,
 				AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */,
 				AA5B85E027171072002276C3 /* HomeViewController.swift */,
 				AA4033D2274C36FC009C4A7E /* FolderCreationViewController.swift */,
@@ -584,6 +649,7 @@
 				AA7E0A8F26FB12B100106DC2 /* RxSwift */,
 				AAC7ACE4272DC28100B2BE1E /* RxGesture */,
 				AA74A0FA274AD5F100FA6678 /* Kingfisher */,
+				AA73AFBC274FF9A000FD7C70 /* Moya */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* everyBody-iOS.app */;
@@ -618,6 +684,7 @@
 				AA7E0A8C26FB12B100106DC2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */,
 				AA74A0F9274AD5F100FA6678 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				AA73AFBB274FF9A000FD7C70 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -703,6 +770,7 @@
 				AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */,
 				AA959116274436A4007772BD /* UIView+addShadow.swift in Sources */,
 				AA5B85E127171072002276C3 /* HomeViewController.swift in Sources */,
+				AA73AFB2274FE32700FD7C70 /* MyPageAPI.swift in Sources */,
 				AA9591122744339D007772BD /* NBTextField.swift in Sources */,
 				AA74A0FD274AD66300FA6678 /* UIImageView+setImage.swift in Sources */,
 				AAC7ACBE272D7DF400B2BE1E /* PoseViewModel.swift in Sources */,
@@ -713,10 +781,11 @@
 				AAC7ACF12733F51B00B2BE1E /* NBSegmentedControl.swift in Sources */,
 				AA95911827443FB9007772BD /* UIViewController+hideKeyboard.swift in Sources */,
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
+				AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */,
 				AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
 				AA9591252746ABE2007772BD /* NBDatePicker.swift in Sources */,
-				AA74A0E1274971BF00FA6678 /* PreferenceDataType.swift in Sources */,
+				AA74A0E1274971BF00FA6678 /* ProfileDataType.swift in Sources */,
 				AA7E0A4026FB0A6100106DC2 /* everyBody_iOS.xcdatamodeld in Sources */,
 				AA74A0F4274A696E00FA6678 /* PushSettingViewController.swift in Sources */,
 				AAC7AD242737B6CB00B2BE1E /* FolderSelectionViewController.swift in Sources */,
@@ -730,17 +799,18 @@
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
-				AA74A0E9274993CF00FA6678 /* PreferenceRepository.swift in Sources */,
+				AA74A0E9274993CF00FA6678 /* ProfileRepository.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
 				AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */,
 				AAC7AD262737B84400B2BE1E /* FolderCollectionViewCell.swift in Sources */,
+				AA73AFB7274FF78000FD7C70 /* HTTPMethodURL.swift in Sources */,
 				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
 				AAC7ACE0272D947000B2BE1E /* CustomSwitch.swift in Sources */,
 				AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */,
 				AAC7AD282737B9E900B2BE1E /* SelectedView.swift in Sources */,
 				AA95911F27445CD0007772BD /* className.swift in Sources */,
-				AA74A0DA27495E2300FA6678 /* PreferenceViewController.swift in Sources */,
+				AA74A0DA27495E2300FA6678 /* ProfileViewController.swift in Sources */,
 				AAC7ACE2272DBEDC00B2BE1E /* ToastView.swift in Sources */,
 				AA7366512746BD53002B726D /* DateViewModel.swift in Sources */,
 				AABEA2E5273C578E00A06A8C /* Album.swift in Sources */,
@@ -749,10 +819,12 @@
 				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
 				AA4033D3274C36FC009C4A7E /* FolderCreationViewController.swift in Sources */,
+				AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,
 				AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */,
+				AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */,
 				AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */,
 				AA74A0F6274A6EDB00FA6678 /* NBDayButton.swift in Sources */,
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
@@ -760,7 +832,9 @@
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
+				AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */,
 				FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */,
+				AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */,
 				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
 				AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */,
 			);
@@ -771,6 +845,7 @@
 /* Begin XCBuildConfiguration section */
 		AA7E0A4726FB0A6200106DC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAA9A4F42751BBDB00FE92DB /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -949,6 +1024,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		AA73AFBB274FF9A000FD7C70 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		AA74A0F9274AD5F100FA6678 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -992,6 +1075,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		AA73AFBC274FF9A000FD7C70 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA73AFBB274FF9A000FD7C70 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		AA74A0FA274AD5F100FA6678 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA74A0F9274AD5F100FA6678 /* XCRemoteSwiftPackageReference "Kingfisher" */;
