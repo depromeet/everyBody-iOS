@@ -242,6 +242,9 @@ extension PanoramaViewController {
     }
 }
 
+
+// MARK: - Extension
+
 extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         switch index {

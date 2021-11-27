@@ -22,7 +22,7 @@ class FolderSelectionViewController: BaseViewController {
         $0.backgroundColor = .white
         $0.showsHorizontalScrollIndicator = false
         $0.collectionViewLayout = layout
-        $0.register(FolderCollectionViewCell.self)
+        $0.register(AlbumCollectionViewCell.self)
     }
     
     // MARK: - Properties
@@ -53,9 +53,10 @@ class FolderSelectionViewController: BaseViewController {
     
     func bind() {
         viewModel.albumDummy
-            .bind(to: collectionView.rx.items(cellIdentifier: FolderCollectionViewCell.className,
-                                              cellType: FolderCollectionViewCell.self)) { row, element, cell in
+            .bind(to: collectionView.rx.items(cellIdentifier: AlbumCollectionViewCell.className,
+                                              cellType: AlbumCollectionViewCell.self)) { row, element, cell in
                 if row != 0 {
+                    cell.style = .folder
                     cell.setData(album: element)
                 } else {
                     cell.setFirstCell()
