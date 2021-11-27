@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum PreferenceDataType: Equatable {
+enum ProfileDataType: Equatable {
     case nickName(nickname: String)
     case motto(motto: String)
     case pushNotification
