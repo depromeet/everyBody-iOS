@@ -11,6 +11,7 @@ import RxSwift
 
 protocol ProfileUseCase {
     func getUserInfo() -> Observable<UserInfo>
+    func putUserInfo(request: ProfileRequestModel)
 }
 
 final class DefaultProfileUseCase: ProfileUseCase {
