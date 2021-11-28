@@ -90,7 +90,7 @@
 		AAC7ACFD2734336000B2BE1E /* NBBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */; };
 		AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD172735A11B00B2BE1E /* AppDate.swift */; };
 		AAC7AD242737B6CB00B2BE1E /* FolderSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD232737B6CB00B2BE1E /* FolderSelectionViewController.swift */; };
-		AAC7AD262737B84400B2BE1E /* FolderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD252737B84400B2BE1E /* FolderCollectionViewCell.swift */; };
+		AAC7AD262737B84400B2BE1E /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */; };
 		AAC7AD282737B9E900B2BE1E /* SelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD272737B9E900B2BE1E /* SelectedView.swift */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
@@ -198,7 +198,7 @@
 		AAC7ACFC2734336000B2BE1E /* NBBasicButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NBBasicButton.swift; path = "everyBody-iOS/Source/Component/NBBasicButton.swift"; sourceTree = SOURCE_ROOT; };
 		AAC7AD172735A11B00B2BE1E /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
 		AAC7AD232737B6CB00B2BE1E /* FolderSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderSelectionViewController.swift; sourceTree = "<group>"; };
-		AAC7AD252737B84400B2BE1E /* FolderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCollectionViewCell.swift; sourceTree = "<group>"; };
+		AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAC7AD272737B9E900B2BE1E /* SelectedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectedView.swift; path = "everyBody-iOS/Source/Component/SelectedView.swift"; sourceTree = SOURCE_ROOT; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
@@ -504,7 +504,6 @@
 			isa = PBXGroup;
 			children = (
 				AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */,
-				AAC7AD252737B84400B2BE1E /* FolderCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -581,6 +580,7 @@
 				AA9591112744339D007772BD /* NBTextField.swift */,
 				AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */,
 				AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */,
+				AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -802,8 +802,8 @@
 				AA74A0E9274993CF00FA6678 /* ProfileRepository.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
 				AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */,
-				AAC7AD262737B84400B2BE1E /* FolderCollectionViewCell.swift in Sources */,
 				AA73AFB7274FF78000FD7C70 /* HTTPMethodURL.swift in Sources */,
+				AAC7AD262737B84400B2BE1E /* AlbumCollectionViewCell.swift in Sources */,
 				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
 				AAC7ACE0272D947000B2BE1E /* CustomSwitch.swift in Sources */,

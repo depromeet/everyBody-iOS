@@ -12,8 +12,6 @@ import Then
 
 class TopCollectionViewCell: UICollectionViewCell {
     
-    static let identifier = "TopCollectionViewCell"
-    
     // MARK: - UIComponenets
     
     var panoramaImage = UIImageView().then {

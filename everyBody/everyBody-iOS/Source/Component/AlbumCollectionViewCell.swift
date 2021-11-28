@@ -7,7 +7,12 @@
 
 import UIKit
 
-class FolderCollectionViewCell: UICollectionViewCell {
+class AlbumCollectionViewCell: UICollectionViewCell {
+    
+    enum Style {
+        case folder
+        case album
+    }
     
     // MARK: - UI Components
     
@@ -43,25 +48,27 @@ class FolderCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var style: Style?
     private var indexPath: IndexPath?
     
     override var isSelected: Bool {
         didSet {
-            if getIndexPath()?.row != 0 {
-                isSelected ? setSelectedCell() : setUnselectedCell()
+            if case .folder = style {
+                if getIndexPath()?.row != 0 {
+                    isSelected ? setSelectedCell() : setUnselectedCell()
+                }
             }
         }
     }
     
     // MARK: - Initializer
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupViewHierarchy()
         setupContraint()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
