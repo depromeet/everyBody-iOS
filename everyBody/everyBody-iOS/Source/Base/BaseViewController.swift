@@ -21,7 +21,7 @@ class BaseViewController: UIViewController {
         initNavigationBar()
     }
     
-    private func render() {
+    func render() {
         view.backgroundColor = .white
     }
     
@@ -29,11 +29,4 @@ class BaseViewController: UIViewController {
         self.navigationController?.initNaviBarWithBackButton()
     }
 
-    private func setupViewHierarchy() {
-        
-    }
-    
-    private func setupConstraint() {
-        
-    }
 }

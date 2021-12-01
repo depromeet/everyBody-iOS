@@ -51,6 +51,7 @@ class PanoramaViewController: BaseViewController {
         $0.axis = .vertical
         $0.spacing = 22
         $0.distribution = .fill
+        $0.backgroundColor = .white
     }
     
     // MARK: - Properties
@@ -103,6 +104,7 @@ class PanoramaViewController: BaseViewController {
         setupConstraint()
         initSegementData()
         initSegmentedControl()
+        render()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -219,7 +221,8 @@ extension PanoramaViewController {
     private func setupConstraint() {
         bodyPartSegmentControl.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            $0.leading.trailing.equalToSuperview()
+            $0.leading.equalToSuperview().offset(22)
+            $0.width.equalTo(152)
             $0.height.equalTo(56)
         }
         
@@ -241,7 +244,6 @@ extension PanoramaViewController {
         }
     }
 }
-
 
 // MARK: - Extension
 

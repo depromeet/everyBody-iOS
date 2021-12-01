@@ -170,7 +170,7 @@
 		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9591242746ABE2007772BD /* NBDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDatePicker.swift; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		AAA9A4F42751BBDB00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		AAA9A4F62753A71F00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
 		AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		AABEA2D9273C4A3300A06A8C /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -398,7 +398,7 @@
 				AAF2D4282724137E0029219D /* Image.xcassets */,
 				AA5B85D52716F4FF002276C3 /* Color.xcassets */,
 				AA7E0A4E26FB0B2D00106DC2 /* Support */,
-				AAA9A4F42751BBDB00FE92DB /* Config.xcconfig */,
+				AAA9A4F62753A71F00FE92DB /* Config.xcconfig */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -845,7 +845,7 @@
 /* Begin XCBuildConfiguration section */
 		AA7E0A4726FB0A6200106DC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAA9A4F42751BBDB00FE92DB /* Config.xcconfig */;
+			baseConfigurationReference = AAA9A4F62753A71F00FE92DB /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

@@ -23,13 +23,13 @@ class NBSegmentedControl: UIView {
     var stackView = UIStackView().then {
         $0.axis = .horizontal
         $0.spacing = 0
-        $0.distribution = .fill
+        $0.distribution = .fillProportionally
     }
     
     var spacing: CGFloat = 0 {
         didSet {
-            stackView.spacing = spacing
             if spacing != 0 {
+                stackView.spacing = spacing
                 buttons.forEach { button in button.makeRounded(radius: 4) }
             }
         }
@@ -59,7 +59,9 @@ class NBSegmentedControl: UIView {
         
         createButton(count: count)
         setAttributes()
-        setViewHierarchy()
+    }
+    
+    override func layoutSubviews() {
         setupLayout()
     }
     
@@ -79,13 +81,18 @@ class NBSegmentedControl: UIView {
     }
     
     func setupLayout() {
+        guard let numOfButton = numOfButton else { return }
+        
+        setViewHierarchy()
+        
+        let padding = CGFloat(numOfButton * Int(spacing))
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        buttons.forEach { button in
-            button.snp.makeConstraints {
-                $0.width.equalTo((Constant.Size.screenWidth - 40) / CGFloat(numOfButton ?? 0))
+   
+        for index in 0..<2 {
+            buttons[index].snp.makeConstraints {
+                $0.width.equalTo((self.frame.width - padding) / CGFloat(numOfButton))
             }
         }
     }

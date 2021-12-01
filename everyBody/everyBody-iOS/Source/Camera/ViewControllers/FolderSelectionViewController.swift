@@ -42,7 +42,7 @@ class FolderSelectionViewController: BaseViewController {
     
     // MARK: - Methods
     
-    func render() {
+    override func render() {
         title = "폴더 선택"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료",

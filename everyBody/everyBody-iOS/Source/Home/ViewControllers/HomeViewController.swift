@@ -138,9 +138,8 @@ extension HomeViewController {
         }
         
         nicknameLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.leading.equalTo(20)
-            
         }
         
         mottoLabel.snp.makeConstraints {
