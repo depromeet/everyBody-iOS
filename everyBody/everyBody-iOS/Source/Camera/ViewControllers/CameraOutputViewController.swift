@@ -175,7 +175,7 @@ extension CameraOutputViewController {
         scrollView.snp.makeConstraints {
             $0.edges.equalTo(0)
         }
-        
+                
         containerView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
@@ -191,8 +191,8 @@ extension CameraOutputViewController {
         }
         
         partAndTimeSegmentedControl.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(photoOutputImageView.snp.bottom).offset(12)
-            $0.centerX.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints {
@@ -201,12 +201,13 @@ extension CameraOutputViewController {
         }
         
         partSegmentedControl.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(9)
-            $0.centerX.equalToSuperview()
             $0.height.equalTo(92)
         }
         
         photoTimeSegemntedControl.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalTo(partAndTimeSegmentedControl.snp.bottom).offset(10)
             $0.centerX.equalToSuperview()
         }
