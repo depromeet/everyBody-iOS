@@ -107,7 +107,7 @@ class HomeViewController: BaseViewController {
     
     @objc
     private func pushToFolderCreationView() {
-        let viewController = FolderCreationViewController()
+        let viewController = AlbumCreationViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
     

@@ -14,7 +14,7 @@ enum HTTPMethodURL {
     }
     
     struct POST {
-        
+        static let createAlbum = "/albums"
     }
     
     struct PUT {
