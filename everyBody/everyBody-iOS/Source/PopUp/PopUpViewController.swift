@@ -92,7 +92,7 @@ class PopUpViewController: BaseViewController {
     
     // MARK: - Methods
     
-    private func render() {
+    override func render() {
         view.backgroundColor = Asset.Color.gray90.color.withAlphaComponent(0.3)
     }
     

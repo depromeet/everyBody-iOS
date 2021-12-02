@@ -107,7 +107,7 @@ class HomeViewController: BaseViewController {
     
     @objc
     private func pushToFolderCreationView() {
-        let viewController = FolderCreationViewController()
+        let viewController = AlbumCreationViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -119,7 +119,7 @@ class HomeViewController: BaseViewController {
     
     @objc
     private func pushToPreferenceViewController() {
-        let viewController = PreferenceViewController()
+        let viewController = ProfileViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -138,9 +138,8 @@ extension HomeViewController {
         }
         
         nicknameLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.leading.equalTo(20)
-            
         }
         
         mottoLabel.snp.makeConstraints {
