@@ -11,6 +11,7 @@ enum HTTPMethodURL {
     
     struct GET {
         static let userInfo = "/users/me"
+        static let album = "/albums"
     }
     
     struct POST {
