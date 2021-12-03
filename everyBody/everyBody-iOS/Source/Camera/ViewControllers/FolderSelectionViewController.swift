@@ -27,7 +27,7 @@ class FolderSelectionViewController: BaseViewController {
     
     // MARK: - Properties
     
-    var viewModel = AlbumDaummy()
+    var viewModel = AlbumDummy()
     
     // MARK: - View Life Cycle
     
