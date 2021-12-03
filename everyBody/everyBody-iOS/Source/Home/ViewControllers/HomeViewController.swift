@@ -10,6 +10,9 @@ import UIKit
 import SnapKit
 import Then
 
+import RxCocoa
+import RxSwift
+
 class HomeViewController: BaseViewController {
     
     // MARK: - UI Components
@@ -61,20 +64,40 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Properties
     
-    var viewModel = AlbumViewModel()
+    private let viewModel = AlbumViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
+    
+    private lazy var albumData: [Album] = [] {
+        didSet {
+            albumCollectionView.reloadData()
+        }
+    }
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bind()
         initNavigationBar()
         setupCollectionView()
         setupViewHierarchy()
         setupConstraint()
+
     }
     
     // MARK: - Methods
+    
+    func bind() {
+        let input = AlbumViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in })
+        let output = viewModel.transeform(input: input)
+        
+        output.album
+            .drive(onNext: { [weak self] data in
+                guard let self = self else { return }
+                self.albumData = data
+            })
+            .disposed(by: disposeBag)
+    }
     
     private func initNavigationBar() {
         navigationController?.initNavigationBar(
@@ -172,13 +195,14 @@ extension HomeViewController {
 
 extension HomeViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.dummy.count
+        return albumData.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AlbumCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.style = .album
-        cell.setData(album: viewModel.dummy[indexPath.row])
+        cell.setData(album: albumData[indexPath.row])
+//        cell.setData(album: viewModel.dummy[indexPath.row])
         return cell
     }
     

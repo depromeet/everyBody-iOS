@@ -7,17 +7,29 @@
 
 import Foundation
 
+import RxSwift
+
 protocol AlbumUseCase {
+    func getAlbumList() -> Observable<[Album]>
+//    func getAlbumDetail(albumId: Int) -> Observable<Album>
     func postCreateAlbum(request: CreateAlbumRequestModel)
 }
 
-class DefaultAlbumUseCase: AlbumUseCase {
+final class DefaultAlbumUseCase: AlbumUseCase {
+
+    private let albumRepository: DefaultAlbumRepositry
     
-    private let albumRepository: AlbumRepository
-    
-    init(albumRepository: AlbumRepository) {
+    init(albumRepository: DefaultAlbumRepositry) {
         self.albumRepository = albumRepository
     }
+    
+    func getAlbumList() -> Observable<[Album]> {
+        return albumRepository.getAlbumList()
+    }
+    
+//    func getAlbumDetail(albumId: Int) -> Observable<Album> {
+//        return albumRepository.getAlbumDetail(albumId: albumId)
+//    }
     
     func postCreateAlbum(request: CreateAlbumRequestModel) {
         return albumRepository.postCreateAlbum(request: request)
