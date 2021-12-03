@@ -8,14 +8,37 @@
 import Foundation
 
 import RxSwift
+import RxCocoa
 
-struct AlbumViewModel {
+final class AlbumViewModel {
     
-    var dummy: [Album] = [Album(id: 0, name: "유경이의 눈바디", thumbnailURL: "", createdAt: "", albumDescription: "6일간의 기록",
-                                pictures: Pictures(lower: [], upper: [], whole: [])),
-                          Album(id: 0, name: "유경이의 눈바디", thumbnailURL: "", createdAt: "", albumDescription: "6일간의 기록",
-                                                      pictures: Pictures(lower: [], upper: [], whole: [])),
-                          Album(id: 0, name: "유경이의 눈바디", thumbnailURL: "", createdAt: "", albumDescription: "6일간의 기록",
-                                                      pictures: Pictures(lower: [], upper: [], whole: []))]
-    lazy var albumDummy = BehaviorSubject<[Album]>(value: dummy)
+    private let albumUseCase: DefaultAlbumUseCase
+    
+    struct Input {
+        let viewWillAppear: Observable<Void>
+    }
+    
+    struct Output {
+        let album: Driver<[Album]>
+    }
+    
+    init(albumUseCase: DefaultAlbumUseCase) {
+        self.albumUseCase = albumUseCase
+    }
+    
+    func transeform(input: Input) -> Output {
+        let album = input.viewWillAppear
+            .flatMap {
+                self.albumUseCase.getAlbumList() }
+            .map { $0 }
+            .share()
+        
+        let data = album
+            .compactMap { $0 }
+            .map { response -> [Album] in
+                return response
+            }.asDriver(onErrorJustReturn: [])
+        
+        return Output(album: data)
+    }
 }
