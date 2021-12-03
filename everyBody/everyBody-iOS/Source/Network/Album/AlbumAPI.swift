@@ -13,7 +13,6 @@ enum AlbumAPI: BaseTargetType {
     typealias ResultModel = [Album]
     
     case getAlbumList
-    case getAlbumDetail(albumId: Int)
 }
 
 extension AlbumAPI {
@@ -22,21 +21,19 @@ extension AlbumAPI {
         switch self {
         case .getAlbumList:
             return HTTPMethodURL.GET.album
-        case .getAlbumDetail(let albumId):
-            return HTTPMethodURL.GET.album + "/\(albumId)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .getAlbumList, .getAlbumDetail:
+        case .getAlbumList:
             return .get
         }
     }
     
     var task: Task {
         switch self {
-        case .getAlbumList, .getAlbumDetail:
+        case .getAlbumList:
             return .requestPlain
         }
     }

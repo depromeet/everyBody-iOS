@@ -202,7 +202,6 @@ extension HomeViewController: UICollectionViewDataSource {
         let cell: AlbumCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.style = .album
         cell.setData(album: albumData[indexPath.row])
-//        cell.setData(album: viewModel.dummy[indexPath.row])
         return cell
     }
     

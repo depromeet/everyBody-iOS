@@ -12,7 +12,6 @@ import Moya
 
 protocol AlbumRepository {
     func getAlbumList() -> Observable<[Album]>
-//    func getAlbumDetail(albumId: Int) -> Observable<Album>
     func postCreateAlbum(request: CreateAlbumRequestModel)
 }
 
@@ -34,23 +33,6 @@ class DefaultAlbumRepositry: AlbumRepository {
         }
         return observable
     }
-    
-//    func getAlbumDetail(albumId: Int) -> Observable<Album> {
-//        let observable = Observable<Album>.create { observer -> Disposable in
-//            let requestReference: () = AlbumService.shared.getAlbumDetail(albumId: albumId) { response in
-//                switch response {
-//                case .success(let data):
-//                    if let data = data {
-//                        observer.onNext(data)
-//                    }
-//                case .failure(let err):
-//                    print(err)
-//                }
-//            }
-//            return Disposables.create(with: { requestReference })
-//        }
-//        return observable
-//    }
     
     func postCreateAlbum(request: CreateAlbumRequestModel) {
         CreateAlbumService.shared.postCreateAlbum(request: request) { response in

@@ -21,10 +21,4 @@ public class AlbumService {
             completion(response)
         }
     }
-    
-//    func getAlbumDetail(albumId: Int, completion: @escaping (Result<Album?, Error>) -> Void) {
-//        provider.requestDecoded(AlbumAPI.getAlbumDetail(albumId: albumId)) { response in
-//            completion(response)
-//        }
-//    }
 }
