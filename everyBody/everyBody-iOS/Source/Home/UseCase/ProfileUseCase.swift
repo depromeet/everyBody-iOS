@@ -12,6 +12,8 @@ import RxSwift
 protocol ProfileUseCase {
     func getUserInfo() -> Observable<UserInfo>
     func putUserInfo(request: ProfileRequestModel)
+    func getNotificationConfig() -> Observable<NotificationConfig>
+    func putNotificationConfig(request: NotificationConfig)
 }
 
 final class DefaultProfileUseCase: ProfileUseCase {
@@ -30,4 +32,11 @@ final class DefaultProfileUseCase: ProfileUseCase {
         return preferenceRepository.putUserInfo(request: request)
     }
     
+    func getNotificationConfig() -> Observable<NotificationConfig> {
+        return preferenceRepository.getNotificationConfig()
+    }
+    
+    func putNotificationConfig(request: NotificationConfig) {
+        return preferenceRepository.putNotificationConfig(request: request)
+    }
 }

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2F31772759F3F900855861 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F31762759F3F900855861 /* NotificationAPI.swift */; };
+		AA2F31792759F53F00855861 /* NotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F31782759F53F00855861 /* NotificationConfig.swift */; };
+		AA2F317B2759F5E200855861 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F317A2759F5E200855861 /* NotificationService.swift */; };
+		AA2F317E2759F7E800855861 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F317D2759F7E800855861 /* NotificationViewModel.swift */; };
+		AA2F3181275AA17D00855861 /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3180275AA17D00855861 /* MoyaLoggingPlugin.swift */; };
 		AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */; };
 		AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85CE2716D068002276C3 /* CameraViewController.swift */; };
 		AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */; };
@@ -128,6 +133,11 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		AA2F31762759F3F900855861 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
+		AA2F31782759F53F00855861 /* NotificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConfig.swift; sourceTree = "<group>"; };
+		AA2F317A2759F5E200855861 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		AA2F317D2759F7E800855861 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		AA2F3180275AA17D00855861 /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
 		AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCreationViewController.swift; sourceTree = "<group>"; };
 		AA5B85CE2716D068002276C3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addSubviews.swift"; sourceTree = "<group>"; };
@@ -248,6 +258,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA2F31752759F3DC00855861 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				AA2F31762759F3F900855861 /* NotificationAPI.swift */,
+				AA2F317A2759F5E200855861 /* NotificationService.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		AA5B85CD2716D043002276C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,11 +325,13 @@
 		AA73AFAD274FE2E200FD7C70 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AA2F31752759F3DC00855861 /* Notification */,
 				FC23AC0E275A03720067EEF7 /* Album */,
 				AAA9A5272757FF7200FE92DB /* CreateAlbum */,
 				AA73AFBE27502B4E00FD7C70 /* Request */,
 				AA73AFB3274FE33000FD7C70 /* Base */,
 				AA73AFAE274FE30C00FD7C70 /* MyPage */,
+				AA2F3180275AA17D00855861 /* MoyaLoggingPlugin.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -364,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				AA74A0ED2749960300FA6678 /* UserInfo.swift */,
+				AA2F31782759F53F00855861 /* NotificationConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -491,6 +513,7 @@
 			children = (
 				AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */,
 				AAA9A530275808B500FE92DB /* AlbumCreationViewModel.swift */,
+				AA2F317D2759F7E800855861 /* NotificationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -820,6 +843,7 @@
 				AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */,
 				AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */,
 				AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */,
+				AA2F31792759F53F00855861 /* NotificationConfig.swift in Sources */,
 				AAC7ACFD2734336000B2BE1E /* NBBasicButton.swift in Sources */,
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
 				AAC7ACF12733F51B00B2BE1E /* NBSegmentedControl.swift in Sources */,
@@ -837,10 +861,12 @@
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
 				AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */,
 				AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */,
+				AA2F31772759F3F900855861 /* NotificationAPI.swift in Sources */,
 				AA5B85DF27170F27002276C3 /* UINavigationController+Extensions.swift in Sources */,
 				FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */,
 				AA95911D27444F4F007772BD /* PopUpActionDelegate.swift in Sources */,
 				AAA9A52F2758041A00FE92DB /* AlbumRepository.swift in Sources */,
+				AA2F317B2759F5E200855861 /* NotificationService.swift in Sources */,
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
@@ -871,6 +897,7 @@
 				AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */,
+				AA2F3181275AA17D00855861 /* MoyaLoggingPlugin.swift in Sources */,
 				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,
 				AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */,
 				AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */,
@@ -889,6 +916,7 @@
 				AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */,
 				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
 				AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */,
+				AA2F317E2759F7E800855861 /* NotificationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
