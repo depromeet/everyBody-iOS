@@ -106,6 +106,9 @@
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
+		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
+		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
+		FC6EE21C275A563200886D7D /* AlbumDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6EE21B275A563200886D7D /* AlbumDummy.swift */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -225,6 +228,9 @@
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
+		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		FC6EE21B275A563200886D7D /* AlbumDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDummy.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
@@ -320,6 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				AA2F31752759F3DC00855861 /* Notification */,
+				FC23AC0E275A03720067EEF7 /* Album */,
 				AAA9A5272757FF7200FE92DB /* CreateAlbum */,
 				AA73AFBE27502B4E00FD7C70 /* Request */,
 				AA73AFB3274FE33000FD7C70 /* Base */,
@@ -555,6 +562,7 @@
 				AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */,
 				AABEA2E6273C585C00A06A8C /* AlbumViewModel.swift */,
 				AA7366502746BD53002B726D /* DateViewModel.swift */,
+				FC6EE21B275A563200886D7D /* AlbumDummy.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -662,6 +670,15 @@
 				AAC7ACB12729F2B100B2BE1E /* Fonts.swift */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		FC23AC0E275A03720067EEF7 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				FC23AC0F275A038B0067EEF7 /* AlbumService.swift */,
+				FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */,
+			);
+			path = Album;
 			sourceTree = "<group>";
 		};
 		FCF8C9E0274B974E004263FF /* Extensions */ = {
@@ -871,6 +888,7 @@
 				AABEA2E5273C578E00A06A8C /* Album.swift in Sources */,
 				AAC7ACBA272D5E3E00B2BE1E /* BottomSheetView.swift in Sources */,
 				AAC7ACB4272D474E00B2BE1E /* CaptureButton.swift in Sources */,
+				FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */,
 				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
 				AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */,
@@ -892,7 +910,9 @@
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
 				AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */,
 				AAA9A5262757FEF400FE92DB /* CreateAlbumRequestModel.swift in Sources */,
+				FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */,
 				FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */,
+				FC6EE21C275A563200886D7D /* AlbumDummy.swift in Sources */,
 				AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */,
 				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
 				AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */,

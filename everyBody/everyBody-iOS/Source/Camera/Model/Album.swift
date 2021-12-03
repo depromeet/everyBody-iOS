@@ -41,7 +41,7 @@ struct PictureInfo: Codable {
     let bodyPart: BodyPart
     let thumbnailURL, previewURL, imageURL: String
     let key: String
-    let takenAtYear, takenAtMonth, takenAtDay: Int
+    let takenAt: String
     let createdAt: String
 
     enum CodingKeys: String, CodingKey {
@@ -52,9 +52,7 @@ struct PictureInfo: Codable {
         case previewURL = "preview_url"
         case imageURL = "image_url"
         case key
-        case takenAtYear = "taken_at_year"
-        case takenAtMonth = "taken_at_month"
-        case takenAtDay = "taken_at_day"
+        case takenAt = "taken_at"
         case createdAt = "created_at"
     }
 }
