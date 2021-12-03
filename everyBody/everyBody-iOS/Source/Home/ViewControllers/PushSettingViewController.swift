@@ -7,12 +7,15 @@
 
 import UIKit
 
+import RxCocoa
+import RxSwift
+
+enum State {
+    case selected
+    case unselected
+}
+
 class PushSettingViewController: BaseViewController {
-    
-    enum State {
-        case selected
-        case unselected
-    }
     
     // MARK: - UI Components
     
@@ -36,15 +39,16 @@ class PushSettingViewController: BaseViewController {
         $0.textColor = Asset.Color.gray80.color
     }
     
+    private let timeTextField = UITextField().then {
+        $0.font = .nbFont(type: .body3)
+        $0.textColor = Asset.Color.gray80.color
+        $0.isUserInteractionEnabled = false
+    }
+    
     private let timeContainerView = UIView().then {
         $0.makeRoundedWithBorder(radius: 4,
                                  color: Asset.Color.gray80.color.cgColor,
                                  borderWith: 1)
-    }
-    
-    private let timeSettingLabel = UILabel().then {
-        $0.textColor = Asset.Color.gray60.color
-        $0.text = "10:30"
     }
     
     private let dayLabel = UILabel().then {
@@ -66,6 +70,8 @@ class PushSettingViewController: BaseViewController {
                 if button.1 == .selected { isSelectedButton += 1 }
             }
             saveButton.isEnabled = isSelectedButton > 0 ? true : false
+            
+            dayButtonObservable.onNext(dayButtonList.map { $0.1 })
         }
     }
     
@@ -75,18 +81,63 @@ class PushSettingViewController: BaseViewController {
         $0.makeRounded(radius: 28)
     }
     
+    // MARK: - Properties
+    
+    private let viewModel = NotificationViewModel(profileUseCase: DefaultProfileUseCase(
+                                                  preferenceRepository: DefaultProfileRepository()))
+    private let dayButtonObservable = PublishSubject<[State]>()
+    private let timeText = BehaviorSubject<String>(value: "")
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bind()
         createButtons()
         initNavigationBar()
         setupConstraint()
         addTapGesture()
+        
     }
     
     // MARK: - Methods
+    
+    private func bind() {
+        
+        let input = NotificationViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
+                                                dayList: dayButtonObservable,
+                                                time: timeTextField.rx.text.orEmpty.asObservable(),
+//                                                isActived: UserDefaults.standard.rx.base,
+                                                saveButtonControlEvent: saveButton.rx.tap)
+        let output = viewModel.transform(input: input)
+        
+        output.dayConfig
+            .drive(onNext: { [weak self] data in
+                guard let self = self else { return }
+                data.enumerated().forEach { index, config in
+                    self.dayButtonList[index].0.isSelected = config
+                    self.dayButtonList.enumerated().forEach { index, button in
+                        if button.0.isSelected {
+                            self.dayButtonList[index].1 = .selected
+                        }
+                    }
+                }
+            }).disposed(by: disposeBag)
+        
+        output.timeConfig
+            .drive(onNext: { [weak self] date in
+                guard let self = self else { return }
+                let hour = date[0]
+                let minute = date[1]
+                self.timeTextField.text = "\(hour):\(minute)"
+                self.timeTextField.sendActions(for: .valueChanged)
+            }).disposed(by: disposeBag)
+        
+        timeText
+            .bind(to: timeTextField.rx.text)
+            .disposed(by: disposeBag)
+    }
     
     private func initNavigationBar() {
         navigationController?.initNaviBarWithBackButton()
@@ -94,7 +145,7 @@ class PushSettingViewController: BaseViewController {
     }
     
     private func createButtons() {
-        ["일", "월", "화", "수", "목", "금", "토"].forEach { day in
+        viewModel.weekday.forEach { day in
             let button = NBDayButton()
             button.setTitle(day, for: .normal)
             button.addTarget(self, action: #selector(self.setAction(sender:)), for: .touchUpInside)
@@ -145,7 +196,7 @@ class PushSettingViewController: BaseViewController {
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overCurrentContext
         popUp.delegate = self
-        popUp.initalDate = timeSettingLabel.text?.split(separator: ":").map { String($0) } ?? []
+        popUp.initalDate = timeTextField.text?.split(separator: ":").map { Int(String($0))! } ?? []
         self.present(popUp, animated: true, completion: nil)
     }
     
@@ -158,7 +209,8 @@ extension PushSettingViewController: PopUpActionProtocol {
     }
     
     func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
-        timeSettingLabel.text = textInfo
+        timeTextField.text = textInfo
+        timeTextField.sendActions(for: .valueChanged)
         dismiss(animated: true, completion: nil)
     }
     
@@ -178,7 +230,8 @@ extension PushSettingViewController {
         pushSettingContainerView.addSubviews(timeLabel,
                                              timeContainerView,
                                              dayLabel,
-                                             dayStackView)
+                                             dayStackView,
+                                             timeTextField)
         
         pushSettingLayout()
         setTimeLayout()
@@ -217,7 +270,7 @@ extension PushSettingViewController {
             $0.leading.equalToSuperview().offset(20)
         }
         
-        timeContainerView.addSubview(timeSettingLabel)
+        timeContainerView.addSubview(timeTextField)
         
         timeContainerView.snp.makeConstraints {
             $0.top.equalTo(timeLabel.snp.bottom).offset(8)
@@ -226,7 +279,7 @@ extension PushSettingViewController {
             $0.height.equalTo(48)
         }
         
-        timeSettingLabel.snp.makeConstraints {
+        timeTextField.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(16)
         }

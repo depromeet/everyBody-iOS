@@ -11,6 +11,7 @@ enum HTTPMethodURL {
     
     struct GET {
         static let userInfo = "/users/me"
+        static let notification = "/notification-configs/me"
     }
     
     struct POST {
@@ -19,6 +20,7 @@ enum HTTPMethodURL {
     
     struct PUT {
         static let userInfo = "/users/me"
+        static let notification = "/notification-configs/me"
     }
     
     struct DELETE {
