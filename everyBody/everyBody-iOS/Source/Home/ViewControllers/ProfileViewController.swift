@@ -1,5 +1,5 @@
 //
-//  PreferenceViewController.swift
+//  ProfileViewController.swift
 //  everyBody-iOS
 //
 //  Created by 윤예지 on 2021/11/21.
@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class PreferenceViewController: BaseViewController {
+class ProfileViewController: BaseViewController {
 
     // MARK: - UI Components
     
@@ -23,11 +23,28 @@ class PreferenceViewController: BaseViewController {
         $0.separatorStyle = .none
         $0.bounces = false
     }
+    private let completeBarButtonItem = UIBarButtonItem(title: "완료",
+                                                 style: .plain,
+                                                 target: self,
+                                                 action: nil)
     
     // MARK: - Properties
     
-    private let viewModel = ProfileViewModel()
-    private var cellData: [PreferenceDataType] = []
+    // TODO: - Coordinator로 변경 할 때 의존성 주입 컨테이너 생성
+    private let viewModel = ProfileViewModel(profileUseCase: DefaultProfileUseCase(
+                                             preferenceRepository: DefaultProfileRepository()))
+    private lazy var cellData: [ProfileDataType] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    private lazy var arrayOfCells: [ProfileTableViewCell] = [] {
+        didSet {
+            if arrayOfCells.count == 4 {
+                bindCellTextfield()
+            }
+        }
+    }
     
     // MARK: - View Life Cycle
     
@@ -44,10 +61,7 @@ class PreferenceViewController: BaseViewController {
     
     func setupNavigationBar() {
         navigationController?.initNaviBarWithBackButton()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료",
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: nil)
+        navigationItem.rightBarButtonItem = completeBarButtonItem
         title = "프로필 설정"
     }
     
@@ -75,6 +89,17 @@ class PreferenceViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    func bindCellTextfield() {
+        let input = ProfileViewModel.CellInput(nickNameTextField: arrayOfCells[0].profileTextField.rx.text.orEmpty.asObservable(),
+                                               mottoTextfield: arrayOfCells[1].profileTextField.rx.text.orEmpty.asObservable(),
+                                               completeButtonTap: completeBarButtonItem.rx.tap)
+        let output = viewModel.transformCellData(input: input)
+        
+        output.canSave
+            .drive(completeBarButtonItem.rx.isEnabled)
+            .disposed(by: disposeBag)
+    }
+    
     @objc
     private func pushToNotificationSetting() {
         let viewController = PushSettingViewController()
@@ -85,7 +110,7 @@ class PreferenceViewController: BaseViewController {
 
 // MARK: - UITableViewDelegate
 
-extension PreferenceViewController: UITableViewDelegate {
+extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if cellData[indexPath.item] == .saved {
@@ -98,7 +123,7 @@ extension PreferenceViewController: UITableViewDelegate {
 
 // MARK: - UITableViewDataSource
 
-extension PreferenceViewController: UITableViewDataSource {
+extension ProfileViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int {
@@ -112,37 +137,33 @@ extension PreferenceViewController: UITableViewDataSource {
         switch cellData[indexPath.item] {
         case .nickName(let nickname):
             cell.type = .textField
-            cell.setupConstraint()
             cell.setData(title: cellData[indexPath.item].title, placeholder: "닉네임을 입력해주세요")
             cell.setTextField(text: nickname)
-            return cell
         case .motto(let motto):
             cell.type = .textField
-            cell.setupConstraint()
             cell.setData(title: cellData[indexPath.item].title, placeholder: "천천히 그리고 꾸준히!")
             cell.setTextField(text: motto)
-            return cell
         case .pushNotification:
             cell.type = .right
-            cell.setupConstraint()
             cell.setData(title: cellData[indexPath.item].title)
             cell.setRightButtonEvent(target: self, action: #selector(pushToNotificationSetting))
             cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
-            return cell
         case .saved:
             cell.type = .appSwitch
             cell.setupConstraint()
             cell.setData(title: cellData[indexPath.item].title)
             cell.descriptionLabel.text = "눈바디 앱에서 촬영한 사진을 앱에만 저장합니다."
-            return cell
         }
+        
+        arrayOfCells.append(cell)
+        return cell
     }
     
 }
 
 // MARK: - Layout
 
-extension PreferenceViewController {
+extension ProfileViewController {
     
     func setupConstraint() {
         view.addSubviews(profileImageView, tableView)

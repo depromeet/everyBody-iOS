@@ -66,7 +66,7 @@ class CameraViewController: BaseViewController {
         camera.checkPermission()
     }
     
-    private func initNavigationBar() {
+    func initNavigationBar() {
         navigationController?.initNavigationBar(navigationItem: self.navigationItem,
                                                 rightButtonImages: [Asset.Image.refresh.image],
                                                 rightActions: [#selector(switchCameraMode)])
