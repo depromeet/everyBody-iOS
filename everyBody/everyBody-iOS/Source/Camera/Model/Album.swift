@@ -24,6 +24,15 @@ struct Album: Codable {
         case albumDescription = "description"
         case pictures
     }
+    
+    init(id: Int = 0, name: String = "", thumbnailURL: String? = nil, createdAt: String = "", albumDescription: String = "", pictures: Pictures = Pictures()) {
+        self.id = id
+        self.name = name
+        self.thumbnailURL = thumbnailURL
+        self.createdAt = createdAt
+        self.albumDescription = albumDescription
+        self.pictures = pictures
+    }
 }
 
 // MARK: - Pictures
@@ -32,6 +41,12 @@ struct Pictures: Codable {
     let lower: [PictureInfo]
     let upper: [PictureInfo]
     let whole: [PictureInfo]
+    
+    init(lower: [PictureInfo] = [], upper: [PictureInfo] = [], whole: [PictureInfo] = []) {
+        self.lower = lower
+        self.upper = upper
+        self.whole = whole
+    }
 }
 
 // MARK: - PictureInfo
