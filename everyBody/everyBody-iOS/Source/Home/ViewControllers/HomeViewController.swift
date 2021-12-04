@@ -12,12 +12,11 @@ import Then
 
 import RxCocoa
 import RxSwift
-import SwiftUI
 
 class HomeViewController: BaseViewController {
     
     // MARK: - UI Components
-
+    
     private lazy var cameraButton = UIButton().then {
         $0.backgroundColor = Asset.Color.keyPurple.color
         $0.setImage(Asset.Image.photoCamera.image, for: .normal)
@@ -26,7 +25,7 @@ class HomeViewController: BaseViewController {
     }
     
     private lazy var emptyView = UIView().then {
-        $0.isHidden = false
+        $0.isHidden = true
     }
     
     private lazy var nicknameLabel = UILabel().then {
@@ -52,6 +51,7 @@ class HomeViewController: BaseViewController {
         $0.setTitle("앨범 생성", for: .normal)
         $0.backgroundColor = Asset.Color.gray50.color
         $0.makeRounded(radius: 28)
+        $0.addTarget(self, action: #selector(pushToFolderCreationView), for: .touchUpInside)
     }
     
     private lazy var albumCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
@@ -72,7 +72,6 @@ class HomeViewController: BaseViewController {
     private var albumData: [Album] = [] {
         didSet {
             albumCollectionView.reloadData()
-            emptyView.isHidden = albumData.count != 0 ? true : false
         }
     }
     
@@ -80,14 +79,13 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         bind()
         initNavigationBar()
-        initAlbumData()
         setupCollectionView()
         setupViewHierarchy()
         setupConstraint()
-
+        
     }
     
     // MARK: - Methods
@@ -100,6 +98,7 @@ class HomeViewController: BaseViewController {
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
                 self.albumData = data
+                self.emptyView.isHidden = self.albumData.count != 0 ? true : false
             })
             .disposed(by: disposeBag)
     }
@@ -116,10 +115,6 @@ class HomeViewController: BaseViewController {
         )
     }
     
-    private func initAlbumData() {
-        albumData = [Album()]
-    }
-    
     private func setupCollectionView() {
         albumCollectionView.dataSource = self
         albumCollectionView.delegate = self
@@ -129,7 +124,7 @@ class HomeViewController: BaseViewController {
         view.addSubviews(nicknameLabel, mottoLabel, albumCollectionView, cameraButton, emptyView)
         emptyView.addSubviews(emptyDescription, createButton)
     }
-
+    
     // MARK: - Actions
     
     @objc

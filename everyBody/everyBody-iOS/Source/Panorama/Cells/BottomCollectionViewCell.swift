@@ -45,7 +45,7 @@ class BottomCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-            transformToStandard()
+        transformToStandard()
     }
     
     // MARK: - LifeCycle
