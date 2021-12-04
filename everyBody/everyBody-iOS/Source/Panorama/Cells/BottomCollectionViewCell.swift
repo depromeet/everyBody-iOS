@@ -27,6 +27,7 @@ class BottomCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
+    var index = 0
     var viewModel = PanoramaViewModel()
     
     // MARK: - Initializer
@@ -35,10 +36,16 @@ class BottomCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViewHierarchy()
         setConstraints()
+        transformToStandard()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+            transformToStandard()
     }
     
     // MARK: - LifeCycle
@@ -46,6 +53,7 @@ class BottomCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupViewHierarchy()
+//        transformToStandard()
     }
     
     // MARK: - Actions
@@ -75,8 +83,8 @@ class BottomCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setCell(index: Int) {
-        panoramaCellImage.image = viewModel.phothArray[index]
+    func setCell(index: Int, imageURL: String) {
+        panoramaCellImage.setImage(with: imageURL)
         tagLabel.text = "\(index+1)"
         tagLabel.sizeToFit()
     }

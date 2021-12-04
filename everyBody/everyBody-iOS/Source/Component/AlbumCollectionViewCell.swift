@@ -73,7 +73,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse(){
+    override func prepareForReuse() {
         super.prepareForReuse()
         if case .album = style {
             initCell()

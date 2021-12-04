@@ -69,6 +69,7 @@ class HomeViewController: BaseViewController {
     private lazy var albumData: [Album] = [] {
         didSet {
             albumCollectionView.reloadData()
+            emptyView.isHidden = albumData.count != 0 ? true : false
         }
     }
     
@@ -113,10 +114,11 @@ class HomeViewController: BaseViewController {
     
     private func setupCollectionView() {
         albumCollectionView.dataSource = self
+        albumCollectionView.delegate = self
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(nicknameLabel, mottoLabel, emptyView, albumCollectionView, cameraButton)
+        view.addSubviews(nicknameLabel, mottoLabel, albumCollectionView, cameraButton, emptyView)
         emptyView.addSubviews(emptyDescription, createButton)
     }
 
@@ -124,8 +126,7 @@ class HomeViewController: BaseViewController {
     
     @objc
     private func switchAlbumMode() {
-        let viewController = PanoramaViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     @objc
@@ -190,6 +191,13 @@ extension HomeViewController {
             $0.width.equalTo(121)
             $0.centerX.bottom.equalToSuperview()
         }
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = PanoramaViewController(albumData: albumData[indexPath.row])
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

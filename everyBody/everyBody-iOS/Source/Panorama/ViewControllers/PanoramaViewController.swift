@@ -54,9 +54,20 @@ class PanoramaViewController: BaseViewController {
         $0.backgroundColor = .white
     }
     
+    var seletedView = UIView().then {
+        $0.backgroundColor = .red
+    }
+    
     // MARK: - Properties
     
-    var viewModel = PanoramaViewModel()
+    var albumData: Album
+    var bodyPartData: [PictureInfo] = [] {
+        didSet {
+            topCollectionView.reloadData()
+            bottomCollectionView.reloadData()
+            bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+        }
+    }
     
     var gridMode = false {
         didSet {
@@ -92,10 +103,18 @@ class PanoramaViewController: BaseViewController {
     }
     
     var tagSelectedIdx = IndexPath(row: 0, section: 0)
-    
     var centerCell: BottomCollectionViewCell?
     
     // MARK: - View Life Cycle
+    
+    init(albumData: Album) {
+        self.albumData = albumData
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         initNavigationBar()
@@ -104,18 +123,14 @@ class PanoramaViewController: BaseViewController {
         setupConstraint()
         initSegementData()
         initSegmentedControl()
+        initBodyPartData()
         render()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         initBottomCollectionView()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        topCollectionView.reloadData()
-        bottomCollectionView.reloadData()
-    }
-    
+
     // MARK: - Methods
     
     private func initNavigationBar() {
@@ -125,7 +140,8 @@ class PanoramaViewController: BaseViewController {
                                                 rightActions: [#selector(tapSaveButton),
                                                                #selector(tapEditOrCloseButton)])
         navigationItem.leftBarButtonItems = nil
-        title = viewModel.albumTitle
+        
+        title = albumData.name
     }
     
     private func initEditNavigationBar() {
@@ -134,7 +150,8 @@ class PanoramaViewController: BaseViewController {
                                                 rightButtonImages: [Asset.Image.del.image],
                                                 leftActions: [#selector(tapEditOrCloseButton)],
                                                 rightActions: [#selector(tapDeleteButton)])
-        self.title = "\(viewModel.phothArray.count)장"
+        
+        self.title = "\(albumData.pictures.whole.count)장"
     }
     
     private func initSegmentedControl() {
@@ -146,6 +163,10 @@ class PanoramaViewController: BaseViewController {
         for (index, title) in bodyPartsArray.enumerated() {
             bodyPartSegmentControl.setTitle(at: index, title: title)
         }
+    }
+    
+    private func initBodyPartData() {
+        bodyPartData = albumData.pictures.whole
     }
     
     private func initBottomCollectionView() {
@@ -251,11 +272,11 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         switch index {
         case 0:
-            return
+            bodyPartData = albumData.pictures.whole
         case 1:
-            return
+            bodyPartData = albumData.pictures.upper
         case 2:
-            return
+            bodyPartData = albumData.pictures.lower
         default:
             return
         }
@@ -268,17 +289,6 @@ extension PanoramaViewController: PopUpActionProtocol {
     }
     
     func confirmButtonDidTap(_ button: UIButton) {
-        let deleteData = viewModel.deleteArray
-        if !deleteData.isEmpty {
-            for index in deleteData {
-                viewModel.phothArray.remove(at: index-1)
-            }
-        }
         
-        viewModel.deleteArray = []
-        topCollectionView.reloadData()
-        bottomCollectionView.reloadData()
-        
-        self.dismiss(animated: true, completion: nil)
     }
 }
