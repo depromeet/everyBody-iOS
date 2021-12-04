@@ -66,8 +66,8 @@ class PanoramaViewController: BaseViewController {
             topCollectionView.reloadData()
             bottomCollectionView.reloadData()
             
-            if bodyPartData.count != 0 {
-            bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+            if !bodyPartData.isEmpty {
+                bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
             }
         }
     }
@@ -133,7 +133,7 @@ class PanoramaViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         initBottomCollectionView()
     }
-
+    
     // MARK: - Methods
     
     private func initNavigationBar() {
