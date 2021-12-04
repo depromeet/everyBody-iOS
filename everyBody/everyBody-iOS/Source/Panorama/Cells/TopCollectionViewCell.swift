@@ -81,8 +81,8 @@ class TopCollectionViewCell: UICollectionViewCell {
         selectedView.isHidden = !editMode
     }
     
-    func setPhotoCell(index: Int) {
-        panoramaImage.image = viewModel.phothArray[index]
+    func setPhotoCell(imageURL: String) {
+        panoramaImage.setImage(with: imageURL)
     }
     
 }

@@ -16,7 +16,7 @@ import RxSwift
 class HomeViewController: BaseViewController {
     
     // MARK: - UI Components
-
+    
     private lazy var cameraButton = UIButton().then {
         $0.backgroundColor = Asset.Color.keyPurple.color
         $0.setImage(Asset.Image.photoCamera.image, for: .normal)
@@ -24,7 +24,9 @@ class HomeViewController: BaseViewController {
         $0.addTarget(self, action: #selector(pushToCameraViewController), for: .touchUpInside)
     }
     
-    private lazy var emptyView = UIView()
+    private lazy var emptyView = UIView().then {
+        $0.isHidden = true
+    }
     
     private lazy var nicknameLabel = UILabel().then {
         $0.text = "예꽁이"
@@ -49,6 +51,7 @@ class HomeViewController: BaseViewController {
         $0.setTitle("앨범 생성", for: .normal)
         $0.backgroundColor = Asset.Color.gray50.color
         $0.makeRounded(radius: 28)
+        $0.addTarget(self, action: #selector(pushToFolderCreationView), for: .touchUpInside)
     }
     
     private lazy var albumCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
@@ -66,7 +69,7 @@ class HomeViewController: BaseViewController {
     
     private let viewModel = AlbumViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
     
-    private lazy var albumData: [Album] = [] {
+    private var albumData: [Album] = [] {
         didSet {
             albumCollectionView.reloadData()
         }
@@ -76,13 +79,13 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         bind()
         initNavigationBar()
         setupCollectionView()
         setupViewHierarchy()
         setupConstraint()
-
+        
     }
     
     // MARK: - Methods
@@ -95,6 +98,7 @@ class HomeViewController: BaseViewController {
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
                 self.albumData = data
+                self.emptyView.isHidden = self.albumData.count != 0 ? true : false
             })
             .disposed(by: disposeBag)
     }
@@ -113,19 +117,19 @@ class HomeViewController: BaseViewController {
     
     private func setupCollectionView() {
         albumCollectionView.dataSource = self
+        albumCollectionView.delegate = self
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(nicknameLabel, mottoLabel, emptyView, albumCollectionView, cameraButton)
+        view.addSubviews(nicknameLabel, mottoLabel, albumCollectionView, cameraButton, emptyView)
         emptyView.addSubviews(emptyDescription, createButton)
     }
-
+    
     // MARK: - Actions
     
     @objc
     private func switchAlbumMode() {
-        let viewController = PanoramaViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     @objc
@@ -190,6 +194,13 @@ extension HomeViewController {
             $0.width.equalTo(121)
             $0.centerX.bottom.equalToSuperview()
         }
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = PanoramaViewController(albumData: albumData[indexPath.row])
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
