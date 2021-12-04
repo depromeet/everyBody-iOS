@@ -54,10 +54,6 @@ class PanoramaViewController: BaseViewController {
         $0.backgroundColor = .white
     }
     
-    var seletedView = UIView().then {
-        $0.backgroundColor = .red
-    }
-    
     // MARK: - Properties
     
     var albumData: Album
