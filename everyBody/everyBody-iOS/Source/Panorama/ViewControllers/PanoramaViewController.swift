@@ -65,7 +65,10 @@ class PanoramaViewController: BaseViewController {
         didSet {
             topCollectionView.reloadData()
             bottomCollectionView.reloadData()
+            
+            if bodyPartData.count != 0 {
             bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
+            }
         }
     }
     

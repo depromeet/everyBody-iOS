@@ -12,6 +12,7 @@ import Then
 
 import RxCocoa
 import RxSwift
+import SwiftUI
 
 class HomeViewController: BaseViewController {
     
@@ -24,7 +25,9 @@ class HomeViewController: BaseViewController {
         $0.addTarget(self, action: #selector(pushToCameraViewController), for: .touchUpInside)
     }
     
-    private lazy var emptyView = UIView()
+    private lazy var emptyView = UIView().then {
+        $0.isHidden = false
+    }
     
     private lazy var nicknameLabel = UILabel().then {
         $0.text = "예꽁이"
@@ -66,7 +69,7 @@ class HomeViewController: BaseViewController {
     
     private let viewModel = AlbumViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
     
-    private lazy var albumData: [Album] = [] {
+    private var albumData: [Album] = [] {
         didSet {
             albumCollectionView.reloadData()
             emptyView.isHidden = albumData.count != 0 ? true : false
@@ -80,6 +83,7 @@ class HomeViewController: BaseViewController {
 
         bind()
         initNavigationBar()
+        initAlbumData()
         setupCollectionView()
         setupViewHierarchy()
         setupConstraint()
@@ -110,6 +114,10 @@ class HomeViewController: BaseViewController {
             rightActions: [#selector(pushToFolderCreationView),
                            #selector(switchAlbumMode)]
         )
+    }
+    
+    private func initAlbumData() {
+        albumData = [Album()]
     }
     
     private func setupCollectionView() {
