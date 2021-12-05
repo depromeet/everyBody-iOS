@@ -10,10 +10,13 @@ import UIKit
 import SnapKit
 import Then
 
+import RxCocoa
+import RxSwift
+
 class HomeViewController: BaseViewController {
     
     // MARK: - UI Components
-
+    
     private lazy var cameraButton = UIButton().then {
         $0.backgroundColor = Asset.Color.keyPurple.color
         $0.setImage(Asset.Image.photoCamera.image, for: .normal)
@@ -21,7 +24,9 @@ class HomeViewController: BaseViewController {
         $0.addTarget(self, action: #selector(pushToCameraViewController), for: .touchUpInside)
     }
     
-    private lazy var emptyView = UIView()
+    private lazy var emptyView = UIView().then {
+        $0.isHidden = true
+    }
     
     private lazy var nicknameLabel = UILabel().then {
         $0.text = "예꽁이"
@@ -46,6 +51,7 @@ class HomeViewController: BaseViewController {
         $0.setTitle("앨범 생성", for: .normal)
         $0.backgroundColor = Asset.Color.gray50.color
         $0.makeRounded(radius: 28)
+        $0.addTarget(self, action: #selector(pushToFolderCreationView), for: .touchUpInside)
     }
     
     private lazy var albumCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
@@ -61,20 +67,41 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Properties
     
-    var viewModel = AlbumViewModel()
+    private let viewModel = AlbumViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
+    
+    private var albumData: [Album] = [] {
+        didSet {
+            albumCollectionView.reloadData()
+        }
+    }
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        bind()
         initNavigationBar()
         setupCollectionView()
         setupViewHierarchy()
         setupConstraint()
+        
     }
     
     // MARK: - Methods
+    
+    func bind() {
+        let input = AlbumViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in })
+        let output = viewModel.transeform(input: input)
+        
+        output.album
+            .drive(onNext: { [weak self] data in
+                guard let self = self else { return }
+                self.albumData = data
+                self.emptyView.isHidden = self.albumData.count != 0 ? true : false
+            })
+            .disposed(by: disposeBag)
+    }
     
     private func initNavigationBar() {
         navigationController?.initNavigationBar(
@@ -90,19 +117,19 @@ class HomeViewController: BaseViewController {
     
     private func setupCollectionView() {
         albumCollectionView.dataSource = self
+        albumCollectionView.delegate = self
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(nicknameLabel, mottoLabel, emptyView, albumCollectionView, cameraButton)
+        view.addSubviews(nicknameLabel, mottoLabel, albumCollectionView, cameraButton, emptyView)
         emptyView.addSubviews(emptyDescription, createButton)
     }
-
+    
     // MARK: - Actions
     
     @objc
     private func switchAlbumMode() {
-        let viewController = PanoramaViewController()
-        navigationController?.pushViewController(viewController, animated: true)
+        
     }
     
     @objc
@@ -170,15 +197,22 @@ extension HomeViewController {
     }
 }
 
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = PanoramaViewController(albumData: albumData[indexPath.row])
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
 extension HomeViewController: UICollectionViewDataSource {
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.dummy.count
+        return albumData.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: AlbumCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.style = .album
-        cell.setData(album: viewModel.dummy[indexPath.row])
+        cell.setData(album: albumData[indexPath.row])
         return cell
     }
     

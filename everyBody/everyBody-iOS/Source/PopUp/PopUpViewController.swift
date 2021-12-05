@@ -63,7 +63,7 @@ class PopUpViewController: BaseViewController {
     
     var type: Style?
     weak var delegate: PopUpActionProtocol?
-    var initalDate: [String] = []
+    var initalDate: [Int] = []
     
     // MARK: - Initalizer
     
@@ -87,7 +87,8 @@ class PopUpViewController: BaseViewController {
         hideKeyboard()
         render()
         setViewHierachy()
-        setUI()
+        setupConstraint()
+        setupInitialPicerView()
     }
     
     // MARK: - Methods
@@ -101,7 +102,7 @@ class PopUpViewController: BaseViewController {
         containerView.addSubviews(titleLabel, descriptionLabel, textField, cancelButton, confirmButton)
     }
     
-    private func setUI() {
+    private func setupConstraint() {
         guard let type = self.type else { return }
         
         containerView.snp.makeConstraints {
@@ -184,4 +185,15 @@ class PopUpViewController: BaseViewController {
         }
     }
     
+    private func setupInitialPicerView() {
+        let dateString: String = "\(initalDate[0]):\(initalDate[1])"
+
+        let dateFormatter = DateFormatter()
+
+        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
+        
+        let date: Date = dateFormatter.date(from: dateString)!
+        datePicker.date = date
+    }
 }

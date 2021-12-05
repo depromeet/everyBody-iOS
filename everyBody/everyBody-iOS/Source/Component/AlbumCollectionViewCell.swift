@@ -73,7 +73,20 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if case .album = style {
+            initCell()
+        }
+    }
+    
     // MARK: - Methods
+    
+    func initCell() {
+        self.thumbnailImageView.image = nil
+        self.descriptionLabel.text = ""
+        self.folderTitleLabel.text = ""
+    }
     
     func setupViewHierarchy() {
         addSubviews(thumbnailImageView, folderTitleLabel, descriptionLabel)
@@ -110,9 +123,11 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     }
 
     func setData(album: Album) {
-
         folderTitleLabel.text = album.name
         descriptionLabel.text = album.albumDescription
+        if let thumbnailURL = album.thumbnailURL {
+            thumbnailImageView.setImage(with: thumbnailURL)
+        }
     }
     
     func setFirstCell () {

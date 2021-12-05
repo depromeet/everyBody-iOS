@@ -48,6 +48,7 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
                 tagSelectedIdx = indexPath
             } else if self.centerCell == nil {
                 /// 중간에 걸려있는 인덱스가 없는데 센터 셀이 비어있을 때, itemspacing 사이에 걸려있는 상황
+                centerCell?.transformToStandard()
             }
             
             if let cell = centerCell {
@@ -72,7 +73,7 @@ extension PanoramaViewController: UICollectionViewDataSource {
     typealias BottomCell = BottomCollectionViewCell
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == topCollectionView && editMode ? viewModel.phothArray.count + 1 : viewModel.phothArray.count
+        return collectionView == topCollectionView && editMode ? bodyPartData.count + 1 : bodyPartData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -85,26 +86,25 @@ extension PanoramaViewController: UICollectionViewDataSource {
             let cell: TopCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.selectedViewIsHidden(editMode: editMode)
             let indexPath = editMode ? indexPath.row - 1 : indexPath.row
-            cell.setPhotoCell(index: indexPath)
+            cell.setPhotoCell(imageURL: bodyPartData[indexPath].imageURL)
             return cell
         }
         
         let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.setCell(index: indexPath.row)
+        cell.setCell(index: indexPath.row, imageURL: bodyPartData[indexPath.row].imageURL)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == topCollectionView || editMode {
             /// 일단은 indexpath.row로 해놨는데 나중에 서버 붙이면 바로 수정
-            viewModel.deleteArray.append(indexPath.row)
+            ///
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == topCollectionView || editMode {
-            guard let elementIndex = viewModel.deleteArray.firstIndex(of: indexPath.row) else { return }
-            viewModel.deleteArray.remove(at: elementIndex)
+            
         }
     }
 }

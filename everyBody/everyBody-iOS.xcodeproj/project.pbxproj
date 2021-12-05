@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA2F31772759F3F900855861 /* NotificationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F31762759F3F900855861 /* NotificationAPI.swift */; };
+		AA2F31792759F53F00855861 /* NotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F31782759F53F00855861 /* NotificationConfig.swift */; };
+		AA2F317B2759F5E200855861 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F317A2759F5E200855861 /* NotificationService.swift */; };
+		AA2F317E2759F7E800855861 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F317D2759F7E800855861 /* NotificationViewModel.swift */; };
+		AA2F3181275AA17D00855861 /* MoyaLoggingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3180275AA17D00855861 /* MoyaLoggingPlugin.swift */; };
 		AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */; };
 		AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85CE2716D068002276C3 /* CameraViewController.swift */; };
 		AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */; };
@@ -101,6 +106,9 @@
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
+		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
+		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
+		FC6EE21C275A563200886D7D /* AlbumDummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6EE21B275A563200886D7D /* AlbumDummy.swift */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -125,6 +133,11 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		AA2F31762759F3F900855861 /* NotificationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationAPI.swift; sourceTree = "<group>"; };
+		AA2F31782759F53F00855861 /* NotificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConfig.swift; sourceTree = "<group>"; };
+		AA2F317A2759F5E200855861 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		AA2F317D2759F7E800855861 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		AA2F3180275AA17D00855861 /* MoyaLoggingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaLoggingPlugin.swift; sourceTree = "<group>"; };
 		AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCreationViewController.swift; sourceTree = "<group>"; };
 		AA5B85CE2716D068002276C3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addSubviews.swift"; sourceTree = "<group>"; };
@@ -215,6 +228,9 @@
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
+		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		FC6EE21B275A563200886D7D /* AlbumDummy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDummy.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
@@ -242,6 +258,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA2F31752759F3DC00855861 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				AA2F31762759F3F900855861 /* NotificationAPI.swift */,
+				AA2F317A2759F5E200855861 /* NotificationService.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		AA5B85CD2716D043002276C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,10 +325,13 @@
 		AA73AFAD274FE2E200FD7C70 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AA2F31752759F3DC00855861 /* Notification */,
+				FC23AC0E275A03720067EEF7 /* Album */,
 				AAA9A5272757FF7200FE92DB /* CreateAlbum */,
 				AA73AFBE27502B4E00FD7C70 /* Request */,
 				AA73AFB3274FE33000FD7C70 /* Base */,
 				AA73AFAE274FE30C00FD7C70 /* MyPage */,
+				AA2F3180275AA17D00855861 /* MoyaLoggingPlugin.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -357,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				AA74A0ED2749960300FA6678 /* UserInfo.swift */,
+				AA2F31782759F53F00855861 /* NotificationConfig.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -484,6 +513,7 @@
 			children = (
 				AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */,
 				AAA9A530275808B500FE92DB /* AlbumCreationViewModel.swift */,
+				AA2F317D2759F7E800855861 /* NotificationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -532,6 +562,7 @@
 				AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */,
 				AABEA2E6273C585C00A06A8C /* AlbumViewModel.swift */,
 				AA7366502746BD53002B726D /* DateViewModel.swift */,
+				FC6EE21B275A563200886D7D /* AlbumDummy.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -639,6 +670,15 @@
 				AAC7ACB12729F2B100B2BE1E /* Fonts.swift */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		FC23AC0E275A03720067EEF7 /* Album */ = {
+			isa = PBXGroup;
+			children = (
+				FC23AC0F275A038B0067EEF7 /* AlbumService.swift */,
+				FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */,
+			);
+			path = Album;
 			sourceTree = "<group>";
 		};
 		FCF8C9E0274B974E004263FF /* Extensions */ = {
@@ -803,6 +843,7 @@
 				AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */,
 				AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */,
 				AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */,
+				AA2F31792759F53F00855861 /* NotificationConfig.swift in Sources */,
 				AAC7ACFD2734336000B2BE1E /* NBBasicButton.swift in Sources */,
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
 				AAC7ACF12733F51B00B2BE1E /* NBSegmentedControl.swift in Sources */,
@@ -820,10 +861,12 @@
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
 				AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */,
 				AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */,
+				AA2F31772759F3F900855861 /* NotificationAPI.swift in Sources */,
 				AA5B85DF27170F27002276C3 /* UINavigationController+Extensions.swift in Sources */,
 				FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */,
 				AA95911D27444F4F007772BD /* PopUpActionDelegate.swift in Sources */,
 				AAA9A52F2758041A00FE92DB /* AlbumRepository.swift in Sources */,
+				AA2F317B2759F5E200855861 /* NotificationService.swift in Sources */,
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
@@ -845,6 +888,7 @@
 				AABEA2E5273C578E00A06A8C /* Album.swift in Sources */,
 				AAC7ACBA272D5E3E00B2BE1E /* BottomSheetView.swift in Sources */,
 				AAC7ACB4272D474E00B2BE1E /* CaptureButton.swift in Sources */,
+				FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */,
 				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
 				AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */,
@@ -853,6 +897,7 @@
 				AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */,
+				AA2F3181275AA17D00855861 /* MoyaLoggingPlugin.swift in Sources */,
 				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,
 				AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */,
 				AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */,
@@ -865,10 +910,13 @@
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
 				AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */,
 				AAA9A5262757FEF400FE92DB /* CreateAlbumRequestModel.swift in Sources */,
+				FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */,
 				FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */,
+				FC6EE21C275A563200886D7D /* AlbumDummy.swift in Sources */,
 				AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */,
 				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
 				AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */,
+				AA2F317E2759F7E800855861 /* NotificationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
