@@ -35,7 +35,7 @@ class PopUpViewController: BaseViewController {
         $0.numberOfLines = 0
     }
     
-    private lazy var textField = NBTextField().then {
+    lazy var textField = NBTextField().then {
         $0.font = .nbFont(type: .body2)
         $0.setPlaceHoder(placehoder: "폴더명을 입력해주세요")
     }
@@ -52,7 +52,7 @@ class PopUpViewController: BaseViewController {
         $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
     }
     
-    private let confirmButton = UIButton().then {
+    let confirmButton = UIButton().then {
         $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body2SemiBold)
         $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
@@ -186,14 +186,16 @@ class PopUpViewController: BaseViewController {
     }
     
     private func setupInitialPicerView() {
-        let dateString: String = "\(initalDate[0]):\(initalDate[1])"
-
-        let dateFormatter = DateFormatter()
-
-        dateFormatter.dateFormat = "HH:mm"
-        dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
-        
-        let date: Date = dateFormatter.date(from: dateString)!
-        datePicker.date = date
+        if type == .picker {
+            let dateString: String = "\(initalDate[0]):\(initalDate[1])"
+            
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateFormat = "HH:mm"
+            dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
+            
+            let date: Date = dateFormatter.date(from: dateString)!
+            datePicker.date = date
+        }
     }
 }

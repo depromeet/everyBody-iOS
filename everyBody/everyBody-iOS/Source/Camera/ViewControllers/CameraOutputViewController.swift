@@ -65,6 +65,7 @@ class CameraOutputViewController: BaseViewController {
     
     // MARK: - Properties
     
+    private let requestManager = CameraRequestManager.shared
     private var cameraViewModel = CameraViewModel()
     private let camera = Camera.shared
     private var metaDataArray: [String] = [] {
@@ -99,6 +100,7 @@ class CameraOutputViewController: BaseViewController {
     private func initSegmentedControl() {
         partAndTimeSegmentedControl.delegate = self
         photoTimeSegemntedControl.delegate = self
+        partSegmentedControl.delegate = self
     }
     
     private func initSegementData() {
@@ -140,8 +142,31 @@ class CameraOutputViewController: BaseViewController {
     }
     
     private func mergeLabelToImage() {
+        requestManager.image = containerView.renderToImageView()
         // TODO: - 갤러리에 이미지 저장, 나중에 환경설정 앱 만들면 갤러리 저장할 지 여부 UserDefault 값에 저장해서 값에 따라 분기처리
         UIImageWriteToSavedPhotosAlbum(containerView.renderToImageView(), nil, nil, nil)
+    }
+    
+    private func getPickerViewTime() -> String {
+        if let date = dateTimeLabel.text, !date.isEmpty {
+            let dateArray = date.split(separator: ".").map { String($0) }
+            let (year, month, day) = (dateArray[0], dateArray[1], dateArray[2])
+            if let hour = meridiemLabel.text, !hour.isEmpty {
+                let timeArray = hour.replacingOccurrences(of: "AM", with: "")
+                                    .replacingOccurrences(of: "PM", with: "")
+                                    .split(separator: ":").map { String($0) }
+                let (hour, minute) = (timeArray[0], timeArray[1])
+                
+                let dateString: String = "\(year)-\(month)-\(day)\(hour):\(minute):00"
+//                let dateFormatter = DateFormatter()
+//                dateFormatter.dateFormat = "yyyy-MM-DD HH:mm:ss"
+//                dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
+//
+//                let date: Date = dateFormatter.date(from: dateString)!
+                return dateString
+            }
+        }
+        return String()
     }
     
     // MARK: - Actions
@@ -149,8 +174,8 @@ class CameraOutputViewController: BaseViewController {
     @objc
     func pushToNext() {
         mergeLabelToImage()
-        
-        let viewController = FolderSelectionViewController()
+        requestManager.takenAt = getPickerViewTime()
+        let viewController = AlbumSelectionViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -175,7 +200,7 @@ extension CameraOutputViewController {
         scrollView.snp.makeConstraints {
             $0.edges.equalTo(0)
         }
-                
+        
         containerView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
@@ -268,10 +293,13 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
         } else if segmentControl == partSegmentedControl {
             switch Part.init(rawValue: index) {
             case .whole:
+                requestManager.bodyPart = "whole"
                 return
             case .upper:
+                requestManager.bodyPart = "upper"
                 return
             case .lower:
+                requestManager.bodyPart = "lower"
                 return
             default:
                 return
