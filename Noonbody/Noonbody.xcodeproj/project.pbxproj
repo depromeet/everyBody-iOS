@@ -24,12 +24,6 @@
 		AA4EFD2327623F3F005017FC /* NBSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD2227623F3F005017FC /* NBSegmentedControl.swift */; };
 		AA4EFD2727623F6F005017FC /* NBBasicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD2627623F6F005017FC /* NBBasicButton.swift */; };
 		AA4EFD2927623F75005017FC /* NBSegmentedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD2827623F75005017FC /* NBSegmentedButton.swift */; };
-		AA4EFD3627624013005017FC /* NBDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD3027624013005017FC /* NBDatePicker.swift */; };
-		AA4EFD3727624013005017FC /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD3127624013005017FC /* ToastView.swift */; };
-		AA4EFD3827624013005017FC /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD3227624013005017FC /* BottomSheetView.swift */; };
-		AA4EFD3927624013005017FC /* TextWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD3327624013005017FC /* TextWithIconView.swift */; };
-		AA4EFD3A27624013005017FC /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD3427624013005017FC /* CustomSwitch.swift */; };
-		AA4EFD3B27624013005017FC /* CaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD3527624013005017FC /* CaptureButton.swift */; };
 		AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85CE2716D068002276C3 /* CameraViewController.swift */; };
 		AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */; };
 		AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */; };
@@ -110,6 +104,11 @@
 		AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD172735A11B00B2BE1E /* AppDate.swift */; };
 		AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD232737B6CB00B2BE1E /* AlbumSelectionViewController.swift */; };
 		AAC7AD262737B84400B2BE1E /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */; };
+		AAE2FA72276288D800FA2C5C /* TextWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */; };
+		AAE2FA74276288E600FA2C5C /* NBDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */; };
+		AAE2FA76276288FE00FA2C5C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA75276288FE00FA2C5C /* ToastView.swift */; };
+		AAE2FA782762892D00FA2C5C /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */; };
+		AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA792762895100FA2C5C /* BottomSheetView.swift */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -156,12 +155,6 @@
 		AA4EFD2227623F3F005017FC /* NBSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBSegmentedControl.swift; sourceTree = "<group>"; };
 		AA4EFD2627623F6F005017FC /* NBBasicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBBasicButton.swift; sourceTree = "<group>"; };
 		AA4EFD2827623F75005017FC /* NBSegmentedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBSegmentedButton.swift; sourceTree = "<group>"; };
-		AA4EFD3027624013005017FC /* NBDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NBDatePicker.swift; path = ../../../../../../../../Views/NBDatePicker.swift; sourceTree = "<group>"; };
-		AA4EFD3127624013005017FC /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = ../../../../../../../../Views/ToastView.swift; sourceTree = "<group>"; };
-		AA4EFD3227624013005017FC /* BottomSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomSheetView.swift; path = ../../../../../../../../Views/BottomSheetView.swift; sourceTree = "<group>"; };
-		AA4EFD3327624013005017FC /* TextWithIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextWithIconView.swift; path = ../../../../../../../../Views/TextWithIconView.swift; sourceTree = "<group>"; };
-		AA4EFD3427624013005017FC /* CustomSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomSwitch.swift; path = ../../../../../../../../Views/CustomSwitch.swift; sourceTree = "<group>"; };
-		AA4EFD3527624013005017FC /* CaptureButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CaptureButton.swift; path = ../../../../../../../../Views/CaptureButton.swift; sourceTree = "<group>"; };
 		AA5B85CE2716D068002276C3 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+addSubviews.swift"; sourceTree = "<group>"; };
 		AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+makeRounded.swift"; sourceTree = "<group>"; };
@@ -238,6 +231,11 @@
 		AAC7AD172735A11B00B2BE1E /* AppDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDate.swift; sourceTree = "<group>"; };
 		AAC7AD232737B6CB00B2BE1E /* AlbumSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectionViewController.swift; sourceTree = "<group>"; };
 		AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
+		AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithIconView.swift; sourceTree = "<group>"; };
+		AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDatePicker.swift; sourceTree = "<group>"; };
+		AAE2FA75276288FE00FA2C5C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
+		AAE2FA792762895100FA2C5C /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -302,19 +300,6 @@
 				AA2F318D275ADBDD00855861 /* CameraRepository.swift */,
 			);
 			path = Repository;
-			sourceTree = "<group>";
-		};
-		AA4EFD2F27624007005017FC /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AA4EFD3227624013005017FC /* BottomSheetView.swift */,
-				AA4EFD3527624013005017FC /* CaptureButton.swift */,
-				AA4EFD3427624013005017FC /* CustomSwitch.swift */,
-				AA4EFD3027624013005017FC /* NBDatePicker.swift */,
-				AA4EFD3327624013005017FC /* TextWithIconView.swift */,
-				AA4EFD3127624013005017FC /* ToastView.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		AA5B85CD2716D043002276C3 /* Model */ = {
@@ -474,15 +459,11 @@
 		AA7E0A4C26FB0AE200106DC2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				AAE2FA7B276289B200FA2C5C /* Scene */,
 				AA73AFAD274FE2E200FD7C70 /* Network */,
 				AA95911B27444F3D007772BD /* Protocol */,
 				AA9591102744336D007772BD /* Component */,
-				AA95910B27442973007772BD /* PopUp */,
-				AAC7AC9D2729D83A00B2BE1E /* Base */,
 				AA5B85D02716D4BE002276C3 /* Extensions */,
-				AA7E0A5226FB0B6900106DC2 /* Panorama */,
-				AA7E0A5026FB0B5800106DC2 /* Camera */,
-				AA7E0A4F26FB0B4F00106DC2 /* Home */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -529,7 +510,7 @@
 		AA7E0A5026FB0B5800106DC2 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				AA4EFD2F27624007005017FC /* Views */,
+				AAE2FA70276288A200FA2C5C /* Views */,
 				AA2F318C275ADBB200855861 /* Repository */,
 				AA2F318B275ADBAC00855861 /* UseCase */,
 				AA5B85CD2716D043002276C3 /* Model */,
@@ -714,6 +695,30 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		AAE2FA70276288A200FA2C5C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */,
+				AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */,
+				AAE2FA75276288FE00FA2C5C /* ToastView.swift */,
+				AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */,
+				AAE2FA792762895100FA2C5C /* BottomSheetView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AAE2FA7B276289B200FA2C5C /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				AAC7AC9D2729D83A00B2BE1E /* Base */,
+				AA7E0A4F26FB0B4F00106DC2 /* Home */,
+				AA95910B27442973007772BD /* PopUp */,
+				AA7E0A5226FB0B6900106DC2 /* Panorama */,
+				AA7E0A5026FB0B5800106DC2 /* Camera */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
 		FC23AC0E275A03720067EEF7 /* Album */ = {
 			isa = PBXGroup;
 			children = (
@@ -894,20 +899,21 @@
 				AA2F318E275ADBDD00855861 /* CameraRepository.swift in Sources */,
 				AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */,
 				AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */,
-				AA4EFD3A27624013005017FC /* CustomSwitch.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
 				AA4EFD2327623F3F005017FC /* NBSegmentedControl.swift in Sources */,
 				AA74A0E1274971BF00FA6678 /* ProfileDataType.swift in Sources */,
 				AA7E0A4026FB0A6100106DC2 /* Noonbody.xcdatamodeld in Sources */,
 				AA74A0F4274A696E00FA6678 /* PushSettingViewController.swift in Sources */,
 				AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */,
+				AAE2FA76276288FE00FA2C5C /* ToastView.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
 				AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */,
 				AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */,
+				AAE2FA782762892D00FA2C5C /* CustomSwitch.swift in Sources */,
 				AA2F31772759F3F900855861 /* NotificationAPI.swift in Sources */,
-				AA4EFD3627624013005017FC /* NBDatePicker.swift in Sources */,
 				AA5B85DF27170F27002276C3 /* UINavigationController+Extensions.swift in Sources */,
+				AAE2FA72276288D800FA2C5C /* TextWithIconView.swift in Sources */,
 				FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */,
 				AA95911D27444F4F007772BD /* PopUpActionDelegate.swift in Sources */,
 				AAA9A52F2758041A00FE92DB /* AlbumRepository.swift in Sources */,
@@ -933,10 +939,9 @@
 				FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */,
 				AA2F3185275AD61800855861 /* PhotoRequestModel.swift in Sources */,
 				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
-				AA4EFD3727624013005017FC /* ToastView.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
+				AAE2FA74276288E600FA2C5C /* NBDatePicker.swift in Sources */,
 				AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */,
-				AA4EFD3827624013005017FC /* BottomSheetView.swift in Sources */,
 				AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
 				AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */,
@@ -948,8 +953,6 @@
 				AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */,
 				AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */,
 				AA74A0F6274A6EDB00FA6678 /* NBDayButton.swift in Sources */,
-				AA4EFD3B27624013005017FC /* CaptureButton.swift in Sources */,
-				AA4EFD3927624013005017FC /* TextWithIconView.swift in Sources */,
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
 				AA74A0DC274962F400FA6678 /* ProfileTableViewCell.swift in Sources */,
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
@@ -959,6 +962,7 @@
 				AAA9A5262757FEF400FE92DB /* CreateAlbumRequestModel.swift in Sources */,
 				AA4EFD2127623F38005017FC /* SelectedView.swift in Sources */,
 				FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */,
+				AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */,
 				FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */,
 				AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */,
 				AA4EFD2727623F6F005017FC /* NBBasicButton.swift in Sources */,
