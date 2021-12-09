@@ -12,7 +12,7 @@ import Moya
 
 protocol AlbumRepository {
     func getAlbumList() -> Observable<[Album]>
-    func postCreateAlbum(request: CreateAlbumRequestModel)
+    func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Album>
 }
 
 class DefaultAlbumRepositry: AlbumRepository {
@@ -34,15 +34,21 @@ class DefaultAlbumRepositry: AlbumRepository {
         return observable
     }
     
-    func postCreateAlbum(request: CreateAlbumRequestModel) {
-        CreateAlbumService.shared.postCreateAlbum(request: request) { response in
-            switch response {
-            case .success:
-                print("성공적으로 생성되었습니다.")
-            case .failure:
-                print("알 수 없는 에러가 발생했습니다.")
+    func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Album> {
+        let observable = Observable<Album>.create { observer -> Disposable in
+            let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: request) { response in
+                switch response {
+                case .success(let data):
+                    if let data = data {
+                        observer.onNext(data)
+                    }
+                case .failure(let err):
+                    print(err)
+                }
             }
+            return Disposables.create(with: { requestReference })
         }
+        return observable
     }
     
 }

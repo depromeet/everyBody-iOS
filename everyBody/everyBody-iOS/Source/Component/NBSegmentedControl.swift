@@ -84,12 +84,11 @@ class NBSegmentedControl: UIView {
         guard let numOfButton = numOfButton else { return }
         
         setViewHierarchy()
-        
-        let padding = CGFloat(numOfButton * Int(spacing))
         stackView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
    
+        let padding = CGFloat(numOfButton * Int(spacing))
         for index in 0..<2 {
             buttons[index].snp.makeConstraints {
                 $0.width.equalTo((self.frame.width - padding) / CGFloat(numOfButton))

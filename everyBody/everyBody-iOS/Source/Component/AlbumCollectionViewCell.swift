@@ -75,9 +75,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        if case .album = style {
-            initCell()
-        }
+        initCell()
     }
     
     // MARK: - Methods
@@ -130,13 +128,18 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setFirstCell () {
+    func setFirstCell() {
+        stackView.isHidden = false
         addSubview(stackView)
         stackView.addArrangedSubviews([addImageView, addLabel])
         
         stackView.snp.makeConstraints {
             $0.centerX.centerY.equalTo(thumbnailImageView)
         }
+    }
+    
+    func setNoFirstCell() {
+        stackView.isHidden = true
     }
     
     func getIndexPath() -> IndexPath? {

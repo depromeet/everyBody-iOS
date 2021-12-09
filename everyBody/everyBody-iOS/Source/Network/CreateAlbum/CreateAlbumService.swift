@@ -14,8 +14,8 @@ public class CreateAlbumService {
     
     private init() { }
   
-    func postCreateAlbum(request: CreateAlbumRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
-        provider.requestNoResultAPI(CreateAlbumAPI.postCreateAlbum(request: request)) { response in
+    func postCreateAlbum(request: CreateAlbumRequestModel, completion: @escaping (Result<Album?, Error>) -> Void) {
+        provider.requestDecoded(CreateAlbumAPI.postCreateAlbum(request: request)) { response in
             completion(response)
         }
     }

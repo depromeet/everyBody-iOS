@@ -12,7 +12,7 @@ import Moya
 public class AlbumService {
     
     static let shared = AlbumService()
-    let provider = MultiMoyaProvider()
+    let provider = MultiMoyaProvider(plugins: [MoyaLoggingPlugin()])
     
     private init() { }
     

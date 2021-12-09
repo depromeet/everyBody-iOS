@@ -12,7 +12,7 @@ import RxCocoa
 
 final class AlbumViewModel {
     
-    private let albumUseCase: DefaultAlbumUseCase
+    private let albumUseCase: AlbumUseCase
     
     struct Input {
         let viewWillAppear: Observable<Void>
@@ -22,7 +22,7 @@ final class AlbumViewModel {
         let album: Driver<[Album]>
     }
     
-    init(albumUseCase: DefaultAlbumUseCase) {
+    init(albumUseCase: AlbumUseCase) {
         self.albumUseCase = albumUseCase
     }
     

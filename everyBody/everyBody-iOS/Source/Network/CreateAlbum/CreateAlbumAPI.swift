@@ -10,7 +10,7 @@ import Foundation
 import Moya
 
 enum CreateAlbumAPI: BaseTargetType {
-    typealias ResultModel = String
+    typealias ResultModel = Album
     
     case postCreateAlbum(request: CreateAlbumRequestModel)
 }
