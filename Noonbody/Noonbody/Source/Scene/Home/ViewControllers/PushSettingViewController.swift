@@ -134,6 +134,14 @@ class PushSettingViewController: BaseViewController {
                 self.timeTextField.sendActions(for: .valueChanged)
             }).disposed(by: disposeBag)
         
+        output.statusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 200 {
+                    self.showToast(type: .alarm)
+                }
+            }).disposed(by: disposeBag)
+        
         timeText
             .bind(to: timeTextField.rx.text)
             .disposed(by: disposeBag)
@@ -186,8 +194,8 @@ class PushSettingViewController: BaseViewController {
     
     @objc
     private func switchButtonDidTap() {
-        pushSettingContainerView.isHidden = pushSwitch.isOn ? true : false
-        saveButton.isHidden = pushSwitch.isOn ? true : false
+        pushSettingContainerView.isHidden = pushSwitch.isOn
+        saveButton.isHidden = pushSwitch.isOn
     }
     
     @objc

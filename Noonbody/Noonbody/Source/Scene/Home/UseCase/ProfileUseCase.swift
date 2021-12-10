@@ -13,7 +13,7 @@ protocol ProfileUseCase {
     func getUserInfo() -> Observable<UserInfo>
     func putUserInfo(request: ProfileRequestModel)
     func getNotificationConfig() -> Observable<NotificationConfig>
-    func putNotificationConfig(request: NotificationConfig)
+    func putNotificationConfig(request: NotificationConfig) -> Observable<Int>
 }
 
 final class DefaultProfileUseCase: ProfileUseCase {
@@ -36,7 +36,7 @@ final class DefaultProfileUseCase: ProfileUseCase {
         return preferenceRepository.getNotificationConfig()
     }
     
-    func putNotificationConfig(request: NotificationConfig) {
+    func putNotificationConfig(request: NotificationConfig) -> Observable<Int> {
         return preferenceRepository.putNotificationConfig(request: request)
     }
 }
