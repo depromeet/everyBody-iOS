@@ -86,6 +86,21 @@ class AlbumSelectionViewController: BaseViewController {
                                                 takenAt: self.requestManager.takenAt)
                 DefaultCameraUseCase(cameraRepository: DefaultCameraRepository()).postPhoto(request: request)
             }).disposed(by: disposeBag)
+        
+        let popUpInput = AlbumSelectionViewModel.PopUpInput(albumNameTextField: popUp.textField.rx.text.orEmpty.asObservable(),
+                                                       creationControlEvent: popUp.confirmButton.rx.tap)
+        let popUpOutput = viewModel.albumCreationDidTap(input: popUpInput)
+        
+        popUpOutput.album
+            .drive(onNext: { [weak self] data in
+                guard let self = self else { return }
+                if let data = data {
+                    self.albumData.append(data)
+                }
+                self.showToast(type: .album)
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
 }
@@ -97,19 +112,7 @@ extension AlbumSelectionViewController: PopUpActionProtocol {
     }
     
     func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
-        // TODO: - Create Album API
-        let input = AlbumSelectionViewModel.PopUpInput(albumNameTextField: popUp.textField.rx.text.orEmpty.asObservable(),
-                                                       creationControlEvent: popUp.confirmButton.rx.tap)
-        let output = viewModel.albumCreationDidTap(input: input)
-        
-        output.album
-            .drive(onNext: { [weak self] data in
-                guard let self = self else { return }
-                if let data = data as? Album {
-                    self.albumData.append(data)
-                }
-            })
-            .disposed(by: disposeBag)
+        dismiss(animated: true, completion: nil)
     }
     
 }

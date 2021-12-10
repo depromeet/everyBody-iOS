@@ -27,7 +27,6 @@ class AlbumCreationViewController: BaseViewController {
     private lazy var saveButton = NBPrimaryButton().then {
         $0.setTitle("저장", for: .normal)
         $0.rounding = 28
-        $0.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
     }
     
     // MARK: - Properties
@@ -51,12 +50,20 @@ class AlbumCreationViewController: BaseViewController {
     private func bind() {
         let input = AlbumCreationViewModel.Input(albumNameTextField: albumTextfield.rx.text.orEmpty.asObservable(),
                                                  saveButtonControlEvent: saveButton.rx.tap)
-        let ouput = viewModel.transform(input: input)
+        let output = viewModel.transform(input: input)
         
-        ouput.canSave
+        output.canSave
             .drive(saveButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
+        output.statusCode
+            .drive { statusCode in
+                print(statusCode)
+                if statusCode == 200 {
+                    self.showToast(type: .album)
+                }
+            }.disposed(by: disposeBag)
+
     }
     
     private func setupKeyboardEvent() {
