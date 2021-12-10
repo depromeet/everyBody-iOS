@@ -14,7 +14,7 @@ protocol ProfileRepository {
     func getUserInfo() -> Observable<UserInfo>
     func putUserInfo(request: ProfileRequestModel)
     func getNotificationConfig() -> Observable<NotificationConfig>
-    func putNotificationConfig(request: NotificationConfig)
+    func putNotificationConfig(request: NotificationConfig) -> Observable<Int>
 }
 
 class DefaultProfileRepository: ProfileRepository {
@@ -64,14 +64,17 @@ class DefaultProfileRepository: ProfileRepository {
         }
     }
     
-    func putNotificationConfig(request: NotificationConfig) {
-        NotificationService.shared.putNotificationConfig(request: request) { response in
-            switch response {
-            case .success:
-                print("성공적으로 변경되었습니다.")
-            case .failure:
-                print("알 수 없는 에러가 발생했습니다.")
+    func putNotificationConfig(request: NotificationConfig) -> Observable<Int> {
+        return Observable.create { observer -> Disposable in
+            let requestReference: () = NotificationService.shared.putNotificationConfig(request: request) { response in
+                switch response {
+                case .success:
+                    observer.onNext(200)
+                case .failure(let err):
+                    print(err)
+                }
             }
+            return Disposables.create(with: { requestReference })
         }
     }
     

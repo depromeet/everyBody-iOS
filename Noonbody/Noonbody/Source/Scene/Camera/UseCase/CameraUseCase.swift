@@ -25,5 +25,4 @@ final class DefaultCameraUseCase: CameraUseCase {
         return cameraRepository.postPhoto(request: request)
     }
     
-
 }

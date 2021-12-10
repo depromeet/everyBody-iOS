@@ -12,6 +12,7 @@ import RxSwift
 protocol AlbumUseCase {
     func getAlbumList() -> Observable<[Album]>
     func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Album>
+    func postCreateAlbum(requestModel: CreateAlbumRequestModel) -> Observable<Int>
 }
 
 final class DefaultAlbumUseCase: AlbumUseCase {
@@ -28,6 +29,10 @@ final class DefaultAlbumUseCase: AlbumUseCase {
     
     func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Album> {
         return albumRepository.postCreateAlbum(request: request)
+    }
+    
+    func postCreateAlbum(requestModel: CreateAlbumRequestModel) -> Observable<Int> {
+        return albumRepository.postCreateAlbum(request: requestModel)
     }
     
 }

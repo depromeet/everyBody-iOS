@@ -27,6 +27,7 @@ struct NotificationViewModel {
     struct Output {
         let dayConfig: Driver<[Bool]>
         let timeConfig: Driver<[Int]>
+        let statusCode: Driver<Int>
     }
     
     init(profileUseCase: DefaultProfileUseCase) {
@@ -60,7 +61,7 @@ struct NotificationViewModel {
                         response.preferredTimeMinute]
             }.asDriver(onErrorJustReturn: [])
         
-        _ = input.saveButtonControlEvent.withLatestFrom(userConfigInfo)
+        let putResponse = input.saveButtonControlEvent.withLatestFrom(userConfigInfo)
             .map { dayList, time -> NotificationConfig in
                 let time = time.split(separator: ":").map { Int(String($0))! }
                 let hour = time[0]
@@ -77,11 +78,18 @@ struct NotificationViewModel {
                                           preferredTimeMinute: minute,
                                           isActivated: true)
             }
-            .subscribe { request in
+            .flatMap { request in
                 self.profileUseCase.putNotificationConfig(request: request)
             }
+            .share()
         
-        return Output(dayConfig: dayConfig, timeConfig: timeConfig)
+        let statusCode = putResponse
+                        .compactMap { $0 }
+                        .map { response -> Int in
+                            return response
+                        }.asDriver(onErrorJustReturn: 404)
+        
+        return Output(dayConfig: dayConfig, timeConfig: timeConfig, statusCode: statusCode)
     }
     
 }

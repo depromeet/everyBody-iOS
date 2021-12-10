@@ -21,6 +21,7 @@ final class AlbumCreationViewModel {
     
     struct Output {
         let canSave: Driver<Bool>
+        let statusCode: Driver<Int>
     }
     
     init(albumUseCase: DefaultAlbumUseCase) {
@@ -33,15 +34,22 @@ final class AlbumCreationViewModel {
                 return !name.isEmpty
             }.asDriver(onErrorJustReturn: false)
     
-        _ = input.saveButtonControlEvent.withLatestFrom(input.albumNameTextField)
+        let response = input.saveButtonControlEvent.withLatestFrom(input.albumNameTextField)
             .map { name in
                 return CreateAlbumRequestModel(name: name)
             }
-            .subscribe(onNext: { requestModel in
-                self.albumUseCase.postCreateAlbum(request: requestModel)
-            })
+            .flatMap { requestModel in
+                self.albumUseCase.postCreateAlbum(requestModel: requestModel)
+            }
+            .share()
         
-        return Output(canSave: canSave)
+        let statusCode = response
+            .compactMap { $0 }
+            .map { response -> Int in
+                return response
+            }.asDriver(onErrorJustReturn: 404)
+        
+        return Output(canSave: canSave, statusCode: statusCode)
     }
     
 }
