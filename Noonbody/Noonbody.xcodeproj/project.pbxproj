@@ -111,6 +111,9 @@
 		AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA792762895100FA2C5C /* BottomSheetView.swift */; };
 		AAE2FA7D27628A3E00FA2C5C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */; };
 		AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */; };
+		AAE2FA832763F3E800FA2C5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE2FA822763F3E800FA2C5C /* GoogleService-Info.plist */; };
+		AAE2FA862763F51300FA2C5C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AAE2FA852763F51300FA2C5C /* FirebaseAnalytics */; };
+		AAE2FA882763F51300FA2C5C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = AAE2FA872763F51300FA2C5C /* FirebaseMessaging */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -240,6 +243,8 @@
 		AAE2FA792762895100FA2C5C /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ToastView.swift"; sourceTree = "<group>"; };
+		AAE2FA822763F3E800FA2C5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AAE2FA892763F75400FA2C5C /* Noonbody.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Noonbody.entitlements; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -259,8 +264,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE2FA882763F51300FA2C5C /* FirebaseMessaging in Frameworks */,
 				AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */,
 				AA7E0A8E26FB12B100106DC2 /* RxCocoa in Frameworks */,
+				AAE2FA862763F51300FA2C5C /* FirebaseAnalytics in Frameworks */,
 				AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */,
 				AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */,
 				AA7E0A9026FB12B100106DC2 /* RxSwift in Frameworks */,
@@ -454,6 +461,8 @@
 		AA7E0A3426FB0A6100106DC2 /* Noonbody */ = {
 			isa = PBXGroup;
 			children = (
+				AAE2FA892763F75400FA2C5C /* Noonbody.entitlements */,
+				AAE2FA822763F3E800FA2C5C /* GoogleService-Info.plist */,
 				AA7E0A4D26FB0B1E00106DC2 /* Resource */,
 				AA7E0A4C26FB0AE200106DC2 /* Source */,
 				AA7E0A3E26FB0A6100106DC2 /* Noonbody.xcdatamodeld */,
@@ -769,6 +778,8 @@
 				AAC7ACE4272DC28100B2BE1E /* RxGesture */,
 				AA74A0FA274AD5F100FA6678 /* Kingfisher */,
 				AA73AFBC274FF9A000FD7C70 /* Moya */,
+				AAE2FA852763F51300FA2C5C /* FirebaseAnalytics */,
+				AAE2FA872763F51300FA2C5C /* FirebaseMessaging */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* Noonbody.app */;
@@ -804,6 +815,7 @@
 				AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */,
 				AA74A0F9274AD5F100FA6678 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				AA73AFBB274FF9A000FD7C70 /* XCRemoteSwiftPackageReference "Moya" */,
+				AAE2FA842763F51300FA2C5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -824,6 +836,7 @@
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
 				AABEA2E3273C4AAD00A06A8C /* Gilroy-Bold.ttf in Resources */,
 				AABEA2E0273C4A3300A06A8C /* Pretendard-Regular.ttf in Resources */,
+				AAE2FA832763F3E800FA2C5C /* GoogleService-Info.plist in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
 				AAF2D42527240CC00029219D /* swiftgen.yml in Resources */,
 				AA5B85D62716F4FF002276C3 /* Color.xcassets in Resources */,
@@ -1107,14 +1120,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.everyBody-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.noonbody.me;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1126,14 +1140,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QG3GC35LA;
+				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.everyBody-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.noonbody.me;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1212,6 +1227,14 @@
 				minimumVersion = 4.0.2;
 			};
 		};
+		AAE2FA842763F51300FA2C5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1249,6 +1272,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */;
 			productName = RxGesture;
+		};
+		AAE2FA852763F51300FA2C5C /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAE2FA842763F51300FA2C5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		AAE2FA872763F51300FA2C5C /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AAE2FA842763F51300FA2C5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 
