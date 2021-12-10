@@ -2,25 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>TOKEN</key>
-	<string>$(TOKEN)</string>
 	<key>API_URL</key>
 	<string>$(API_URL)</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string></string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Gilroy-Light.ttf</string>
-		<string>Gilroy-Bold.ttf</string>
-		<string>Gilroy-Regular.ttf</string>
-		<string>Pretendard-SemiBold.ttf</string>
-		<string>Pretendard-Regular.ttf</string>
-		<string>Pretendard-Bold.ttf</string>
-	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
-	<key>NSCameraUsageDescription</key>
-	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -39,6 +22,23 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string></string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string></string>
+	<key>TOKEN</key>
+	<string>$(TOKEN)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gilroy-Light.ttf</string>
+		<string>Gilroy-Bold.ttf</string>
+		<string>Gilroy-Regular.ttf</string>
+		<string>Pretendard-SemiBold.ttf</string>
+		<string>Pretendard-Regular.ttf</string>
+		<string>Pretendard-Bold.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
