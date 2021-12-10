@@ -30,7 +30,7 @@ class CameraViewController: BaseViewController {
     private let poseButtonView = TextWithIconView(icon: Asset.Image.pose.image, title: "포즈")
     private let albumButtonView = TextWithIconView(icon: Asset.Image.photo.image, title: "앨범")
     private let bottomSheetView = BottomSheetView()
-    private let toastView = ToastView()
+    private let toastView = GuideView()
     private let guideImageView = UIImageView()
     
     // MARK: - Properties

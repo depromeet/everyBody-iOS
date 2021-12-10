@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ToastView: UIView {
+class GuideView: UIView {
 
     private var infoLabel = UILabel().then {
         $0.textColor = .white

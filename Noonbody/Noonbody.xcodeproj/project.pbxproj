@@ -106,9 +106,11 @@
 		AAC7AD262737B84400B2BE1E /* AlbumCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */; };
 		AAE2FA72276288D800FA2C5C /* TextWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */; };
 		AAE2FA74276288E600FA2C5C /* NBDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */; };
-		AAE2FA76276288FE00FA2C5C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA75276288FE00FA2C5C /* ToastView.swift */; };
+		AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA75276288FE00FA2C5C /* GuideView.swift */; };
 		AAE2FA782762892D00FA2C5C /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */; };
 		AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA792762895100FA2C5C /* BottomSheetView.swift */; };
+		AAE2FA7D27628A3E00FA2C5C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */; };
+		AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -233,9 +235,11 @@
 		AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithIconView.swift; sourceTree = "<group>"; };
 		AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDatePicker.swift; sourceTree = "<group>"; };
-		AAE2FA75276288FE00FA2C5C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		AAE2FA75276288FE00FA2C5C /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
 		AAE2FA792762895100FA2C5C /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ToastView.swift"; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 				AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */,
 				AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */,
 				AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */,
+				AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -652,6 +657,7 @@
 				AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */,
 				AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */,
 				AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */,
+				AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -700,7 +706,7 @@
 			children = (
 				AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */,
 				AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */,
-				AAE2FA75276288FE00FA2C5C /* ToastView.swift */,
+				AAE2FA75276288FE00FA2C5C /* GuideView.swift */,
 				AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */,
 				AAE2FA792762895100FA2C5C /* BottomSheetView.swift */,
 			);
@@ -888,6 +894,7 @@
 				AAC7ACBE272D7DF400B2BE1E /* PoseViewModel.swift in Sources */,
 				AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */,
 				AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */,
+				AAE2FA7D27628A3E00FA2C5C /* ToastView.swift in Sources */,
 				AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */,
 				AA2F31792759F53F00855861 /* NotificationConfig.swift in Sources */,
 				AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */,
@@ -905,7 +912,7 @@
 				AA7E0A4026FB0A6100106DC2 /* Noonbody.xcdatamodeld in Sources */,
 				AA74A0F4274A696E00FA6678 /* PushSettingViewController.swift in Sources */,
 				AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */,
-				AAE2FA76276288FE00FA2C5C /* ToastView.swift in Sources */,
+				AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
 				AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */,
@@ -956,6 +963,7 @@
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
 				AA74A0DC274962F400FA6678 /* ProfileTableViewCell.swift in Sources */,
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
+				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
 				AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */,
