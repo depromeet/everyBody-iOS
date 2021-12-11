@@ -44,12 +44,12 @@ class PanoramaViewController: BaseViewController {
         $0.showsHorizontalScrollIndicator = false
         $0.allowsMultipleSelection = false
         $0.collectionViewLayout = layout
-        
+        $0.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
     
     var stackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 22
+        $0.spacing = UIDevice.current.hasNotch ? 22 : 5
         $0.distribution = .fill
         $0.backgroundColor = .white
     }
@@ -152,7 +152,7 @@ class PanoramaViewController: BaseViewController {
         
         self.title = "\(albumData.pictures.whole.count)장"
     }
-    
+
     private func initSegmentedControl() {
         bodyPartSegmentControl.delegate = self
     }
@@ -243,7 +243,6 @@ extension PanoramaViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalToSuperview().offset(22)
             $0.width.equalTo(152)
-            $0.height.equalTo(56)
         }
         
         gridButton.snp.makeConstraints {
@@ -260,7 +259,8 @@ extension PanoramaViewController {
         }
         
         topCollectionView.snp.makeConstraints {
-            $0.height.equalTo(Constant.Size.screenWidth * (4.0 / 3.0))
+            let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
+            $0.height.equalTo(Constant.Size.screenWidth * ratio).priority(999)
         }
     }
 }

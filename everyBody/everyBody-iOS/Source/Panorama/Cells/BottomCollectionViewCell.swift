@@ -19,6 +19,7 @@ class BottomCollectionViewCell: UICollectionViewCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
+    var bottomView = UIView()
     var tagView = UIView()
     var tagLabel = UILabel().then {
         $0.textColor = Asset.Color.gray50.color
@@ -53,7 +54,6 @@ class BottomCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupViewHierarchy()
-//        transformToStandard()
     }
     
     // MARK: - Actions
@@ -61,26 +61,30 @@ class BottomCollectionViewCell: UICollectionViewCell {
     // MARK: - Methods
     
     private func setupViewHierarchy() {
-        contentView.addSubviews(panoramaCellImage, tagView)
-        tagView.addSubview(tagLabel)
+        contentView.addSubviews(panoramaCellImage, bottomView)
+        bottomView.addSubviews(tagView, tagLabel)
     }
     
     private func setConstraints() {
         panoramaCellImage.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(contentView.frame.width * (4/3) )
+            $0.height.equalTo(contentView.frame.width * (4/3))
         }
         
-        tagView.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(panoramaCellImage.snp.bottom).offset(4)
+        bottomView.snp.makeConstraints {
+            $0.top.equalTo(panoramaCellImage.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
         
         tagLabel.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.top.bottom.equalToSuperview().inset(3)
+            $0.center.equalToSuperview()
         }
+        
+        tagView.snp.makeConstraints {
+            $0.top.bottom.equalTo(tagLabel).inset(-3)
+            $0.leading.trailing.equalTo(tagLabel).inset(-10)
+        }
+        
     }
     
     func setCell(index: Int, imageURL: String) {

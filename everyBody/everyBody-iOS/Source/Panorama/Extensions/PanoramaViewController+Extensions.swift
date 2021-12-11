@@ -13,7 +13,8 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.height * 0.54, height: collectionView.frame.height )
         } else {
             let length =  Constant.Size.screenWidth
-            return gridMode || editMode ?  CGSize(width: (length - 4)/3, height: (length - 4)/3) : CGSize(width: length, height: length * (4/3))
+            let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
+            return gridMode || editMode ?  CGSize(width: (length - 4)/3, height: (length - 4)/3) : CGSize(width: length, height: length * ratio)
         }
     }
     
@@ -86,7 +87,7 @@ extension PanoramaViewController: UICollectionViewDataSource {
             let cell: TopCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.selectedViewIsHidden(editMode: editMode)
             let indexPath = editMode ? indexPath.row - 1 : indexPath.row
-            cell.setPhotoCell(imageURL: bodyPartData[indexPath].imageURL)
+            cell.setPhotoCell(imageURL: bodyPartData[indexPath].imageURL, contentMode: gridMode)
             return cell
         }
         
