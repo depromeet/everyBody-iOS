@@ -92,3 +92,5 @@ iOSInjectionProject/
 .DS_Store
 
 everyBody/everyBody-iOS/Resource/Config.xcconfig
+
+Noonbody/Noonbody/GoogleService-Info.plist

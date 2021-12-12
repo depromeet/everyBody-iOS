@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  everyBody-iOS
+//
+//  Created by 윤예지 on 2021/11/28.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_URL = api.noonbody.me
+TOKEN = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE5NTIwOTIxMTAsInVzZXJfaWQiOjIwfQ.9jBo1aZ8-CWyB79FEqvtWe_yntWWpPUxmNgB0vr_uZQ
