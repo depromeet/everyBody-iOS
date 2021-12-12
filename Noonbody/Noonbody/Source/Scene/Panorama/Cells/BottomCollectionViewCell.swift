@@ -68,7 +68,7 @@ class BottomCollectionViewCell: UICollectionViewCell {
     private func setConstraints() {
         panoramaCellImage.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(contentView.frame.width * (4/3))
+            $0.height.equalTo(contentView.frame.width * (4/3)).priority(999)
         }
         
         bottomView.snp.makeConstraints {
