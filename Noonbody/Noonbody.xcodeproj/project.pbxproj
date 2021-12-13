@@ -111,7 +111,6 @@
 		AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA792762895100FA2C5C /* BottomSheetView.swift */; };
 		AAE2FA7D27628A3E00FA2C5C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */; };
 		AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */; };
-		AAE2FA832763F3E800FA2C5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE2FA822763F3E800FA2C5C /* GoogleService-Info.plist */; };
 		AAE2FA862763F51300FA2C5C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AAE2FA852763F51300FA2C5C /* FirebaseAnalytics */; };
 		AAE2FA882763F51300FA2C5C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = AAE2FA872763F51300FA2C5C /* FirebaseMessaging */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
@@ -119,6 +118,7 @@
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
 		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
+		FC33303B27665CC200C94B54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC33303A27665CC200C94B54 /* GoogleService-Info.plist */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -243,13 +243,13 @@
 		AAE2FA792762895100FA2C5C /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ToastView.swift"; sourceTree = "<group>"; };
-		AAE2FA822763F3E800FA2C5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAE2FA892763F75400FA2C5C /* Noonbody.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Noonbody.entitlements; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		FC33303A27665CC200C94B54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
@@ -462,7 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE2FA892763F75400FA2C5C /* Noonbody.entitlements */,
-				AAE2FA822763F3E800FA2C5C /* GoogleService-Info.plist */,
+				FC33303A27665CC200C94B54 /* GoogleService-Info.plist */,
 				AA7E0A4D26FB0B1E00106DC2 /* Resource */,
 				AA7E0A4C26FB0AE200106DC2 /* Source */,
 				AA7E0A3E26FB0A6100106DC2 /* Noonbody.xcdatamodeld */,
@@ -831,12 +831,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC33303B27665CC200C94B54 /* GoogleService-Info.plist in Resources */,
 				AABEA2E1273C4A3300A06A8C /* Gilroy-Regular.ttf in Resources */,
 				AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
 				AABEA2E3273C4AAD00A06A8C /* Gilroy-Bold.ttf in Resources */,
 				AABEA2E0273C4A3300A06A8C /* Pretendard-Regular.ttf in Resources */,
-				AAE2FA832763F3E800FA2C5C /* GoogleService-Info.plist in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
 				AAF2D42527240CC00029219D /* swiftgen.yml in Resources */,
 				AA5B85D62716F4FF002276C3 /* Color.xcassets in Resources */,
