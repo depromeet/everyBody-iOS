@@ -73,6 +73,8 @@ final class ProfileViewModel {
         
         _ = input.completeButtonTap.withLatestFrom(requestObservable)
             .map { nickname, motto in
+                UserDefaults.standard.set(nickname, forKey: "nickname")
+                UserDefaults.standard.set(motto, forKey: "motto")
                 return ProfileRequestModel(nickname: nickname,
                                            motto: motto)
             }

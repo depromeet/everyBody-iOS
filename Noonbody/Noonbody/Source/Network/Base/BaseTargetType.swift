@@ -22,10 +22,10 @@ extension BaseTargetType {
 
     var headers: [String: String]? {
         // swiftlint:disable force_cast
-        let dummyToken = Bundle.main.infoDictionary?["TOKEN"] as! String
+        let token = UserDefaults.standard.string(forKey: "token") ?? ""
         let header = [
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + dummyToken]
+            "Authorization": "Bearer " + token]
         return header
     }
 

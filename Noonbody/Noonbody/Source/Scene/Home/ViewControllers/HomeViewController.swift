@@ -29,12 +29,12 @@ class HomeViewController: BaseViewController {
     }
     
     private lazy var nicknameLabel = UILabel().then {
-        $0.text = "예꽁이"
+        $0.text = UserDefaults.standard.string(forKey: "nickname") ?? ""
         $0.font = .nbFont(type: .subtitle)
     }
     
     private lazy var mottoLabel = UILabel().then {
-        $0.text = "난 퀸이될거야."
+        $0.text = UserDefaults.standard.string(forKey: "motto") ?? ""
         $0.font = .nbFont(type: .body3)
         $0.textColor = Asset.Color.gray60.color
     }
@@ -101,18 +101,53 @@ class HomeViewController: BaseViewController {
                 self.emptyView.isHidden = self.albumData.count != 0 ? true : false
             })
             .disposed(by: disposeBag)
+        
+        UserDefaults.standard.rx
+            .observe(String.self, "nickname")
+            .subscribe(onNext: { (value) in
+                if let value = value {
+                    self.nicknameLabel.text = value
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        UserDefaults.standard.rx
+            .observe(String.self, "motto")
+            .subscribe(onNext: { (value) in
+                if let value = value {
+                    self.mottoLabel.text = value
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func initNavigationBar() {
         navigationController?.initNavigationBar(
             navigationItem: navigationItem,
-            leftButtonImages: [Asset.Image.grid.image],
             rightButtonImages: [Asset.Image.add.image,
                                 Asset.Image.grid.image],
-            leftActions: [#selector(pushToPreferenceViewController)],
             rightActions: [#selector(pushToFolderCreationView),
                            #selector(switchAlbumMode)]
         )
+        
+        makeProfileImage()
+    }
+    
+    private func makeProfileImage() {
+        let button = UIButton(type: .system)
+        button.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        button.imageView?.contentMode = .scaleAspectFit
+        button.addTarget(self, action: #selector(pushToPreferenceViewController), for: .touchUpInside)
+        
+        let imageData = try? Data(contentsOf: URL(string: UserDefaults.standard.string(forKey: "profile") ?? "")!)
+        
+        if let imageData = imageData, let image =  UIImage(data: imageData)?.resizeImage(to: button.frame.size) {
+            button.setBackgroundImage(image, for: .normal)
+        }
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
     
     private func setupCollectionView() {

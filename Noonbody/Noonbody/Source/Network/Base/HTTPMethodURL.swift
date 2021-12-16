@@ -18,6 +18,8 @@ enum HTTPMethodURL {
     struct POST {
         static let createAlbum = "/albums"
         static let photo = "/pictures"
+        static let signUp = "/auth/signup"
+        static let singIn = "/auth/login"
     }
     
     struct PUT {

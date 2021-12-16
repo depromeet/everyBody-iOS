@@ -39,4 +39,22 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
         }
     }
     
+    func requestDecodedMultiRepsonse<T: BaseTargetType, R: Decodable>(_ target: T,
+                                                                      _ requestModel: R.Type,
+                                                                      completion: @escaping (Result<R?, Error>) -> Void) {
+        request(MultiTarget(target)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let body = try JSONDecoder().decode(R.self, from: response.data)
+                    completion(.success(body))
+                } catch let error {
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

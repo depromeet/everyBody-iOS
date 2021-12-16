@@ -40,6 +40,7 @@ internal enum Asset {
     internal static let create = ImageAsset(name: "Create")
     internal static let grid = ImageAsset(name: "Grid")
     internal static let list = ImageAsset(name: "List")
+    internal static let logo = ImageAsset(name: "Logo")
     internal static let photo = ImageAsset(name: "Photo")
     internal static let pose = ImageAsset(name: "Pose")
     internal static let share = ImageAsset(name: "Share")
