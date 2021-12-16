@@ -102,7 +102,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let fcmToken = fcmToken else { return }
         
+        NotificationCenter.default.post(name: NSNotification.Name("setFcmToken"),
+                                        object: fcmToken,
+                                        userInfo: nil)
     }
 }
 
