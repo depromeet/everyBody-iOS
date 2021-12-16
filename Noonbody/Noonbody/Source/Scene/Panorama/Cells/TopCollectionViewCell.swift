@@ -15,8 +15,8 @@ class TopCollectionViewCell: UICollectionViewCell {
     // MARK: - UIComponenets
     
     var panoramaImage = UIImageView().then {
-        $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
+        $0.contentMode = UIDevice.current.hasNotch ? .scaleAspectFill : .scaleAspectFit
     }
     
     private let selectedView = SelectedView(style: .fill)
@@ -81,8 +81,12 @@ class TopCollectionViewCell: UICollectionViewCell {
         selectedView.isHidden = !editMode
     }
     
-    func setPhotoCell(imageURL: String) {
+    func setPhotoCell(imageURL: String, contentMode: Bool) {
         panoramaImage.setImage(with: imageURL)
+        
+        if !UIDevice.current.hasNotch {
+            panoramaImage.contentMode = contentMode ? .scaleAspectFill : .scaleAspectFit
+        }
     }
     
 }
