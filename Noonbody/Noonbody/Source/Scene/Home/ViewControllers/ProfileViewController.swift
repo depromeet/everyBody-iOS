@@ -16,7 +16,7 @@ class ProfileViewController: BaseViewController {
     
     private let profileImageView = UIImageView().then {
         $0.makeRounded(radius: 44)
-        $0.backgroundColor = Asset.Color.keyPurple.color
+        $0.backgroundColor = Asset.Color.gray10.color
     }
     private let tableView = UITableView().then {
         $0.register(ProfileTableViewCell.self)
