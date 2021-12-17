@@ -123,12 +123,13 @@
 		AAE2FAAC276411E900FA2C5C /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAAB276411E900FA2C5C /* SignInResponse.swift */; };
 		AAE2FAAE2764848F00FA2C5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE2FAAD2764848F00FA2C5C /* GoogleService-Info.plist */; };
 		AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */; };
+		AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */; };
+		AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
 		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
-		FC33303B27665CC200C94B54 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FC33303A27665CC200C94B54 /* GoogleService-Info.plist */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -264,12 +265,13 @@
 		AAE2FAAB276411E900FA2C5C /* SignInResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponse.swift; sourceTree = "<group>"; };
 		AAE2FAAD2764848F00FA2C5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resizeImage.swift"; sourceTree = "<group>"; };
+		AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+alignVertical.swift"; sourceTree = "<group>"; };
+		AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+makeVibrate.swift"; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
-		FC33303A27665CC200C94B54 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
@@ -368,6 +370,8 @@
 				AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */,
 				AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */,
 				AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */,
+				AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */,
+				AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -471,6 +475,7 @@
 				AAF2D42427240CC00029219D /* swiftgen.yml */,
 				AA7E0A3426FB0A6100106DC2 /* Noonbody */,
 				AA7E0A3326FB0A6100106DC2 /* Products */,
+				AAE2FAB4276B886000FA2C5C /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -486,7 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				AAE2FA892763F75400FA2C5C /* Noonbody.entitlements */,
-				FC33303A27665CC200C94B54 /* GoogleService-Info.plist */,
 				AA7E0A4D26FB0B1E00106DC2 /* Resource */,
 				AA7E0A4C26FB0AE200106DC2 /* Source */,
 				AA7E0A3E26FB0A6100106DC2 /* Noonbody.xcdatamodeld */,
@@ -803,6 +807,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		AAE2FAB4276B886000FA2C5C /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				AAE2FAAD2764848F00FA2C5C /* GoogleService-Info.plist */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		FC23AC0E275A03720067EEF7 /* Album */ = {
 			isa = PBXGroup;
 			children = (
@@ -984,6 +996,7 @@
 				AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */,
 				AA2F31792759F53F00855861 /* NotificationConfig.swift in Sources */,
 				AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */,
+				AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */,
 				AA2F3192275B413100855861 /* AlbumSelectionViewModel.swift in Sources */,
 				AA2F318A275ADB6400855861 /* CameraService.swift in Sources */,
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
@@ -1001,6 +1014,7 @@
 				AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */,
 				AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
+				AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */,
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
 				AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */,
 				AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */,
