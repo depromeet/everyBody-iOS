@@ -170,6 +170,8 @@ class PopUpViewController: BaseViewController {
         guard let type = self.type else { return }
         
         switch type {
+        case .delete:
+                    delegate?.confirmButtonDidTap(confirmButton)
         case .textField:
             if let text = textField.text, !text.isEmpty {
                 delegate?.confirmButtonDidTap(confirmButton, textInfo: text)
@@ -178,7 +180,7 @@ class PopUpViewController: BaseViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
             delegate?.confirmButtonDidTap(confirmButton, textInfo: dateFormatter.string(from: datePicker.date))
-        case .save, .delete:
+        case .save:
             return
         }
     }
