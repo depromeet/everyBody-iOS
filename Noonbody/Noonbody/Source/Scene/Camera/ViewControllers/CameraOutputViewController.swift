@@ -111,6 +111,11 @@ class CameraOutputViewController: BaseViewController {
         for segmentControl in segmentControls {
             for (index, title) in segmentControl.value.enumerated() {
                 segmentControl.key.setTitle(at: index, title: title)
+                if segmentControl.key == partSegmentedControl {
+                    segmentControl.key.setImage(at: 0, image: Asset.Image.whole.image)
+                    segmentControl.key.setImage(at: 1, image: Asset.Image.upper.image)
+                    segmentControl.key.setImage(at: 2, image: Asset.Image.lower.image)
+                }
             }
         }
     }

@@ -112,6 +112,12 @@ class NBSegmentedControl: UIView {
         buttons[index].setTitle(title, for: .normal)
     }
     
+    func setImage(at index: Int, image: UIImage) {
+        buttons[index].setImage(image, for: .normal)
+        buttons[index].tintColor = .black
+        buttons[index].alignVertical()
+    }
+    
     @objc
     func setAction(sender: UIButton) {
         for (index, button) in buttons.enumerated() {
