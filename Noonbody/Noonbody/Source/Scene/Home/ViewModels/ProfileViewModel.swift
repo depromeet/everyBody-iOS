@@ -31,6 +31,7 @@ final class ProfileViewModel {
     
     struct CellOutput {
         let canSave: Driver<Bool>
+        let statusCode: Driver<Int>
     }
     
     init(profileUseCase: DefaultProfileUseCase) {
@@ -71,18 +72,25 @@ final class ProfileViewModel {
                 return !nickname.isEmpty && !motto.isEmpty
             }.asDriver(onErrorJustReturn: false)
         
-        _ = input.completeButtonTap.withLatestFrom(requestObservable)
+        let response = input.completeButtonTap.withLatestFrom(requestObservable)
             .map { nickname, motto in
                 UserDefaults.standard.set(nickname, forKey: "nickname")
                 UserDefaults.standard.set(motto, forKey: "motto")
                 return ProfileRequestModel(nickname: nickname,
                                            motto: motto)
             }
-            .subscribe { request in
+            .flatMap { request in
                 self.profileUseCase.putUserInfo(request: request)
             }
+            .share()
         
-        return CellOutput(canSave: canSave)
+        let statusCode = response
+            .compactMap { $0 }
+            .map { response -> Int in
+                return response
+            }.asDriver(onErrorJustReturn: 404)
+        
+        return CellOutput(canSave: canSave, statusCode: statusCode)
     }
     
 }

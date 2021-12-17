@@ -11,7 +11,7 @@ import RxSwift
 
 protocol ProfileUseCase {
     func getUserInfo() -> Observable<UserInfo>
-    func putUserInfo(request: ProfileRequestModel)
+    func putUserInfo(request: ProfileRequestModel) -> Observable<Int>
     func getNotificationConfig() -> Observable<NotificationConfig>
     func putNotificationConfig(request: NotificationConfig) -> Observable<Int>
 }
@@ -28,7 +28,7 @@ final class DefaultProfileUseCase: ProfileUseCase {
         return preferenceRepository.getUserInfo()
     }
     
-    func putUserInfo(request: ProfileRequestModel) {
+    func putUserInfo(request: ProfileRequestModel) -> Observable<Int> {
         return preferenceRepository.putUserInfo(request: request)
     }
     
