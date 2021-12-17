@@ -14,6 +14,7 @@ protocol AlbumRepository {
     func getAlbumList() -> Observable<[Album]>
     func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Album>
     func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Int>
+    func deletePicture(pictureId: Int) -> Observable<Int>
 }
 
 class DefaultAlbumRepositry: AlbumRepository {
@@ -24,7 +25,7 @@ class DefaultAlbumRepositry: AlbumRepository {
                 switch response {
                 case .success(let data):
                     if let data = data {
-                        observer.onNext(data)
+                    observer.onNext(data)
                     }
                 case .failure(let err):
                     print(err)
@@ -66,4 +67,18 @@ class DefaultAlbumRepositry: AlbumRepository {
         }
     }
     
+    @discardableResult
+    func deletePicture(pictureId: Int) -> Observable<Int> {
+        Observable<Int>.create { observer -> Disposable in
+            let requestReference: () = AlbumService.shared.deletePicture(id: pictureId) { response in
+                switch response {
+                case .success:
+                    observer.onNext(200)
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+    }
 }

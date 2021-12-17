@@ -28,7 +28,7 @@ enum HTTPMethodURL {
     }
     
     struct DELETE {
-        
+        static let pictures = "/pictures"
     }
     
 }

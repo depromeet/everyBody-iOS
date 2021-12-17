@@ -47,20 +47,32 @@ class PanoramaViewController: BaseViewController {
         $0.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
     
-    var stackView = UIStackView().then {
+    private var stackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = UIDevice.current.hasNotch ? 22 : 5
         $0.distribution = .fill
         $0.backgroundColor = .white
     }
     
+    private var emptyView = AlbumEmptyView(type: .picture).then {
+        $0.button.addTarget(self, action: #selector(cameraButtonDidTap), for: .touchUpInside)
+    }
+    
     // MARK: - Properties
     
+    var popupViewController = PopUpViewController(type: .delete)
+    var bodyPart = 0
     var albumData: Album
+    var deleteData: [Int] = [] {
+        didSet {
+            navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty ? true : false
+        }
+    }
     var bodyPartData: [PictureInfo] = [] {
         didSet {
             topCollectionView.reloadData()
             bottomCollectionView.reloadData()
+            emptyView.isHidden = !bodyPartData.isEmpty ? true : false
             
             if !bodyPartData.isEmpty {
                 bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
@@ -124,6 +136,7 @@ class PanoramaViewController: BaseViewController {
         initSegmentedControl()
         initBodyPartData()
         render()
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -131,6 +144,35 @@ class PanoramaViewController: BaseViewController {
     }
     
     // MARK: - Methods
+    func bind() {
+        popupViewController.confirmButton.rx.tap
+            .subscribe(onNext: {
+                self.deleteData.forEach {
+                    DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry())
+                        .deletePicture(pictureId: self.bodyPartData[$0].id).bind(onNext: { [weak self] statusCode in
+                            guard let self = self else { return }
+                            if statusCode == 200 {
+                                self.showToast(type: .delete)
+                            }
+                        }).disposed(by: self.disposeBag)
+                    
+                    self.bodyPartData.remove(at: $0)
+                    switch self.bodyPart {
+                    case 0:
+                        self.albumData.pictures.whole.remove(at: $0)
+                    case 1:
+                        self.albumData.pictures.upper.remove(at: $0)
+                    case 2:
+                        self.albumData.pictures.lower.remove(at: $0)
+                    default:
+                        return
+                    }
+                }
+                self.deleteData = []
+                self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
+            }).disposed(by: disposeBag)
+        
+    }
     
     private func initNavigationBar() {
         navigationController?.initNavigationBar(navigationItem: self.navigationItem,
@@ -139,7 +181,6 @@ class PanoramaViewController: BaseViewController {
                                                 rightActions: [#selector(tapSaveButton),
                                                                #selector(tapEditOrCloseButton)])
         navigationItem.leftBarButtonItems = nil
-        
         title = albumData.name
     }
     
@@ -150,9 +191,15 @@ class PanoramaViewController: BaseViewController {
                                                 leftActions: [#selector(tapEditOrCloseButton)],
                                                 rightActions: [#selector(tapDeleteButton)])
         
-        self.title = "\(albumData.pictures.whole.count)장"
+        self.title = "\(bodyPartData.count)장"
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
     }
-
+    
+    private func setupNavigationBarItem() {
+        navigationItem.rightBarButtonItems![1].isEnabled = !bodyPartData.isEmpty ? true : false
+    }
+    
     private func initSegmentedControl() {
         bodyPartSegmentControl.delegate = self
     }
@@ -203,11 +250,11 @@ class PanoramaViewController: BaseViewController {
     
     @objc
     private func tapDeleteButton() {
-        let popUp = PopUpViewController(type: .delete)
+        let popUp = popupViewController
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overCurrentContext
         popUp.delegate = self
-        popUp.titleLabel.text = "장의 사진을 삭제하시겠어요?"
+        popUp.titleLabel.text = "\(deleteData.count)장의 사진을 삭제하시겠어요?"
         popUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
         self.present(popUp, animated: true, completion: nil)
     }
@@ -217,6 +264,11 @@ class PanoramaViewController: BaseViewController {
         gridButton.isSelected.toggle()
         gridMode.toggle()
         switchPanoramaMode()
+    }
+    
+    @objc func cameraButtonDidTap() {
+        let viewController = CameraViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
@@ -233,9 +285,8 @@ extension PanoramaViewController {
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(bodyPartSegmentControl, gridButton, stackView)
+        view.addSubviews(bodyPartSegmentControl, gridButton, stackView, emptyView)
         stackView.addArrangedSubviews([topCollectionView, bottomCollectionView])
-        
     }
     
     private func setupConstraint() {
@@ -262,6 +313,12 @@ extension PanoramaViewController {
             let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
             $0.height.equalTo(Constant.Size.screenWidth * ratio).priority(999)
         }
+        
+        emptyView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(270 * Constant.Size.screenWidth / Constant.Size.figmaWidth)
+            $0.height.equalTo(136 * Constant.Size.screenWidth / Constant.Size.figmaWidth)
+        }
     }
 }
 
@@ -269,6 +326,8 @@ extension PanoramaViewController {
 
 extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
+        bodyPart = index
+        //        setupNavigationBarItem()
         switch index {
         case 0:
             bodyPartData = albumData.pictures.whole
@@ -285,9 +344,5 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func confirmButtonDidTap(_ button: UIButton) {
-        
     }
 }

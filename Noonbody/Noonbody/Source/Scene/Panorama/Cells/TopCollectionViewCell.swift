@@ -23,8 +23,6 @@ class TopCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var viewModel = PanoramaViewModel()
-    
     override var isSelected: Bool {
         didSet {
             isSelected ? setSelectedCell() : setUnselectedCell()

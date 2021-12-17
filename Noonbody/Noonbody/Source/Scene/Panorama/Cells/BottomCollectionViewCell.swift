@@ -29,7 +29,6 @@ class BottomCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties
     
     var index = 0
-    var viewModel = PanoramaViewModel()
     
     // MARK: - Initializer
     

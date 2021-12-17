@@ -24,10 +24,6 @@ class HomeViewController: BaseViewController {
         $0.addTarget(self, action: #selector(pushToCameraViewController), for: .touchUpInside)
     }
     
-    private lazy var emptyView = UIView().then {
-        $0.isHidden = true
-    }
-    
     private lazy var nicknameLabel = UILabel().then {
         $0.text = UserDefaults.standard.string(forKey: "nickname") ?? ""
         $0.font = .nbFont(type: .subtitle)
@@ -39,19 +35,9 @@ class HomeViewController: BaseViewController {
         $0.textColor = Asset.Color.gray60.color
     }
     
-    private lazy var emptyDescription = UILabel().then {
-        $0.text = "앨범이 없습니다.\n지금 앨범을 만들어 기록해보세요."
-        $0.textAlignment = .center
-        $0.numberOfLines = 0
-        $0.font = .nbFont(type: .body2)
-        $0.textColor = Asset.Color.gray50.color
-    }
-    
-    private var createButton = UIButton().then {
-        $0.setTitle("앨범 생성", for: .normal)
-        $0.backgroundColor = Asset.Color.gray50.color
-        $0.makeRounded(radius: 28)
-        $0.addTarget(self, action: #selector(pushToFolderCreationView), for: .touchUpInside)
+    private var emptyView = AlbumEmptyView(type: .album).then {
+        $0.isHidden = true
+        $0.button.addTarget(self, action: #selector(albumCreationButtonDidTap), for: .touchUpInside)
     }
     
     private lazy var albumCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
@@ -157,7 +143,6 @@ class HomeViewController: BaseViewController {
     
     private func setupViewHierarchy() {
         view.addSubviews(nicknameLabel, mottoLabel, albumCollectionView, cameraButton, emptyView)
-        emptyView.addSubviews(emptyDescription, createButton)
     }
     
     // MARK: - Actions
@@ -183,6 +168,11 @@ class HomeViewController: BaseViewController {
     private func pushToPreferenceViewController() {
         let viewController = ProfileViewController()
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc func albumCreationButtonDidTap() {
+        let viewController = AlbumCreationViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
 }
@@ -218,16 +208,6 @@ extension HomeViewController {
             $0.center.equalToSuperview()
             $0.width.equalTo(270 * Constant.Size.screenWidth / Constant.Size.figmaWidth)
             $0.height.equalTo(136 * Constant.Size.screenWidth / Constant.Size.figmaWidth)
-        }
-        
-        emptyDescription.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-        }
-        
-        createButton.snp.makeConstraints {
-            $0.height.equalTo(56)
-            $0.width.equalTo(121)
-            $0.centerX.bottom.equalToSuperview()
         }
     }
 }

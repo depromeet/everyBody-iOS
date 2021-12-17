@@ -13,6 +13,7 @@ protocol AlbumUseCase {
     func getAlbumList() -> Observable<[Album]>
     func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Album>
     func postCreateAlbum(requestModel: CreateAlbumRequestModel) -> Observable<Int>
+    func deletePicture(pictureId: Int) -> Observable<Int>
 }
 
 final class DefaultAlbumUseCase: AlbumUseCase {
@@ -33,6 +34,10 @@ final class DefaultAlbumUseCase: AlbumUseCase {
     
     func postCreateAlbum(requestModel: CreateAlbumRequestModel) -> Observable<Int> {
         return albumRepository.postCreateAlbum(request: requestModel)
+    }
+    
+    func deletePicture(pictureId: Int) -> Observable<Int> {
+        return albumRepository.deletePicture(pictureId: pictureId)
     }
     
 }

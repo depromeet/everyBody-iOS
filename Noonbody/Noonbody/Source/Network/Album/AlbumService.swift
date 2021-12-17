@@ -21,4 +21,10 @@ public class AlbumService {
             completion(response)
         }
     }
+    
+    func deletePicture(id: Int, completion: @escaping (Result<Int?, Error>) -> Void) {
+        provider.requestNoResultAPI(AlbumAPI.deletePicture(pictureId: id)) { response in
+            completion(response)
+        }
+    }
 }
