@@ -25,7 +25,10 @@ class PushSettingViewController: BaseViewController {
         $0.textColor = Asset.Color.gray80.color
     }
     
-    private lazy var pushSwitch = CustomSwitch(width: 38, height: 24)
+    private lazy var pushSwitch = CustomSwitch(width: 38, height: 24).then {
+        $0.descriptionLabel.isHidden = true
+        $0.setOffColor(color: Asset.Color.gray30.color)
+    }
     
     private let separatorLine = UIView().then {
         $0.backgroundColor = Asset.Color.gray10.color
