@@ -16,15 +16,11 @@ struct ViewFinder {
     func makeUIView() -> UIView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: Constant.Size.screenWidth, height: height))
         view.backgroundColor = .black
-        
+
         camera.preview = AVCaptureVideoPreviewLayer(session: camera.session)
         camera.preview.frame = view.frame
         camera.preview.videoGravity = .resizeAspectFill
         view.layer.addSublayer(camera.preview)
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            camera.session.startRunning()
-        }
         
         return view
     }

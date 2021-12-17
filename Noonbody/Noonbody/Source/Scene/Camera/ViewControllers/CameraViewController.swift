@@ -36,7 +36,7 @@ class CameraViewController: BaseViewController {
     // MARK: - Properties
     
     private lazy var camera = Camera.shared
-    private lazy var hasNotch = UIDevice.current.hasNotch
+//    private lazy var hasNotch = UIDevice.current.hasNotch
     lazy var viewModel = PoseViewModel()
     
     // MARK: - View Life Cycle
@@ -81,7 +81,7 @@ class CameraViewController: BaseViewController {
     private func addPinchGesture() {
         let pinchRecognizer = UIPinchGestureRecognizer(target: camera.self,
                                                        action: #selector(camera.pinchToZoom(_:)))
-        self.previewView.addGestureRecognizer(pinchRecognizer)
+        previewView.addGestureRecognizer(pinchRecognizer)
     }
     
     private func bind() {
@@ -119,7 +119,9 @@ class CameraViewController: BaseViewController {
             .map { Int($0) }
             .drive { [weak self] in
                 guard let self = self else { return }
-                self.guideImageView.image = self.viewModel.allPose[$0].guideImage
+                if $0 != 0 {
+                    self.guideImageView.image = self.viewModel.allPose[$0 - 1].guideImage
+                }
                 self.guideImageView.isHidden = $0 == 0 ? true : false
                 self.toastView.isHidden = true
             }
@@ -140,14 +142,28 @@ class CameraViewController: BaseViewController {
     }
     
     private func moveTop(view: UIView) {
-        takeButton.transform = CGAffineTransform(scaleX: 1, y: 1)
+        takeButton.snp.updateConstraints {
+            $0.top.equalTo(self.previewView.snp.bottom).offset(UIDevice.current.hasNotch ? 72 : 20)
+            $0.height.equalTo(72 * Constant.Size.screenHeight / Constant.Size.figmaHeight)
+        }
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let self = self else { return }
+            self.view.layoutIfNeeded()
+        }
     }
     
     private func moveBottom(view: UIView) {
-        takeButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-        takeButton.center.y += hasNotch ? 30 : 10
+        takeButton.snp.updateConstraints {
+            $0.top.equalTo(self.previewView.snp.bottom).offset(UIDevice.current.hasNotch ? 118 : 60)
+            $0.height.equalTo(44 * Constant.Size.screenHeight / Constant.Size.figmaHeight)
+        }
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            guard let self = self else { return }
+            self.view.layoutIfNeeded()
+        }
     }
     
+    @objc
     private func bottomSheetWillAppear() {
         updateConstraint(height: 226 * Constant.Size.screenHeight / 812)
         UIView.animate(withDuration: 0.2) { [weak self] in
@@ -157,6 +173,7 @@ class CameraViewController: BaseViewController {
         }
     }
     
+    @objc
     private func bottomSheetWillDisappear() {
         updateConstraint(height: 0)
         UIView.animate(withDuration: 0.2) { [weak self] in
@@ -207,8 +224,8 @@ extension CameraViewController {
         
         takeButton.snp.makeConstraints {
             $0.centerX.equalToSuperview()
-            $0.top.equalTo(previewView.snp.bottom).offset(hasNotch ? 72 : 20)
-            $0.height.equalTo(72 * Constant.Size.screenHeight / 812)
+            $0.top.equalTo(previewView.snp.bottom).offset(UIDevice.current.hasNotch ? 72 : 20)
+            $0.height.equalTo(72 * Constant.Size.screenHeight / Constant.Size.figmaHeight)
             $0.width.equalTo(takeButton.snp.height).multipliedBy(1.0)
         }
         
@@ -230,7 +247,7 @@ extension CameraViewController {
             $0.bottom.leading.trailing.equalToSuperview()
             $0.height.equalTo(0)
         }
-        
+
         toastView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(40)
