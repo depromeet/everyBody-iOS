@@ -284,13 +284,16 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
             case .photo:
                 pickerView.setMetaDataTime(dataArray: metaDataArray)
                 pickerView.isUserInteractionEnabled = false
+                pickerView.reloadPickerView()
                 return
             case .current:
                 pickerView.setCurrnetTime()
                 pickerView.isUserInteractionEnabled = false
+                pickerView.reloadPickerView()
                 return
             case .custom:
                 pickerView.isUserInteractionEnabled = true
+                pickerView.reloadPickerView()
                 return
             default:
                 return
