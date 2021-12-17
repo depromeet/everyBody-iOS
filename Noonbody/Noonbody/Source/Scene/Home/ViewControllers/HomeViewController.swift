@@ -44,9 +44,10 @@ class HomeViewController: BaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 32
         layout.minimumInteritemSpacing = 11
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
         layout.itemSize = CGSize(width: (Constant.Size.screenWidth - 51) / 2, height: 211)
         $0.register(AlbumCollectionViewCell.self)
+        $0.register(ListCollectionViewCell.self)
         $0.backgroundColor = .white
         $0.collectionViewLayout = layout
     }
@@ -61,13 +62,19 @@ class HomeViewController: BaseViewController {
         }
     }
     
+    private var isGrid: Bool = true {
+        didSet {
+            albumCollectionView.reloadData()
+        }
+    }
+    
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         bind()
-        initNavigationBar()
+        initListNavigationBar()
         setupCollectionView()
         setupViewHierarchy()
         setupConstraint()
@@ -115,6 +122,17 @@ class HomeViewController: BaseViewController {
             rightActions: [#selector(pushToFolderCreationView),
                            #selector(switchAlbumMode)]
         )
+
+    }
+    
+    private func initListNavigationBar() {
+        navigationController?.initNavigationBar(
+            navigationItem: navigationItem,
+            rightButtonImages: [Asset.Image.add.image,
+                                Asset.Image.list.image],
+            rightActions: [#selector(pushToFolderCreationView),
+                           #selector(switchAlbumMode)]
+        )
         
         makeProfileImage()
     }
@@ -149,7 +167,22 @@ class HomeViewController: BaseViewController {
     
     @objc
     private func switchAlbumMode() {
-        
+        isGrid.toggle()
+        let layout = UICollectionViewFlowLayout()
+        if isGrid {
+            layout.minimumLineSpacing = 32
+            layout.minimumInteritemSpacing = 11
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
+            layout.itemSize = CGSize(width: (Constant.Size.screenWidth - 51) / 2, height: 211)
+            albumCollectionView.setCollectionViewLayout(layout, animated: true)
+            initListNavigationBar()
+        } else {
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
+            layout.itemSize = CGSize(width: (Constant.Size.screenWidth - 40), height: 446)
+            albumCollectionView.setCollectionViewLayout(layout, animated: true)
+            albumCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            initNavigationBar()
+        }
     }
     
     @objc
@@ -225,8 +258,13 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: AlbumCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.style = .album
+        if isGrid {
+            let cell: AlbumCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.style = .album
+            cell.setData(album: albumData[indexPath.row])
+            return cell
+        }
+        let cell: ListCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.setData(album: albumData[indexPath.row])
         return cell
     }

@@ -125,6 +125,7 @@
 		AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */; };
 		AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */; };
 		AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */; };
+		AAE2FABB276CC10300FA2C5C /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -268,6 +269,7 @@
 		AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+resizeImage.swift"; sourceTree = "<group>"; };
 		AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+alignVertical.swift"; sourceTree = "<group>"; };
 		AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+makeVibrate.swift"; sourceTree = "<group>"; };
+		AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 			isa = PBXGroup;
 			children = (
 				AA74A0DB274962F400FA6678 /* ProfileTableViewCell.swift */,
+				AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1043,6 +1046,7 @@
 				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
 				AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */,
+				AAE2FABB276CC10300FA2C5C /* ListCollectionViewCell.swift in Sources */,
 				AA95911F27445CD0007772BD /* className.swift in Sources */,
 				AA74A0DA27495E2300FA6678 /* ProfileViewController.swift in Sources */,
 				AA7366512746BD53002B726D /* DateViewModel.swift in Sources */,

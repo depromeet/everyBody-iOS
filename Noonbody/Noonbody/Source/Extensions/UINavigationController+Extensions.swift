@@ -10,9 +10,45 @@ import SwiftUI
 
 extension UINavigationController {
     
+    private var backButtonAppearance: UIBarButtonItemAppearance {
+        let backButtonAppearance = UIBarButtonItemAppearance()
+
+        backButtonAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.clear,
+            .font: UIFont.systemFont(ofSize: 0.0)
+        ]
+
+        return backButtonAppearance
+    }
+    
+    private var backButtonImage: UIImage? {
+        return Asset.Image.back.image
+            .resizeImage(to: CGSize(width: 32, height: 32), point: CGPoint(x: 0, y: 5))
+            .withAlignmentRectInsets(
+                UIEdgeInsets(
+                    top: 20.0,
+                    left: -5.0,
+                    bottom: 0.0,
+                    right: 0.0
+                )
+            )
+    }
+    
     func initNaviBarWithBackButton() {
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
+        appearance.configureWithTransparentBackground()
+        appearance.titleTextAttributes = [
+            .foregroundColor: Asset.Color.gray90.color
+        ]
+        
+        appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
+        appearance.backButtonAppearance = backButtonAppearance
+        
+        navigationBar.standardAppearance = appearance
+        navigationBar.scrollEdgeAppearance = appearance
+        navigationBar.compactAppearance = appearance
+        navigationBar.tintColor = Asset.Color.gray90.color
+        
         appearance.backgroundColor = .white
         appearance.shadowColor = .clear
         
