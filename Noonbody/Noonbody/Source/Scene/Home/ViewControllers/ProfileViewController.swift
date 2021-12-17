@@ -98,6 +98,14 @@ class ProfileViewController: BaseViewController {
         output.canSave
             .drive(completeBarButtonItem.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        output.statusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 200 {
+                    self.showToast(type: .save)
+                }
+            }).disposed(by: disposeBag)
     }
     
     @objc

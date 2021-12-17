@@ -67,6 +67,13 @@ class NBDatePicker: UIView {
             pickerView.dataSource = self
         }
     }
+    
+    func reloadPickerView() {
+        [yearPickerView, monthPickerView, dayPickerView, hourPickerView, minutePickerView]
+            .forEach {
+                $0.reloadAllComponents()
+            }
+    }
 
     private func setContraint() {
         addSubviews(yearPickerView, monthPickerView, dayPickerView, hourPickerView, minutePickerView, colonLabel)
@@ -140,11 +147,11 @@ class NBDatePicker: UIView {
     }
 
     func setMetaDataTime(dataArray: [String]) {
-        yearPickerView.selectRow(Int(dataArray[0])! - 2000, inComponent: 0, animated: true)
-        monthPickerView.selectRow(Int(dataArray[1])! - 1, inComponent: 0, animated: true)
-        dayPickerView.selectRow(Int(dataArray[2])! - 1, inComponent: 0, animated: true)
-        hourPickerView.selectRow(Int(dataArray[3])! - 1, inComponent: 0, animated: true)
-        minutePickerView.selectRow(Int(dataArray[4])!, inComponent: 0, animated: true)
+        yearPickerView.selectRow(Int(dataArray[0])! - 2000, inComponent: 0, animated: false)
+        monthPickerView.selectRow(Int(dataArray[1])! - 1, inComponent: 0, animated: false)
+        dayPickerView.selectRow(Int(dataArray[2])! - 1, inComponent: 0, animated: false)
+        hourPickerView.selectRow(Int(dataArray[3])! - 1, inComponent: 0, animated: false)
+        minutePickerView.selectRow(Int(dataArray[4])!, inComponent: 0, animated: false)
 
         selectedYear = dataArray[0]
         selectedMonth = dataArray[1]
@@ -157,11 +164,11 @@ class NBDatePicker: UIView {
     func setCurrnetTime() {
         let date = AppDate()
 
-        yearPickerView.selectRow(date.getYear() - 2000, inComponent: 0, animated: true)
-        monthPickerView.selectRow(date.getMonth() - 1, inComponent: 0, animated: true)
-        dayPickerView.selectRow(date.getDay() - 1, inComponent: 0, animated: true)
-        hourPickerView.selectRow(date.getHour() - 1, inComponent: 0, animated: true)
-        minutePickerView.selectRow(date.getMinute(), inComponent: 0, animated: true)
+        yearPickerView.selectRow(date.getYear() - 2000, inComponent: 0, animated: false)
+        monthPickerView.selectRow(date.getMonth() - 1, inComponent: 0, animated: false)
+        dayPickerView.selectRow(date.getDay() - 1, inComponent: 0, animated: false)
+        hourPickerView.selectRow(date.getHour() - 1, inComponent: 0, animated: false)
+        minutePickerView.selectRow(date.getMinute(), inComponent: 0, animated: false)
 
         selectedYear = date.getYearToString()
         selectedMonth = date.getMonthToString()
@@ -202,20 +209,39 @@ extension NBDatePicker: UIPickerViewDelegate {
         switch pickerView {
         case yearPickerView:
             label.text = dateViewModel.yearList[row]
+            if pickerView.selectedRow(inComponent: component) != row && !isUserInteractionEnabled {
+                setLabelAttribute(label: label, string: dateViewModel.yearList[row])
+            }
         case monthPickerView:
             label.text = dateViewModel.monthList[row].toString()
+            if pickerView.selectedRow(inComponent: component) != row && !isUserInteractionEnabled {
+                setLabelAttribute(label: label, string: dateViewModel.monthList[row].toString())
+            }
         case dayPickerView:
             label.text = dateViewModel.dayList[dayType][row]
+            if pickerView.selectedRow(inComponent: component) != row && !isUserInteractionEnabled {
+                setLabelAttribute(label: label, string: dateViewModel.dayList[dayType][row])
+            }
         case hourPickerView:
             label.text = dateViewModel.hourList[row]
+            if pickerView.selectedRow(inComponent: component) != row && !isUserInteractionEnabled {
+                setLabelAttribute(label: label, string: dateViewModel.hourList[row])
+            }
         case minutePickerView:
             label.text = dateViewModel.minuteList[row]
+            if pickerView.selectedRow(inComponent: component) != row && !isUserInteractionEnabled {
+                setLabelAttribute(label: label, string: dateViewModel.minuteList[row])
+            }
         default:
             return label
         }
-
+        
         label.textAlignment = .center
         return label
+    }
+    
+    private func setLabelAttribute(label: UILabel, string: String) {
+        label.attributedText = NSAttributedString(string: string, attributes: [NSAttributedString.Key.font: UIFont.nbFont(type: .body2SemiBold), NSAttributedString.Key.foregroundColor: UIColor.white])
     }
 
 }

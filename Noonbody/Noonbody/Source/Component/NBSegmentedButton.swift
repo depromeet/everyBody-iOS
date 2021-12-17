@@ -32,13 +32,16 @@ class NBSegmentedButton: UIButton {
     
     private func setButtonState() {
         if isSelected {
+            makeVibrate()
             setTitleColor(.white, for: .normal)
             titleLabel?.font = .nbFont(ofSize: 14, weight: .bold)
             backgroundColor = Asset.Color.keyPurple.color
+            imageView?.tintColor = .white
         } else {
             setTitleColor(.black, for: .normal)
             titleLabel?.font = .nbFont(ofSize: 14, weight: .regular)
             backgroundColor = Asset.Color.gray20.color
+            imageView?.tintColor = .black
         }
     }
 }

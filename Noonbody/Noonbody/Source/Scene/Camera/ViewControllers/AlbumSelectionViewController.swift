@@ -85,6 +85,15 @@ class AlbumSelectionViewController: BaseViewController {
                                                 bodyPart: self.requestManager.bodyPart,
                                                 takenAt: self.requestManager.takenAt)
                 DefaultCameraUseCase(cameraRepository: DefaultCameraRepository()).postPhoto(request: request)
+                self.showToast(type: .save)
+                for controller in self.navigationController!.viewControllers as Array {
+                    if controller.isKind(of: CameraViewController.self) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            self.navigationController?.popToViewController(controller, animated: true)
+                        }
+                        break
+                    }
+                }
             }).disposed(by: disposeBag)
         
         let popUpInput = AlbumSelectionViewModel.PopUpInput(albumNameTextField: popUp.textField.rx.text.orEmpty.asObservable(),

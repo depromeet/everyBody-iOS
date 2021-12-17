@@ -12,7 +12,7 @@ import Moya
 
 protocol ProfileRepository {
     func getUserInfo() -> Observable<UserInfo>
-    func putUserInfo(request: ProfileRequestModel)
+    func putUserInfo(request: ProfileRequestModel) -> Observable<Int>
     func getNotificationConfig() -> Observable<NotificationConfig>
     func putNotificationConfig(request: NotificationConfig) -> Observable<Int>
 }
@@ -36,15 +36,17 @@ class DefaultProfileRepository: ProfileRepository {
         return observable
     }
     
-    func putUserInfo(request: ProfileRequestModel) {
-        MyPageService.shared.putMyPage(request: request) { response in
-            // TODO: .success 혹은 .failure일 때 어떤 뷰 만들건지 디자인과 상의 후 변경(임시 print 문)
-            switch response {
-            case .success:
-                print("성공적으로 변경되었습니다.")
-            case .failure:
-                print("알 수 없는 에러가 발생했습니다.")
+    func putUserInfo(request: ProfileRequestModel) -> Observable<Int> {
+        return Observable.create { observer -> Disposable in
+            let requestReference: () = MyPageService.shared.putMyPage(request: request) { response in
+                switch response {
+                case .success:
+                    observer.onNext(200)
+                case .failure(let err):
+                    print(err)
+                }
             }
+            return Disposables.create(with: { requestReference })
         }
     }
     

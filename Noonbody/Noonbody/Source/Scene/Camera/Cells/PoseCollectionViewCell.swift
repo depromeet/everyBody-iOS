@@ -7,12 +7,18 @@
 
 import UIKit
 
+import Then
+import SnapKit
+
 class PoseCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Components
     
     private let poseThumnailImageView = UIImageView()
     private let selectedView = SelectedView(style: .basic)
+    private let nonePoseImageView = UIImageView().then {
+        $0.image = Asset.Image.none.image
+    }
     
     // MARK: - Properties
     
@@ -66,8 +72,12 @@ class PoseCollectionViewCell: UICollectionViewCell {
         poseThumnailImageView.image = image
     }
     
-    func bind() {
+    func setFirstCell() {
+        addSubview(nonePoseImageView)
         
+        nonePoseImageView.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+        }
     }
     
 }
