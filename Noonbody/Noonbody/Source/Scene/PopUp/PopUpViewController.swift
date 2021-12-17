@@ -171,7 +171,7 @@ class PopUpViewController: BaseViewController {
         
         switch type {
         case .delete:
-                    delegate?.confirmButtonDidTap(confirmButton)
+            delegate?.confirmButtonDidTap(confirmButton)
         case .textField:
             if let text = textField.text, !text.isEmpty {
                 delegate?.confirmButtonDidTap(confirmButton, textInfo: text)

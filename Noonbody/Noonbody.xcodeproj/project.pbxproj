@@ -125,6 +125,7 @@
 		FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
+		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
 		FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -256,6 +257,7 @@
 		FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
+		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
 		FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PanoramaViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -667,6 +669,7 @@
 				AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */,
 				AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */,
 				AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */,
+				FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -975,6 +978,7 @@
 				AA74A0F6274A6EDB00FA6678 /* NBDayButton.swift in Sources */,
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
 				AA74A0DC274962F400FA6678 /* ProfileTableViewCell.swift in Sources */,
+				FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */,
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,

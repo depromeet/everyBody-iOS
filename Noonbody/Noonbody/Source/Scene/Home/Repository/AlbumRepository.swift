@@ -25,7 +25,7 @@ class DefaultAlbumRepositry: AlbumRepository {
                 switch response {
                 case .success(let data):
                     if let data = data {
-                        observer.onNext(data)
+                    observer.onNext(data)
                     }
                 case .failure(let err):
                     print(err)

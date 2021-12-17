@@ -54,6 +54,10 @@ class PanoramaViewController: BaseViewController {
         $0.backgroundColor = .white
     }
     
+    private var emptyView = AlbumEmptyView(type: .picture).then {
+        $0.button.addTarget(self, action: #selector(cameraButtonDidTap), for: .touchUpInside)
+    }
+    
     // MARK: - Properties
     
     var popupViewController = PopUpViewController(type: .delete)
@@ -68,6 +72,7 @@ class PanoramaViewController: BaseViewController {
         didSet {
             topCollectionView.reloadData()
             bottomCollectionView.reloadData()
+            emptyView.isHidden = !bodyPartData.isEmpty ? true : false
             
             if !bodyPartData.isEmpty {
                 bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
@@ -132,10 +137,6 @@ class PanoramaViewController: BaseViewController {
         initBodyPartData()
         render()
         bind()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //        setupNavigationBarItem()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -265,6 +266,11 @@ class PanoramaViewController: BaseViewController {
         switchPanoramaMode()
     }
     
+    @objc func cameraButtonDidTap() {
+        let viewController = CameraViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 // MARK: - View Layout
@@ -279,7 +285,7 @@ extension PanoramaViewController {
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(bodyPartSegmentControl, gridButton, stackView)
+        view.addSubviews(bodyPartSegmentControl, gridButton, stackView, emptyView)
         stackView.addArrangedSubviews([topCollectionView, bottomCollectionView])
     }
     
@@ -306,6 +312,12 @@ extension PanoramaViewController {
         topCollectionView.snp.makeConstraints {
             let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
             $0.height.equalTo(Constant.Size.screenWidth * ratio).priority(999)
+        }
+        
+        emptyView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalTo(270 * Constant.Size.screenWidth / Constant.Size.figmaWidth)
+            $0.height.equalTo(136 * Constant.Size.screenWidth / Constant.Size.figmaWidth)
         }
     }
 }
