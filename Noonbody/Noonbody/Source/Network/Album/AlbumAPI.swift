@@ -13,6 +13,7 @@ enum AlbumAPI: BaseTargetType {
     typealias ResultModel = [Album]
     
     case getAlbumList
+    case deletePicture(pictureId: Int)
 }
 
 extension AlbumAPI {
@@ -21,6 +22,8 @@ extension AlbumAPI {
         switch self {
         case .getAlbumList:
             return HTTPMethodURL.GET.album
+        case .deletePicture(let pictureId):
+            return HTTPMethodURL.DELETE.pictures + "/\(pictureId)"
         }
     }
     
@@ -28,12 +31,16 @@ extension AlbumAPI {
         switch self {
         case .getAlbumList:
             return .get
+        case .deletePicture:
+            return .delete
         }
     }
     
     var task: Task {
         switch self {
         case .getAlbumList:
+            return .requestPlain
+        case .deletePicture:
             return .requestPlain
         }
     }

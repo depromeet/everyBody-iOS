@@ -15,7 +15,7 @@ struct Album: Codable {
     let thumbnailURL: String?
     let createdAt: String
     let albumDescription: String
-    let pictures: Pictures
+    var pictures: Pictures
 
     enum CodingKeys: String, CodingKey {
         case id, name
@@ -29,9 +29,9 @@ struct Album: Codable {
 // MARK: - Pictures
 
 struct Pictures: Codable {
-    let lower: [PictureInfo]
-    let upper: [PictureInfo]
-    let whole: [PictureInfo]
+    var lower: [PictureInfo]
+    var upper: [PictureInfo]
+    var whole: [PictureInfo]
 }
 
 // MARK: - PictureInfo

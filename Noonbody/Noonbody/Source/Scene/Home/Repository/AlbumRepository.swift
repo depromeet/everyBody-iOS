@@ -14,6 +14,7 @@ protocol AlbumRepository {
     func getAlbumList() -> Observable<[Album]>
     func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Album>
     func postCreateAlbum(request: CreateAlbumRequestModel) -> Observable<Int>
+    func deletePicture(pictureId: Int)
 }
 
 class DefaultAlbumRepositry: AlbumRepository {
@@ -66,4 +67,14 @@ class DefaultAlbumRepositry: AlbumRepository {
         }
     }
     
+    func deletePicture(pictureId: Int) {
+        AlbumService.shared.deletePicture(id: pictureId) { response in
+            switch response {
+            case .success:
+                print("성공적으로 삭제되었습니다.")
+            case .failure:
+                print("알 수 없는 에러가 발생했습니다.")
+            }
+        }
+    }
 }

@@ -11,6 +11,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxRelay
+import Alamofire
 
 class PanoramaViewController: BaseViewController {
     
@@ -47,7 +48,7 @@ class PanoramaViewController: BaseViewController {
         $0.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
     
-    var stackView = UIStackView().then {
+    private var stackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = UIDevice.current.hasNotch ? 22 : 5
         $0.distribution = .fill
@@ -56,7 +57,10 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Properties
     
+    var popupViewController = PopUpViewController(type: .delete)
+    var bodyPart = 2
     var albumData: Album
+    var deleteData: [Int] = []
     var bodyPartData: [PictureInfo] = [] {
         didSet {
             topCollectionView.reloadData()
@@ -124,6 +128,7 @@ class PanoramaViewController: BaseViewController {
         initSegmentedControl()
         initBodyPartData()
         render()
+        bind()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -131,6 +136,28 @@ class PanoramaViewController: BaseViewController {
     }
     
     // MARK: - Methods
+    func bind() {
+        popupViewController.confirmButton.rx.tap
+            .subscribe(onNext: {
+                self.deleteData.forEach {
+                    DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry())
+                        .deletePicture(pictureId: self.bodyPartData[$0].id )
+                    self.bodyPartData.remove(at: $0)
+                    switch self.bodyPart {
+                    case 0:
+                        self.albumData.pictures.whole.remove(at: $0)
+                    case 1:
+                        self.albumData.pictures.upper.remove(at: $0)
+                    case 2:
+                        self.albumData.pictures.lower.remove(at: $0)
+                    default:
+                        return
+                    }
+                }
+                self.deleteData = []
+                self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
+            }).disposed(by: disposeBag)
+    }
     
     private func initNavigationBar() {
         navigationController?.initNavigationBar(navigationItem: self.navigationItem,
@@ -139,7 +166,7 @@ class PanoramaViewController: BaseViewController {
                                                 rightActions: [#selector(tapSaveButton),
                                                                #selector(tapEditOrCloseButton)])
         navigationItem.leftBarButtonItems = nil
-        
+
         title = albumData.name
     }
     
@@ -150,9 +177,9 @@ class PanoramaViewController: BaseViewController {
                                                 leftActions: [#selector(tapEditOrCloseButton)],
                                                 rightActions: [#selector(tapDeleteButton)])
         
-        self.title = "\(albumData.pictures.whole.count)장"
+        self.title = "\(bodyPartData.count)장"
     }
-
+    
     private func initSegmentedControl() {
         bodyPartSegmentControl.delegate = self
     }
@@ -190,6 +217,7 @@ class PanoramaViewController: BaseViewController {
     @objc
     private func tapEditOrCloseButton() {
         editMode ? initNavigationBar() : initEditNavigationBar()
+        print("데베플 안했는데 ㅈ댓다", editMode)
         editMode.toggle()
         if !gridMode {
             switchPanoramaMode()
@@ -203,13 +231,15 @@ class PanoramaViewController: BaseViewController {
     
     @objc
     private func tapDeleteButton() {
-        let popUp = PopUpViewController(type: .delete)
-        popUp.modalTransitionStyle = .crossDissolve
-        popUp.modalPresentationStyle = .overCurrentContext
-        popUp.delegate = self
-        popUp.titleLabel.text = "장의 사진을 삭제하시겠어요?"
-        popUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
-        self.present(popUp, animated: true, completion: nil)
+        if !deleteData.isEmpty {
+            let popUp = popupViewController
+            popUp.modalTransitionStyle = .crossDissolve
+            popUp.modalPresentationStyle = .overCurrentContext
+            popUp.delegate = self
+            popUp.titleLabel.text = "\(deleteData.count)장의 사진을 삭제하시겠어요?"
+            popUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
+            self.present(popUp, animated: true, completion: nil)
+        }
     }
     
     @objc
@@ -235,7 +265,6 @@ extension PanoramaViewController {
     private func setupViewHierarchy() {
         view.addSubviews(bodyPartSegmentControl, gridButton, stackView)
         stackView.addArrangedSubviews([topCollectionView, bottomCollectionView])
-        
     }
     
     private func setupConstraint() {
@@ -272,10 +301,13 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
         switch index {
         case 0:
             bodyPartData = albumData.pictures.whole
+            bodyPart = index
         case 1:
             bodyPartData = albumData.pictures.upper
+            bodyPart = index
         case 2:
             bodyPartData = albumData.pictures.lower
+            bodyPart = index
         default:
             return
         }
@@ -285,9 +317,5 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func confirmButtonDidTap(_ button: UIButton) {
-        
     }
 }

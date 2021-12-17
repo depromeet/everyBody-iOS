@@ -20,8 +20,6 @@ class CameraCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var viewModel = PanoramaViewModel()
-    
     // MARK: - Initializer
     
     override init(frame: CGRect) {
