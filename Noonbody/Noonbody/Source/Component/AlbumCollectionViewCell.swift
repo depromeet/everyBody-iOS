@@ -125,6 +125,8 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         descriptionLabel.text = album.albumDescription
         if let thumbnailURL = album.thumbnailURL {
             thumbnailImageView.setImage(with: thumbnailURL)
+        } else {
+            thumbnailImageView.image = Asset.Image.empty.image
         }
     }
     

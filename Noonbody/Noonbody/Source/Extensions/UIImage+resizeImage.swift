@@ -8,9 +8,9 @@
 import UIKit
 
 extension UIImage {
-    func resizeImage(to size: CGSize) -> UIImage {
+    func resizeImage(to size: CGSize, point: CGPoint = .zero) -> UIImage {
         return UIGraphicsImageRenderer(size: size).image { _ in
-            draw(in: CGRect(origin: .zero, size: size))
+            draw(in: CGRect(origin: point, size: size))
         }
     }
 }
