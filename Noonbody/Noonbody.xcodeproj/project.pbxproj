@@ -121,11 +121,11 @@
 		AAE2FAA327640C9200FA2C5C /* SignUpRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAA227640C9200FA2C5C /* SignUpRequestModel.swift */; };
 		AAE2FAA5276410B300FA2C5C /* SignInRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAA4276410B300FA2C5C /* SignInRequestModel.swift */; };
 		AAE2FAAC276411E900FA2C5C /* SignInResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAAB276411E900FA2C5C /* SignInResponse.swift */; };
-		AAE2FAAE2764848F00FA2C5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE2FAAD2764848F00FA2C5C /* GoogleService-Info.plist */; };
 		AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */; };
 		AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */; };
 		AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */; };
 		AAE2FABB276CC10300FA2C5C /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */; };
+		AAE2FAE92774F9A600FA2C5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE2FAE82774F9A600FA2C5C /* GoogleService-Info.plist */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -256,7 +256,6 @@
 		AAE2FA792762895100FA2C5C /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ToastView.swift"; sourceTree = "<group>"; };
-		AAE2FA892763F75400FA2C5C /* Noonbody.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Noonbody.entitlements; sourceTree = "<group>"; };
 		AAE2FA952764041800FA2C5C /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		AAE2FA972764078900FA2C5C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAE2FA9C27640ADC00FA2C5C /* LaunchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchService.swift; sourceTree = "<group>"; };
@@ -270,6 +269,7 @@
 		AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+alignVertical.swift"; sourceTree = "<group>"; };
 		AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+makeVibrate.swift"; sourceTree = "<group>"; };
 		AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
+		AAE2FAE82774F9A600FA2C5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -494,7 +494,7 @@
 		AA7E0A3426FB0A6100106DC2 /* Noonbody */ = {
 			isa = PBXGroup;
 			children = (
-				AAE2FA892763F75400FA2C5C /* Noonbody.entitlements */,
+				AAE2FAE82774F9A600FA2C5C /* GoogleService-Info.plist */,
 				AA7E0A4D26FB0B1E00106DC2 /* Resource */,
 				AA7E0A4C26FB0AE200106DC2 /* Source */,
 				AA7E0A3E26FB0A6100106DC2 /* Noonbody.xcdatamodeld */,
@@ -918,7 +918,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE2FAAE2764848F00FA2C5C /* GoogleService-Info.plist in Resources */,
+				AAE2FAE92774F9A600FA2C5C /* GoogleService-Info.plist in Resources */,
 				AABEA2E1273C4A3300A06A8C /* Gilroy-Regular.ttf in Resources */,
 				AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
@@ -1222,8 +1222,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1237,13 +1239,16 @@
 		};
 		AA7E0A4B26FB0A6200106DC2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAA9A4F62753A71F00FE92DB /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
