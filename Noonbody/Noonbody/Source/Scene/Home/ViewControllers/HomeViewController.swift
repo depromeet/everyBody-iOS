@@ -78,7 +78,7 @@ class HomeViewController: BaseViewController {
         setupCollectionView()
         setupViewHierarchy()
         setupConstraint()
-        
+        navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Methods
