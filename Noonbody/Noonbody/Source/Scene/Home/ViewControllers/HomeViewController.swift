@@ -247,7 +247,7 @@ extension HomeViewController {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewController = PanoramaViewController(albumData: albumData[indexPath.row])
+        let viewController = PanoramaViewController(albumId: albumData[indexPath.row].id, albumData: albumData[indexPath.row])
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
