@@ -97,14 +97,15 @@ extension PanoramaViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == topCollectionView || editMode {
-            deleteData.append(indexPath.row-1)
+        if collectionView == topCollectionView && editMode {
+            deleteData.append(bodyPartData[indexPath.row-1].id)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == topCollectionView || editMode {
-            deleteData.removeAll(where: {$0 == indexPath.row-1})
+            deleteData.removeAll(where: {$0 == bodyPartData[indexPath.row-1].id})
         }
     }
 }
+

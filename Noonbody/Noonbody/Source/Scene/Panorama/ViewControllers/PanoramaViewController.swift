@@ -72,8 +72,9 @@ class PanoramaViewController: BaseViewController {
         didSet {
             topCollectionView.reloadData()
             bottomCollectionView.reloadData()
+            initNavigationBar()
             emptyView.isHidden = !bodyPartData.isEmpty ? true : false
-            
+            gridButton.isHidden = bodyPartData.isEmpty ? true : false
             if !bodyPartData.isEmpty {
                 bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
             }
@@ -147,23 +148,23 @@ class PanoramaViewController: BaseViewController {
     func bind() {
         popupViewController.confirmButton.rx.tap
             .subscribe(onNext: {
-                self.deleteData.forEach {
+                self.deleteData.forEach { data in
                     DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry())
-                        .deletePicture(pictureId: self.bodyPartData[$0].id).bind(onNext: { [weak self] statusCode in
+                        .deletePicture(pictureId: data).bind(onNext: { [weak self] statusCode in
                             guard let self = self else { return }
                             if statusCode == 200 {
                                 self.showToast(type: .delete)
                             }
                         }).disposed(by: self.disposeBag)
                     
-                    self.bodyPartData.remove(at: $0)
+                    self.bodyPartData.removeAll(where: {$0.id == data})
                     switch self.bodyPart {
                     case 0:
-                        self.albumData.pictures.whole.remove(at: $0)
+                        self.albumData.pictures.whole.removeAll(where: {$0.id == data})
                     case 1:
-                        self.albumData.pictures.upper.remove(at: $0)
+                        self.albumData.pictures.upper.removeAll(where: {$0.id == data})
                     case 2:
-                        self.albumData.pictures.lower.remove(at: $0)
+                        self.albumData.pictures.lower.removeAll(where: {$0.id == data})
                     default:
                         return
                     }
@@ -175,11 +176,15 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func initNavigationBar() {
-        navigationController?.initNavigationBar(navigationItem: self.navigationItem,
+        if bodyPartData.isEmpty {
+            navigationItem.rightBarButtonItems = nil
+        } else {
+            navigationController?.initNavigationBar(navigationItem: self.navigationItem,
                                                 rightButtonImages: [Asset.Image.share.image,
                                                                     Asset.Image.create.image],
                                                 rightActions: [#selector(tapSaveButton),
                                                                #selector(tapEditOrCloseButton)])
+        }
         navigationItem.leftBarButtonItems = nil
         title = albumData.name
     }
@@ -194,10 +199,6 @@ class PanoramaViewController: BaseViewController {
         self.title = "\(bodyPartData.count)장"
         navigationItem.rightBarButtonItem?.isEnabled = false
         
-    }
-    
-    private func setupNavigationBarItem() {
-        navigationItem.rightBarButtonItems![1].isEnabled = !bodyPartData.isEmpty ? true : false
     }
     
     private func initSegmentedControl() {
@@ -327,7 +328,7 @@ extension PanoramaViewController {
 extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
-        //        setupNavigationBarItem()
+        initNavigationBar()
         switch index {
         case 0:
             bodyPartData = albumData.pictures.whole
@@ -346,3 +347,4 @@ extension PanoramaViewController: PopUpActionProtocol {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
