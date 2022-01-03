@@ -103,7 +103,7 @@ extension PanoramaViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if collectionView == topCollectionView || editMode {
+        if collectionView == topCollectionView && editMode {
             deleteData.removeAll(where: {$0 == bodyPartData[indexPath.row-1].id})
         }
     }
