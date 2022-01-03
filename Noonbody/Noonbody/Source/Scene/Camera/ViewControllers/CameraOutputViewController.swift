@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 import RxCocoa
 import RxSwift
@@ -25,14 +26,13 @@ class CameraOutputViewController: BaseViewController {
     private let scrollView = UIScrollView().then {
         $0.backgroundColor = .white
         $0.showsVerticalScrollIndicator = false
-        $0.isScrollEnabled = false
     }
     private let contentsView = UIView()
     private let containerView = UIView()
     
     private let photoOutputImageView = UIImageView().then {
         $0.backgroundColor = .black
-        $0.contentMode = .scaleAspectFill
+        $0.contentMode = .scaleAspectFit
     }
     private let partAndTimeSegmentedControl = NBSegmentedControl(buttonStyle: .basic,
                                                                  numOfButton: 2)
@@ -49,7 +49,7 @@ class CameraOutputViewController: BaseViewController {
         $0.font = .nbFont(type: .caption1)
         $0.textColor = Asset.Color.gray60.color
     }
-    private lazy var dateTimeLabel = UILabel().then {
+    lazy var dateLabel = UILabel().then {
         $0.font = .nbFont(ofSize: 24, weight: .bold, type: .gilroy)
         $0.textColor = .white
     }
@@ -66,19 +66,33 @@ class CameraOutputViewController: BaseViewController {
     // MARK: - Properties
     
     private let requestManager = CameraRequestManager.shared
-    private var cameraViewModel = CameraViewModel()
+    private var viewModel = CameraViewModel()
     private let camera = Camera.shared
-    private var metaDataArray: [String] = [] {
+    lazy var metaDataArray: [String] = [] {
         didSet {
-            if metaDataArray.count == 6 { pickerView.setMetaDataTime(dataArray: metaDataArray) }
+            pickerView.setMetaDataTime(dataArray: metaDataArray)
         }
     }
     
     // MARK: - View Life Cyle
     
+    init(image: UIImage,
+         day: String,
+         time: String) {
+        super.init(nibName: nil, bundle: nil)
+        
+        photoOutputImageView.image = image
+        dateLabel.text = day
+        meridiemLabel.text = time
+        metaDataArray = day.split(separator: ".").map { String($0) } + time.split(separator: ":").map { String($0) }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         
-        bind()
         initNavigationBar()
         setViewHierarchy()
         setLayout()
@@ -120,40 +134,14 @@ class CameraOutputViewController: BaseViewController {
         }
     }
     
-    private func bind() {
-        camera.outputImageRelay
-            .bind(to: photoOutputImageView.rx.image)
-            .disposed(by: disposeBag)
-        
-        cameraViewModel.creationTime
-            .bind(to: dateTimeLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        cameraViewModel.meridiemTime
-            .bind(to: meridiemLabel.rx.text)
-            .disposed(by: disposeBag)
-        
-        cameraViewModel.creationTime
-            .subscribe {
-                self.metaDataArray = $0.split(separator: ".").map { String($0) }
-            }
-            .disposed(by: disposeBag)
-        
-        camera.meridiemTime
-            .subscribe {
-                self.metaDataArray += $0.split(separator: ":").map { String($0) }
-            }
-            .disposed(by: disposeBag)
-    }
-    
     private func mergeLabelToImage() {
         requestManager.image = containerView.renderToImageView()
         // TODO: - 갤러리에 이미지 저장, 나중에 환경설정 앱 만들면 갤러리 저장할 지 여부 UserDefault 값에 저장해서 값에 따라 분기처리
-        UIImageWriteToSavedPhotosAlbum(containerView.renderToImageView(), nil, nil, nil)
+//        UIImageWriteToSavedPhotosAlbum(containerView.renderToImageView(), nil, nil, nil)
     }
     
     private func getPickerViewTime() -> String {
-        if let date = dateTimeLabel.text, !date.isEmpty {
+        if let date = dateLabel.text, !date.isEmpty {
             let dateArray = date.split(separator: ".").map { String($0) }
             let (year, month, day) = (dateArray[0], dateArray[1], dateArray[2])
             if let hour = meridiemLabel.text, !hour.isEmpty {
@@ -163,15 +151,15 @@ class CameraOutputViewController: BaseViewController {
                 let (hour, minute) = (timeArray[0], timeArray[1])
                 
                 let dateString: String = "\(year)-\(month)-\(day)\(hour):\(minute):00"
-//                let dateFormatter = DateFormatter()
-//                dateFormatter.dateFormat = "yyyy-MM-DD HH:mm:ss"
-//                dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
-//
-//                let date: Date = dateFormatter.date(from: dateString)!
+                
                 return dateString
             }
         }
         return String()
+    }
+    
+    func setLibraryImage(image: UIImage) {
+        photoOutputImageView.image = image
     }
     
     // MARK: - Actions
@@ -196,7 +184,7 @@ extension CameraOutputViewController {
                                  descriptionLabel,
                                  photoTimeSegemntedControl,
                                  pickerView)
-        containerView.addSubviews(photoOutputImageView, dateTimeLabel, meridiemLabel)
+        containerView.addSubviews(photoOutputImageView, dateLabel, meridiemLabel)
         scrollView.addSubview(contentsView)
         view.addSubview(scrollView)
     }
@@ -242,7 +230,7 @@ extension CameraOutputViewController {
             $0.centerX.equalToSuperview()
         }
         
-        dateTimeLabel.snp.makeConstraints {
+        dateLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().offset(20)
             $0.bottom.equalTo(photoOutputImageView.snp.bottom).inset(12)
         }
@@ -339,7 +327,7 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
 extension CameraOutputViewController: DatePickerDelegate {
     
     func pickerViewSelected(_ dateArray: [String]) {
-        dateTimeLabel.text = "\(dateArray[0]).\(dateArray[1]).\(dateArray[2])"
+        dateLabel.text = "\(dateArray[0]).\(dateArray[1]).\(dateArray[2])"
         
         guard let hour = Int(dateArray[3]) else { return }
         if hour < 12 {

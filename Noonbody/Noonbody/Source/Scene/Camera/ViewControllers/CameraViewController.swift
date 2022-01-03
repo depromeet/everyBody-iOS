@@ -7,6 +7,7 @@
 
 import AVFoundation
 import UIKit
+import PhotosUI
 
 import Then
 import SnapKit
@@ -22,8 +23,7 @@ class CameraViewController: BaseViewController {
     private lazy var gridSwitch = CustomSwitch(width: 59, height: 24).then {
         $0.type = .text
     }
-    private lazy var previewView = ViewFinder(camera: camera,
-                                              height: Constant.Size.screenWidth * (4.0 / 3.0)).makeUIView()
+    private var previewView = UIView()
     private var gridIndicatorView = UIImageView().then {
         $0.image = Asset.Image.gridIndicator.image
     }
@@ -36,14 +36,13 @@ class CameraViewController: BaseViewController {
     // MARK: - Properties
     
     private lazy var camera = Camera.shared
-//    private lazy var hasNotch = UIDevice.current.hasNotch
-    lazy var viewModel = PoseViewModel()
+    private lazy var viewModel = CameraViewModel()
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         checkPermission()
         initNavigationBar()
         setupViewHierarchy()
@@ -63,7 +62,23 @@ class CameraViewController: BaseViewController {
     // MARK: - Methods
     
     private func checkPermission() {
-        camera.checkPermission()
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            camera.setUp()
+            previewView = camera.makeCameraLayer()
+            camera.cameraDataOutput()
+            return
+        case .notDetermined:
+            AVCaptureDevice.requestAccess(for: .video) { status in
+                if status {
+                    self.camera.setUp()
+                    self.previewView = self.camera.makeCameraLayer()
+                    self.camera.cameraDataOutput()
+                }
+            }
+        default:
+            return
+        }
     }
     
     func initNavigationBar() {
@@ -88,9 +103,7 @@ class CameraViewController: BaseViewController {
         takeButton.rx
             .tap
             .bind { [self] in
-                camera.takePicture()
-                let viewController = CameraOutputViewController()
-                navigationController?.pushViewController(viewController, animated: false)
+                takePicture()
             }
             .disposed(by: disposeBag)
         
@@ -109,6 +122,14 @@ class CameraViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
 
+        albumButtonView.rx
+            .tapGesture()
+            .when(.recognized)
+            .subscribe(onNext: { _ in
+                self.openAlbumLibrary()
+            })
+            .disposed(by: disposeBag)
+        
         gridSwitch.isToggleSubject
             .map { !$0 }
             .bind(to: gridIndicatorView.rx.isHidden)
@@ -134,7 +155,31 @@ class CameraViewController: BaseViewController {
         }
     }
     
+    private func takePicture() {
+        DispatchQueue.global(qos: .background).async {
+            self.camera.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
+        }
+    }
+    
+    func getPicture(pictureData: Data) -> UIImage {
+        guard let image = UIImage(data: pictureData) else { return UIImage() }
+        return image
+    }
+    
+    
     // MARK: - Actions
+    
+    private func openAlbumLibrary() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .any(of: [.images, .livePhotos])
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        picker.modalPresentationStyle = .overFullScreen
+        
+        self.present(picker, animated: true, completion: nil)
+    }
     
     @objc
     private func switchCameraMode() {
@@ -181,6 +226,41 @@ class CameraViewController: BaseViewController {
             self.view.layoutIfNeeded()
             self.moveTop(view: self.takeButton)
         }
+    }
+    
+}
+
+// MARK: - PHPickerViewControllerDelegate
+
+extension CameraViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        if let itemProvider = results.first?.itemProvider,
+           itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { image, _ in
+                
+                if let image = image as? UIImage {
+                    itemProvider.loadDataRepresentation(forTypeIdentifier: "public.image") { data, _ in
+                        if let data = data {
+                            let src = CGImageSourceCreateWithData(data as CFData, nil)!
+                            if let metadata = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [String: Any] {
+                                let (date, time) = self.viewModel.getCreationDate(metadata: metadata)
+
+                                DispatchQueue.main.async {
+                                    let viewController = CameraOutputViewController(image: image,
+                                                                                    day: date,
+                                                                                    time: time)
+                                    self.navigationController?.pushViewController(viewController, animated: true)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+        }
+        
+        picker.dismiss(animated: true)
     }
     
 }
@@ -255,4 +335,17 @@ extension CameraViewController {
         }
     }
     
+}
+
+extension CameraViewController: AVCapturePhotoCaptureDelegate {
+
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        let (day, time) = viewModel.getCreationDate(metadata: photo.metadata)
+        
+        let viewController = CameraOutputViewController(image: getPicture(pictureData: imageData),
+                                                        day: day,
+                                                        time: time)
+        navigationController?.pushViewController(viewController, animated: false)
+    }
 }
