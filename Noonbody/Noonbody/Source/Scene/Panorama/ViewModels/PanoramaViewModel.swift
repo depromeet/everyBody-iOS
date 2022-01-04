@@ -6,16 +6,40 @@
 //
 
 import Foundation
-import UIKit
 
-class PanoramaViewModel {
-    var albumTitle: String = "예꽁이의 섹시눈바디"
-    var phothArray: [UIImage] = [Asset.Image.del.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.add.image, Asset.Image.sample.image, Asset.Image.back.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image,
-                                 Asset.Image.del.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.add.image, Asset.Image.sample.image, Asset.Image.back.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image, Asset.Image.sample.image]
+import RxSwift
+import RxCocoa
 
-    var wholebody: [UIImage] = []
-    var upperbody: [UIImage] = []
-    var lowerbody: [UIImage] = []
+final class PanoramaViewModel {
+    private let panoramaUseCase: PanoramaUseCase
     
-    var deleteArray: [Int] = []
+    struct Input {
+        let viewWillAppear: Observable<Void>
+        let albumId: Int
+    }
+    
+    struct Output {
+        let album: Driver<Album?>
+    }
+    
+    init(panoramaUseCase: PanoramaUseCase) {
+        self.panoramaUseCase = panoramaUseCase
+    }
+    
+    func transeform(input: Input) -> Output {
+        let album = input.viewWillAppear
+            .flatMap {
+                self.panoramaUseCase.getAlbum(albumId: input.albumId) }
+            .map { $0 }
+            .share()
+        
+        let data = album
+            .compactMap { $0 }
+            .map { response -> Album in
+                return response
+            }.asDriver(onErrorJustReturn: nil)
+        
+        return Output(album: data)
+    }
 }
+
