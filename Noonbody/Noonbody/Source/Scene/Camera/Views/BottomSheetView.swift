@@ -12,7 +12,7 @@ import RxSwift
 
 class BottomSheetView: UIView {
     
-    var viewModel = PoseViewModel()
+    var viewModel = CameraViewModel()
     private var disposeBag = DisposeBag()
     var indexPathSubject = PublishSubject<Int>()
     

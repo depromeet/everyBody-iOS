@@ -32,7 +32,6 @@
 		AA5B85DD271700E6002276C3 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85DC271700E6002276C3 /* Size.swift */; };
 		AA5B85DF27170F27002276C3 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */; };
 		AA5B85E127171072002276C3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E027171072002276C3 /* HomeViewController.swift */; };
-		AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA5B85E227173DC0002276C3 /* ViewFinder.swift */; };
 		AA7366512746BD53002B726D /* DateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7366502746BD53002B726D /* DateViewModel.swift */; };
 		AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73665227485C3D002B726D /* String+2DigitFormat.swift */; };
 		AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */; };
@@ -96,7 +95,6 @@
 		AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB12729F2B100B2BE1E /* Fonts.swift */; };
 		AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */; };
 		AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */; };
-		AAC7ACBE272D7DF400B2BE1E /* PoseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */; };
 		AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACBF272D7E0400B2BE1E /* Pose.swift */; };
 		AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */ = {isa = PBXBuildFile; productRef = AAC7ACE4272DC28100B2BE1E /* RxGesture */; };
 		AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */; };
@@ -135,6 +133,10 @@
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
 		FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */; };
+		FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */; };
+		FCAE821227832D3B007A729D /* PanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821027832D3B007A729D /* PanoramaRepository.swift */; };
+		FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821427832D6F007A729D /* PanoramaService.swift */; };
+		FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821527832D6F007A729D /* PanoramaAPI.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
@@ -181,7 +183,6 @@
 		AA5B85DC271700E6002276C3 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		AA5B85E027171072002276C3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		AA5B85E227173DC0002276C3 /* ViewFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFinder.swift; sourceTree = "<group>"; };
 		AA7366502746BD53002B726D /* DateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewModel.swift; sourceTree = "<group>"; };
 		AA73665227485C3D002B726D /* String+2DigitFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+2DigitFormat.swift"; sourceTree = "<group>"; };
 		AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUseCase.swift; sourceTree = "<group>"; };
@@ -242,7 +243,6 @@
 		AAC7ACB12729F2B100B2BE1E /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+hasNotch.swift"; sourceTree = "<group>"; };
 		AAC7ACBB272D7AEC00B2BE1E /* PoseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseCollectionViewCell.swift; sourceTree = "<group>"; };
-		AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PoseViewModel.swift; sourceTree = "<group>"; };
 		AAC7ACBF272D7E0400B2BE1E /* Pose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pose.swift; sourceTree = "<group>"; };
 		AAC7ACEE2733DF3200B2BE1E /* CameraOutputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOutputViewController.swift; sourceTree = "<group>"; };
 		AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+addArrangedSubviews.swift"; sourceTree = "<group>"; };
@@ -279,6 +279,10 @@
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
 		FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
+		FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaUseCase.swift; sourceTree = "<group>"; };
+		FCAE821027832D3B007A729D /* PanoramaRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaRepository.swift; sourceTree = "<group>"; };
+		FCAE821427832D6F007A729D /* PanoramaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaService.swift; sourceTree = "<group>"; };
+		FCAE821527832D6F007A729D /* PanoramaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaAPI.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
@@ -343,7 +347,6 @@
 			isa = PBXGroup;
 			children = (
 				AA9A41462715EC2C002BBE15 /* Camera.swift */,
-				AA5B85E227173DC0002276C3 /* ViewFinder.swift */,
 				AAC7ACBF272D7E0400B2BE1E /* Pose.swift */,
 				AAC7AD172735A11B00B2BE1E /* AppDate.swift */,
 				AABEA2E4273C578E00A06A8C /* Album.swift */,
@@ -402,6 +405,7 @@
 		AA73AFAD274FE2E200FD7C70 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				FCAE821327832D6F007A729D /* Panorama */,
 				AAE2FA8A2763FE8300FA2C5C /* Auth */,
 				AA2F3186275AD68100855861 /* Camera */,
 				AA2F31752759F3DC00855861 /* Notification */,
@@ -571,6 +575,8 @@
 		AA7E0A5226FB0B6900106DC2 /* Panorama */ = {
 			isa = PBXGroup;
 			children = (
+				FCAE820F27832D3B007A729D /* Repository */,
+				FCAE820D27832D3B007A729D /* UseCase */,
 				FCF8C9E0274B974E004263FF /* Extensions */,
 				AA7E0A6826FB0C0C00106DC2 /* Views */,
 				AA7E0A6726FB0C0800106DC2 /* Cells */,
@@ -630,7 +636,6 @@
 			isa = PBXGroup;
 			children = (
 				AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */,
-				AAC7ACBD272D7DF400B2BE1E /* PoseViewModel.swift */,
 				AABEA2E6273C585C00A06A8C /* AlbumViewModel.swift */,
 				AA7366502746BD53002B726D /* DateViewModel.swift */,
 				AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */,
@@ -830,6 +835,31 @@
 			path = Album;
 			sourceTree = "<group>";
 		};
+		FCAE820D27832D3B007A729D /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		FCAE820F27832D3B007A729D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE821027832D3B007A729D /* PanoramaRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		FCAE821327832D6F007A729D /* Panorama */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE821427832D6F007A729D /* PanoramaService.swift */,
+				FCAE821527832D6F007A729D /* PanoramaAPI.swift */,
+			);
+			path = Panorama;
+			sourceTree = "<group>";
+		};
 		FCF8C9E0274B974E004263FF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -982,6 +1012,7 @@
 			files = (
 				AAC7ACA72729E91400B2BE1E /* CameraViewModel.swift in Sources */,
 				AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */,
+				FCAE821227832D3B007A729D /* PanoramaRepository.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
 				AAE2FA9D27640ADC00FA2C5C /* LaunchService.swift in Sources */,
 				AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */,
@@ -995,8 +1026,6 @@
 				AA74A0FD274AD66300FA6678 /* UIImageView+setImage.swift in Sources */,
 				AAE2FAA5276410B300FA2C5C /* SignInRequestModel.swift in Sources */,
 				AAE2FAA127640C5B00FA2C5C /* AuthService.swift in Sources */,
-				AAC7ACBE272D7DF400B2BE1E /* PoseViewModel.swift in Sources */,
-				AA5B85E327173DC0002276C3 /* ViewFinder.swift in Sources */,
 				AAC7ACEF2733DF3200B2BE1E /* CameraOutputViewController.swift in Sources */,
 				AAE2FA7D27628A3E00FA2C5C /* ToastView.swift in Sources */,
 				AAC7ACC0272D7E0400B2BE1E /* Pose.swift in Sources */,
@@ -1004,6 +1033,7 @@
 				AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */,
 				AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */,
 				AA2F3192275B413100855861 /* AlbumSelectionViewModel.swift in Sources */,
+				FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */,
 				AA2F318A275ADB6400855861 /* CameraService.swift in Sources */,
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
 				AA95911827443FB9007772BD /* UIViewController+hideKeyboard.swift in Sources */,
@@ -1018,6 +1048,7 @@
 				AAE2FA9F27640C5200FA2C5C /* AuthAPI.swift in Sources */,
 				AA74A0F4274A696E00FA6678 /* PushSettingViewController.swift in Sources */,
 				AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */,
+				FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */,
 				AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
 				AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */,
@@ -1054,6 +1085,7 @@
 				AA2F3190275ADC3500855861 /* CameraUseCase.swift in Sources */,
 				AA4EFD2927623F75005017FC /* NBSegmentedButton.swift in Sources */,
 				AAE2FAAC276411E900FA2C5C /* SignInResponse.swift in Sources */,
+				FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */,
 				FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */,
 				AA2F3185275AD61800855861 /* PhotoRequestModel.swift in Sources */,
 				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
