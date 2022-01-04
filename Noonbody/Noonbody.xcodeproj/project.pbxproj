@@ -731,8 +731,6 @@
 		AABD83842784D099004E8BF8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */,
-				AA2F317D2759F7E800855861 /* NotificationViewModel.swift */,
 				AA74A0DB274962F400FA6678 /* ProfileTableViewCell.swift */,
 			);
 			path = Cells;
@@ -741,6 +739,8 @@
 		AABD83852784D0A8004E8BF8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */,
+				AA2F317D2759F7E800855861 /* NotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
