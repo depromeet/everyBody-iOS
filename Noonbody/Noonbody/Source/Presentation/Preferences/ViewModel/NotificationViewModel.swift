@@ -79,7 +79,7 @@ struct NotificationViewModel {
                                           isActivated: true)
             }
             .flatMap { request in
-                self.profileUseCase.putNotificationConfig(request: request)
+                self.profileUseCase.modifyNotificationConfig(request: request)
             }
             .share()
         

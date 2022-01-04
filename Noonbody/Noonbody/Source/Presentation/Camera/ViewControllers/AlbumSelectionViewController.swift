@@ -84,7 +84,7 @@ class AlbumSelectionViewController: BaseViewController {
                                                 albumId: self.requestManager.albumId,
                                                 bodyPart: self.requestManager.bodyPart,
                                                 takenAt: self.requestManager.takenAt)
-                DefaultCameraUseCase(cameraRepository: DefaultCameraRepository()).postPhoto(request: request)
+                DefaultCameraUseCase(cameraRepository: DefaultCameraRepository()).savePhoto(request: request)
                 self.showToast(type: .save)
                 for controller in self.navigationController!.viewControllers as Array {
                     if controller.isKind(of: CameraViewController.self) {

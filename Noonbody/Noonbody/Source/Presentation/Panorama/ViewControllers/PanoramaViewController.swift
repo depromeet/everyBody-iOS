@@ -148,6 +148,8 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Methods
     func bind() {
+        bodyPartSegmentControl.buttons[0].rx.tap
+        
         popupViewController.confirmButton.rx.tap
             .subscribe(onNext: {
                 self.deleteData.forEach { data in

@@ -29,11 +29,11 @@ final class DefaultAlbumUseCase: AlbumUseCase {
     }
     
     func createAlbum(request: CreateAlbumRequestModel) -> Observable<Album> {
-        return albumRepository.postCreateAlbum(request: request)
+        return albumRepository.createAlbum(request: request)
     }
     
     func createAlbum(requestModel: CreateAlbumRequestModel) -> Observable<Int> {
-        return albumRepository.postCreateAlbum(request: requestModel)
+        return albumRepository.createAlbum(request: requestModel)
     }
     
     func deletePicture(pictureId: Int) -> Observable<Int> {

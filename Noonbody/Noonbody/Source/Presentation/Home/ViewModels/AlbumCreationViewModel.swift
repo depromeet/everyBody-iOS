@@ -39,7 +39,7 @@ final class AlbumCreationViewModel {
                 return CreateAlbumRequestModel(name: name)
             }
             .flatMap { requestModel in
-                self.albumUseCase.postCreateAlbum(requestModel: requestModel)
+                self.albumUseCase.createAlbum(requestModel: requestModel)
             }
             .share()
         

@@ -87,7 +87,7 @@ class NotificationViewController: BaseViewController {
     // MARK: - Properties
     
     private let viewModel = NotificationViewModel(profileUseCase: DefaultProfileUseCase(
-                                                  preferenceRepository: DefaultProfileRepository()))
+                                                  preferenceRepository: DefaultPreferenceRepository()))
     private let dayButtonObservable = PublishSubject<[State]>()
     private let timeText = BehaviorSubject<String>(value: "")
     

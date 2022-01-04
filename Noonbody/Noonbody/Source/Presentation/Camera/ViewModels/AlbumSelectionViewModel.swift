@@ -60,7 +60,7 @@ final class AlbumSelectionViewModel {
                 return CreateAlbumRequestModel(name: name)
             }
             .flatMap { requestModel -> Observable<Album> in
-                return self.albumUseCase.postCreateAlbum(request: requestModel)
+                return self.albumUseCase.createAlbum(request: requestModel)
             }
             .share()
         

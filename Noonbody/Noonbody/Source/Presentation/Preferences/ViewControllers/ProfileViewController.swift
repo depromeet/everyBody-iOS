@@ -32,7 +32,7 @@ class ProfileViewController: BaseViewController {
     
     // TODO: - Coordinator로 변경 할 때 의존성 주입 컨테이너 생성
     private let viewModel = ProfileViewModel(profileUseCase: DefaultProfileUseCase(
-                                             preferenceRepository: DefaultProfileRepository()))
+                                             preferenceRepository: DefaultPreferenceRepository()))
     private lazy var cellData: [ProfileDataType] = [] {
         didSet {
             tableView.reloadData()

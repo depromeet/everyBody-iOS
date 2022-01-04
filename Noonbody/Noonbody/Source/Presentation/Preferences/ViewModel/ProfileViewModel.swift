@@ -80,7 +80,7 @@ final class ProfileViewModel {
                                            motto: motto)
             }
             .flatMap { request in
-                self.profileUseCase.putUserInfo(request: request)
+                self.profileUseCase.modifyUserInfo(request: request)
             }
             .share()
         

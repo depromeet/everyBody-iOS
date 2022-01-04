@@ -22,7 +22,7 @@ final class DefaultCameraUseCase: CameraUseCase {
     }
 
     func savePhoto(request: PhotoRequestModel) {
-        return cameraRepository.postPhoto(request: request)
+        return cameraRepository.savePhoto(request: request)
     }
     
 }
