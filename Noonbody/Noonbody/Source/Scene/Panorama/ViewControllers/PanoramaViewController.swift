@@ -175,7 +175,7 @@ class PanoramaViewController: BaseViewController {
                     self.albumData = data
                     self.initBodyPartData(index: self.bodyPart)
                 }
-                self.emptyView.isHidden = self.bodyPartData.count != 0 ? true : false
+                self.emptyView.isHidden = !self.bodyPartData.isEmpty ? true : false
             })
             .disposed(by: disposeBag)
     }
