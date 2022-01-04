@@ -37,51 +37,35 @@ class Camera: NSObject {
     let maximumZoom: CGFloat = 3.0
     var lastZoomFactor: CGFloat = 1.0
     
-    var outputImage = UIImage()
-    var outputImageRelay = PublishRelay<UIImage>()
-    var creationDate = PublishSubject<String>()
-    var meridiemTime = PublishSubject<String>()
-    var fullDate = PublishSubject<String>()
-    
     // MARK: - Initalizer
     
     init(cameraMode: CameraType = .back) {
         self.cameraType = cameraMode
         self.gridMode = false
-        session = AVCaptureSession()
-        output = AVCapturePhotoOutput()
-        session.sessionPreset = .photo
-        session.startRunning()
     }
     
     // MARK: - Methods
     
-    func checkPermission() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .authorized:
-            setUp()
-            return
-        case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { status in
-                if status {
-                    self.setUp()
-                }
-            }
-        default:
-            return
-        }
-    }
-    
     func setUp() {
-        session.startRunning()
+        session = AVCaptureSession()
+        session.beginConfiguration()
+        if session.canSetSessionPreset(.photo) {
+            session.sessionPreset = .photo
+        }
         
-        if let device = AVCaptureDevice.default(.builtInDualCamera, for: .video, position: .back) {
+        if let device = AVCaptureDevice.default(
+            .builtInWideAngleCamera,
+            for: .video,
+            position: .back) {
             backCamera = device
         } else {
             fatalError("cannot use the back camera")
         }
         
-        if let device = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) {
+        if let device = AVCaptureDevice.default(
+            .builtInWideAngleCamera,
+            for: .video,
+            position: .front) {
             frontCamera = device
         } else {
             fatalError("cannot use the front camera")
@@ -91,17 +75,44 @@ class Camera: NSObject {
             fatalError("cannot set the input with the back camera")
         }
         
+        backInput = backCameraDeviceInput
+        
+        if !session.canAddInput(backInput) {
+            return
+        }
+        
         guard let frontCameraDeviceInput = try? AVCaptureDeviceInput(device: frontCamera) else {
             fatalError("cannot set the input with the front camera")
         }
         
-        backInput = backCameraDeviceInput
         frontInput = frontCameraDeviceInput
         
-        if session.canAddInput(backInput) && session.canAddOutput(output) {
-            session.addInput(backInput)
+        if !session.canAddInput(frontInput) {
+            return
+        }
+        
+        session.addInput(backInput)
+    }
+    
+    func makeCameraLayer() -> UIView {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: Constant.Size.screenWidth, height: 500))
+        preview = AVCaptureVideoPreviewLayer(session: session)
+        preview.videoGravity = .resizeAspectFill
+        preview.connection?.videoOrientation = .portrait
+        preview.frame = view.frame
+        view.layer.insertSublayer(preview, at: 0)
+        
+        return view
+    }
+    
+    func cameraDataOutput() {
+        output = AVCapturePhotoOutput()
+        if session.canAddOutput(output) {
             session.addOutput(output)
         }
+        output.connections.first?.videoOrientation = .portrait
+        session.commitConfiguration()
+        session.startRunning()
     }
     
     func switchCameraInput() {
@@ -121,17 +132,6 @@ class Camera: NSObject {
 
     func gridToggleDidTap() {
         gridMode.toggle()
-    }
-
-    func takePicture() {
-        DispatchQueue.global(qos: .background).async {
-            self.output.capturePhoto(with: AVCapturePhotoSettings(), delegate: self)
-        }
-    }
-    
-    func savePicture(pictureData: Data) {
-        let image = UIImage(data: pictureData)!
-        outputImageRelay.accept(image)
     }
 
     // MARK: - Actions
@@ -165,32 +165,4 @@ class Camera: NSObject {
         default: break
         }
     }
-}
-
-extension Camera: AVCapturePhotoCaptureDelegate {
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let imageData = photo.fileDataRepresentation() else { return }
-        
-        createDateTime(photo: photo)
-        savePicture(pictureData: imageData)
-    }
-    
-    /* __nsdictionaryI 값을 string 형태로 변환 */
-    func createDateTime(photo: AVCapturePhoto) {
-        let dateString = photo.metadata.filter { dics in
-            dics.key == "{TIFF}"
-        }.map {
-            "\($0.value)"
-        }[0].split(separator: ";")[0]
-        
-        let convertedDate = dateString[dateString.firstIndex(of: "\"")!..<dateString.endIndex]
-            .replacingOccurrences(of: "\"", with: "")
-        
-        let date = AppDate(formattedDate: String(convertedDate.split(separator: " ")[0]), with: ":")
-        
-        creationDate.onNext(date.getFormattedDate(with: "."))
-        meridiemTime.onNext(String(convertedDate.split(separator: " ")[1]))
-    }
-    
 }
