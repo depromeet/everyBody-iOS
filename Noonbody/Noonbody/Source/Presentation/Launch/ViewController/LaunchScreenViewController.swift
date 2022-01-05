@@ -64,10 +64,10 @@ class LaunchScreenViewController: UIViewController {
             switch response {
             case .success(let data):
                 if let data = data {
-                    UserDefaults.standard.set(data.id, forKey: "id")
-                    UserDefaults.standard.set(data.nickname, forKey: "nickname")
-                    UserDefaults.standard.set(data.motto, forKey: "motto")
-                    UserDefaults.standard.set(data.profileImage, forKey: "profile")
+                    UserManager.userId = data.id
+                    UserManager.nickname = data.nickname
+                    UserManager.motto = data.motto
+                    UserManager.profile = data.profileImage
                     self.requestSignIn()
                 }
             case .failure(let err):
@@ -78,13 +78,13 @@ class LaunchScreenViewController: UIViewController {
     }
     
     private func requestSignIn() {
-        guard let userId = UserDefaults.standard.string(forKey: "id") else { return }
+        guard let userId = UserManager.userId else { return }
         AuthService.shared.postSignIn(request: SignInRequestModel(userId: userId,
                                                                   password: uuid)) { response in
             switch response {
             case .success(let data):
                 if let data = data {
-                    UserDefaults.standard.set(data.accessToken, forKey: "token")
+                    UserManager.token = data.accessToken
                 }
                 self.pushToHomeViewController()
             case .failure(let err):
