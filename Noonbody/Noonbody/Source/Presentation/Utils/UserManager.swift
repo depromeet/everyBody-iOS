@@ -24,4 +24,7 @@ class UserManager {
     @UserDefault(key: Constant.UserDefault.token, defaultValue: nil)
     static var token: String?
     
+    @UserDefault(key: Constant.UserDefault.saveBuiltInLibrary, defaultValue: false)
+    static var saveBulitInInLibrary: Bool
+    
 }

@@ -15,6 +15,7 @@ extension Constant {
         static let motto = "motto"
         static let profile = "profile"
         static let token = "token"
+        static let saveBuiltInLibrary = "builtInLibrary"
     }
     
 }

@@ -136,8 +136,10 @@ class CameraOutputViewController: BaseViewController {
     
     private func mergeLabelToImage() {
         requestManager.image = containerView.renderToImageView()
-        // TODO: - 갤러리에 이미지 저장, 나중에 환경설정 앱 만들면 갤러리 저장할 지 여부 UserDefault 값에 저장해서 값에 따라 분기처리
-//        UIImageWriteToSavedPhotosAlbum(containerView.renderToImageView(), nil, nil, nil)
+        
+        if UserManager.saveBulitInInLibrary {
+            UIImageWriteToSavedPhotosAlbum(containerView.renderToImageView(), nil, nil, nil)
+        }
     }
     
     private func getPickerViewTime() -> String {

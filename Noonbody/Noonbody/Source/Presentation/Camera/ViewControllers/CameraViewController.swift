@@ -22,9 +22,10 @@ class CameraViewController: BaseViewController {
     private lazy var takeButton = UIButton()
     private lazy var gridSwitch = CustomSwitch(width: 59, height: 24).then {
         $0.type = .text
+        $0.delegate = self
     }
     private var previewView = UIView()
-    private var gridIndicatorView = UIImageView().then {
+    private lazy var gridIndicatorView = UIImageView().then {
         $0.image = Asset.Image.gridIndicator.image
     }
     private let poseButtonView = TextWithIconView(icon: Asset.Image.pose.image, title: "포즈")
@@ -128,11 +129,6 @@ class CameraViewController: BaseViewController {
             .subscribe(onNext: { _ in
                 self.openAlbumLibrary()
             })
-            .disposed(by: disposeBag)
-        
-        gridSwitch.isToggleSubject
-            .map { !$0 }
-            .bind(to: gridIndicatorView.rx.isHidden)
             .disposed(by: disposeBag)
         
         bottomSheetView.indexPathSubject
@@ -347,4 +343,12 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
                                                         time: time)
         navigationController?.pushViewController(viewController, animated: false)
     }
+}
+
+extension CameraViewController: CustomSwitchDelegate {
+    
+    func switchButtonStateChanged(isOn: Bool) {
+        gridIndicatorView.isHidden = !isOn
+    }
+    
 }
