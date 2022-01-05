@@ -71,13 +71,12 @@ class PanoramaViewController: BaseViewController {
             navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty ? true : false
         }
     }
+    
     var bodyPartData: [PictureInfo] = [] {
         didSet {
-            topCollectionView.reloadData()
-            bottomCollectionView.reloadData()
+            setHide()
+            reloadCollectionView()
             editMode ? initEditNavigationBar() : initNavigationBar()
-            emptyView.isHidden = bodyPartData.isEmpty && !editMode ? false : true
-            gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
             if !bodyPartData.isEmpty {
                 bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
             }
@@ -87,15 +86,11 @@ class PanoramaViewController: BaseViewController {
     var gridMode = false {
         didSet {
             topCollectionView.reloadData()
-            if gridMode {
-                topCollectionView.bounces = true
-                topCollectionView.isScrollEnabled = true
-                topCollectionView.allowsSelection = false
-            } else {
-                topCollectionView.allowsSelection = true
-                topCollectionView.bounces = false
-                topCollectionView.isScrollEnabled = false
-                bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
+            topCollectionView.bounces = gridMode
+            topCollectionView.isScrollEnabled = gridMode
+            topCollectionView.allowsSelection = !gridMode
+            if !gridMode {
+                initBottomCollectionView()
             }
         }
     }
@@ -103,8 +98,8 @@ class PanoramaViewController: BaseViewController {
     var editMode = false {
         didSet {
             topCollectionView.reloadData()
-            topCollectionView.allowsMultipleSelection = editMode
             topCollectionView.isScrollEnabled = editMode
+            topCollectionView.allowsMultipleSelection = editMode
             gridButton.isHidden = editMode
         }
     }
@@ -186,10 +181,10 @@ class PanoramaViewController: BaseViewController {
             navigationItem.rightBarButtonItems = nil
         } else {
             navigationController?.initNavigationBar(navigationItem: self.navigationItem,
-                                                rightButtonImages: [Asset.Image.share.image,
-                                                                    Asset.Image.create.image],
-                                                rightActions: [#selector(tapSaveButton),
-                                                               #selector(tapEditOrCloseButton)])
+                                                    rightButtonImages: [Asset.Image.share.image,
+                                                                        Asset.Image.create.image],
+                                                    rightActions: [#selector(tapSaveButton),
+                                                                   #selector(tapEditOrCloseButton)])
         }
         navigationItem.leftBarButtonItems = nil
         title = albumData.name
@@ -246,6 +241,16 @@ class PanoramaViewController: BaseViewController {
         
         self.view.layoutIfNeeded()
         bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
+    }
+    
+    func reloadCollectionView() {
+        topCollectionView.reloadData()
+        bottomCollectionView.reloadData()
+    }
+    
+    func setHide(){
+        emptyView.isHidden = bodyPartData.isEmpty && !editMode ? false : true
+        gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
     }
     
     // MARK: - Actions
