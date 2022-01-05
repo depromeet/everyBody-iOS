@@ -16,6 +16,7 @@ extension Constant {
         static let profile = "profile"
         static let token = "token"
         static let saveBuiltInLibrary = "builtInLibrary"
+        static let gridMode = "gridMode"
     }
     
 }

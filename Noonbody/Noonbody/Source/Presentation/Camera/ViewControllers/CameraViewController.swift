@@ -26,6 +26,7 @@ class CameraViewController: BaseViewController {
     }
     private var previewView = UIView()
     private lazy var gridIndicatorView = UIImageView().then {
+        $0.isHidden = !UserManager.gridMode
         $0.image = Asset.Image.gridIndicator.image
     }
     private let poseButtonView = TextWithIconView(icon: Asset.Image.pose.image, title: "포즈")
@@ -46,6 +47,7 @@ class CameraViewController: BaseViewController {
 
         checkPermission()
         initNavigationBar()
+        initGridView()
         setupViewHierarchy()
         setupConstraint()
         addPinchGesture()
@@ -82,11 +84,15 @@ class CameraViewController: BaseViewController {
         }
     }
     
-    func initNavigationBar() {
+    private func initNavigationBar() {
         navigationController?.initNavigationBar(navigationItem: self.navigationItem,
                                                 rightButtonImages: [Asset.Image.refresh.image],
                                                 rightActions: [#selector(switchCameraMode)])
         title = "사진 촬영"
+    }
+    
+    private func initGridView() {
+        gridSwitch.isOn = UserManager.gridMode
     }
     
     private func initAttributes() {
@@ -348,6 +354,7 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
 extension CameraViewController: CustomSwitchDelegate {
     
     func switchButtonStateChanged(isOn: Bool) {
+        UserManager.gridMode = isOn
         gridIndicatorView.isHidden = !isOn
     }
     

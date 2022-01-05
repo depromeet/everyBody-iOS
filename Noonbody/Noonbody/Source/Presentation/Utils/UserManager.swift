@@ -27,4 +27,6 @@ class UserManager {
     @UserDefault(key: Constant.UserDefault.saveBuiltInLibrary, defaultValue: false)
     static var saveBulitInInLibrary: Bool
     
+    @UserDefault(key: Constant.UserDefault.gridMode, defaultValue: true)
+    static var gridMode: Bool
 }
