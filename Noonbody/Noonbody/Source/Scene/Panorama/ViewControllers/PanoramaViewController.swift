@@ -55,6 +55,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     private var emptyView = AlbumEmptyView(type: .picture).then {
+        $0.isHidden = true
         $0.button.addTarget(self, action: #selector(cameraButtonDidTap), for: .touchUpInside)
     }
     
@@ -74,9 +75,9 @@ class PanoramaViewController: BaseViewController {
         didSet {
             topCollectionView.reloadData()
             bottomCollectionView.reloadData()
-            initNavigationBar()
-            emptyView.isHidden = !bodyPartData.isEmpty ? true : false
-            gridButton.isHidden = bodyPartData.isEmpty ? true : false
+            editMode ? initEditNavigationBar() : initNavigationBar()
+            emptyView.isHidden = bodyPartData.isEmpty && !editMode ? false : true
+            gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
             if !bodyPartData.isEmpty {
                 bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
             }
@@ -166,7 +167,7 @@ class PanoramaViewController: BaseViewController {
             }).disposed(by: disposeBag)
         
         let input = PanoramaViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in }, albumId: albumId)
-        let output = viewModel.transeform(input: input)
+        let output = viewModel.transform(input: input)
         
         output.album
             .drive(onNext: { [weak self] data in
@@ -203,7 +204,6 @@ class PanoramaViewController: BaseViewController {
         
         self.title = "\(bodyPartData.count)장"
         navigationItem.rightBarButtonItem?.isEnabled = false
-        
     }
     
     private func initSegmentedControl() {
@@ -343,7 +343,6 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
         initBodyPartData(index: bodyPart)
-        initNavigationBar()
     }
 }
 
@@ -352,4 +351,3 @@ extension PanoramaViewController: PopUpActionProtocol {
         self.dismiss(animated: true, completion: nil)
     }
 }
-

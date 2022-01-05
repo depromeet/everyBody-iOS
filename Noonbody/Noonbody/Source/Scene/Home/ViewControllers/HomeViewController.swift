@@ -85,7 +85,7 @@ class HomeViewController: BaseViewController {
     
     func bind() {
         let input = AlbumViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in })
-        let output = viewModel.transeform(input: input)
+        let output = viewModel.transform(input: input)
         
         output.album
             .drive(onNext: { [weak self] data in

@@ -16,6 +16,7 @@ class CameraCollectionViewCell: UICollectionViewCell {
     var cameraButton = UIButton().then {
         $0.backgroundColor = Asset.Color.keyPurple.color
         $0.setImage(Asset.Image.photoCamera.image, for: .normal)
+        $0.isUserInteractionEnabled = false
     }
     
     // MARK: - Properties

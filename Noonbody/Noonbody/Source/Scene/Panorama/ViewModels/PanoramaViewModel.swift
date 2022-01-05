@@ -26,7 +26,7 @@ final class PanoramaViewModel {
         self.panoramaUseCase = panoramaUseCase
     }
     
-    func transeform(input: Input) -> Output {
+    func transform(input: Input) -> Output {
         let album = input.viewWillAppear
             .flatMap {
                 self.panoramaUseCase.getAlbum(albumId: input.albumId) }
@@ -42,4 +42,3 @@ final class PanoramaViewModel {
         return Output(album: data)
     }
 }
-
