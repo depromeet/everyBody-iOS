@@ -16,7 +16,7 @@
 		AA2F3185275AD61800855861 /* PhotoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3184275AD61800855861 /* PhotoRequestModel.swift */; };
 		AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3187275AD68900855861 /* CameraAPI.swift */; };
 		AA2F318A275ADB6400855861 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3189275ADB6400855861 /* CameraService.swift */; };
-		AA2F318E275ADBDD00855861 /* CameraRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F318D275ADBDD00855861 /* CameraRepository.swift */; };
+		AA2F318E275ADBDD00855861 /* DefaultCameraRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F318D275ADBDD00855861 /* DefaultCameraRepository.swift */; };
 		AA2F3190275ADC3500855861 /* CameraUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F318F275ADC3500855861 /* CameraUseCase.swift */; };
 		AA2F3192275B413100855861 /* AlbumSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */; };
 		AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */; };
@@ -48,10 +48,10 @@
 		AA74A0E1274971BF00FA6678 /* ProfileDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */; };
 		AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */; };
 		AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */; };
-		AA74A0E9274993CF00FA6678 /* ProfileRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E8274993CF00FA6678 /* ProfileRepository.swift */; };
+		AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E8274993CF00FA6678 /* DefaultPreferenceRepository.swift */; };
 		AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0ED2749960300FA6678 /* UserInfo.swift */; };
 		AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */; };
-		AA74A0F4274A696E00FA6678 /* PushSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */; };
+		AA74A0F4274A696E00FA6678 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F3274A696E00FA6678 /* NotificationViewController.swift */; };
 		AA74A0F6274A6EDB00FA6678 /* NBDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */; };
 		AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */; };
 		AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AA74A0FA274AD5F100FA6678 /* Kingfisher */; };
@@ -80,8 +80,12 @@
 		AAA9A5292757FFB400FE92DB /* CreateAlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */; };
 		AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A52A275800D600FE92DB /* CreateAlbumAPI.swift */; };
 		AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */; };
-		AAA9A52F2758041A00FE92DB /* AlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A52E2758041A00FE92DB /* AlbumRepository.swift */; };
+		AAA9A52F2758041A00FE92DB /* DefaultAlbumRepositry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A52E2758041A00FE92DB /* DefaultAlbumRepositry.swift */; };
 		AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A530275808B500FE92DB /* AlbumCreationViewModel.swift */; };
+		AABD83792784CC54004E8BF8 /* PreferenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */; };
+		AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */; };
+		AABD837D2784CCAC004E8BF8 /* PanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */; };
+		AABD837F2784CD36004E8BF8 /* CameraRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837E2784CD36004E8BF8 /* CameraRepository.swift */; };
 		AABEA2DD273C4A3300A06A8C /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */; };
 		AABEA2DE273C4A3300A06A8C /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */; };
 		AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D9273C4A3300A06A8C /* Pretendard-SemiBold.ttf */; };
@@ -134,7 +138,7 @@
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
 		FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */; };
 		FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */; };
-		FCAE821227832D3B007A729D /* PanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821027832D3B007A729D /* PanoramaRepository.swift */; };
+		FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */; };
 		FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821427832D6F007A729D /* PanoramaService.swift */; };
 		FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821527832D6F007A729D /* PanoramaAPI.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
@@ -167,7 +171,7 @@
 		AA2F3184275AD61800855861 /* PhotoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRequestModel.swift; sourceTree = "<group>"; };
 		AA2F3187275AD68900855861 /* CameraAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAPI.swift; sourceTree = "<group>"; };
 		AA2F3189275ADB6400855861 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
-		AA2F318D275ADBDD00855861 /* CameraRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRepository.swift; sourceTree = "<group>"; };
+		AA2F318D275ADBDD00855861 /* DefaultCameraRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCameraRepository.swift; sourceTree = "<group>"; };
 		AA2F318F275ADC3500855861 /* CameraUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUseCase.swift; sourceTree = "<group>"; };
 		AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectionViewModel.swift; sourceTree = "<group>"; };
 		AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCreationViewController.swift; sourceTree = "<group>"; };
@@ -198,10 +202,10 @@
 		AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataType.swift; sourceTree = "<group>"; };
 		AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+ViewWillAppear.swift"; sourceTree = "<group>"; };
-		AA74A0E8274993CF00FA6678 /* ProfileRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRepository.swift; sourceTree = "<group>"; };
+		AA74A0E8274993CF00FA6678 /* DefaultPreferenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceRepository.swift; sourceTree = "<group>"; };
 		AA74A0ED2749960300FA6678 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+attributedPlaceholder.swift"; sourceTree = "<group>"; };
-		AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushSettingViewController.swift; sourceTree = "<group>"; };
+		AA74A0F3274A696E00FA6678 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDayButton.swift; sourceTree = "<group>"; };
 		AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBPrimaryButton.swift; sourceTree = "<group>"; };
 		AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+setImage.swift"; sourceTree = "<group>"; };
@@ -228,8 +232,12 @@
 		AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumService.swift; sourceTree = "<group>"; };
 		AAA9A52A275800D600FE92DB /* CreateAlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumAPI.swift; sourceTree = "<group>"; };
 		AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumUseCase.swift; sourceTree = "<group>"; };
-		AAA9A52E2758041A00FE92DB /* AlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRepository.swift; sourceTree = "<group>"; };
+		AAA9A52E2758041A00FE92DB /* DefaultAlbumRepositry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAlbumRepositry.swift; sourceTree = "<group>"; };
 		AAA9A530275808B500FE92DB /* AlbumCreationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCreationViewModel.swift; sourceTree = "<group>"; };
+		AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceRepository.swift; sourceTree = "<group>"; };
+		AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRepository.swift; sourceTree = "<group>"; };
+		AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaRepository.swift; sourceTree = "<group>"; };
+		AABD837E2784CD36004E8BF8 /* CameraRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRepository.swift; sourceTree = "<group>"; };
 		AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
 		AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		AABEA2D9273C4A3300A06A8C /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -280,7 +288,7 @@
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
 		FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaUseCase.swift; sourceTree = "<group>"; };
-		FCAE821027832D3B007A729D /* PanoramaRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaRepository.swift; sourceTree = "<group>"; };
+		FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPanoramaRepository.swift; sourceTree = "<group>"; };
 		FCAE821427832D6F007A729D /* PanoramaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaService.swift; sourceTree = "<group>"; };
 		FCAE821527832D6F007A729D /* PanoramaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaAPI.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
@@ -327,62 +335,6 @@
 			path = Camera;
 			sourceTree = "<group>";
 		};
-		AA2F318B275ADBAC00855861 /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				AA2F318F275ADC3500855861 /* CameraUseCase.swift */,
-			);
-			path = UseCase;
-			sourceTree = "<group>";
-		};
-		AA2F318C275ADBB200855861 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				AA2F318D275ADBDD00855861 /* CameraRepository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
-		AA5B85CD2716D043002276C3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				AA9A41462715EC2C002BBE15 /* Camera.swift */,
-				AAC7ACBF272D7E0400B2BE1E /* Pose.swift */,
-				AAC7AD172735A11B00B2BE1E /* AppDate.swift */,
-				AABEA2E4273C578E00A06A8C /* Album.swift */,
-				AA2F3182275AC84700855861 /* CameraRequestManager.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		AA5B85D02716D4BE002276C3 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */,
-				AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */,
-				AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */,
-				AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */,
-				AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */,
-				AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */,
-				AA959115274436A4007772BD /* UIView+addShadow.swift */,
-				AA95911727443FB9007772BD /* UIViewController+hideKeyboard.swift */,
-				AA95911E27445CD0007772BD /* className.swift */,
-				AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */,
-				FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */,
-				AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */,
-				AA73665227485C3D002B726D /* String+2DigitFormat.swift */,
-				AA74A0DD27496F8E00FA6678 /* UITableView+Generic.swift */,
-				AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */,
-				AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */,
-				AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */,
-				AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */,
-				AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */,
-				AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */,
-				AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		AA5B85D9271700CA002276C3 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,15 +343,6 @@
 				AAF2D42627240E4C0029219D /* Assets+Generated.swift */,
 			);
 			path = Constants;
-			sourceTree = "<group>";
-		};
-		AA73AFA8274FB9F300FD7C70 /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */,
-				AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */,
-			);
-			path = UseCase;
 			sourceTree = "<group>";
 		};
 		AA73AFAD274FE2E200FD7C70 /* Network */ = {
@@ -411,8 +354,7 @@
 				AA2F31752759F3DC00855861 /* Notification */,
 				FC23AC0E275A03720067EEF7 /* Album */,
 				AAA9A5272757FF7200FE92DB /* CreateAlbum */,
-				AA73AFBE27502B4E00FD7C70 /* Request */,
-				AA73AFB3274FE33000FD7C70 /* Base */,
+				AA73AFB3274FE33000FD7C70 /* Utils */,
 				AA73AFAE274FE30C00FD7C70 /* MyPage */,
 			);
 			path = Network;
@@ -427,7 +369,7 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
-		AA73AFB3274FE33000FD7C70 /* Base */ = {
+		AA73AFB3274FE33000FD7C70 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				AA2F3180275AA17D00855861 /* MoyaLoggingPlugin.swift */,
@@ -435,19 +377,7 @@
 				AA73AFB8274FF8AC00FD7C70 /* BaseTargetType.swift */,
 				AA73AFC527518B8900FD7C70 /* MultiMoyaProvider.swift */,
 			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		AA73AFBE27502B4E00FD7C70 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */,
-				AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */,
-				AA2F3184275AD61800855861 /* PhotoRequestModel.swift */,
-				AAE2FAA227640C9200FA2C5C /* SignUpRequestModel.swift */,
-				AAE2FAA4276410B300FA2C5C /* SignInRequestModel.swift */,
-			);
-			path = Request;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		AA74A0DF274971B200FA6678 /* Data */ = {
@@ -456,24 +386,6 @@
 				AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		AA74A0E7274993BE00FA6678 /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				AA74A0E8274993CF00FA6678 /* ProfileRepository.swift */,
-				AAA9A52E2758041A00FE92DB /* AlbumRepository.swift */,
-			);
-			path = Repository;
-			sourceTree = "<group>";
-		};
-		AA74A0EC274995F900FA6678 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				AA74A0ED2749960300FA6678 /* UserInfo.swift */,
-				AA2F31782759F53F00855861 /* NotificationConfig.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		AA7E0A2926FB0A6100106DC2 = {
@@ -509,11 +421,9 @@
 		AA7E0A4C26FB0AE200106DC2 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				AAE2FA7B276289B200FA2C5C /* Scene */,
-				AA73AFAD274FE2E200FD7C70 /* Network */,
-				AA95911B27444F3D007772BD /* Protocol */,
-				AA9591102744336D007772BD /* Component */,
-				AA5B85D02716D4BE002276C3 /* Extensions */,
+				AABD83752784BDF0004E8BF8 /* Data */,
+				AABD83722784BCCF004E8BF8 /* Domain */,
+				AAE2FA7B276289B200FA2C5C /* Presentation */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -546,9 +456,6 @@
 		AA7E0A4F26FB0B4F00106DC2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AA73AFA8274FB9F300FD7C70 /* UseCase */,
-				AA74A0EC274995F900FA6678 /* Model */,
-				AA74A0E7274993BE00FA6678 /* Repository */,
 				AA74A0DF274971B200FA6678 /* Data */,
 				AA7E0A5626FB0B9800106DC2 /* Views */,
 				AA7E0A5526FB0B8F00106DC2 /* Cells */,
@@ -561,10 +468,8 @@
 		AA7E0A5026FB0B5800106DC2 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				AABD83822784CE41004E8BF8 /* Utils */,
 				AAE2FA70276288A200FA2C5C /* Views */,
-				AA2F318C275ADBB200855861 /* Repository */,
-				AA2F318B275ADBAC00855861 /* UseCase */,
-				AA5B85CD2716D043002276C3 /* Model */,
 				AA7E0A6026FB0BD500106DC2 /* ViewControllers */,
 				AA7E0A5F26FB0BD000106DC2 /* ViewModels */,
 				AA7E0A5E26FB0BCC00106DC2 /* Cells */,
@@ -575,10 +480,7 @@
 		AA7E0A5226FB0B6900106DC2 /* Panorama */ = {
 			isa = PBXGroup;
 			children = (
-				FCAE820F27832D3B007A729D /* Repository */,
-				FCAE820D27832D3B007A729D /* UseCase */,
 				FCF8C9E0274B974E004263FF /* Extensions */,
-				AA7E0A6826FB0C0C00106DC2 /* Views */,
 				AA7E0A6726FB0C0800106DC2 /* Cells */,
 				AA7E0A6626FB0C0300106DC2 /* ViewModels */,
 				AA7E0A6526FB0BFD00106DC2 /* ViewControllers */,
@@ -589,8 +491,6 @@
 		AA7E0A5326FB0B7100106DC2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0D927495E2300FA6678 /* ProfileViewController.swift */,
-				AA74A0F3274A696E00FA6678 /* PushSettingViewController.swift */,
 				AA5B85E027171072002276C3 /* HomeViewController.swift */,
 				AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */,
 			);
@@ -600,9 +500,8 @@
 		AA7E0A5426FB0B7D00106DC2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */,
+				AABEA2E6273C585C00A06A8C /* AlbumViewModel.swift */,
 				AAA9A530275808B500FE92DB /* AlbumCreationViewModel.swift */,
-				AA2F317D2759F7E800855861 /* NotificationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -610,7 +509,6 @@
 		AA7E0A5526FB0B8F00106DC2 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0DB274962F400FA6678 /* ProfileTableViewCell.swift */,
 				AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -636,7 +534,6 @@
 			isa = PBXGroup;
 			children = (
 				AAC7ACA62729E91400B2BE1E /* CameraViewModel.swift */,
-				AABEA2E6273C585C00A06A8C /* AlbumViewModel.swift */,
 				AA7366502746BD53002B726D /* DateViewModel.swift */,
 				AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */,
 			);
@@ -679,21 +576,6 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		AA7E0A6826FB0C0C00106DC2 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		AA95910B27442973007772BD /* PopUp */ = {
-			isa = PBXGroup;
-			children = (
-				AA95910E27442999007772BD /* PopUpViewController.swift */,
-			);
-			path = PopUp;
-			sourceTree = "<group>";
-		};
 		AA9591102744336D007772BD /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,14 +593,6 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
-		AA95911B27444F3D007772BD /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				AA95911C27444F4F007772BD /* PopUpActionDelegate.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		AAA9A5272757FF7200FE92DB /* CreateAlbum */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,6 +600,158 @@
 				AAA9A52A275800D600FE92DB /* CreateAlbumAPI.swift */,
 			);
 			path = CreateAlbum;
+			sourceTree = "<group>";
+		};
+		AABD83722784BCCF004E8BF8 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				AABD83762784CC17004E8BF8 /* Interfaces */,
+				AABD83742784BD97004E8BF8 /* UseCases */,
+				AABD83732784BD16004E8BF8 /* Entity */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		AABD83732784BD16004E8BF8 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				AA74A0ED2749960300FA6678 /* UserInfo.swift */,
+				AAC7ACBF272D7E0400B2BE1E /* Pose.swift */,
+				AA2F31782759F53F00855861 /* NotificationConfig.swift */,
+				AABEA2E4273C578E00A06A8C /* Album.swift */,
+				AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */,
+				AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */,
+				AA2F3184275AD61800855861 /* PhotoRequestModel.swift */,
+				AAE2FAA227640C9200FA2C5C /* SignUpRequestModel.swift */,
+				AAE2FAA4276410B300FA2C5C /* SignInRequestModel.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		AABD83742784BD97004E8BF8 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */,
+				AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */,
+				AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */,
+				AA2F318F275ADC3500855861 /* CameraUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		AABD83752784BDF0004E8BF8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				AABD83802784CD88004E8BF8 /* Repositories */,
+				AA73AFAD274FE2E200FD7C70 /* Network */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		AABD83762784CC17004E8BF8 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				AABD83772784CC2F004E8BF8 /* Repositories */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		AABD83772784CC2F004E8BF8 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */,
+				AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */,
+				AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */,
+				AABD837E2784CD36004E8BF8 /* CameraRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AABD83802784CD88004E8BF8 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */,
+				AA74A0E8274993CF00FA6678 /* DefaultPreferenceRepository.swift */,
+				AAA9A52E2758041A00FE92DB /* DefaultAlbumRepositry.swift */,
+				AA2F318D275ADBDD00855861 /* DefaultCameraRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		AABD83812784CDEF004E8BF8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AA95910E27442999007772BD /* PopUpViewController.swift */,
+				AA95911C27444F4F007772BD /* PopUpActionDelegate.swift */,
+				AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */,
+				AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */,
+				AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */,
+				AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */,
+				AAC7ACF82734056700B2BE1E /* UIStackView+addArrangedSubviews.swift */,
+				AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */,
+				AA959115274436A4007772BD /* UIView+addShadow.swift */,
+				AA95911727443FB9007772BD /* UIViewController+hideKeyboard.swift */,
+				AA95911E27445CD0007772BD /* className.swift */,
+				AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */,
+				FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */,
+				AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */,
+				AA73665227485C3D002B726D /* String+2DigitFormat.swift */,
+				AA74A0DD27496F8E00FA6678 /* UITableView+Generic.swift */,
+				AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */,
+				AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */,
+				AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */,
+				AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */,
+				AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */,
+				AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */,
+				AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AABD83822784CE41004E8BF8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AA9A41462715EC2C002BBE15 /* Camera.swift */,
+				AA2F3182275AC84700855861 /* CameraRequestManager.swift */,
+				AAC7AD172735A11B00B2BE1E /* AppDate.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AABD83832784D08F004E8BF8 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				AABD83862784D0C9004E8BF8 /* ViewControllers */,
+				AABD83852784D0A8004E8BF8 /* ViewModel */,
+				AABD83842784D099004E8BF8 /* Cells */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		AABD83842784D099004E8BF8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AA74A0DB274962F400FA6678 /* ProfileTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		AABD83852784D0A8004E8BF8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */,
+				AA2F317D2759F7E800855861 /* NotificationViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AABD83862784D0C9004E8BF8 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA74A0F3274A696E00FA6678 /* NotificationViewController.swift */,
+				AA74A0D927495E2300FA6678 /* ProfileViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		AAC7AC9D2729D83A00B2BE1E /* Base */ = {
@@ -762,17 +788,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		AAE2FA7B276289B200FA2C5C /* Scene */ = {
+		AAE2FA7B276289B200FA2C5C /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				AABD83832784D08F004E8BF8 /* Preferences */,
+				AABD83812784CDEF004E8BF8 /* Utils */,
+				AA9591102744336D007772BD /* Component */,
 				AAE2FA9927640AB400FA2C5C /* Launch */,
 				AAC7AC9D2729D83A00B2BE1E /* Base */,
 				AA7E0A4F26FB0B4F00106DC2 /* Home */,
-				AA95910B27442973007772BD /* PopUp */,
 				AA7E0A5226FB0B6900106DC2 /* Panorama */,
 				AA7E0A5026FB0B5800106DC2 /* Camera */,
 			);
-			path = Scene;
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		AAE2FA8A2763FE8300FA2C5C /* Auth */ = {
@@ -833,22 +861,6 @@
 				FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */,
 			);
 			path = Album;
-			sourceTree = "<group>";
-		};
-		FCAE820D27832D3B007A729D /* UseCase */ = {
-			isa = PBXGroup;
-			children = (
-				FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */,
-			);
-			path = UseCase;
-			sourceTree = "<group>";
-		};
-		FCAE820F27832D3B007A729D /* Repository */ = {
-			isa = PBXGroup;
-			children = (
-				FCAE821027832D3B007A729D /* PanoramaRepository.swift */,
-			);
-			path = Repository;
 			sourceTree = "<group>";
 		};
 		FCAE821327832D6F007A729D /* Panorama */ = {
@@ -1012,13 +1024,14 @@
 			files = (
 				AAC7ACA72729E91400B2BE1E /* CameraViewModel.swift in Sources */,
 				AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */,
-				FCAE821227832D3B007A729D /* PanoramaRepository.swift in Sources */,
+				FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
 				AAE2FA9D27640ADC00FA2C5C /* LaunchService.swift in Sources */,
 				AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */,
 				AA2F3183275AC84700855861 /* CameraRequestManager.swift in Sources */,
 				AA95910F27442999007772BD /* PopUpViewController.swift in Sources */,
 				AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */,
+				AABD837D2784CCAC004E8BF8 /* PanoramaRepository.swift in Sources */,
 				AA959116274436A4007772BD /* UIView+addShadow.swift in Sources */,
 				AA5B85E127171072002276C3 /* HomeViewController.swift in Sources */,
 				AA73AFB2274FE32700FD7C70 /* MyPageAPI.swift in Sources */,
@@ -1038,7 +1051,7 @@
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
 				AA95911827443FB9007772BD /* UIViewController+hideKeyboard.swift in Sources */,
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
-				AA2F318E275ADBDD00855861 /* CameraRepository.swift in Sources */,
+				AA2F318E275ADBDD00855861 /* DefaultCameraRepository.swift in Sources */,
 				AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */,
 				AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
@@ -1046,7 +1059,7 @@
 				AA74A0E1274971BF00FA6678 /* ProfileDataType.swift in Sources */,
 				AA7E0A4026FB0A6100106DC2 /* Noonbody.xcdatamodeld in Sources */,
 				AAE2FA9F27640C5200FA2C5C /* AuthAPI.swift in Sources */,
-				AA74A0F4274A696E00FA6678 /* PushSettingViewController.swift in Sources */,
+				AA74A0F4274A696E00FA6678 /* NotificationViewController.swift in Sources */,
 				AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */,
 				FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */,
 				AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */,
@@ -1062,13 +1075,14 @@
 				AAE2FA72276288D800FA2C5C /* TextWithIconView.swift in Sources */,
 				FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */,
 				AA95911D27444F4F007772BD /* PopUpActionDelegate.swift in Sources */,
-				AAA9A52F2758041A00FE92DB /* AlbumRepository.swift in Sources */,
+				AAA9A52F2758041A00FE92DB /* DefaultAlbumRepositry.swift in Sources */,
 				AA2F317B2759F5E200855861 /* NotificationService.swift in Sources */,
 				AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */,
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
+				AABD837F2784CD36004E8BF8 /* CameraRepository.swift in Sources */,
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
-				AA74A0E9274993CF00FA6678 /* ProfileRepository.swift in Sources */,
+				AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
 				AAA9A5292757FFB400FE92DB /* CreateAlbumService.swift in Sources */,
 				AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */,
@@ -1109,10 +1123,12 @@
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,
+				AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */,
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
 				AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */,
 				AAA9A5262757FEF400FE92DB /* CreateAlbumRequestModel.swift in Sources */,
 				AA4EFD2127623F38005017FC /* SelectedView.swift in Sources */,
+				AABD83792784CC54004E8BF8 /* PreferenceRepository.swift in Sources */,
 				FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */,
 				AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */,
 				FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */,
