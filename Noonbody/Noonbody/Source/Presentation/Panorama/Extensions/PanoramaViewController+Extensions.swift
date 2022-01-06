@@ -97,7 +97,9 @@ extension PanoramaViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == topCollectionView && editMode {
+        if indexPath.row == 0 {
+            cameraButtonDidTap()
+        } else if collectionView == topCollectionView && editMode {
             deleteData.append(bodyPartData[indexPath.row-1].id)
         }
     }
@@ -108,4 +110,3 @@ extension PanoramaViewController: UICollectionViewDataSource {
         }
     }
 }
-
