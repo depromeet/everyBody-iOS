@@ -22,7 +22,7 @@ extension BaseTargetType {
 
     var headers: [String: String]? {
         // swiftlint:disable force_cast
-        let token = UserDefaults.standard.string(forKey: "token") ?? ""
+        let token = UserManager.token ?? ""
         let header = [
             "Content-Type": "application/json",
             "Authorization": "Bearer " + token]

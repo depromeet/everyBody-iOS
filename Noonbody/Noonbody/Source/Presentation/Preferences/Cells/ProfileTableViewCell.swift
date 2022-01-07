@@ -25,9 +25,10 @@ class ProfileTableViewCell: UITableViewCell {
         $0.textColor = Asset.Color.gray80.color
         $0.clearButtonMode = .whileEditing
     }
-    private let saveSwitch = CustomSwitch(width: 40, height: 24).then {
+    lazy var saveSwitch = CustomSwitch(width: 40, height: 24).then {
         $0.descriptionLabel.isHidden = true
         $0.setOffColor(color: Asset.Color.gray30.color)
+        $0.delegate = self
     }
     
     private let separatorLine = UIView().then {
@@ -141,4 +142,12 @@ class ProfileTableViewCell: UITableViewCell {
         button.setImage(image, for: .normal)
     }
     
+}
+
+extension ProfileTableViewCell: CustomSwitchDelegate {
+    
+    func switchButtonStateChanged(isOn: Bool) {
+        UserManager.saveBulitInInLibrary = isOn
+    }
+
 }

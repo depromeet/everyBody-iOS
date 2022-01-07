@@ -46,7 +46,7 @@ extension AuthAPI {
                                                    "kind": "SIMPLE"],
                                       encoding: JSONEncoding.default)
         case .postSignIn(let request):
-            return .requestParameters(parameters: ["user_id": Int(request.userId)!,
+            return .requestParameters(parameters: ["user_id": request.userId,
                                                    "password": request.password],
                                       encoding: JSONEncoding.default)
         }
