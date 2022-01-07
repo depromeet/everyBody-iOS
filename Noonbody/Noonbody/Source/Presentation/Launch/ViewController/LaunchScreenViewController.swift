@@ -44,7 +44,7 @@ class LaunchScreenViewController: UIViewController {
     @objc
     private func checkFirstLaunch(notification: NSNotification) {
         if let fcmToken = notification.object as? String {
-            if launchService.isFirstLaunch {
+            if UserManager.userId == nil {
                 requestSignUp(fcmToken: fcmToken)
             } else {
                 requestSignIn()
