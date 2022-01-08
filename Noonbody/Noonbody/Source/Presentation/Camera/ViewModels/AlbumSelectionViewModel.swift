@@ -22,20 +22,14 @@ final class AlbumSelectionViewModel {
         let saveButtonControlEvent: ControlEvent<Void>
         let albumSelection: Driver<IndexPath>
         let photoRequestModel: Observable<PhotoRequestModel>
-    }
-    
-    struct Output {
-        let album: Driver<[Album]>
-        let statusCode: Driver<Int>
-    }
-    
-    struct PopUpInput {
         let albumNameTextField: Observable<String>
         let creationControlEvent: ControlEvent<Void>
     }
     
-    struct PopUpOutput {
-        let album: Driver<Album?>
+    struct Output {
+        let album: Driver<[Album]>
+        let newAlbum: Driver<Album?>
+        let statusCode: Driver<Int>
     }
     
     init(albumUseCase: AlbumUseCase) {
@@ -69,12 +63,8 @@ final class AlbumSelectionViewModel {
                 return statusCode
             }.asDriver(onErrorJustReturn: 404)
         
-        return Output(album: data, statusCode: statusCode)
-    }
-    
-    func albumCreationDidTap(input: PopUpInput) -> PopUpOutput {
-    
-        let album = input.creationControlEvent.withLatestFrom(input.albumNameTextField)
+        let albumResponse = input.creationControlEvent
+            .withLatestFrom(input.albumNameTextField)
             .map { name in
                 return CreateAlbumRequestModel(name: name)
             }
@@ -83,12 +73,13 @@ final class AlbumSelectionViewModel {
             }
             .share()
         
-        let data = album
+        let newAlbum = albumResponse
             .compactMap { $0 }
             .map { response -> Album in
                 return response
             }.asDriver(onErrorJustReturn: nil)
         
-        return PopUpOutput(album: data)
+        return Output(album: data, newAlbum: newAlbum, statusCode: statusCode)
     }
+    
 }

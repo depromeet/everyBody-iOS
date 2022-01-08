@@ -79,7 +79,9 @@ class AlbumSelectionViewController: BaseViewController {
         let input = AlbumSelectionViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
                                                   saveButtonControlEvent: completeBarButtonItem.rx.tap,
                                                   albumSelection: collectionView.rx.itemSelected.asDriver(),
-                                                  photoRequestModel: albumRequest)
+                                                  photoRequestModel: albumRequest,
+                                                  albumNameTextField: popUp.textField.rx.text.orEmpty.asObservable(),
+                                                  creationControlEvent: popUp.confirmButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output.album
@@ -107,11 +109,7 @@ class AlbumSelectionViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        let popUpInput = AlbumSelectionViewModel.PopUpInput(albumNameTextField: popUp.textField.rx.text.orEmpty.asObservable(),
-                                                            creationControlEvent: popUp.confirmButton.rx.tap)
-        let popUpOutput = viewModel.albumCreationDidTap(input: popUpInput)
-        
-        popUpOutput.album
+        output.newAlbum
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
                 if let data = data {
