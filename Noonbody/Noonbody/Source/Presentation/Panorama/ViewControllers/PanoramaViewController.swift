@@ -55,6 +55,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     private var emptyView = AlbumEmptyView(type: .picture).then {
+        $0.isHidden = true
         $0.button.addTarget(self, action: #selector(cameraButtonDidTap), for: .touchUpInside)
     }
     
@@ -70,13 +71,12 @@ class PanoramaViewController: BaseViewController {
             navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty ? true : false
         }
     }
+    
     var bodyPartData: [PictureInfo] = [] {
         didSet {
-            topCollectionView.reloadData()
-            bottomCollectionView.reloadData()
-            initNavigationBar()
-            emptyView.isHidden = !bodyPartData.isEmpty ? true : false
-            gridButton.isHidden = bodyPartData.isEmpty ? true : false
+            setHide()
+            reloadCollectionView()
+            editMode ? initEditNavigationBar() : initNavigationBar()
             if !bodyPartData.isEmpty {
                 bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
             }
@@ -86,15 +86,11 @@ class PanoramaViewController: BaseViewController {
     var gridMode = false {
         didSet {
             topCollectionView.reloadData()
-            if gridMode {
-                topCollectionView.bounces = true
-                topCollectionView.isScrollEnabled = true
-                topCollectionView.allowsSelection = false
-            } else {
-                topCollectionView.allowsSelection = true
-                topCollectionView.bounces = false
-                topCollectionView.isScrollEnabled = false
-                bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
+            topCollectionView.bounces = gridMode
+            topCollectionView.isScrollEnabled = gridMode
+            topCollectionView.allowsSelection = !gridMode
+            if !gridMode {
+                initBottomCollectionView()
             }
         }
     }
@@ -102,8 +98,8 @@ class PanoramaViewController: BaseViewController {
     var editMode = false {
         didSet {
             topCollectionView.reloadData()
-            topCollectionView.allowsMultipleSelection = editMode
             topCollectionView.isScrollEnabled = editMode
+            topCollectionView.allowsMultipleSelection = editMode
             gridButton.isHidden = editMode
         }
     }
@@ -166,7 +162,7 @@ class PanoramaViewController: BaseViewController {
             }).disposed(by: disposeBag)
         
         let input = PanoramaViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in }, albumId: albumId)
-        let output = viewModel.transeform(input: input)
+        let output = viewModel.transform(input: input)
         
         output.album
             .drive(onNext: { [weak self] data in
@@ -185,10 +181,10 @@ class PanoramaViewController: BaseViewController {
             navigationItem.rightBarButtonItems = nil
         } else {
             navigationController?.initNavigationBar(navigationItem: self.navigationItem,
-                                                rightButtonImages: [Asset.Image.share.image,
-                                                                    Asset.Image.create.image],
-                                                rightActions: [#selector(tapSaveButton),
-                                                               #selector(tapEditOrCloseButton)])
+                                                    rightButtonImages: [Asset.Image.share.image,
+                                                                        Asset.Image.create.image],
+                                                    rightActions: [#selector(tapSaveButton),
+                                                                   #selector(tapEditOrCloseButton)])
         }
         navigationItem.leftBarButtonItems = nil
         title = albumData.name
@@ -203,7 +199,6 @@ class PanoramaViewController: BaseViewController {
         
         self.title = "\(bodyPartData.count)장"
         navigationItem.rightBarButtonItem?.isEnabled = false
-        
     }
     
     private func initSegmentedControl() {
@@ -246,6 +241,16 @@ class PanoramaViewController: BaseViewController {
         
         self.view.layoutIfNeeded()
         bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
+    }
+    
+    func reloadCollectionView() {
+        topCollectionView.reloadData()
+        bottomCollectionView.reloadData()
+    }
+    
+    func setHide(){
+        emptyView.isHidden = bodyPartData.isEmpty && !editMode ? false : true
+        gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
     }
     
     // MARK: - Actions
@@ -343,7 +348,6 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
         initBodyPartData(index: bodyPart)
-        initNavigationBar()
     }
 }
 
@@ -352,4 +356,3 @@ extension PanoramaViewController: PopUpActionProtocol {
         self.dismiss(animated: true, completion: nil)
     }
 }
-

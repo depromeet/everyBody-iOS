@@ -13,9 +13,8 @@ class CameraCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UIComponenets
     
-    var cameraButton = UIButton().then {
-        $0.backgroundColor = Asset.Color.keyPurple.color
-        $0.setImage(Asset.Image.photoCamera.image, for: .normal)
+    var cameraImage = UIImageView().then {
+        $0.image = Asset.Image.photoCamera.image
     }
     
     // MARK: - Properties
@@ -26,6 +25,7 @@ class CameraCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViewHierarchy()
         setConstraints()
+        setCell()
     }
     
     required init?(coder: NSCoder) {
@@ -39,12 +39,16 @@ class CameraCollectionViewCell: UICollectionViewCell {
     // MARK: - Methods
     
     func setupViewHierarchy() {
-        contentView.addSubview(cameraButton)
+        contentView.addSubview(cameraImage)
     }
     
     func setConstraints() {
-        cameraButton.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+        cameraImage.snp.makeConstraints {
+            $0.center.equalToSuperview()
         }
+    }
+    
+    func setCell() {
+        contentView.backgroundColor = Asset.Color.keyPurple.color
     }
 }

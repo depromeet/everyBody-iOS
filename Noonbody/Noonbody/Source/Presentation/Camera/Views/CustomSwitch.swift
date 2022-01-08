@@ -10,6 +10,10 @@ import UIKit
 import RxSwift
 import RxGesture
 
+protocol CustomSwitchDelegate: AnyObject {
+    func switchButtonStateChanged(isOn: Bool)
+}
+
 class CustomSwitch: UIView {
     
     enum Style {
@@ -33,9 +37,15 @@ class CustomSwitch: UIView {
     
     // MARK: - Properties
     
+    weak var delegate: CustomSwitchDelegate?
+    
     let disposeBag = DisposeBag()
-    var isToggleSubject = BehaviorSubject<Bool>(value: true)
-    var isOn: Bool = true
+    var isOn: Bool = true {
+        didSet {
+            isOn ? toggleSwitchOn() : toggleSwitchOff()
+        }
+    }
+    var defaultKey: String?
     
     lazy var type: Style = .basic
     
@@ -48,6 +58,7 @@ class CustomSwitch: UIView {
         
         setLayout()
         setAttribute()
+        setInitalState()
     }
     
     override init(frame: CGRect) {
@@ -55,7 +66,6 @@ class CustomSwitch: UIView {
         
         bind()
         render()
-        setLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -96,20 +106,18 @@ class CustomSwitch: UIView {
         }
     }
     
+    private func setInitalState() {
+        isOn ? toggleSwitchOn() : toggleSwitchOff()
+    }
+    
     func bind() {
         self.rx
             .tapGesture()
             .when(.recognized)
             .subscribe(onNext: { [self] _ in
-                isToggleSubject.onNext(isOn)
-            })
-            .disposed(by: disposeBag)
-        
-        isToggleSubject
-            .map { $0 }
-            .subscribe(onNext: { [self] in
-                $0 ? toggleSwitchOn() : toggleSwitchOff()
-                self.isOn.toggle()
+                isOn.toggle()
+                isOn ? toggleSwitchOn() : toggleSwitchOff()
+                delegate?.switchButtonStateChanged(isOn: isOn)
             })
             .disposed(by: disposeBag)
     }
@@ -118,8 +126,12 @@ class CustomSwitch: UIView {
     
     func toggleSwitchOn() {
         makeVibrate()
+        circleView.snp.remakeConstraints {
+            $0.top.trailing.bottom.equalToSuperview().inset(2)
+            $0.width.height.equalTo(20)
+        }
         UIView.animate(withDuration: 0.2) { [self] in
-            circleView.center.x += self.frame.width - self.circleView.frame.width - 4
+            layoutIfNeeded()
             backgroundColor = toggleOnColor
             if type == .text {
                 descriptionLabel.isHidden = false
@@ -129,8 +141,12 @@ class CustomSwitch: UIView {
     
     func toggleSwitchOff() {
         makeVibrate()
+        circleView.snp.remakeConstraints {
+            $0.top.leading.bottom.equalToSuperview().inset(2)
+            $0.width.height.equalTo(20)
+        }
         UIView.animate(withDuration: 0.2) { [self] in
-            circleView.center.x -= self.frame.width - self.circleView.frame.width - 4
+            layoutIfNeeded()
             backgroundColor = toggleOffColor
             descriptionLabel.isHidden = true
         }

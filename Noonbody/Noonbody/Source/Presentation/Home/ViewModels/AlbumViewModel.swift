@@ -26,7 +26,7 @@ final class AlbumViewModel {
         self.albumUseCase = albumUseCase
     }
     
-    func transeform(input: Input) -> Output {
+    func transform(input: Input) -> Output {
         let album = input.viewWillAppear
             .flatMap {
                 self.albumUseCase.getAlbumList() }
