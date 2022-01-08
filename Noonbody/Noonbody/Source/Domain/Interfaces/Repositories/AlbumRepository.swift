@@ -14,4 +14,5 @@ protocol AlbumRepository {
     func createAlbum(request: CreateAlbumRequestModel) -> Observable<Album>
     func createAlbum(request: CreateAlbumRequestModel) -> Observable<Int>
     func deletePicture(pictureId: Int) -> Observable<Int>
+    func savePhoto(request: PhotoRequestModel) -> Observable<Int>
 }

@@ -16,8 +16,6 @@
 		AA2F3185275AD61800855861 /* PhotoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3184275AD61800855861 /* PhotoRequestModel.swift */; };
 		AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3187275AD68900855861 /* CameraAPI.swift */; };
 		AA2F318A275ADB6400855861 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3189275ADB6400855861 /* CameraService.swift */; };
-		AA2F318E275ADBDD00855861 /* DefaultCameraRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F318D275ADBDD00855861 /* DefaultCameraRepository.swift */; };
-		AA2F3190275ADC3500855861 /* CameraUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F318F275ADC3500855861 /* CameraUseCase.swift */; };
 		AA2F3192275B413100855861 /* AlbumSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */; };
 		AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */; };
 		AA4EFD2127623F38005017FC /* SelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD2027623F38005017FC /* SelectedView.swift */; };
@@ -39,7 +37,6 @@
 		AA73AFB2274FE32700FD7C70 /* MyPageAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFB1274FE32700FD7C70 /* MyPageAPI.swift */; };
 		AA73AFB7274FF78000FD7C70 /* HTTPMethodURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFB6274FF78000FD7C70 /* HTTPMethodURL.swift */; };
 		AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFB8274FF8AC00FD7C70 /* BaseTargetType.swift */; };
-		AA73AFBD274FF9A000FD7C70 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA73AFBC274FF9A000FD7C70 /* Moya */; };
 		AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */; };
 		AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA73AFC527518B8900FD7C70 /* MultiMoyaProvider.swift */; };
 		AA74A0DA27495E2300FA6678 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0D927495E2300FA6678 /* ProfileViewController.swift */; };
@@ -63,8 +60,6 @@
 		AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7E0A5726FB0BA600106DC2 /* ViewSample.swift */; };
 		AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8726FB126C00106DC2 /* SnapKit */; };
 		AA7E0A8B26FB128100106DC2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8A26FB128100106DC2 /* Then */; };
-		AA7E0A8E26FB12B100106DC2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8D26FB12B100106DC2 /* RxCocoa */; };
-		AA7E0A9026FB12B100106DC2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8F26FB12B100106DC2 /* RxSwift */; };
 		AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A9326FB135300106DC2 /* .swiftlint.yml */; };
 		AA95910F27442999007772BD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95910E27442999007772BD /* PopUpViewController.swift */; };
 		AA9591122744339D007772BD /* NBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591112744339D007772BD /* NBTextField.swift */; };
@@ -76,6 +71,11 @@
 		AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */; };
 		AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */; };
 		AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A41462715EC2C002BBE15 /* Camera.swift */; };
+		AA9FB3E12789D1EC00A97884 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AA9FB3E02789D1EC00A97884 /* loading.json */; };
+		AA9FB3E42789D4A600A97884 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E32789D4A600A97884 /* Moya */; };
+		AA9FB3E72789D4DC00A97884 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E62789D4DC00A97884 /* RxCocoa */; };
+		AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E82789D4DC00A97884 /* RxSwift */; };
+		AA9FB3EC2789D79000A97884 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3EB2789D79000A97884 /* Lottie */; };
 		AAA9A5262757FEF400FE92DB /* CreateAlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */; };
 		AAA9A5292757FFB400FE92DB /* CreateAlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */; };
 		AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A52A275800D600FE92DB /* CreateAlbumAPI.swift */; };
@@ -174,8 +174,6 @@
 		AA2F3184275AD61800855861 /* PhotoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRequestModel.swift; sourceTree = "<group>"; };
 		AA2F3187275AD68900855861 /* CameraAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAPI.swift; sourceTree = "<group>"; };
 		AA2F3189275ADB6400855861 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
-		AA2F318D275ADBDD00855861 /* DefaultCameraRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCameraRepository.swift; sourceTree = "<group>"; };
-		AA2F318F275ADC3500855861 /* CameraUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraUseCase.swift; sourceTree = "<group>"; };
 		AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectionViewModel.swift; sourceTree = "<group>"; };
 		AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCreationViewController.swift; sourceTree = "<group>"; };
 		AA4EFD2027623F38005017FC /* SelectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedView.swift; sourceTree = "<group>"; };
@@ -230,6 +228,7 @@
 		AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Generic.swift"; sourceTree = "<group>"; };
 		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		AA9FB3E02789D1EC00A97884 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../../../../loading.json; sourceTree = "<group>"; };
 		AAA9A4F62753A71F00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumRequestModel.swift; sourceTree = "<group>"; };
 		AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumService.swift; sourceTree = "<group>"; };
@@ -309,14 +308,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */,
 				AAE2FA882763F51300FA2C5C /* FirebaseMessaging in Frameworks */,
 				AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */,
-				AA7E0A8E26FB12B100106DC2 /* RxCocoa in Frameworks */,
 				AAE2FA862763F51300FA2C5C /* FirebaseAnalytics in Frameworks */,
 				AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */,
+				AA9FB3EC2789D79000A97884 /* Lottie in Frameworks */,
 				AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */,
-				AA7E0A9026FB12B100106DC2 /* RxSwift in Frameworks */,
-				AA73AFBD274FF9A000FD7C70 /* Moya in Frameworks */,
+				AA9FB3E42789D4A600A97884 /* Moya in Frameworks */,
+				AA9FB3E72789D4DC00A97884 /* RxCocoa in Frameworks */,
 				AA7E0A8B26FB128100106DC2 /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,6 +440,7 @@
 		AA7E0A4D26FB0B1E00106DC2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				AA9FB3DF2789D1E400A97884 /* Lottie */,
 				AAC7ACAA2729EDF100B2BE1E /* Font */,
 				AA5B85D9271700CA002276C3 /* Constants */,
 				AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */,
@@ -602,6 +603,14 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		AA9FB3DF2789D1E400A97884 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				AA9FB3E02789D1EC00A97884 /* loading.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		AAA9A5272757FF7200FE92DB /* CreateAlbum */ = {
 			isa = PBXGroup;
 			children = (
@@ -643,7 +652,6 @@
 				FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */,
 				AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */,
 				AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */,
-				AA2F318F275ADC3500855861 /* CameraUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -671,7 +679,6 @@
 				AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */,
 				AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */,
 				AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */,
-				AABD837E2784CD36004E8BF8 /* CameraRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -682,7 +689,6 @@
 				FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */,
 				AA74A0E8274993CF00FA6678 /* DefaultPreferenceRepository.swift */,
 				AAA9A52E2758041A00FE92DB /* DefaultAlbumRepositry.swift */,
-				AA2F318D275ADBDD00855861 /* DefaultCameraRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -913,13 +919,14 @@
 			packageProductDependencies = (
 				AA7E0A8726FB126C00106DC2 /* SnapKit */,
 				AA7E0A8A26FB128100106DC2 /* Then */,
-				AA7E0A8D26FB12B100106DC2 /* RxCocoa */,
-				AA7E0A8F26FB12B100106DC2 /* RxSwift */,
 				AAC7ACE4272DC28100B2BE1E /* RxGesture */,
 				AA74A0FA274AD5F100FA6678 /* Kingfisher */,
-				AA73AFBC274FF9A000FD7C70 /* Moya */,
 				AAE2FA852763F51300FA2C5C /* FirebaseAnalytics */,
 				AAE2FA872763F51300FA2C5C /* FirebaseMessaging */,
+				AA9FB3E32789D4A600A97884 /* Moya */,
+				AA9FB3E62789D4DC00A97884 /* RxCocoa */,
+				AA9FB3E82789D4DC00A97884 /* RxSwift */,
+				AA9FB3EB2789D79000A97884 /* Lottie */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* Noonbody.app */;
@@ -951,11 +958,12 @@
 			packageReferences = (
 				AA7E0A8626FB126C00106DC2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				AA7E0A8926FB128100106DC2 /* XCRemoteSwiftPackageReference "Then" */,
-				AA7E0A8C26FB12B100106DC2 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */,
 				AA74A0F9274AD5F100FA6678 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				AA73AFBB274FF9A000FD7C70 /* XCRemoteSwiftPackageReference "Moya" */,
 				AAE2FA842763F51300FA2C5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */,
+				AA9FB3E52789D4DC00A97884 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				AA9FB3EA2789D79000A97884 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -975,6 +983,7 @@
 				AABEA2E1273C4A3300A06A8C /* Gilroy-Regular.ttf in Resources */,
 				AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
+				AA9FB3E12789D1EC00A97884 /* loading.json in Resources */,
 				AABEA2E3273C4AAD00A06A8C /* Gilroy-Bold.ttf in Resources */,
 				AABEA2E0273C4A3300A06A8C /* Pretendard-Regular.ttf in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
@@ -1063,7 +1072,6 @@
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
 				AA95911827443FB9007772BD /* UIViewController+hideKeyboard.swift in Sources */,
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
-				AA2F318E275ADBDD00855861 /* DefaultCameraRepository.swift in Sources */,
 				AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */,
 				AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
@@ -1093,7 +1101,6 @@
 				AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */,
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
-				AABD837F2784CD36004E8BF8 /* CameraRepository.swift in Sources */,
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
 				AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
@@ -1109,7 +1116,6 @@
 				AA74A0DA27495E2300FA6678 /* ProfileViewController.swift in Sources */,
 				AA7366512746BD53002B726D /* DateViewModel.swift in Sources */,
 				AABEA2E5273C578E00A06A8C /* Album.swift in Sources */,
-				AA2F3190275ADC3500855861 /* CameraUseCase.swift in Sources */,
 				AA4EFD2927623F75005017FC /* NBSegmentedButton.swift in Sources */,
 				AAE2FAAC276411E900FA2C5C /* SignInResponse.swift in Sources */,
 				FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */,
@@ -1352,14 +1358,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		AA73AFBB274FF9A000FD7C70 /* XCRemoteSwiftPackageReference "Moya" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Moya/Moya";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		AA74A0F9274AD5F100FA6678 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1384,12 +1382,28 @@
 				minimumVersion = 2.7.0;
 			};
 		};
-		AA7E0A8C26FB12B100106DC2 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		AA9FB3E52789D4DC00A97884 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.2.0;
+				minimumVersion = 6.0.0;
+			};
+		};
+		AA9FB3EA2789D79000A97884 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 		AAC7ACE3272DC28100B2BE1E /* XCRemoteSwiftPackageReference "RxGesture" */ = {
@@ -1411,11 +1425,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		AA73AFBC274FF9A000FD7C70 /* Moya */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AA73AFBB274FF9A000FD7C70 /* XCRemoteSwiftPackageReference "Moya" */;
-			productName = Moya;
-		};
 		AA74A0FA274AD5F100FA6678 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = AA74A0F9274AD5F100FA6678 /* XCRemoteSwiftPackageReference "Kingfisher" */;
@@ -1431,15 +1440,25 @@
 			package = AA7E0A8926FB128100106DC2 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
 		};
-		AA7E0A8D26FB12B100106DC2 /* RxCocoa */ = {
+		AA9FB3E32789D4A600A97884 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AA7E0A8C26FB12B100106DC2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		AA9FB3E62789D4DC00A97884 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA9FB3E52789D4DC00A97884 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
 		};
-		AA7E0A8F26FB12B100106DC2 /* RxSwift */ = {
+		AA9FB3E82789D4DC00A97884 /* RxSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = AA7E0A8C26FB12B100106DC2 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			package = AA9FB3E52789D4DC00A97884 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxSwift;
+		};
+		AA9FB3EB2789D79000A97884 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA9FB3EA2789D79000A97884 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		AAC7ACE4272DC28100B2BE1E /* RxGesture */ = {
 			isa = XCSwiftPackageProductDependency;

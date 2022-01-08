@@ -14,22 +14,22 @@ final class AlbumSelectionViewModel {
     
     private let albumUseCase: AlbumUseCase
     private let requestManager = CameraRequestManager.shared
+    private let disposeBag = DisposeBag()
+    let isLoading = BehaviorRelay<Bool>(value: false)
     
     struct Input {
         let viewWillAppear: Observable<Void>
-    }
-    
-    struct Output {
-        let album: Driver<[Album]>
-    }
-    
-    struct PopUpInput {
+        let saveButtonControlEvent: ControlEvent<Void>
+        let albumSelection: Driver<IndexPath>
+        let photoRequestModel: Observable<PhotoRequestModel>
         let albumNameTextField: Observable<String>
         let creationControlEvent: ControlEvent<Void>
     }
     
-    struct PopUpOutput {
-        let album: Driver<Album?>
+    struct Output {
+        let album: Driver<[Album]>
+        let newAlbum: Driver<Album?>
+        let statusCode: Driver<Int>
     }
     
     init(albumUseCase: AlbumUseCase) {
@@ -37,25 +37,34 @@ final class AlbumSelectionViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let album = input.viewWillAppear
-            .flatMap {
-                self.albumUseCase.getAlbumList()
-            }
+        let albums = input.viewWillAppear
+            .flatMap { self.albumUseCase.getAlbumList() }
             .map { $0 }
             .share()
         
-        let data = album
+        let data = albums
             .compactMap { $0 }
             .map { response -> [Album] in
                 return response
             }.asDriver(onErrorJustReturn: [])
+
+        let save = input.saveButtonControlEvent
+            .withLatestFrom(input.photoRequestModel)
+            .do(onNext: { _ in self.isLoading.accept(true) })
+            .flatMap { request in
+                self.albumUseCase.savePhoto(request: request)
+            }
+            .do(onNext: { _ in self.isLoading.accept(false)})
+            .share()
+
+        let statusCode = save
+            .compactMap { $0 }
+            .map { statusCode -> Int in
+                return statusCode
+            }.asDriver(onErrorJustReturn: 404)
         
-        return Output(album: data)
-    }
-    
-    func albumCreationDidTap(input: PopUpInput) -> PopUpOutput {
-    
-        let album = input.creationControlEvent.withLatestFrom(input.albumNameTextField)
+        let albumResponse = input.creationControlEvent
+            .withLatestFrom(input.albumNameTextField)
             .map { name in
                 return CreateAlbumRequestModel(name: name)
             }
@@ -64,12 +73,13 @@ final class AlbumSelectionViewModel {
             }
             .share()
         
-        let data = album
+        let newAlbum = albumResponse
             .compactMap { $0 }
             .map { response -> Album in
                 return response
             }.asDriver(onErrorJustReturn: nil)
         
-        return PopUpOutput(album: data)
+        return Output(album: data, newAlbum: newAlbum, statusCode: statusCode)
     }
+    
 }
