@@ -74,4 +74,21 @@ class DefaultAlbumRepositry: AlbumRepository {
             return Disposables.create(with: { requestReference })
         }
     }
+    
+    @discardableResult
+    func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
+        Observable<Int>.create { observer -> Disposable in
+            let requestReference: () = CameraService.shared.postPhoto(request: request) { response in
+                switch response {
+                case .success(let statusCode):
+                    if let statusCode = statusCode {
+                        observer.onNext(statusCode)
+                    }
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+    }
 }

@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import Lottie
 
 class AlbumSelectionViewController: BaseViewController {
     
@@ -31,6 +32,12 @@ class AlbumSelectionViewController: BaseViewController {
                                                         action: nil)
     
     private let popUp = PopUpViewController(type: .textField)
+    private let loadingView = AnimationView(name: "loading").then {
+        $0.loopMode = .loop
+    }
+    private let backgroundView = UIView().then {
+        $0.backgroundColor = .black.withAlphaComponent(0.3)
+    }
     
     // MARK: - Properties
     
@@ -41,6 +48,7 @@ class AlbumSelectionViewController: BaseViewController {
         }
     }
     private let requestManager = CameraRequestManager.shared
+    private var albumRequest = PublishSubject<PhotoRequestModel>()
     
     // MARK: - View Life Cycle
     
@@ -68,7 +76,10 @@ class AlbumSelectionViewController: BaseViewController {
     }
     
     func bind() {
-        let input = AlbumSelectionViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in })
+        let input = AlbumSelectionViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
+                                                  saveButtonControlEvent: completeBarButtonItem.rx.tap,
+                                                  albumSelection: collectionView.rx.itemSelected.asDriver(),
+                                                  photoRequestModel: albumRequest)
         let output = viewModel.transform(input: input)
         
         output.album
@@ -78,26 +89,26 @@ class AlbumSelectionViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        completeBarButtonItem.rx.tap
-            .subscribe(onNext: {
-                let request = PhotoRequestModel(image: self.requestManager.image,
-                                                albumId: self.requestManager.albumId,
-                                                bodyPart: self.requestManager.bodyPart,
-                                                takenAt: self.requestManager.takenAt)
-                DefaultCameraUseCase(cameraRepository: DefaultCameraRepository()).savePhoto(request: request)
-                self.showToast(type: .save)
-                for controller in self.navigationController!.viewControllers as Array {
-                    if controller.isKind(of: CameraViewController.self) {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            self.navigationController?.popToViewController(controller, animated: true)
-                        }
-                        break
-                    }
+        output.statusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 200 {
+                    self.showToast(type: .save)
+                    self.popViewController()
                 }
-            }).disposed(by: disposeBag)
+                // TODO: - 서버에게 에러 코드 물어봐서 에러에 맞게 토스트 띄우기
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.isLoading
+            .subscribe(onNext: { [weak self] isLoading in
+                guard let self = self else { return }
+                isLoading ? self.setLoadingView() : self.removeLoadingView()
+            })
+            .disposed(by: disposeBag)
         
         let popUpInput = AlbumSelectionViewModel.PopUpInput(albumNameTextField: popUp.textField.rx.text.orEmpty.asObservable(),
-                                                       creationControlEvent: popUp.confirmButton.rx.tap)
+                                                            creationControlEvent: popUp.confirmButton.rx.tap)
         let popUpOutput = viewModel.albumCreationDidTap(input: popUpInput)
         
         popUpOutput.album
@@ -112,6 +123,29 @@ class AlbumSelectionViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
+    private func popViewController() {
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: CameraViewController.self) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.navigationController?.popToViewController(controller, animated: true)
+                }
+                break
+            }
+        }
+    }
+    
+    private func setLoadingView() {
+        self.completeBarButtonItem.isEnabled = false
+        self.loadingView.isHidden = false
+        self.loadingView.play()
+        self.backgroundView.isHidden = false
+    }
+    
+    private func removeLoadingView() {
+        self.completeBarButtonItem.isEnabled = true
+        self.loadingView.isHidden = true
+        self.backgroundView.isHidden = true
+    }
 }
 
 extension AlbumSelectionViewController: PopUpActionProtocol {
@@ -139,6 +173,7 @@ extension AlbumSelectionViewController: UICollectionViewDelegate {
             self.present(popUp, animated: true, completion: nil)
         } else {
             requestManager.albumId = albumData[indexPath.row - 1].id
+            albumRequest.onNext(requestManager.toPhotoRequestModel())
         }
     }
     
@@ -171,12 +206,21 @@ extension AlbumSelectionViewController: UICollectionViewDataSource {
 extension AlbumSelectionViewController {
     
     func setupViewHierarchy() {
-        view.addSubview(collectionView)
+        view.addSubviews(collectionView, backgroundView, loadingView)
     }
     
     func setupConstraint() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        loadingView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        backgroundView.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.trailing.bottom.equalToSuperview()
         }
     }
     

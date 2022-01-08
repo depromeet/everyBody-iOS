@@ -14,13 +14,19 @@ final class AlbumSelectionViewModel {
     
     private let albumUseCase: AlbumUseCase
     private let requestManager = CameraRequestManager.shared
+    private let disposeBag = DisposeBag()
+    let isLoading = BehaviorRelay<Bool>(value: false)
     
     struct Input {
         let viewWillAppear: Observable<Void>
+        let saveButtonControlEvent: ControlEvent<Void>
+        let albumSelection: Driver<IndexPath>
+        let photoRequestModel: Observable<PhotoRequestModel>
     }
     
     struct Output {
         let album: Driver<[Album]>
+        let statusCode: Driver<Int>
     }
     
     struct PopUpInput {
@@ -37,20 +43,33 @@ final class AlbumSelectionViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let album = input.viewWillAppear
-            .flatMap {
-                self.albumUseCase.getAlbumList()
-            }
+        let albums = input.viewWillAppear
+            .flatMap { self.albumUseCase.getAlbumList() }
             .map { $0 }
             .share()
         
-        let data = album
+        let data = albums
             .compactMap { $0 }
             .map { response -> [Album] in
                 return response
             }.asDriver(onErrorJustReturn: [])
+
+        let save = input.saveButtonControlEvent
+            .withLatestFrom(input.photoRequestModel)
+            .do(onNext: { _ in self.isLoading.accept(true) })
+            .flatMap { request in
+                self.albumUseCase.savePhoto(request: request)
+            }
+            .do(onNext: { _ in self.isLoading.accept(false)})
+            .share()
+
+        let statusCode = save
+            .compactMap { $0 }
+            .map { statusCode -> Int in
+                return statusCode
+            }.asDriver(onErrorJustReturn: 404)
         
-        return Output(album: data)
+        return Output(album: data, statusCode: statusCode)
     }
     
     func albumCreationDidTap(input: PopUpInput) -> PopUpOutput {

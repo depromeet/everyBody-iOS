@@ -14,6 +14,7 @@ enum AlbumAPI: BaseTargetType {
     
     case getAlbumList
     case deletePicture(pictureId: Int)
+    case savePhoto(request: PhotoRequestModel)
 }
 
 extension AlbumAPI {
@@ -24,6 +25,8 @@ extension AlbumAPI {
             return HTTPMethodURL.GET.album
         case .deletePicture(let pictureId):
             return HTTPMethodURL.DELETE.pictures + "/\(pictureId)"
+        case .savePhoto:
+            return HTTPMethodURL.POST.photo
         }
     }
     
@@ -33,6 +36,8 @@ extension AlbumAPI {
             return .get
         case .deletePicture:
             return .delete
+        case .savePhoto:
+            return .post
         }
     }
     
@@ -42,6 +47,29 @@ extension AlbumAPI {
             return .requestPlain
         case .deletePicture:
             return .requestPlain
+        case .savePhoto(let request):
+            var multiPartFormData: [MultipartFormData] = []
+            
+            let parameters: [String: Any] = [
+                "album_id": request.albumId,
+                "body_part": request.bodyPart,
+                "taken_at": request.takenAt
+            ]
+            
+            for (key, value) in parameters {
+                multiPartFormData.append(MultipartFormData(provider: .data("\(value)".data(using: .utf8)!),
+                                                           name: key))
+            }
+            
+            let imageData = request.image.jpegData(compressionQuality: 1.0)
+            let multipartImage = MultipartFormData(provider: .data(imageData!),
+                                                   name: "image",
+                                                   fileName: "image",
+                                                   mimeType: "image/jpeg")
+            
+            multiPartFormData.append(multipartImage)
+            
+            return .uploadMultipart(multiPartFormData)
         }
     }
 }
