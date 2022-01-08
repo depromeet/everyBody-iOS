@@ -28,6 +28,7 @@ class NotificationViewController: BaseViewController {
     private lazy var pushSwitch = CustomSwitch(width: 38, height: 24).then {
         $0.descriptionLabel.isHidden = true
         $0.setOffColor(color: Asset.Color.gray30.color)
+        $0.delegate = self
     }
     
     private let separatorLine = UIView().then {
@@ -101,17 +102,26 @@ class NotificationViewController: BaseViewController {
         initNavigationBar()
         setupConstraint()
         addTapGesture()
-        
+        addLifeCycleObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        UNUserNotificationCenter.current().getNotificationSettings(completionHandler: notificationSettingsCompletionHandler)
+    }
+    
+    // MARK: - Notification oberserver methods
+    
+    @objc
+    func willEnterForeground() {
+        UNUserNotificationCenter.current().getNotificationSettings(completionHandler: notificationSettingsCompletionHandler)
     }
     
     // MARK: - Methods
     
     private func bind() {
-        
         let input = NotificationViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
                                                 dayList: dayButtonObservable,
                                                 time: timeTextField.rx.text.orEmpty.asObservable(),
-//                                                isActived: UserDefaults.standard.rx.base,
                                                 saveButtonControlEvent: saveButton.rx.tap)
         let output = viewModel.transform(input: input)
         
@@ -165,6 +175,13 @@ class NotificationViewController: BaseViewController {
         }
     }
     
+    private func addLifeCycleObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(willEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+    }
+    
     @objc
     private func setAction(sender: UIButton) {
         sender.isSelected.toggle()
@@ -175,30 +192,12 @@ class NotificationViewController: BaseViewController {
         }
     }
     
-    private func showPushSettingView() {
-        pushSettingContainerView.isHidden = false
-    }
-    
-    private func hidePushSettingView() {
-        pushSettingContainerView.isHidden = true
-    }
-    
     // MARK: - Actions
     
     private func addTapGesture() {
-        let switchTapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
-                                                                             action: #selector(switchButtonDidTap))
-        pushSwitch.addGestureRecognizer(switchTapGesture)
-        
         let timeSelectViewGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
                                                                                    action: #selector(timeSelectViewDidTap))
         timeContainerView.addGestureRecognizer(timeSelectViewGesture)
-    }
-    
-    @objc
-    private func switchButtonDidTap() {
-        pushSettingContainerView.isHidden = pushSwitch.isOn
-        saveButton.isHidden = pushSwitch.isOn
     }
     
     @objc
@@ -211,6 +210,14 @@ class NotificationViewController: BaseViewController {
         self.present(popUp, animated: true, completion: nil)
     }
     
+    @objc
+    private func notificationSettingsCompletionHandler(settings: UNNotificationSettings) {
+        DispatchQueue.main.async {
+            self.pushSwitch.isOn = settings.authorizationStatus == .authorized ? true : false
+            self.pushSettingContainerView.isHidden = !self.pushSwitch.isOn
+            self.saveButton.isHidden = !self.pushSwitch.isOn
+        }
+    }
 }
 
 extension NotificationViewController: PopUpActionProtocol {
@@ -223,6 +230,17 @@ extension NotificationViewController: PopUpActionProtocol {
         timeTextField.text = textInfo
         timeTextField.sendActions(for: .valueChanged)
         dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+extension NotificationViewController: CustomSwitchDelegate {
+    
+    func switchButtonStateChanged(isOn: Bool) {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
     }
     
 }

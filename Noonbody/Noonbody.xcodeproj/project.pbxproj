@@ -86,6 +86,10 @@
 		AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */; };
 		AABD837D2784CCAC004E8BF8 /* PanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */; };
 		AABD837F2784CD36004E8BF8 /* CameraRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837E2784CD36004E8BF8 /* CameraRepository.swift */; };
+		AABD8389278635EC004E8BF8 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD8388278635EC004E8BF8 /* UserDefault.swift */; };
+		AABD838B2786385C004E8BF8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD838A2786385C004E8BF8 /* UserManager.swift */; };
+		AABD838D27863887004E8BF8 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD838C27863887004E8BF8 /* UserDefaultKey.swift */; };
+		AABD83952787A038004E8BF8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AABD83942787A038004E8BF8 /* GoogleService-Info.plist */; };
 		AABEA2DD273C4A3300A06A8C /* Gilroy-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */; };
 		AABEA2DE273C4A3300A06A8C /* Pretendard-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */; };
 		AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AABEA2D9273C4A3300A06A8C /* Pretendard-SemiBold.ttf */; };
@@ -127,7 +131,6 @@
 		AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */; };
 		AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */; };
 		AAE2FABB276CC10300FA2C5C /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */; };
-		AAE2FAE92774F9A600FA2C5C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE2FAE82774F9A600FA2C5C /* GoogleService-Info.plist */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -238,6 +241,11 @@
 		AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRepository.swift; sourceTree = "<group>"; };
 		AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaRepository.swift; sourceTree = "<group>"; };
 		AABD837E2784CD36004E8BF8 /* CameraRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRepository.swift; sourceTree = "<group>"; };
+		AABD8388278635EC004E8BF8 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		AABD838A2786385C004E8BF8 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		AABD838C27863887004E8BF8 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
+		AABD83942787A038004E8BF8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AABD83962787A3D9004E8BF8 /* Noonbody.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Noonbody.entitlements; sourceTree = "<group>"; };
 		AABEA2D7273C4A3300A06A8C /* Gilroy-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gilroy-Light.ttf"; sourceTree = "<group>"; };
 		AABEA2D8273C4A3300A06A8C /* Pretendard-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.ttf"; sourceTree = "<group>"; };
 		AABEA2D9273C4A3300A06A8C /* Pretendard-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -277,7 +285,6 @@
 		AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+alignVertical.swift"; sourceTree = "<group>"; };
 		AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+makeVibrate.swift"; sourceTree = "<group>"; };
 		AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
-		AAE2FAE82774F9A600FA2C5C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -341,6 +348,7 @@
 				AA5B85DA271700D5002276C3 /* Constant.swift */,
 				AA5B85DC271700E6002276C3 /* Size.swift */,
 				AAF2D42627240E4C0029219D /* Assets+Generated.swift */,
+				AABD838C27863887004E8BF8 /* UserDefaultKey.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -410,7 +418,8 @@
 		AA7E0A3426FB0A6100106DC2 /* Noonbody */ = {
 			isa = PBXGroup;
 			children = (
-				AAE2FAE82774F9A600FA2C5C /* GoogleService-Info.plist */,
+				AABD83962787A3D9004E8BF8 /* Noonbody.entitlements */,
+				AABD83942787A038004E8BF8 /* GoogleService-Info.plist */,
 				AA7E0A4D26FB0B1E00106DC2 /* Resource */,
 				AA7E0A4C26FB0AE200106DC2 /* Source */,
 				AA7E0A3E26FB0A6100106DC2 /* Noonbody.xcdatamodeld */,
@@ -704,6 +713,8 @@
 				AAE2FAB2276B4F6800FA2C5C /* UIImage+resizeImage.swift */,
 				AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */,
 				AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */,
+				AABD8388278635EC004E8BF8 /* UserDefault.swift */,
+				AABD838A2786385C004E8BF8 /* UserManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -960,7 +971,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAE2FAE92774F9A600FA2C5C /* GoogleService-Info.plist in Resources */,
+				AABD83952787A038004E8BF8 /* GoogleService-Info.plist in Resources */,
 				AABEA2E1273C4A3300A06A8C /* Gilroy-Regular.ttf in Resources */,
 				AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
@@ -1022,6 +1033,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AABD838B2786385C004E8BF8 /* UserManager.swift in Sources */,
 				AAC7ACA72729E91400B2BE1E /* CameraViewModel.swift in Sources */,
 				AA7E0A5826FB0BA600106DC2 /* ViewSample.swift in Sources */,
 				FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */,
@@ -1063,6 +1075,7 @@
 				AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */,
 				FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */,
 				AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */,
+				AABD8389278635EC004E8BF8 /* UserDefault.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
 				AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */,
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
@@ -1119,6 +1132,7 @@
 				AA74A0F6274A6EDB00FA6678 /* NBDayButton.swift in Sources */,
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
 				AA74A0DC274962F400FA6678 /* ProfileTableViewCell.swift in Sources */,
+				AABD838D27863887004E8BF8 /* UserDefaultKey.swift in Sources */,
 				FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */,
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
@@ -1268,9 +1282,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -1278,8 +1294,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.noonbody.me;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noonbody.diet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1291,9 +1308,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -1301,8 +1320,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.noonbody.me;
+				PRODUCT_BUNDLE_IDENTIFIER = com.noonbody.diet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

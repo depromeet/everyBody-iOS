@@ -8,6 +8,6 @@
 import Foundation
 
 struct SignInRequestModel {
-    let userId: String
+    let userId: Int
     let password: String
 }

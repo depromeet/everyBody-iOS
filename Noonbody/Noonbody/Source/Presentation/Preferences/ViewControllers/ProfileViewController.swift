@@ -161,6 +161,7 @@ extension ProfileViewController: UITableViewDataSource {
             cell.setupConstraint()
             cell.setData(title: cellData[indexPath.item].title)
             cell.descriptionLabel.text = "눈바디 앱에서 촬영한 사진을 앱에만 저장합니다."
+            cell.saveSwitch.isOn = UserManager.saveBulitInInLibrary
         }
         
         arrayOfCells.append(cell)

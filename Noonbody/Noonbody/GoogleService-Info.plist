@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>269644966104-bt9a2l9m6h9garrh90jr740v5fr6eh6r.apps.googleusercontent.com</string>
+	<string>269644966104-ir1sopetm71hjkp0cd02dc364htbf0p8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.269644966104-bt9a2l9m6h9garrh90jr740v5fr6eh6r</string>
+	<string>com.googleusercontent.apps.269644966104-ir1sopetm71hjkp0cd02dc364htbf0p8</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>269644966104-7k3nc8n1g7ftcp6vvlmo3gh43btg6gov.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.noonbody.me</string>
+	<string>com.noonbody.diet</string>
 	<key>PROJECT_ID</key>
 	<string>everybody-36ede</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:269644966104:ios:32044fcfdfcabd00e70fad</string>
+	<string>1:269644966104:ios:9c8c094a1333210de70fad</string>
 </dict>
 </plist>
