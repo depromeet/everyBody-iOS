@@ -14,21 +14,26 @@ class BottomCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UIComponenets
     
-    var panoramaCellImage = UIImageView().then {
+    private var panoramaCellImage = UIImageView().then {
         $0.makeRounded(radius: 4)
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
     }
-    var bottomView = UIView()
-    var tagView = UIView()
-    var tagLabel = UILabel().then {
+    private var bottomView = UIView()
+    private var tagView = UIView()
+    private var tagLabel = UILabel().then {
         $0.textColor = Asset.Color.gray50.color
         $0.textAlignment = .center
+        $0.font = .nbFont(ofSize: 10, weight: .bold, type: .pretendard)
     }
     
     // MARK: - Properties
-    
-    var index = 0
+
+    override var isSelected: Bool {
+        didSet {
+            isSelected ? transformToCenter() : transformToStandard()
+        }
+    }
     
     // MARK: - Initializer
     
@@ -81,7 +86,7 @@ class BottomCollectionViewCell: UICollectionViewCell {
         
         tagView.snp.makeConstraints {
             $0.top.bottom.equalTo(tagLabel).inset(-3)
-            $0.leading.trailing.equalTo(tagLabel).inset(-10)
+            $0.leading.trailing.equalTo(tagLabel).inset(-8)
         }
         
     }
@@ -90,20 +95,24 @@ class BottomCollectionViewCell: UICollectionViewCell {
         panoramaCellImage.setImage(with: imageURL)
         tagLabel.text = "\(index+1)"
         tagLabel.sizeToFit()
+        
+        if index == 0 {
+            transformToCenter()
+        }
     }
     
     func transformToCenter() {
         tagView.backgroundColor = Asset.Color.keyPurple.color
         tagLabel.textColor = .white
         panoramaCellImage.makeRoundedWithBorder(radius: 4, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
-        tagView.makeRoundedWithBorder(radius: tagView.frame.height/2, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
+        tagView.makeRoundedWithBorder(radius: 10, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
     }
     
     func transformToStandard() {
         tagView.backgroundColor = .clear
         tagLabel.textColor = Asset.Color.gray50.color
         panoramaCellImage.makeRoundedWithBorder(radius: 4, color: UIColor.clear.cgColor)
-        tagView.makeRoundedWithBorder(radius: tagView.frame.height/2, color: UIColor.clear.cgColor)
+        tagView.makeRoundedWithBorder(radius: 10, color: UIColor.clear.cgColor)
     }
     
 }
