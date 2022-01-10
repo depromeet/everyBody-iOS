@@ -8,9 +8,10 @@
 import UIKit
 
 extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == bottomCollectionView {
-            return CGSize(width: collectionView.frame.height * 0.54, height: collectionView.frame.height )
+            return CGSize(width: collectionView.frame.height * 0.54 + cellSpacing, height: collectionView.frame.height )
         } else {
             let length =  Constant.Size.screenWidth
             let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
@@ -20,15 +21,14 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if collectionView == bottomCollectionView {
-            let inset = (topCollectionView.frame.width - 48) / 2
+            let inset = (collectionView.frame.width - (collectionView.frame.height * 0.54 + cellSpacing)) / 2
             return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
-        } else {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
+        return .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return collectionView == topCollectionView ? 2 : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -37,25 +37,21 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == bottomCollectionView {
-            let centerX = bottomCollectionView.frame.size.width / 2 + scrollView.contentOffset.x
-            let centerY = bottomCollectionView.frame.size.height / 2 + scrollView.contentOffset.y
-            let centerPoint = CGPoint(x: centerX, y: centerY)
+            let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
             
             if let indexPath = self.bottomCollectionView.indexPathForItem(at: centerPoint), self.centerCell == nil {
-                /// 중간 좌표에 있는 셀이 있을 때, 센터 셀이 nil이라면 그 아이템을 얘를 센터 셀에 넣어주고 함수 실행
                 self.centerCell = self.bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
                 self.centerCell?.transformToCenter()
                 topCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
                 tagSelectedIdx = indexPath
             } else if self.centerCell == nil {
-                /// 중간에 걸려있는 인덱스가 없는데 센터 셀이 비어있을 때, itemspacing 사이에 걸려있는 상황
                 centerCell?.transformToStandard()
+                bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
             }
             
             if let cell = centerCell {
                 let offsetX = centerPoint.x - cell.center.x
                 if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
-                    /// 중간에 있던 셀이 좌표를 벗어나면 nil로 만들어주고 원래 상태로 돌아가는 함수 실행
                     cell.transformToStandard()
                     self.centerCell = nil
                 }
@@ -63,8 +59,28 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
+    private func moveCellToCenter() {
+        let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
+        if let indexPath = bottomCollectionView.indexPathForItem(at: centerPoint) {
+            bottomCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            topCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+            self.centerCell = self.bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
+            self.centerCell?.transformToCenter()
+        }
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: false)
+        moveCellToCenter()
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        moveCellToCenter()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            moveCellToCenter()
+        }
     }
 }
 
@@ -96,11 +112,13 @@ extension PanoramaViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return collectionView == topCollectionView ? true : false
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            cameraButtonDidTap()
-        } else if collectionView == topCollectionView && editMode {
-            deleteData.append(bodyPartData[indexPath.row-1].id)
+        if collectionView == topCollectionView && editMode {
+            indexPath.row == 0 ? cameraButtonDidTap() : deleteData.append(bodyPartData[indexPath.row-1].id)
         }
     }
     

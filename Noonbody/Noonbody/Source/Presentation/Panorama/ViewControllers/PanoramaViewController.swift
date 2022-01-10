@@ -36,14 +36,14 @@ class PanoramaViewController: BaseViewController {
     }
     
     var bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
+        $0.register(BottomCollectionViewCell.self)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        $0.collectionViewLayout = layout
         $0.bounces = false
-        $0.register(BottomCollectionViewCell.self)
         $0.backgroundColor = .white
         $0.showsHorizontalScrollIndicator = false
         $0.allowsMultipleSelection = false
-        $0.collectionViewLayout = layout
         $0.setContentHuggingPriority(.defaultLow, for: .vertical)
     }
     
@@ -61,6 +61,7 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Properties
     
+    let cellSpacing: CGFloat = 2
     private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))
     private var popupViewController = PopUpViewController(type: .delete)
     private var bodyPart = 0
@@ -77,9 +78,7 @@ class PanoramaViewController: BaseViewController {
             setHide()
             reloadCollectionView()
             editMode ? initEditNavigationBar() : initNavigationBar()
-            if !bodyPartData.isEmpty {
-                bottomCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredHorizontally, animated: true)
-            }
+            initBottomCollectionView()
         }
     }
     
@@ -112,7 +111,13 @@ class PanoramaViewController: BaseViewController {
         $0.scrollDirection = .horizontal
     }
     
-    var tagSelectedIdx = IndexPath(row: 0, section: 0)
+    var tagSelectedIdx = IndexPath(row: 0, section: 0) {
+        didSet {
+            if tagSelectedIdx.row > 0 {
+                bottomCollectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: false)
+            }
+        }
+    }
     var centerCell: BottomCollectionViewCell?
     
     // MARK: - View Life Cycle
@@ -138,7 +143,7 @@ class PanoramaViewController: BaseViewController {
         bind()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         initBottomCollectionView()
     }
     
@@ -226,8 +231,10 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func initBottomCollectionView() {
-        centerCell = bottomCollectionView.cellForItem(at: tagSelectedIdx) as? BottomCollectionViewCell
-        centerCell?.transformToCenter()
+        if !bodyPartData.isEmpty {
+            let selectedIndexPath = IndexPath(item: 0, section: 0)
+            bottomCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        }
     }
     
     private func switchPanoramaMode() {
@@ -238,9 +245,6 @@ class PanoramaViewController: BaseViewController {
             topCollectionView.setCollectionViewLayout(horizontalFlowLayout, animated: false)
             bottomCollectionView.isHidden = false
         }
-        
-        self.view.layoutIfNeeded()
-        bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
     }
     
     func reloadCollectionView() {
@@ -248,7 +252,7 @@ class PanoramaViewController: BaseViewController {
         bottomCollectionView.reloadData()
     }
     
-    func setHide(){
+    func setHide() {
         emptyView.isHidden = bodyPartData.isEmpty && !editMode ? false : true
         gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
     }
