@@ -7,8 +7,6 @@
 
 import UIKit
 
-let cellSpacing: CGFloat = 2
-
 extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -25,9 +23,8 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
         if collectionView == bottomCollectionView {
             let inset = (collectionView.frame.width - (collectionView.frame.height * 0.54 + cellSpacing)) / 2
             return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
-        } else {
-            return .zero
         }
+        return .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

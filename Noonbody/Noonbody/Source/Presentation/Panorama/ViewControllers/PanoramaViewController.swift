@@ -61,6 +61,7 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Properties
     
+    let cellSpacing: CGFloat = 2
     private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))
     private var popupViewController = PopUpViewController(type: .delete)
     private var bodyPart = 0
