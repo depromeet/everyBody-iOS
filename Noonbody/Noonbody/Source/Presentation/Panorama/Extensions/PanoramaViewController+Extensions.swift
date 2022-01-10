@@ -7,10 +7,13 @@
 
 import UIKit
 
+let cellSpacing: CGFloat = 2
+
 extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == bottomCollectionView {
-            return CGSize(width: collectionView.frame.height * 0.54 + 2, height: collectionView.frame.height )
+            return CGSize(width: collectionView.frame.height * 0.54 + cellSpacing, height: collectionView.frame.height )
         } else {
             let length =  Constant.Size.screenWidth
             let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
@@ -20,10 +23,10 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if collectionView == bottomCollectionView {
-            let inset = (collectionView.frame.width - (2 + collectionView.frame.height * 0.54)) / 2
+            let inset = (collectionView.frame.width - (collectionView.frame.height * 0.54 + cellSpacing)) / 2
             return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         } else {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return .zero
         }
     }
     
@@ -59,7 +62,7 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    func setCenterCell() {
+    private func moveCellToCenter() {
         let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
         if let indexPath = bottomCollectionView.indexPathForItem(at: centerPoint) {
             bottomCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
@@ -70,16 +73,16 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        setCenterCell()
+        moveCellToCenter()
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        setCenterCell()
+        moveCellToCenter()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            setCenterCell()
+            moveCellToCenter()
         }
     }
 }
