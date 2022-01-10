@@ -79,7 +79,9 @@ class CameraViewController: BaseViewController {
                     self.camera.session.startRunning()
                     return
                 }
-                self.showPopUp()
+                DispatchQueue.main.async {
+                    self.showPopUp()
+                }
             }
         case .denied:
             self.showPopUp()
@@ -182,8 +184,6 @@ class CameraViewController: BaseViewController {
         popUp.setCancelButtonTitle(text: "완료")
         self.present(popUp, animated: true, completion: nil)
     }
-    
-    
     
     // MARK: - Actions
     
