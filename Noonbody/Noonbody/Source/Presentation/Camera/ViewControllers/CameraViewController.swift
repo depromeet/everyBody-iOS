@@ -24,7 +24,9 @@ class CameraViewController: BaseViewController {
         $0.type = .text
         $0.delegate = self
     }
-    private var previewView = UIView()
+    private var previewView = UIView().then {
+        $0.backgroundColor = .black
+    }
     private lazy var gridIndicatorView = UIImageView().then {
         $0.isHidden = !UserManager.gridMode
         $0.image = Asset.Image.gridIndicator.image
@@ -58,10 +60,6 @@ class CameraViewController: BaseViewController {
         initAttributes()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        camera.session.startRunning()
-    }
-    
     // MARK: - Methods
     
     private func checkPermission() {
@@ -70,6 +68,7 @@ class CameraViewController: BaseViewController {
             camera.setUp()
             previewView = camera.makeCameraLayer()
             camera.cameraDataOutput()
+            camera.session.startRunning()
             return
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { status in
@@ -77,8 +76,13 @@ class CameraViewController: BaseViewController {
                     self.camera.setUp()
                     self.previewView = self.camera.makeCameraLayer()
                     self.camera.cameraDataOutput()
+                    self.camera.session.startRunning()
+                    return
                 }
+                self.showPopUp()
             }
+        case .denied:
+            self.showPopUp()
         default:
             return
         }
@@ -163,10 +167,23 @@ class CameraViewController: BaseViewController {
         }
     }
     
-    func getPicture(pictureData: Data) -> UIImage {
+    private func getPicture(pictureData: Data) -> UIImage {
         guard let image = UIImage(data: pictureData) else { return UIImage() }
         return image
     }
+    
+    private func showPopUp() {
+        let popUp = PopUpViewController(type: .oneButton)
+        popUp.modalTransitionStyle = .crossDissolve
+        popUp.modalPresentationStyle = .overCurrentContext
+        popUp.delegate = self
+        popUp.titleLabel.text = "카메라 권한 설정 알림"
+        popUp.descriptionLabel.text = "카메라를 사용할 수 없습니다. \n[설정] => [개인 정보 보호] => [카메라]에서 NoonBody를 ON으로 설정해주세요."
+        popUp.setCancelButtonTitle(text: "완료")
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    
     
     // MARK: - Actions
     
@@ -262,6 +279,20 @@ extension CameraViewController: PHPickerViewControllerDelegate {
         }
         
         picker.dismiss(animated: true)
+    }
+    
+}
+
+extension CameraViewController: PopUpActionProtocol {
+    
+    func cancelButtonDidTap(_ button: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: HomeViewController.self) {
+                self.navigationController?.popToViewController(controller, animated: true)
+                break
+            }
+        }
     }
     
 }

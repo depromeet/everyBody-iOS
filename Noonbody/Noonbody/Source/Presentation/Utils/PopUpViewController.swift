@@ -13,7 +13,7 @@ class PopUpViewController: BaseViewController {
         case delete
         case textField
         case picker
-        case save
+        case oneButton
     }
     
     // MARK: - UI Components
@@ -152,8 +152,23 @@ class PopUpViewController: BaseViewController {
                     }
                 }
             }
-        case .save:
-            // TODO: - 저장 팝업 Layout (1 Button)
+        case .oneButton:
+            cancelButton.snp.makeConstraints {
+                $0.height.equalTo(56)
+                $0.leading.bottom.trailing.equalToSuperview()
+            }
+            
+            titleLabel.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(32)
+                $0.centerX.equalToSuperview()
+            }
+            
+            descriptionLabel.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(30)
+                $0.centerX.equalToSuperview()
+                $0.leading.trailing.equalToSuperview().inset(20)
+            }
+
             return
         }
     }
@@ -180,7 +195,7 @@ class PopUpViewController: BaseViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "HH:mm"
             delegate?.confirmButtonDidTap(confirmButton, textInfo: dateFormatter.string(from: datePicker.date))
-        case .save:
+        case .oneButton:
             return
         }
     }
@@ -197,5 +212,9 @@ class PopUpViewController: BaseViewController {
             let date: Date = dateFormatter.date(from: dateString)!
             datePicker.date = date
         }
+    }
+    
+    func setCancelButtonTitle(text: String) {
+        cancelButton.setTitle(text, for: .normal)
     }
 }
