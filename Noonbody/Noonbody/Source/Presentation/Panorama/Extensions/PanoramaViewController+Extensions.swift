@@ -10,7 +10,7 @@ import UIKit
 extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == bottomCollectionView {
-            return CGSize(width: collectionView.frame.height * 0.54, height: collectionView.frame.height )
+            return CGSize(width: collectionView.frame.height * 0.54 + 2, height: collectionView.frame.height )
         } else {
             let length =  Constant.Size.screenWidth
             let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
@@ -28,7 +28,7 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 2
+        return collectionView == topCollectionView ? 2 : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

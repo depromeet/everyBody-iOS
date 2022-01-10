@@ -71,7 +71,8 @@ class BottomCollectionViewCell: UICollectionViewCell {
     
     private func setConstraints() {
         panoramaCellImage.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(1)
             $0.height.equalTo(contentView.frame.width * (4/3)).priority(999)
         }
         
@@ -95,10 +96,6 @@ class BottomCollectionViewCell: UICollectionViewCell {
         panoramaCellImage.setImage(with: imageURL)
         tagLabel.text = "\(index+1)"
         tagLabel.sizeToFit()
-        
-        if index == 0 {
-            transformToCenter()
-        }
     }
     
     func transformToCenter() {

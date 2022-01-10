@@ -77,6 +77,7 @@ class PanoramaViewController: BaseViewController {
             setHide()
             reloadCollectionView()
             editMode ? initEditNavigationBar() : initNavigationBar()
+            initBottomCollectionView()
         }
     }
     
@@ -109,7 +110,13 @@ class PanoramaViewController: BaseViewController {
         $0.scrollDirection = .horizontal
     }
     
-    var tagSelectedIdx = IndexPath(row: 0, section: 0)
+    var tagSelectedIdx = IndexPath(row: 0, section: 0) {
+        didSet {
+            if tagSelectedIdx.row > 0 {
+                bottomCollectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: false)
+            }
+        }
+    }
     var centerCell: BottomCollectionViewCell?
     
     // MARK: - View Life Cycle
@@ -223,8 +230,10 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func initBottomCollectionView() {
-        let selectedIndexPath = IndexPath(item: 0, section: 0)
-        bottomCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        if !bodyPartData.isEmpty {
+            let selectedIndexPath = IndexPath(item: 0, section: 0)
+            bottomCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        }
     }
     
     private func switchPanoramaMode() {
