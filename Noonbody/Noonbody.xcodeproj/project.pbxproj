@@ -85,7 +85,6 @@
 		AABD83792784CC54004E8BF8 /* PreferenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */; };
 		AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */; };
 		AABD837D2784CCAC004E8BF8 /* PanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */; };
-		AABD837F2784CD36004E8BF8 /* CameraRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD837E2784CD36004E8BF8 /* CameraRepository.swift */; };
 		AABD8389278635EC004E8BF8 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD8388278635EC004E8BF8 /* UserDefault.swift */; };
 		AABD838B2786385C004E8BF8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD838A2786385C004E8BF8 /* UserManager.swift */; };
 		AABD838D27863887004E8BF8 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABD838C27863887004E8BF8 /* UserDefaultKey.swift */; };
@@ -239,7 +238,6 @@
 		AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferenceRepository.swift; sourceTree = "<group>"; };
 		AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRepository.swift; sourceTree = "<group>"; };
 		AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaRepository.swift; sourceTree = "<group>"; };
-		AABD837E2784CD36004E8BF8 /* CameraRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraRepository.swift; sourceTree = "<group>"; };
 		AABD8388278635EC004E8BF8 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		AABD838A2786385C004E8BF8 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		AABD838C27863887004E8BF8 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
