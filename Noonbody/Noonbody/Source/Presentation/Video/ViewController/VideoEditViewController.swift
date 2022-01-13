@@ -68,7 +68,7 @@ class VideoEditViewController: BaseViewController {
         createDataSource()
         setupConstraint()
         selectFirstCell()
-        initCountLabel()
+        updateCountLabel()
         view.backgroundColor = .black
     }
     
@@ -93,7 +93,7 @@ class VideoEditViewController: BaseViewController {
         collectionView.delegate = self
     }
     
-    private func initCountLabel() {
+    private func updateCountLabel() {
         totalImageCountLabel.text = "\(imageList.count)장"
     }
     
@@ -155,6 +155,7 @@ class VideoEditViewController: BaseViewController {
         
         imageList = backingStore
         moveCellToCenter()
+        updateCountLabel()
     }
 }
 
@@ -169,7 +170,7 @@ extension VideoEditViewController: DeleteButtonDelegate {
         backingList.append((imageList[index], index))
         imageList.remove(at: index)
         
-        initCountLabel()
+        updateCountLabel()
         if index == imageList.count {
             updateIndexLabel(row: index - 1)
         }
