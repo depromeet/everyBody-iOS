@@ -71,7 +71,6 @@
 		AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */; };
 		AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */; };
 		AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A41462715EC2C002BBE15 /* Camera.swift */; };
-		AA9FB3E12789D1EC00A97884 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AA9FB3E02789D1EC00A97884 /* loading.json */; };
 		AA9FB3E42789D4A600A97884 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E32789D4A600A97884 /* Moya */; };
 		AA9FB3E72789D4DC00A97884 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E62789D4DC00A97884 /* RxCocoa */; };
 		AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E82789D4DC00A97884 /* RxSwift */; };
@@ -135,6 +134,7 @@
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
 		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
+		FC502232278F305800B50C41 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FC502231278F305700B50C41 /* loading.json */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -227,7 +227,6 @@
 		AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Generic.swift"; sourceTree = "<group>"; };
 		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		AA9FB3E02789D1EC00A97884 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../../../../loading.json; sourceTree = "<group>"; };
 		AAA9A4F62753A71F00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumRequestModel.swift; sourceTree = "<group>"; };
 		AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumService.swift; sourceTree = "<group>"; };
@@ -287,6 +286,7 @@
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 		AA9FB3DF2789D1E400A97884 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				AA9FB3E02789D1EC00A97884 /* loading.json */,
+				FC502231278F305700B50C41 /* loading.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -981,7 +981,6 @@
 				AABEA2E1273C4A3300A06A8C /* Gilroy-Regular.ttf in Resources */,
 				AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
-				AA9FB3E12789D1EC00A97884 /* loading.json in Resources */,
 				AABEA2E3273C4AAD00A06A8C /* Gilroy-Bold.ttf in Resources */,
 				AABEA2E0273C4A3300A06A8C /* Pretendard-Regular.ttf in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
@@ -991,6 +990,7 @@
 				AABEA2DD273C4A3300A06A8C /* Gilroy-Light.ttf in Resources */,
 				AABEA2DE273C4A3300A06A8C /* Pretendard-Bold.ttf in Resources */,
 				AA7E0A4226FB0A6200106DC2 /* Assets.xcassets in Resources */,
+				FC502232278F305800B50C41 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
