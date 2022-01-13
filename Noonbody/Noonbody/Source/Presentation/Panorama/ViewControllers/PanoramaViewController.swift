@@ -100,6 +100,7 @@ class PanoramaViewController: BaseViewController {
             topCollectionView.isScrollEnabled = editMode
             topCollectionView.allowsMultipleSelection = editMode
             gridButton.isHidden = editMode
+            setHide()
         }
     }
     
@@ -161,6 +162,7 @@ class PanoramaViewController: BaseViewController {
                         }).disposed(by: self.disposeBag)
                     
                     self.bodyPartData.removeAll(where: {$0.id == data})
+                    self.deleteAlbumData(id: data)
                 }
                 self.deleteData = []
                 self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
@@ -225,6 +227,19 @@ class PanoramaViewController: BaseViewController {
             bodyPartData = albumData.pictures.upper
         case 2:
             bodyPartData = albumData.pictures.lower
+        default:
+            return
+        }
+    }
+    
+    private func deleteAlbumData(id: Int) {
+        switch bodyPart {
+        case 0:
+            albumData.pictures.whole.removeAll(where: {$0.id == id})
+        case 1:
+            albumData.pictures.upper.removeAll(where: {$0.id == id})
+        case 2:
+            albumData.pictures.lower.removeAll(where: {$0.id == id})
         default:
             return
         }
@@ -352,6 +367,7 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
         initBodyPartData(index: bodyPart)
+        deleteData = []
     }
 }
 
