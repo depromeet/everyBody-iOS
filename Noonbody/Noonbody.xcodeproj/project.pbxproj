@@ -71,7 +71,6 @@
 		AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */; };
 		AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */; };
 		AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9A41462715EC2C002BBE15 /* Camera.swift */; };
-		AA9FB3E12789D1EC00A97884 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AA9FB3E02789D1EC00A97884 /* loading.json */; };
 		AA9FB3E42789D4A600A97884 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E32789D4A600A97884 /* Moya */; };
 		AA9FB3E72789D4DC00A97884 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E62789D4DC00A97884 /* RxCocoa */; };
 		AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E82789D4DC00A97884 /* RxSwift */; };
@@ -130,6 +129,7 @@
 		AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */; };
 		AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */; };
 		AAE2FABB276CC10300FA2C5C /* ListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */; };
+		AAEA23902790497C005A08C9 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AAEA238F2790497B005A08C9 /* loading.json */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -227,7 +227,6 @@
 		AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Generic.swift"; sourceTree = "<group>"; };
 		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		AA9FB3E02789D1EC00A97884 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loading.json; path = ../../../../../../../loading.json; sourceTree = "<group>"; };
 		AAA9A4F62753A71F00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumRequestModel.swift; sourceTree = "<group>"; };
 		AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumService.swift; sourceTree = "<group>"; };
@@ -282,6 +281,7 @@
 		AAE2FAB5276BA72A00FA2C5C /* UIButton+alignVertical.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+alignVertical.swift"; sourceTree = "<group>"; };
 		AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+makeVibrate.swift"; sourceTree = "<group>"; };
 		AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCollectionViewCell.swift; sourceTree = "<group>"; };
+		AAEA238F2790497B005A08C9 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -438,7 +438,7 @@
 		AA7E0A4D26FB0B1E00106DC2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				AA9FB3DF2789D1E400A97884 /* Lottie */,
+				AAEA238E27904948005A08C9 /* Lottie */,
 				AAC7ACAA2729EDF100B2BE1E /* Font */,
 				AA5B85D9271700CA002276C3 /* Constants */,
 				AA7E0A4126FB0A6200106DC2 /* Assets.xcassets */,
@@ -599,14 +599,6 @@
 				FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */,
 			);
 			path = Component;
-			sourceTree = "<group>";
-		};
-		AA9FB3DF2789D1E400A97884 /* Lottie */ = {
-			isa = PBXGroup;
-			children = (
-				AA9FB3E02789D1EC00A97884 /* loading.json */,
-			);
-			path = Lottie;
 			sourceTree = "<group>";
 		};
 		AAA9A5272757FF7200FE92DB /* CreateAlbum */ = {
@@ -869,6 +861,14 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		AAEA238E27904948005A08C9 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				AAEA238F2790497B005A08C9 /* loading.json */,
+			);
+			path = Lottie;
+			sourceTree = "<group>";
+		};
 		FC23AC0E275A03720067EEF7 /* Album */ = {
 			isa = PBXGroup;
 			children = (
@@ -981,7 +981,7 @@
 				AABEA2E1273C4A3300A06A8C /* Gilroy-Regular.ttf in Resources */,
 				AABEA2DF273C4A3300A06A8C /* Pretendard-SemiBold.ttf in Resources */,
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
-				AA9FB3E12789D1EC00A97884 /* loading.json in Resources */,
+				AAEA23902790497C005A08C9 /* loading.json in Resources */,
 				AABEA2E3273C4AAD00A06A8C /* Gilroy-Bold.ttf in Resources */,
 				AABEA2E0273C4A3300A06A8C /* Pretendard-Regular.ttf in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
