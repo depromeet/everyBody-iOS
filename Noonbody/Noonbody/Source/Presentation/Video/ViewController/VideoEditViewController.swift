@@ -16,6 +16,7 @@ class VideoEditViewController: BaseViewController {
     // MARK: - Properties
     
     private var firstLaunch: Bool = true
+    private var isSelectedEvent: Bool = false
     private var imageList: [ImageInfo] = []
     private var backingList: [(ImageInfo, Int)] = []
     private let cellWidth: CGFloat = 52
@@ -185,14 +186,19 @@ extension VideoEditViewController: DeleteButtonDelegate {
 extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        isSelectedEvent = true
         guard let cell = collectionView.cellForItem(at: indexPath) as? PreviewCollectionViewCell else { return }
         centerCell = cell
         collectionView.setContentOffset(CGPoint(x: cell.frame.minX - (collectionView.frame.width / 2 - cellWidth / 2),
                                                 y: 0.0),
                                         animated: true)
+        imageView.setImage(with: self.imageList[indexPath.row].imageURL)
+        updateIndexLabel(row: indexPath.row)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isSelectedEvent { return }
+        
         let centerPoint = CGPoint(x: collectionView.contentOffset.x + collectionView.frame.size.width / 2, y: 0.0)
         
         if let indexPath = collectionView.indexPathForItem(at: centerPoint), centerCell == nil {
@@ -221,6 +227,11 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
             updateIndexLabel(row: indexPath.row)
         }
         
+        setUnselectedCellUI()
+    }
+    
+    private func setUnselectedCellUI() {
+        let centerPoint =  CGPoint(x: collectionView.contentOffset.x + collectionView.frame.size.width / 2, y: 0.0)
         if let indexPath = collectionView.indexPathForItem(at: centerPoint) {
             for row in 0..<imageList.count where row != indexPath.row {
                 let cell = self.collectionView.cellForItem(at: [0, row]) as? PreviewCollectionViewCell
@@ -235,6 +246,7 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         moveCellToCenter()
+        isSelectedEvent.toggle()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
