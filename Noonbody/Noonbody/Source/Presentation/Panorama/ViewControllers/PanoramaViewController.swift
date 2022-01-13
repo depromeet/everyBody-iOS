@@ -367,12 +367,12 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
         initBodyPartData(index: bodyPart)
+        deleteData = []
     }
 }
 
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
-        deleteData = []
         self.dismiss(animated: true, completion: nil)
     }
 }
