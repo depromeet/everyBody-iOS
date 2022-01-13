@@ -269,7 +269,19 @@ class PanoramaViewController: BaseViewController {
     
     @objc
     private func tapSaveButton() {
-        /// init 내비에서 saveButton 눌렀을 때 처리
+        var imageList: [(String, String)] = []
+        switch bodyPart {
+        case 0:
+            imageList = albumData.pictures.whole.map { ($0.key, $0.imageURL) }
+        case 1:
+            imageList = albumData.pictures.upper.map { ($0.key, $0.imageURL) }
+        case 2:
+            imageList = albumData.pictures.lower.map { ($0.key, $0.imageURL) }
+        default:
+            return
+        }
+        let viewController = VideoEditViewController(albumData: imageList, title: albumData.name)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc
