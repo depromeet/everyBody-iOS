@@ -34,11 +34,11 @@ extension UINavigationController {
             )
     }
     
-    func initNaviBarWithBackButton() {
+    func initNaviBarWithBackButton(tintColor: UIColor = Asset.Color.gray90.color) {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [
-            .foregroundColor: Asset.Color.gray90.color
+            .foregroundColor: tintColor
         ]
         
         appearance.setBackIndicatorImage(backButtonImage, transitionMaskImage: backButtonImage)
@@ -47,23 +47,24 @@ extension UINavigationController {
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance
         navigationBar.compactAppearance = appearance
-        navigationBar.tintColor = Asset.Color.gray90.color
+        navigationBar.tintColor = tintColor
         
-        appearance.backgroundColor = .white
+        appearance.backgroundColor = .clear
         appearance.shadowColor = .clear
         
         self.navigationBar.standardAppearance = appearance
         self.navigationBar.scrollEdgeAppearance = appearance
-        self.navigationBar.tintColor = .black
+        self.navigationBar.tintColor = tintColor
     }
     
     func initNavigationBar(navigationItem: UINavigationItem?,
                            leftButtonImages: [UIImage]? = nil,
                            rightButtonImages: [UIImage]? = nil,
                            leftActions: [Selector]? = nil,
-                           rightActions: [Selector]? = nil) {
+                           rightActions: [Selector]? = nil,
+                           tintColor: UIColor = Asset.Color.gray90.color) {
         
-        initNaviBarWithBackButton()
+        initNaviBarWithBackButton(tintColor: tintColor)
         
         makeBarButtons(navigationItem: navigationItem,
                        buttonImage: leftButtonImages,

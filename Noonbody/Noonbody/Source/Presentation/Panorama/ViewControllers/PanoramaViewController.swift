@@ -100,6 +100,7 @@ class PanoramaViewController: BaseViewController {
             topCollectionView.isScrollEnabled = editMode
             topCollectionView.allowsMultipleSelection = editMode
             gridButton.isHidden = editMode
+            setHide()
         }
     }
     
@@ -161,6 +162,7 @@ class PanoramaViewController: BaseViewController {
                         }).disposed(by: self.disposeBag)
                     
                     self.bodyPartData.removeAll(where: {$0.id == data})
+                    self.deleteAlbumData(id: data)
                 }
                 self.deleteData = []
                 self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
@@ -230,6 +232,19 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
+    private func deleteAlbumData(id: Int) {
+        switch bodyPart {
+        case 0:
+            albumData.pictures.whole.removeAll(where: {$0.id == id})
+        case 1:
+            albumData.pictures.upper.removeAll(where: {$0.id == id})
+        case 2:
+            albumData.pictures.lower.removeAll(where: {$0.id == id})
+        default:
+            return
+        }
+    }
+    
     private func initBottomCollectionView() {
         if !bodyPartData.isEmpty {
             let selectedIndexPath = IndexPath(item: 0, section: 0)
@@ -269,7 +284,19 @@ class PanoramaViewController: BaseViewController {
     
     @objc
     private func tapSaveButton() {
-        /// init 내비에서 saveButton 눌렀을 때 처리
+        var imageList: [(String, String)] = []
+        switch bodyPart {
+        case 0:
+            imageList = albumData.pictures.whole.map { ($0.key, $0.imageURL) }
+        case 1:
+            imageList = albumData.pictures.upper.map { ($0.key, $0.imageURL) }
+        case 2:
+            imageList = albumData.pictures.lower.map { ($0.key, $0.imageURL) }
+        default:
+            return
+        }
+        let viewController = VideoEditViewController(albumData: imageList, title: albumData.name)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc
@@ -352,6 +379,7 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
         initBodyPartData(index: bodyPart)
+        deleteData = []
     }
 }
 
