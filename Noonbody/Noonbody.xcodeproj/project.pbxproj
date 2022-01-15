@@ -132,12 +132,13 @@
 		AAEA2383278C9C59005A08C9 /* VideoEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2382278C9C59005A08C9 /* VideoEditViewController.swift */; };
 		AAEA2385278CA4FE005A08C9 /* PreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2384278CA4FE005A08C9 /* PreviewCollectionViewCell.swift */; };
 		AAEA23902790497C005A08C9 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = AAEA238F2790497B005A08C9 /* loading.json */; };
+		AAEA2393279225DE005A08C9 /* VideoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA2392279225DD005A08C9 /* VideoViewModel.swift */; };
+		AAEA239527933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA239427933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
 		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
-		FC502232278F305800B50C41 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FC502231278F305700B50C41 /* loading.json */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -287,6 +288,8 @@
 		AAEA2382278C9C59005A08C9 /* VideoEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoEditViewController.swift; sourceTree = "<group>"; };
 		AAEA2384278CA4FE005A08C9 /* PreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		AAEA238F2790497B005A08C9 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		AAEA2392279225DD005A08C9 /* VideoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoViewModel.swift; sourceTree = "<group>"; };
+		AAEA239427933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+PreviewCollectionViewCell.swift"; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -692,9 +695,9 @@
 		AABD83812784CDEF004E8BF8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				AA95910E27442999007772BD /* PopUpViewController.swift */,
 				AA95911C27444F4F007772BD /* PopUpActionDelegate.swift */,
 				AA5B85D12716D4D8002276C3 /* UIView+addSubviews.swift */,
+				AA95910E27442999007772BD /* PopUpViewController.swift */,
 				AA5B85D32716F1A1002276C3 /* UIView+makeRounded.swift */,
 				AA5B85DE27170F27002276C3 /* UINavigationController+Extensions.swift */,
 				AAC7ACB7272D5C0800B2BE1E /* UIDevice+hasNotch.swift */,
@@ -717,6 +720,7 @@
 				AAE2FAB7276BA75800FA2C5C /* UIViewController+makeVibrate.swift */,
 				AABD8388278635EC004E8BF8 /* UserDefault.swift */,
 				AABD838A2786385C004E8BF8 /* UserManager.swift */,
+				AAEA239427933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -864,6 +868,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE2FAAD2764848F00FA2C5C /* GoogleService-Info.plist */,
+				FC502231278F305700B50C41 /* loading.json */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -889,6 +894,7 @@
 		AAEA2381278C9C22005A08C9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				AAEA2392279225DD005A08C9 /* VideoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -899,7 +905,7 @@
 				AAEA2384278CA4FE005A08C9 /* PreviewCollectionViewCell.swift */,
 			);
 			path = Cell;
-      sourceTree = "<group>";
+			sourceTree = "<group>";
 		};
 		AAEA238E27904948005A08C9 /* Lottie */ = {
 			isa = PBXGroup;
@@ -1031,7 +1037,6 @@
 				AABEA2DD273C4A3300A06A8C /* Gilroy-Light.ttf in Resources */,
 				AABEA2DE273C4A3300A06A8C /* Pretendard-Bold.ttf in Resources */,
 				AA7E0A4226FB0A6200106DC2 /* Assets.xcassets in Resources */,
-				FC502232278F305800B50C41 /* loading.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,6 +1111,7 @@
 				AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */,
 				AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */,
 				AA2F3192275B413100855861 /* AlbumSelectionViewModel.swift in Sources */,
+				AAEA239527933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift in Sources */,
 				FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */,
 				AA2F318A275ADB6400855861 /* CameraService.swift in Sources */,
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
@@ -1120,6 +1126,7 @@
 				AAE2FA9F27640C5200FA2C5C /* AuthAPI.swift in Sources */,
 				AA74A0F4274A696E00FA6678 /* NotificationViewController.swift in Sources */,
 				AAC7AD242737B6CB00B2BE1E /* AlbumSelectionViewController.swift in Sources */,
+				AAEA2393279225DE005A08C9 /* VideoViewModel.swift in Sources */,
 				FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */,
 				AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */,
 				AABD8389278635EC004E8BF8 /* UserDefault.swift in Sources */,
