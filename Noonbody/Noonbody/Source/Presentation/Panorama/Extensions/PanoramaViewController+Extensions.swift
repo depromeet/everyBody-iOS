@@ -57,13 +57,13 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
                 selectedIndexByPart[bodyPart] = indexPath
             } else if self.centerCell == nil {
                 centerCell?.transformToStandard()
-                bottomCollectionViewScrollToItem(animated: true)
+                moveCellToCenter(animated: true)
             }
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        bottomCollectionViewScrollToItem(animated: true)
+        moveCellToCenter(animated: true)
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
@@ -72,7 +72,7 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            bottomCollectionViewScrollToItem(animated: true)
+            moveCellToCenter(animated: true)
         }
     }
 }
@@ -116,7 +116,7 @@ extension PanoramaViewController: UICollectionViewDataSource {
             if indexPath.row == 0 {
                 cameraButtonDidTap()
             } else {
-                deleteData[indexPath.row-1] = bodyPartData[indexPath.row-1].id
+                deleteData[indexPath.row - 1] = bodyPartData[indexPath.row - 1].id
             }
         } else if !bodyPartData.isEmpty {
             isSelectedEvent = true
@@ -126,7 +126,7 @@ extension PanoramaViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == topCollectionView && editMode {
-            deleteData.removeValue(forKey: indexPath.row-1)
+            deleteData.removeValue(forKey: indexPath.row - 1)
         }
     }
 }

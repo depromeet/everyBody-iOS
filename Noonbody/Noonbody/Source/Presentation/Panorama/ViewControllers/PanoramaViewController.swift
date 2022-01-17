@@ -270,7 +270,7 @@ class PanoramaViewController: BaseViewController {
         gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
     }
     
-    func bottomCollectionViewScrollToItem(animated: Bool) {
+    func moveCellToCenter(animated: Bool) {
         bottomCollectionView.scrollToItem(at: selectedIndexByPart[bodyPart], at: .centeredHorizontally, animated: animated)
     }
     
