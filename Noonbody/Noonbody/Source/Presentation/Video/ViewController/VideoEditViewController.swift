@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Photos
 
 import RxCocoa
 import RxSwift
@@ -47,12 +48,17 @@ class VideoEditViewController: BaseViewController {
     private let backingButton = UIButton().then {
         $0.setImage(Asset.Image.shareWhite.image, for: .normal)
     }
+    private let saveBarButtonItem = UIBarButtonItem(image: Asset.Image.shareWhite.image,
+                                                        style: .plain,
+                                                        target: self,
+                                                        action: nil)
     
     // MARK: - Initializer
     
     init(albumData: [(String, String)], title: String) {
         viewModel = VideoViewModel(imageList: albumData.map { ImageInfo(imageKey: $0.0,
-                                                                             imageURL: $0.1) })
+                                                                        imageURL: $0.1) },
+                                   videoUsecase: DefaultVideoUseCase(videoRepository: DefaultVideoRepository()))
         super.init(nibName: nil, bundle: nil)
         self.title = title
     }
@@ -79,7 +85,8 @@ class VideoEditViewController: BaseViewController {
     // MARK: - Methods
     
     private func bind() {
-        let input = VideoViewModel.Input(backingButtonControlEvent: backingButton.rx.tap)
+        let input = VideoViewModel.Input(backingButtonControlEvent: backingButton.rx.tap,
+                                         saveButtonControlEvent: saveBarButtonItem.rx.tap)
         let output = viewModel.transform(input: input)
         
         output.restoredImageList
@@ -87,13 +94,27 @@ class VideoEditViewController: BaseViewController {
                 self?.appendItemsToDataSource(with: restoreImageList)
             })
             .disposed(by: disposeBag)
+        
+        output.statusCode
+            .drive(onNext: { [weak self] statusCode in
+                if statusCode == 200 {
+                    self?.saveVideoInCameraRoll()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func saveVideoInCameraRoll() {
+        guard let fileURL = videfileURL else { return }
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
+        })
+
     }
     
     private func initNavigationBar() {
-        navigationController?.initNavigationBar(navigationItem: self.navigationItem,
-                                                rightButtonImages: [Asset.Image.shareWhite.image],
-                                                rightActions: [#selector(saveButtonDidTap)],
-                                                tintColor: .white)
+        navigationController?.initNaviBarWithBackButton(tintColor: .white)
+        navigationItem.rightBarButtonItem = saveBarButtonItem
     }
     
     private func initCollectionView() {
@@ -211,13 +232,6 @@ class VideoEditViewController: BaseViewController {
     
     private func updateIndexLabel(row: Int) {
         selectedIndexLabel.text = "\(row + 1)번"
-    }
-    
-    // MARK: - Actions
-    
-    @objc
-    private func saveButtonDidTap() {
-        // TO DO: 동영상 저장 서버 연결
     }
     
 }
