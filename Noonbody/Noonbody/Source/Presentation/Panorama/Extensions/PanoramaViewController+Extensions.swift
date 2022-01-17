@@ -37,35 +37,42 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == bottomCollectionView && !bodyPartData.isEmpty {
-            let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
-            if let indexPath = self.bottomCollectionView.indexPathForItem(at: centerPoint), self.centerCell == nil {
-                self.centerCell = self.bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
-                self.centerCell?.transformToCenter()
-                topCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-                tagSelectedIndexArray[bodyPart] = indexPath
-            } else if self.centerCell == nil {
-                centerCell?.transformToStandard()
-                bottomCollectionView.scrollToItem(at: tagSelectedIndexArray[bodyPart], at: .centeredHorizontally, animated: true)
-            }
             
+            let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
             if let cell = centerCell {
                 let offsetX = centerPoint.x - cell.center.x
                 if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
                     cell.transformToStandard()
-                    bottomCollectionView.deselectItem(at: tagSelectedIndexArray[bodyPart], animated: false)
+                    bottomCollectionView.deselectItem(at: selectedIndexByPart[bodyPart], animated: false)
                     self.centerCell = nil
                 }
+            }
+            
+            if isSelectedEvent { return }
+            
+            if let indexPath = self.bottomCollectionView.indexPathForItem(at: centerPoint), self.centerCell == nil {
+                self.centerCell = self.bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
+                self.centerCell?.transformToCenter()
+                topCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+                selectedIndexByPart[bodyPart] = indexPath
+            } else if self.centerCell == nil {
+                centerCell?.transformToStandard()
+                bottomCollectionViewScrollToItem(animated: true)
             }
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        bottomCollectionView.scrollToItem(at: tagSelectedIndexArray[bodyPart], at: .centeredHorizontally, animated: true)
+        bottomCollectionViewScrollToItem(animated: true)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        isSelectedEvent.toggle()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            bottomCollectionView.scrollToItem(at: tagSelectedIndexArray[bodyPart], at: .centeredHorizontally, animated: true)
+            bottomCollectionViewScrollToItem(animated: true)
         }
     }
 }
@@ -95,7 +102,7 @@ extension PanoramaViewController: UICollectionViewDataSource {
         
         let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.setCell(index: indexPath.row, imageURL: bodyPartData[indexPath.row].imageURL)
-        if indexPath.item == tagSelectedIndexArray[bodyPart].row {
+        if indexPath.item == selectedIndexByPart[bodyPart].row {
             cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
         } else {
@@ -112,6 +119,7 @@ extension PanoramaViewController: UICollectionViewDataSource {
                 deleteData[indexPath.row-1] = bodyPartData[indexPath.row-1].id
             }
         } else if !bodyPartData.isEmpty {
+            isSelectedEvent = true
             bottomCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }

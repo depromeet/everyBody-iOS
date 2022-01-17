@@ -69,7 +69,7 @@ class PanoramaViewController: BaseViewController {
     var bodyPart = 0
     var deleteData: [Int: Int] = [:] {
         didSet {
-            navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty || !editMode ? true : false
+            navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty || !editMode
         }
     }
     
@@ -109,7 +109,8 @@ class PanoramaViewController: BaseViewController {
     }
     
     var centerCell: BottomCollectionViewCell?
-    var tagSelectedIndexArray = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
+    var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
+    var isSelectedEvent: Bool = false
     
     // MARK: - View Life Cycle
     
@@ -135,7 +136,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        initDeleteData()
+        resetDeleteData()
     }
     
     override func viewDidLayoutSubviews() {
@@ -158,7 +159,7 @@ class PanoramaViewController: BaseViewController {
                     self.bodyPartData.removeAll(where: {$0.id == value})
                     self.updateSeletedIndex(index: key)
                 }
-                self.initDeleteData()
+                self.resetDeleteData()
                 self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
             }).disposed(by: disposeBag)
         
@@ -239,14 +240,14 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    private func initDeleteData() {
-        deleteData = [:]
+    private func resetDeleteData() {
+        deleteData.removeAll()
     }
     
     private func updateSeletedIndex(index: Int) {
-        let lastIndexpath = tagSelectedIndexArray[bodyPart].item
-        let updatedIndexpath = index < lastIndexpath || bodyPartData.count == 1 ? lastIndexpath - 1 : lastIndexpath
-        tagSelectedIndexArray[bodyPart] = IndexPath(item: updatedIndexpath, section: 0)
+        let lastIndexPathItem = selectedIndexByPart[bodyPart].item
+        let updatedIndexPathItem = index < lastIndexPathItem || bodyPartData.count == 1 ? lastIndexPathItem - 1 : lastIndexPathItem
+        selectedIndexByPart[bodyPart] = IndexPath(item: updatedIndexPathItem, section: 0)
     }
     
     private func switchPanoramaMode() {
@@ -259,20 +260,24 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    func reloadCollectionView() {
+    private func reloadCollectionView() {
         topCollectionView.reloadData()
         bottomCollectionView.reloadData()
     }
     
-    func setHide() {
+    private func setHide() {
         emptyView.isHidden = bodyPartData.isEmpty && !editMode ? false : true
         gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
+    }
+    
+    func bottomCollectionViewScrollToItem(animated: Bool) {
+        bottomCollectionView.scrollToItem(at: selectedIndexByPart[bodyPart], at: .centeredHorizontally, animated: animated)
     }
     
     // MARK: - Actions
     @objc
     private func editOrCloseButtonDidTap() {
-        initDeleteData()
+        resetDeleteData()
         editMode ? initNavigationBar() : initEditNavigationBar()
         editMode.toggle()
         if !gridMode {
@@ -377,9 +382,9 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
         initBodyPartData(index: bodyPart)
-        initDeleteData()
+        resetDeleteData()
         if !bodyPartData.isEmpty {
-            bottomCollectionView.selectItem(at: tagSelectedIndexArray[index], animated: false, scrollPosition: .centeredHorizontally)
+            bottomCollectionView.selectItem(at: selectedIndexByPart[index], animated: false, scrollPosition: .centeredHorizontally)
         }
     }
 }
