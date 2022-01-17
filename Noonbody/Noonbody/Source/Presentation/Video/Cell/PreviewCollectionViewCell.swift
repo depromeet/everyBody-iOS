@@ -7,21 +7,29 @@
 
 import UIKit
 
+@objc
 protocol DeleteButtonDelegate: AnyObject {
-    func deleteButtonDidTap(identifier: ImageInfo)
+    @objc optional func deleteButtonDidTap(_ button: UIButton, cellIdentifier: ImageInfo)
 }
 
 class PreviewCollectionViewCell: UICollectionViewCell {
  
+    // MARK: - UI Components
+    
     private let imageView = UIImageView().then {
         $0.image = Asset.Image.sample.image
     }
     private lazy var xButton = UIButton().then {
         $0.setImage(Asset.Image.close.image, for: .normal)
-        $0.addTarget(self, action: #selector(deleteButtonDidTap), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(deleteButtonDidTap(sender:)), for: .touchUpInside)
     }
+    
+    // MARK: - Properties
+    
     var identifiter: ImageInfo = ImageInfo(imageKey: "", imageURL: "")
     weak var delegate: DeleteButtonDelegate?
+    
+    // MARK: - Initializer
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,6 +41,8 @@ class PreviewCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Custom Methods
     
     private func setConstraints() {
         addSubviews(imageView, xButton)
@@ -62,7 +72,10 @@ class PreviewCollectionViewCell: UICollectionViewCell {
         xButton.setImage(Asset.Image.close.image, for: .normal)
     }
     
-    @objc private func deleteButtonDidTap() {
-        delegate?.deleteButtonDidTap(identifier: self.identifiter)
+    // MARK: Actions
+    
+    @objc
+    private func deleteButtonDidTap(sender: UIButton) {
+        delegate?.deleteButtonDidTap!(sender, cellIdentifier: self.identifiter)
     }
 }
