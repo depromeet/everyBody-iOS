@@ -181,8 +181,8 @@ class PanoramaViewController: BaseViewController {
             navigationController?.initNavigationBar(navigationItem: self.navigationItem,
                                                     rightButtonImages: [Asset.Image.share.image,
                                                                         Asset.Image.create.image],
-                                                    rightActions: [#selector(tapSaveButton),
-                                                                   #selector(tapEditOrCloseButton)])
+                                                    rightActions: [#selector(saveButtonDidTap),
+                                                                   #selector(editOrCloseButtonDidTap)])
         }
         navigationItem.leftBarButtonItems = nil
         title = albumData.name
@@ -192,8 +192,8 @@ class PanoramaViewController: BaseViewController {
         navigationController?.initNavigationBar(navigationItem: self.navigationItem,
                                                 leftButtonImages: [Asset.Image.clear.image],
                                                 rightButtonImages: [Asset.Image.del.image],
-                                                leftActions: [#selector(tapEditOrCloseButton)],
-                                                rightActions: [#selector(tapDeleteButton)])
+                                                leftActions: [#selector(editOrCloseButtonDidTap)],
+                                                rightActions: [#selector(deleteButtonDidTap)])
         
         self.title = "\(bodyPartData.count)장"
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -264,7 +264,7 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Actions
     @objc
-    private func tapEditOrCloseButton() {
+    private func editOrCloseButtonDidTap() {
         editMode ? initNavigationBar() : initEditNavigationBar()
         editMode.toggle()
         if !gridMode {
@@ -273,7 +273,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     @objc
-    private func tapSaveButton() {
+    private func saveButtonDidTap() {
         var imageList: [(String, String)] = []
         switch bodyPart {
         case 0:
@@ -290,7 +290,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     @objc
-    private func tapDeleteButton() {
+    private func deleteButtonDidTap() {
         let popUp = popupViewController
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overCurrentContext
