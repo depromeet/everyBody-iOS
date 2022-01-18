@@ -45,7 +45,7 @@ class PopUpViewController: BaseViewController {
         $0.preferredDatePickerStyle = .wheels
     }
     
-    private let cancelButton = UIButton().then {
+    let cancelButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body2)
         $0.setTitleColor(Asset.Color.gray80.color, for: .normal)
@@ -216,5 +216,10 @@ class PopUpViewController: BaseViewController {
     
     func setCancelButtonTitle(text: String) {
         cancelButton.setTitle(text, for: .normal)
+    }
+    
+    func setDeleteButton() {
+        confirmButton.setTitle("삭제", for: .normal)
+        confirmButton.titleLabel?.textColor = Asset.Color.red.color
     }
 }
