@@ -140,6 +140,9 @@
 		AAEA239F27938E3C005A08C9 /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA239E27938E3C005A08C9 /* VideoService.swift */; };
 		AAEA23A127938E50005A08C9 /* VideoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA23A027938E50005A08C9 /* VideoAPI.swift */; };
 		AAEA23A327938EA1005A08C9 /* VideoRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA23A227938EA1005A08C9 /* VideoRequestModel.swift */; };
+		AAEA23A727960553005A08C9 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA23A627960553005A08C9 /* CircleProgressView.swift */; };
+		AAEA23AA27960E41005A08C9 /* ImageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA23A927960E41005A08C9 /* ImageInfo.swift */; };
+		AAEA23AC27968A91005A08C9 /* downloadCompleted.json in Resources */ = {isa = PBXBuildFile; fileRef = AAEA23AB27968A90005A08C9 /* downloadCompleted.json */; };
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
@@ -302,6 +305,9 @@
 		AAEA239E27938E3C005A08C9 /* VideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
 		AAEA23A027938E50005A08C9 /* VideoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAPI.swift; sourceTree = "<group>"; };
 		AAEA23A227938EA1005A08C9 /* VideoRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRequestModel.swift; sourceTree = "<group>"; };
+		AAEA23A627960553005A08C9 /* CircleProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
+		AAEA23A927960E41005A08C9 /* ImageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInfo.swift; sourceTree = "<group>"; };
+		AAEA23AB27968A90005A08C9 /* downloadCompleted.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = downloadCompleted.json; sourceTree = "<group>"; };
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
@@ -893,6 +899,8 @@
 		AAEA237F278C9C05005A08C9 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				AAEA23A827960E36005A08C9 /* Model */,
+				AAEA23A527960540005A08C9 /* View */,
 				AAEA2386278CA502005A08C9 /* Cell */,
 				AAEA2381278C9C22005A08C9 /* ViewModel */,
 				AAEA2380278C9C19005A08C9 /* ViewController */,
@@ -927,6 +935,7 @@
 		AAEA238E27904948005A08C9 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				AAEA23AB27968A90005A08C9 /* downloadCompleted.json */,
 				AAEA238F2790497B005A08C9 /* loading.json */,
 			);
 			path = Lottie;
@@ -939,6 +948,22 @@
 				AAEA23A027938E50005A08C9 /* VideoAPI.swift */,
 			);
 			path = Video;
+			sourceTree = "<group>";
+		};
+		AAEA23A527960540005A08C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AAEA23A627960553005A08C9 /* CircleProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AAEA23A827960E36005A08C9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AAEA23A927960E41005A08C9 /* ImageInfo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FC23AC0E275A03720067EEF7 /* Album */ = {
@@ -1055,6 +1080,7 @@
 				AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */,
 				AAEA23902790497C005A08C9 /* loading.json in Resources */,
 				AABEA2E3273C4AAD00A06A8C /* Gilroy-Bold.ttf in Resources */,
+				AAEA23AC27968A91005A08C9 /* downloadCompleted.json in Resources */,
 				AABEA2E0273C4A3300A06A8C /* Pretendard-Regular.ttf in Resources */,
 				AAF2D4292724137E0029219D /* Image.xcassets in Resources */,
 				AAE2FA982764078900FA2C5C /* LaunchScreen.storyboard in Resources */,
@@ -1201,9 +1227,11 @@
 				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
 				AAE2FA74276288E600FA2C5C /* NBDatePicker.swift in Sources */,
+				AAEA23AA27960E41005A08C9 /* ImageInfo.swift in Sources */,
 				AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */,
 				AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
+				AAEA23A727960553005A08C9 /* CircleProgressView.swift in Sources */,
 				AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */,

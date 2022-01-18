@@ -46,7 +46,7 @@ class VideoEditViewController: BaseViewController {
         $0.textColor = .white
     }
     private let backingButton = UIButton().then {
-        $0.setImage(Asset.Image.shareWhite.image, for: .normal)
+        $0.setImage(Asset.Image.back02.image, for: .normal)
     }
     private let saveBarButtonItem = UIBarButtonItem(image: Asset.Image.shareWhite.image,
                                                         style: .plain,
@@ -102,6 +102,36 @@ class VideoEditViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        let popUp = PopUpViewController(type: .download)
+        
+        saveBarButtonItem.rx.tap
+            .asDriver()
+            .drive(onNext: {
+                popUp.modalTransitionStyle = .crossDissolve
+                popUp.modalPresentationStyle = .overCurrentContext
+                popUp.delegate = self
+                popUp.titleLabel.text = "비디오 저장 중 ...0%"
+                popUp.descriptionLabel.text = "눈바디 영상이 만들어지고 있어요!\n앱을 종료하거나 기기를 잠그지 마세요."
+                self.present(popUp, animated: true, completion: nil)
+
+            })
+            .disposed(by: disposeBag)
+        
+        progress
+            .subscribe(onNext: { percent in
+                popUp.titleLabel.text = "비디오 저장 중 ...\(Int(percent*100))%"
+                popUp.downloadedPercentView.shapeLayer.strokeEnd = percent
+                if percent == 1.0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        popUp.downloadedPercentView.setCompletedView()
+                        popUp.titleLabel.text = "비디오 저장 완료!"
+                        popUp.descriptionLabel.text = "비디오가 저장이 완료되었어요!\n사진 앨범에서 저장된 비디오를 확인해 보세요."
+                        popUp.changeCancleToConfirmButton()
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     private func saveVideoInCameraRoll() {
@@ -109,7 +139,6 @@ class VideoEditViewController: BaseViewController {
         PHPhotoLibrary.shared().performChanges({
             PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: fileURL)
         })
-
     }
     
     private func initNavigationBar() {
@@ -132,7 +161,6 @@ class VideoEditViewController: BaseViewController {
     private func createDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<PreviewCollectionViewCell,
                                                                  ImageInfo>(handler: makeCellRegistration())
-        
         dataSource = UICollectionViewDiffableDataSource<SectionKind, ImageInfo>(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
@@ -143,7 +171,6 @@ class VideoEditViewController: BaseViewController {
                 )
             }
         )
-        
         appendItemsToDataSource(with: viewModel.imageList)
     }
     
@@ -232,6 +259,26 @@ class VideoEditViewController: BaseViewController {
     
     private func updateIndexLabel(row: Int) {
         selectedIndexLabel.text = "\(row + 1)번"
+    }
+    
+}
+
+extension VideoEditViewController: PopUpActionProtocol {
+    
+    func cancelButtonDidTap(_ button: UIButton) {
+        NotificationCenter.default.post(name: NSNotification.Name("requestCancel"),
+                                        object: nil)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func confirmButtonDidTap(_ button: UIButton) {
+        dismiss(animated: true, completion: nil)
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: PanoramaViewController.self) {
+                self.navigationController?.popToViewController(controller, animated: true)
+                break
+            }
+        }
     }
     
 }
@@ -346,18 +393,8 @@ extension VideoEditViewController {
         
         backingButton.snp.makeConstraints {
             $0.top.equalTo(ofLabel.snp.bottom).offset(10)
-            $0.leading.equalToSuperview().offset(10)
+            $0.centerX.equalToSuperview()
         }
     }
     
-}
-
-class ImageInfo: NSObject {
-    let imageKey: String
-    let imageURL: String
-    
-    init(imageKey: String, imageURL: String) {
-        self.imageKey = imageKey
-        self.imageURL = imageURL
-    }
 }

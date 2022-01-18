@@ -37,6 +37,7 @@ internal enum Asset {
     internal static let add = ImageAsset(name: "Add")
     internal static let album = ImageAsset(name: "Album")
     internal static let arrowDown = ImageAsset(name: "ArrowDown")
+    internal static let back02 = ImageAsset(name: "Back02")
     internal static let close = ImageAsset(name: "Close")
     internal static let create = ImageAsset(name: "Create")
     internal static let empty = ImageAsset(name: "Empty")
