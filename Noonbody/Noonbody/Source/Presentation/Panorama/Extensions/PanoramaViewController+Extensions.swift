@@ -36,50 +36,43 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == bottomCollectionView {
+        if scrollView == bottomCollectionView && !bodyPartData.isEmpty {
+            
             let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
+            if let cell = centerCell {
+                let offsetX = centerPoint.x - cell.center.x
+                if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
+                    cell.transformToStandard()
+                    bottomCollectionView.deselectItem(at: selectedIndexByPart[bodyPart], animated: false)
+                    self.centerCell = nil
+                }
+            }
+            
+            if isSelectedEvent { return }
             
             if let indexPath = self.bottomCollectionView.indexPathForItem(at: centerPoint), self.centerCell == nil {
                 self.centerCell = self.bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
                 self.centerCell?.transformToCenter()
                 topCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-                tagSelectedIdx = indexPath
+                selectedIndexByPart[bodyPart] = indexPath
             } else if self.centerCell == nil {
                 centerCell?.transformToStandard()
-                bottomCollectionView.scrollToItem(at: tagSelectedIdx, at: .centeredHorizontally, animated: true)
+                moveCellToCenter(animated: true)
             }
-            
-            if let cell = centerCell {
-                let offsetX = centerPoint.x - cell.center.x
-                if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
-                    cell.transformToStandard()
-                    self.centerCell = nil
-                }
-            }
-        }
-    }
-    
-    private func moveCellToCenter() {
-        let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
-        if let indexPath = bottomCollectionView.indexPathForItem(at: centerPoint) {
-            bottomCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            topCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-            self.centerCell = self.bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
-            self.centerCell?.transformToCenter()
         }
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        moveCellToCenter()
+        moveCellToCenter(animated: true)
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        moveCellToCenter()
+        isSelectedEvent.toggle()
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            moveCellToCenter()
+            moveCellToCenter(animated: true)
         }
     }
 }
@@ -109,22 +102,31 @@ extension PanoramaViewController: UICollectionViewDataSource {
         
         let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
         cell.setCell(index: indexPath.row, imageURL: bodyPartData[indexPath.row].imageURL)
+        if indexPath.item == selectedIndexByPart[bodyPart].row {
+            cell.isSelected = true
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        } else {
+            cell.isSelected = false
+        }
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return collectionView == topCollectionView ? true : false
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == topCollectionView && editMode {
-            indexPath.row == 0 ? cameraButtonDidTap() : deleteData.append(bodyPartData[indexPath.row-1].id)
+            if indexPath.row == 0 {
+                cameraButtonDidTap()
+            } else {
+                deleteData[indexPath.row - 1] = bodyPartData[indexPath.row - 1].id
+            }
+        } else if !bodyPartData.isEmpty {
+            isSelectedEvent = true
+            bottomCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == topCollectionView && editMode {
-            deleteData.removeAll(where: {$0 == bodyPartData[indexPath.row-1].id})
+            deleteData.removeValue(forKey: indexPath.row - 1)
         }
     }
 }

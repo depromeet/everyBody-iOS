@@ -64,12 +64,12 @@ class PanoramaViewController: BaseViewController {
     let cellSpacing: CGFloat = 2
     private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))
     private var popupViewController = PopUpViewController(type: .delete)
-    private var bodyPart = 0
     private var albumId: Int
     private var albumData: Album
-    var deleteData: [Int] = [] {
+    var bodyPart = 0
+    var deleteData: [Int: Int] = [:] {
         didSet {
-            navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty ? true : false
+            navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty || !editMode
         }
     }
     
@@ -78,7 +78,6 @@ class PanoramaViewController: BaseViewController {
             setHide()
             reloadCollectionView()
             editMode ? initEditNavigationBar() : initNavigationBar()
-            initBottomCollectionView()
         }
     }
     
@@ -88,9 +87,6 @@ class PanoramaViewController: BaseViewController {
             topCollectionView.bounces = gridMode
             topCollectionView.isScrollEnabled = gridMode
             topCollectionView.allowsSelection = !gridMode
-            if !gridMode {
-                initBottomCollectionView()
-            }
         }
     }
     
@@ -112,14 +108,9 @@ class PanoramaViewController: BaseViewController {
         $0.scrollDirection = .horizontal
     }
     
-    var tagSelectedIdx = IndexPath(row: 0, section: 0) {
-        didSet {
-            if tagSelectedIdx.row > 0 {
-                bottomCollectionView.deselectItem(at: IndexPath(item: 0, section: 0), animated: false)
-            }
-        }
-    }
     var centerCell: BottomCollectionViewCell?
+    var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
+    var isSelectedEvent: Bool = false
     
     // MARK: - View Life Cycle
     
@@ -145,26 +136,30 @@ class PanoramaViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        initBottomCollectionView()
+        resetDeleteData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        bottomCollectionView.reloadData()
     }
     
     // MARK: - Methods
     func bind() {
         popupViewController.confirmButton.rx.tap
             .subscribe(onNext: {
-                self.deleteData.forEach { data in
+                self.deleteData.forEach { key, value in
                     DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry())
-                        .deletePicture(pictureId: data).bind(onNext: { [weak self] statusCode in
+                        .deletePicture(pictureId: value).bind(onNext: { [weak self] statusCode in
                             guard let self = self else { return }
                             if statusCode == 200 {
                                 self.showToast(type: .delete)
                             }
                         }).disposed(by: self.disposeBag)
-                    
-                    self.bodyPartData.removeAll(where: {$0.id == data})
-                    self.deleteAlbumData(id: data)
+                    self.deleteAlbumData(id: value)
+                    self.bodyPartData.removeAll(where: {$0.id == value})
+                    self.updateSeletedIndex(index: key)
                 }
-                self.deleteData = []
+                self.resetDeleteData()
                 self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
             }).disposed(by: disposeBag)
         
@@ -190,8 +185,8 @@ class PanoramaViewController: BaseViewController {
             navigationController?.initNavigationBar(navigationItem: self.navigationItem,
                                                     rightButtonImages: [Asset.Image.share.image,
                                                                         Asset.Image.create.image],
-                                                    rightActions: [#selector(tapSaveButton),
-                                                                   #selector(tapEditOrCloseButton)])
+                                                    rightActions: [#selector(saveButtonDidTap),
+                                                                   #selector(editOrCloseButtonDidTap)])
         }
         navigationItem.leftBarButtonItems = nil
         title = albumData.name
@@ -201,8 +196,8 @@ class PanoramaViewController: BaseViewController {
         navigationController?.initNavigationBar(navigationItem: self.navigationItem,
                                                 leftButtonImages: [Asset.Image.clear.image],
                                                 rightButtonImages: [Asset.Image.del.image],
-                                                leftActions: [#selector(tapEditOrCloseButton)],
-                                                rightActions: [#selector(tapDeleteButton)])
+                                                leftActions: [#selector(editOrCloseButtonDidTap)],
+                                                rightActions: [#selector(deleteButtonDidTap)])
         
         self.title = "\(bodyPartData.count)장"
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -245,11 +240,14 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    private func initBottomCollectionView() {
-        if !bodyPartData.isEmpty {
-            let selectedIndexPath = IndexPath(item: 0, section: 0)
-            bottomCollectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: .centeredHorizontally)
-        }
+    private func resetDeleteData() {
+        deleteData.removeAll()
+    }
+    
+    private func updateSeletedIndex(index: Int) {
+        let lastIndexPathItem = selectedIndexByPart[bodyPart].item
+        let updatedIndexPathItem = index < lastIndexPathItem || bodyPartData.count == 1 ? lastIndexPathItem - 1 : lastIndexPathItem
+        selectedIndexByPart[bodyPart] = IndexPath(item: updatedIndexPathItem, section: 0)
     }
     
     private func switchPanoramaMode() {
@@ -262,19 +260,24 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    func reloadCollectionView() {
+    private func reloadCollectionView() {
         topCollectionView.reloadData()
         bottomCollectionView.reloadData()
     }
     
-    func setHide() {
+    private func setHide() {
         emptyView.isHidden = bodyPartData.isEmpty && !editMode ? false : true
         gridButton.isHidden = bodyPartData.isEmpty || editMode ? true : false
     }
     
+    func moveCellToCenter(animated: Bool) {
+        bottomCollectionView.scrollToItem(at: selectedIndexByPart[bodyPart], at: .centeredHorizontally, animated: animated)
+    }
+    
     // MARK: - Actions
     @objc
-    private func tapEditOrCloseButton() {
+    private func editOrCloseButtonDidTap() {
+        resetDeleteData()
         editMode ? initNavigationBar() : initEditNavigationBar()
         editMode.toggle()
         if !gridMode {
@@ -283,7 +286,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     @objc
-    private func tapSaveButton() {
+    private func saveButtonDidTap() {
         var imageList: [(String, String)] = []
         switch bodyPart {
         case 0:
@@ -300,7 +303,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     @objc
-    private func tapDeleteButton() {
+    private func deleteButtonDidTap() {
         let popUp = popupViewController
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overCurrentContext
@@ -379,7 +382,10 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
         bodyPart = index
         initBodyPartData(index: bodyPart)
-        deleteData = []
+        resetDeleteData()
+        if !bodyPartData.isEmpty {
+            bottomCollectionView.selectItem(at: selectedIndexByPart[index], animated: false, scrollPosition: .centeredHorizontally)
+        }
     }
 }
 
