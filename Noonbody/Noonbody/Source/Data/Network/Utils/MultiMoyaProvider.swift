@@ -10,8 +10,11 @@ import Moya
 
 final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     
+    var request: Cancellable?
+    
     func requestDecoded<T: BaseTargetType>(_ target: T,
                                            completion: @escaping (Result<T.ResultModel?, Error>) -> Void) {
+        addObserver()
         request(MultiTarget(target)) { result in
             switch result {
             case .success(let response):
@@ -29,7 +32,24 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     
     func requestNoResultAPI<T: BaseTargetType>(_ target: T,
                                                completion: @escaping (Result<Int?, Error>) -> Void) {
-        request(MultiTarget(target)) { result in
+        addObserver()
+        request = request(MultiTarget(target)) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.statusCode))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func requestWithProgress<T: BaseTargetType>(_ target: T,
+                                                progressCompletion: @escaping ((ProgressResponse) -> Void),
+                                                completion: @escaping (Result<Int?, Error>) -> Void) {
+        addObserver()
+        request = request(MultiTarget(target)) { progress in
+            progressCompletion(progress)
+        } completion: { result in
             switch result {
             case .success(let response):
                 completion(.success(response.statusCode))
@@ -42,7 +62,8 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
     func requestDecodedMultiRepsonse<T: BaseTargetType, R: Decodable>(_ target: T,
                                                                       _ requestModel: R.Type,
                                                                       completion: @escaping (Result<R?, Error>) -> Void) {
-        request(MultiTarget(target)) { result in
+        addObserver()
+        request = request(MultiTarget(target)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -55,6 +76,20 @@ final class MultiMoyaProvider: MoyaProvider<MultiTarget> {
                 completion(.failure(error))
             }
         }
+    }
+    
+    private func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(cancelRequest),
+                                               name: Notification.Name("requestCancel"),
+                                               object: nil)
+    }
+    
+    @objc func cancelRequest(notification: NSNotification) {
+        guard let request = request else {
+            return
+        }
+        request.cancel()
     }
     
 }

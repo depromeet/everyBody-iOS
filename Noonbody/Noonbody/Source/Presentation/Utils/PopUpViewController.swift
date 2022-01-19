@@ -14,6 +14,7 @@ class PopUpViewController: BaseViewController {
         case textField
         case picker
         case oneButton
+        case download
     }
     
     // MARK: - UI Components
@@ -29,7 +30,7 @@ class PopUpViewController: BaseViewController {
     }
     
     lazy var descriptionLabel = UILabel().then {
-        $0.font = .nbFont(type: .body2)
+        $0.font = .nbFont(type: .body3)
         $0.textAlignment = .center
         $0.textColor = Asset.Color.gray80.color
         $0.numberOfLines = 0
@@ -58,6 +59,8 @@ class PopUpViewController: BaseViewController {
         $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
         $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
     }
+    
+    lazy var downloadedPercentView = CircleProgressView()
     
     // MARK: - Properties
     
@@ -99,7 +102,6 @@ class PopUpViewController: BaseViewController {
     
     private func setViewHierachy() {
         view.addSubview(containerView)
-        containerView.addSubviews(titleLabel, descriptionLabel, textField, cancelButton, confirmButton)
     }
     
     private func setupConstraint() {
@@ -113,6 +115,9 @@ class PopUpViewController: BaseViewController {
         
         switch type {
         case .delete, .textField, .picker:
+            removeAllSubviews()
+            containerView.addSubviews(cancelButton, confirmButton)
+            
             cancelButton.snp.makeConstraints {
                 $0.width.equalTo(160)
                 $0.height.equalTo(56)
@@ -127,23 +132,30 @@ class PopUpViewController: BaseViewController {
             
             if type == .picker {
                 containerView.addSubview(datePicker)
+                
                 datePicker.snp.makeConstraints {
                     $0.top.equalToSuperview().offset(37)
                     $0.centerX.equalToSuperview()
                     $0.height.equalTo(120)
                 }
             } else {
+                containerView.addSubview(titleLabel)
+                
                 titleLabel.snp.makeConstraints {
                     $0.top.equalToSuperview().offset(32)
                     $0.centerX.equalToSuperview()
                 }
                 
                 if type == .delete {
+                    containerView.addSubview(descriptionLabel)
+                    
                     descriptionLabel.snp.makeConstraints {
                         $0.top.equalTo(titleLabel.snp.bottom).offset(30)
                         $0.centerX.equalToSuperview()
                     }
                 } else if type == .textField {
+                    containerView.addSubview(textField)
+                    
                     textField.snp.makeConstraints {
                         $0.top.equalTo(titleLabel.snp.bottom).offset(24)
                         $0.centerX.equalToSuperview()
@@ -153,6 +165,9 @@ class PopUpViewController: BaseViewController {
                 }
             }
         case .oneButton:
+            removeAllSubviews()
+            containerView.addSubviews(cancelButton, titleLabel, descriptionLabel)
+            
             cancelButton.snp.makeConstraints {
                 $0.height.equalTo(56)
                 $0.leading.bottom.trailing.equalToSuperview()
@@ -170,7 +185,54 @@ class PopUpViewController: BaseViewController {
             }
 
             return
+        case .download:
+            removeAllSubviews()
+            containerView.addSubviews(titleLabel, downloadedPercentView, descriptionLabel, cancelButton)
+            
+            containerView.snp.updateConstraints {
+                $0.width.equalTo(320)
+                $0.height.equalTo(283)
+            }
+
+            titleLabel.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(32)
+                $0.centerX.equalToSuperview()
+            }
+            
+            downloadedPercentView.snp.makeConstraints {
+                $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+                $0.centerX.equalToSuperview()
+            }
+            
+            descriptionLabel.snp.makeConstraints {
+                $0.top.equalTo(downloadedPercentView.snp.bottom).offset(20)
+                $0.centerX.equalToSuperview()
+            }
+            
+            cancelButton.snp.makeConstraints {
+                $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
+                $0.centerX.equalToSuperview()
+            }
         }
+    }
+    
+    func changeCancleToConfirmButton() {
+        cancelButton.removeFromSuperview()
+        
+        containerView.addSubview(confirmButton)
+        
+        confirmButton.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        confirmButton.setTitle("확인", for: .normal)
+    }
+    
+    private func removeAllSubviews() {
+        [titleLabel, descriptionLabel, textField, cancelButton, confirmButton, downloadedPercentView]
+            .forEach { view in
+                view.removeFromSuperview()
+            }
     }
     
     // MARK: - Actions
@@ -178,6 +240,7 @@ class PopUpViewController: BaseViewController {
     @objc
     func cancelButtonDidTap() {
         delegate?.cancelButtonDidTap(cancelButton)
+        downloadedPercentView.removeCompletedView()
     }
     
     @objc
@@ -185,7 +248,7 @@ class PopUpViewController: BaseViewController {
         guard let type = self.type else { return }
         
         switch type {
-        case .delete:
+        case .delete, .download:
             delegate?.confirmButtonDidTap(confirmButton)
         case .textField:
             if let text = textField.text, !text.isEmpty {

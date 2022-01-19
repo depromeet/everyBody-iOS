@@ -15,9 +15,14 @@ public class VideoService {
     
     private init() { }
     
-    func getVideo(with imageKeys: VideoRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
-        provider.requestNoResultAPI(VideoAPI.postImageKeyList(imageKeys: imageKeys)) { response in
+    func getVideo(with imageKeys: VideoRequestModel,
+                  progressCompletion: @escaping ((ProgressResponse) -> Void),
+                  completion: @escaping (Result<Int?, Error>) -> Void) {
+        provider.requestWithProgress(VideoAPI.postImageKeyList(imageKeys: imageKeys)) { progress in
+            progressCompletion(progress)
+        } completion: { response in
             completion(response)
         }
+
     }
 }
