@@ -32,7 +32,7 @@ class PopUpViewController: BaseViewController {
     lazy var descriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .body3)
         $0.textAlignment = .center
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.gray90.color
         $0.numberOfLines = 0
     }
     
@@ -46,10 +46,10 @@ class PopUpViewController: BaseViewController {
         $0.preferredDatePickerStyle = .wheels
     }
     
-    private let cancelButton = UIButton().then {
+    let cancelButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body2)
-        $0.setTitleColor(Asset.Color.gray80.color, for: .normal)
+        $0.setTitleColor(Asset.Color.gray90.color, for: .normal)
         $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
     }
     
@@ -279,5 +279,10 @@ class PopUpViewController: BaseViewController {
     
     func setCancelButtonTitle(text: String) {
         cancelButton.setTitle(text, for: .normal)
+    }
+    
+    func setDeleteButton() {
+        confirmButton.setTitle("삭제", for: .normal)
+        confirmButton.setTitleColor(Asset.Color.red.color, for: .normal)
     }
 }

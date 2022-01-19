@@ -112,6 +112,19 @@ class PanoramaViewController: BaseViewController {
     var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
     var isSelectedEvent: Bool = false
     
+    private lazy var menuItems: [UIAction] = [
+        UIAction(title: "앨범 이름 수정",
+                 image: Asset.Image.folderOpen.image,
+                 handler: { _ in self.editAlbumButtonDidTap()}),
+        UIAction(title: "앨범 삭제",
+                 image: Asset.Image.delGray.image,
+                 attributes: .destructive,
+                 handler: { _ in self.deleteAlbumButtonDidTap()}),
+        UIAction(title: "동영상 저장",
+                 image: Asset.Image.shareGray.image,
+                 handler: { _ in self.saveButtonDidTap() })
+    ]
+    
     // MARK: - View Life Cycle
     
     init(albumId: Int, albumData: Album) {
@@ -179,16 +192,13 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func initNavigationBar() {
-        if bodyPartData.isEmpty {
-            navigationItem.rightBarButtonItems = nil
-        } else {
-            navigationController?.initNavigationBar(navigationItem: self.navigationItem,
-                                                    rightButtonImages: [Asset.Image.share.image,
-                                                                        Asset.Image.create.image],
-                                                    rightActions: [#selector(saveButtonDidTap),
-                                                                   #selector(editOrCloseButtonDidTap)])
-        }
+        navigationController?.initNavigationBarWithMenu(navigationItem: self.navigationItem,
+                                                        rightButtonImage: Asset.Image.create.image,
+                                                        rightAction: #selector(editOrCloseButtonDidTap),
+                                                        menuButtonImage: Asset.Image.option.image,
+                                                        menuChildItem: menuItems)
         navigationItem.leftBarButtonItems = nil
+        navigationItem.rightBarButtonItems?[1].customView?.isHidden = bodyPartData.isEmpty
         title = albumData.name
     }
     
@@ -197,7 +207,7 @@ class PanoramaViewController: BaseViewController {
                                                 leftButtonImages: [Asset.Image.clear.image],
                                                 rightButtonImages: [Asset.Image.del.image],
                                                 leftActions: [#selector(editOrCloseButtonDidTap)],
-                                                rightActions: [#selector(deleteButtonDidTap)])
+                                                rightActions: [#selector(deletePictureButtonDidTap)])
         
         self.title = "\(bodyPartData.count)장"
         navigationItem.rightBarButtonItem?.isEnabled = false
@@ -274,19 +284,26 @@ class PanoramaViewController: BaseViewController {
         bottomCollectionView.scrollToItem(at: selectedIndexByPart[bodyPart], at: .centeredHorizontally, animated: animated)
     }
     
-    // MARK: - Actions
-    @objc
-    private func editOrCloseButtonDidTap() {
-        resetDeleteData()
-        editMode ? initNavigationBar() : initEditNavigationBar()
-        editMode.toggle()
-        if !gridMode {
-            switchPanoramaMode()
-        }
+    private func editAlbumButtonDidTap() {
+        let popUp = popUpViewController(type: .textField)
+        popUp.titleLabel.text = "앨범 이름을 수정해주세요."
+        popUp.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
+        self.present(popUp, animated: true, completion: nil)
     }
     
-    @objc
+    private func deleteAlbumButtonDidTap() {
+        let popUp = popUpViewController(type: .delete)
+        popUp.titleLabel.text = "정말 앨범을 삭제하시겠어요?"
+        popUp.descriptionLabel.text = "삭제를 누르면 앨범 속 사진이\n영구적으로 삭제됩니다."
+        popUp.setDeleteButton()
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
     private func saveButtonDidTap() {
+        bodyPartData.count > 1 ? pushVideoViewController() : presentWarningPopUp()
+    }
+    
+    private func pushVideoViewController() {
         var imageList: [(String, String)] = []
         switch bodyPart {
         case 0:
@@ -302,14 +319,44 @@ class PanoramaViewController: BaseViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    private func presentWarningPopUp() {
+        let popUp = popUpViewController(type: .oneButton)
+        popUp.titleLabel.text = "사진이 최소 2장이상 필요해요."
+        popUp.descriptionLabel.text = "영상 저장하기를 이용하고 싶으시다면\n최소 2장의 사진을 업로드해 주세요."
+        popUp.setCancelButtonTitle(text: "확인")
+        popUp.cancelButton.titleLabel?.font = .nbFont(type: .body2Bold)
+        popUp.cancelButton.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    private func popUpViewController(type: PopUpViewController.Style) -> PopUpViewController {
+        let popUp = PopUpViewController(type: type)
+        popUp.modalTransitionStyle = .crossDissolve
+        popUp.modalPresentationStyle = .overCurrentContext
+        popUp.delegate = self
+        return popUp
+    }
+    
+    // MARK: - Actions
     @objc
-    private func deleteButtonDidTap() {
+    private func editOrCloseButtonDidTap() {
+        resetDeleteData()
+        editMode ? initNavigationBar() : initEditNavigationBar()
+        editMode.toggle()
+        if !gridMode {
+            switchPanoramaMode()
+        }
+    }
+    
+    @objc
+    private func deletePictureButtonDidTap() {
         let popUp = popupViewController
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overCurrentContext
         popUp.delegate = self
         popUp.titleLabel.text = "\(deleteData.count)장의 사진을 삭제하시겠어요?"
         popUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
+        popUp.setDeleteButton()
         self.present(popUp, animated: true, completion: nil)
     }
     
@@ -392,5 +439,13 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func confirmButtonDidTap(_ button: UIButton) {
+        
+    }
+    
+    func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
+        
     }
 }
