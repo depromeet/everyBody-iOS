@@ -26,7 +26,7 @@ final class VideoViewModel {
 
     var imageList: [ImageInfo]
     var backingList: [(image: ImageInfo, index: Int)] = []
-    var imageSubject = PublishSubject<[ImageInfo]>()
+    var imageSubject = BehaviorSubject<[ImageInfo]>(value: [])
     let videoUsecase: VideoUseCase
     
     init(imageList: [ImageInfo], videoUsecase: VideoUseCase) {
@@ -51,7 +51,7 @@ final class VideoViewModel {
         let response =
             input.saveButtonControlEvent
             .withLatestFrom(imageSubject)
-            .map({ imageList in
+            .map({ imageList -> VideoRequestModel in
                 let imageKeys = imageList.map { $0.imageKey }
                 return VideoRequestModel(keys: imageKeys)
             })
