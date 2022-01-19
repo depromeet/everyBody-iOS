@@ -112,7 +112,7 @@ class PanoramaViewController: BaseViewController {
     var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
     var isSelectedEvent: Bool = false
     
-    lazy var menuItems: [UIAction] = [
+    private lazy var menuItems: [UIAction] = [
         UIAction(title: "앨범 이름 수정",
                  image: Asset.Image.folderOpen.image,
                  handler: { _ in self.editAlbumButtonDidTap()}),
@@ -284,48 +284,52 @@ class PanoramaViewController: BaseViewController {
         bottomCollectionView.scrollToItem(at: selectedIndexByPart[bodyPart], at: .centeredHorizontally, animated: animated)
     }
     
-    func editAlbumButtonDidTap() {
-        let popUp = setPopUpViewController(type: .textField)
+    private func editAlbumButtonDidTap() {
+        let popUp = popUpViewController(type: .textField)
         popUp.titleLabel.text = "앨범 이름을 수정해주세요."
         popUp.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
         self.present(popUp, animated: true, completion: nil)
     }
     
-    func deleteAlbumButtonDidTap() {
-        let popUp = setPopUpViewController(type: .delete)
+    private func deleteAlbumButtonDidTap() {
+        let popUp = popUpViewController(type: .delete)
         popUp.titleLabel.text = "정말 앨범을 삭제하시겠어요?"
         popUp.descriptionLabel.text = "삭제를 누르면 앨범 속 사진이\n영구적으로 삭제됩니다."
         popUp.setDeleteButton()
         self.present(popUp, animated: true, completion: nil)
     }
     
-    func saveButtonDidTap() {
-        if bodyPartData.count > 1 {
-            var imageList: [(String, String)] = []
-            switch bodyPart {
-            case 0:
-                imageList = albumData.pictures.whole.map { ($0.key, $0.imageURL) }
-            case 1:
-                imageList = albumData.pictures.upper.map { ($0.key, $0.imageURL) }
-            case 2:
-                imageList = albumData.pictures.lower.map { ($0.key, $0.imageURL) }
-            default:
-                return
-            }
-            let viewController = VideoEditViewController(albumData: imageList, title: albumData.name)
-            self.navigationController?.pushViewController(viewController, animated: true)
-        } else {
-            let popUp = setPopUpViewController(type: .oneButton)
-            popUp.titleLabel.text = "사진이 최소 2장이상 필요해요."
-            popUp.descriptionLabel.text = "영상 저장하기를 이용하고 싶으시다면\n최소 2장의 사진을 업로드해 주세요."
-            popUp.setCancelButtonTitle(text: "확인")
-            popUp.cancelButton.titleLabel?.font = .nbFont(type: .body2Bold)
-            popUp.cancelButton.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
-            self.present(popUp, animated: true, completion: nil)
-        }
+    private func saveButtonDidTap() {
+        bodyPartData.count > 1 ? pushVideoViewController() : presentWarningPopUp()
     }
     
-    func setPopUpViewController(type: PopUpViewController.Style) -> PopUpViewController {
+    private func pushVideoViewController() {
+        var imageList: [(String, String)] = []
+        switch bodyPart {
+        case 0:
+            imageList = albumData.pictures.whole.map { ($0.key, $0.imageURL) }
+        case 1:
+            imageList = albumData.pictures.upper.map { ($0.key, $0.imageURL) }
+        case 2:
+            imageList = albumData.pictures.lower.map { ($0.key, $0.imageURL) }
+        default:
+            return
+        }
+        let viewController = VideoEditViewController(albumData: imageList, title: albumData.name)
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    private func presentWarningPopUp() {
+        let popUp = popUpViewController(type: .oneButton)
+        popUp.titleLabel.text = "사진이 최소 2장이상 필요해요."
+        popUp.descriptionLabel.text = "영상 저장하기를 이용하고 싶으시다면\n최소 2장의 사진을 업로드해 주세요."
+        popUp.setCancelButtonTitle(text: "확인")
+        popUp.cancelButton.titleLabel?.font = .nbFont(type: .body2Bold)
+        popUp.cancelButton.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
+        self.present(popUp, animated: true, completion: nil)
+    }
+    
+    private func popUpViewController(type: PopUpViewController.Style) -> PopUpViewController {
         let popUp = PopUpViewController(type: type)
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overCurrentContext
@@ -342,11 +346,6 @@ class PanoramaViewController: BaseViewController {
         if !gridMode {
             switchPanoramaMode()
         }
-    }
-    
-    @objc
-    private func moreButtonDidTap() {
-        
     }
     
     @objc
