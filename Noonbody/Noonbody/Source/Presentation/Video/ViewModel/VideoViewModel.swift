@@ -12,6 +12,8 @@ import RxSwift
 
 final class VideoViewModel {
     
+    let disposeBag = DisposeBag()
+    
     struct Input {
         let backingButtonControlEvent: ControlEvent<Void>
         let saveButtonControlEvent: ControlEvent<Void>
@@ -24,11 +26,13 @@ final class VideoViewModel {
 
     var imageList: [ImageInfo]
     var backingList: [(image: ImageInfo, index: Int)] = []
+    var imageSubject = PublishSubject<[ImageInfo]>()
     let videoUsecase: VideoUseCase
     
     init(imageList: [ImageInfo], videoUsecase: VideoUseCase) {
         self.imageList = imageList
         self.videoUsecase = videoUsecase
+        imageSubject.onNext(imageList)
     }
     
     func transform(input: Input) -> Output {
@@ -40,12 +44,15 @@ final class VideoViewModel {
                 guard let deletedItem = owner.backingList.popLast() else { return }
                 owner.imageList.insert(deletedItem.image, at: deletedItem.index)
                 backingStore.onNext(owner.imageList)
+                owner.imageSubject.onNext(owner.imageList)
             })
+            .disposed(by: disposeBag)
         
         let response =
             input.saveButtonControlEvent
-            .withLatestFrom(Observable.just(imageList.map { $0.imageKey }))
-            .map({ imageKeys in
+            .withLatestFrom(imageSubject)
+            .map({ imageList in
+                let imageKeys = imageList.map { $0.imageKey }
                 return VideoRequestModel(keys: imageKeys)
             })
             .withUnretained(self)
@@ -71,6 +78,7 @@ final class VideoViewModel {
         
         backingList.append((imageList[index], index))
         imageList.remove(at: index)
+        imageSubject.onNext(imageList)
         
         return index
     }

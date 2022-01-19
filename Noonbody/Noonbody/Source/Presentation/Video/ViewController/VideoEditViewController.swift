@@ -346,7 +346,9 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
                         didSelectItemAt indexPath: IndexPath) {
         isSelectedEvent = true
         guard let cell = collectionView.cellForItem(at: indexPath) as? PreviewCollectionViewCell else { return }
+        centerCell?.setUnselectedUI()
         centerCell = cell
+        cell.setSelectedUI()
         collectionView.setContentOffset(CGPoint(x: cell.frame.minX - (collectionView.frame.width / 2 - cellWidth / 2),
                                                 y: 0.0),
                                         animated: true)
