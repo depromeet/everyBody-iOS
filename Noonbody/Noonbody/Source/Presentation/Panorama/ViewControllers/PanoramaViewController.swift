@@ -192,6 +192,7 @@ class PanoramaViewController: BaseViewController {
                 if let data = data {
                     self.albumData = data
                     self.albumTitle = data.name
+                    self.editAlbumPopup.textField.text = data.name
                     self.initBodyPartData(index: self.bodyPart)
                 }
                 self.emptyView.isHidden = !self.bodyPartData.isEmpty ? true : false
