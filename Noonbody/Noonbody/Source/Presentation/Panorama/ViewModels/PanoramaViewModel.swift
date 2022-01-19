@@ -16,10 +16,16 @@ final class PanoramaViewModel {
     struct Input {
         let viewWillAppear: Observable<Void>
         let albumId: Int
+        let albumNameTextField: Observable<String>
+        let deleteButtonControlEvent: ControlEvent<Void>
+        let editButtonControlEvent: ControlEvent<Void>
     }
     
     struct Output {
         let album: Driver<Album?>
+        let canEdit: Driver<Bool>
+        let putStatusCode: Driver<Int>
+        let deleteStatusCode: Driver<Int>
     }
     
     init(panoramaUseCase: PanoramaUseCase) {
@@ -33,12 +39,46 @@ final class PanoramaViewModel {
             .map { $0 }
             .share()
         
+        let putResponse =
+        input.editButtonControlEvent
+            .withLatestFrom(input.albumNameTextField)
+            .map { name in
+                return EditAlbumRequestModel(name: name)
+            }
+            .flatMap { request in
+                self.panoramaUseCase.editAlbum(albumId: input.albumId, request: request)
+            }
+            .share()
+        
+        let deleteResponse = input.deleteButtonControlEvent
+            .flatMap {
+                self.panoramaUseCase.deleteAlbum(albumId: input.albumId)
+            }.map { $0 }
+            .share()
+        
         let data = album
             .compactMap { $0 }
             .map { response -> Album in
                 return response
             }.asDriver(onErrorJustReturn: nil)
         
-        return Output(album: data)
+        let canEdit = input.albumNameTextField
+            .map { name in
+                return !name.isEmpty
+            }.asDriver(onErrorJustReturn: false)
+        
+        let putStatusCode = putResponse
+            .compactMap { $0 }
+            .map { response -> Int in
+                return response
+            }.asDriver(onErrorJustReturn: 404)
+        
+        let deleteStatusCode = deleteResponse
+            .compactMap { $0 }
+            .map { response -> Int in
+                return response
+            }.asDriver(onErrorJustReturn: 404)
+        
+        return Output(album: data, canEdit: canEdit, putStatusCode: putStatusCode, deleteStatusCode: deleteStatusCode)
     }
 }

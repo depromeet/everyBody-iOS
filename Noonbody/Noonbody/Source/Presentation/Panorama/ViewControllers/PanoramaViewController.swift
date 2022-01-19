@@ -63,9 +63,12 @@ class PanoramaViewController: BaseViewController {
     
     let cellSpacing: CGFloat = 2
     private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))
-    private var popupViewController = PopUpViewController(type: .delete)
+    private var deletePicturePopUp = PopUpViewController(type: .delete)
+    private var deleteAlbumPopUp = PopUpViewController(type: .delete)
+    private var editAlbumPopup = PopUpViewController(type: .textField)
     private var albumId: Int
     private var albumData: Album
+    private var albumTitle: String = ""
     var bodyPart = 0
     var deleteData: [Int: Int] = [:] {
         didSet {
@@ -157,8 +160,8 @@ class PanoramaViewController: BaseViewController {
     }
     
     // MARK: - Methods
-    func bind() {
-        popupViewController.confirmButton.rx.tap
+    private func bind() {
+        deletePicturePopUp.confirmButton.rx.tap
             .subscribe(onNext: {
                 self.deleteData.forEach { key, value in
                     DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry())
@@ -176,19 +179,49 @@ class PanoramaViewController: BaseViewController {
                 self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
             }).disposed(by: disposeBag)
         
-        let input = PanoramaViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in }, albumId: albumId)
+        let input = PanoramaViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
+                                            albumId: albumId,
+                                            albumNameTextField: editAlbumPopup.textField.rx.text.orEmpty.asObservable(),
+                                            deleteButtonControlEvent: deleteAlbumPopUp.confirmButton.rx.tap,
+                                            editButtonControlEvent: editAlbumPopup.confirmButton.rx.tap)
         let output = viewModel.transform(input: input)
-        
+
         output.album
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
                 if let data = data {
                     self.albumData = data
+                    self.albumTitle = data.name
                     self.initBodyPartData(index: self.bodyPart)
                 }
                 self.emptyView.isHidden = !self.bodyPartData.isEmpty ? true : false
             })
             .disposed(by: disposeBag)
+        
+        output.canEdit
+            .drive(editAlbumPopup.confirmButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.putStatusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 200 {
+                    self.dismiss(animated: true, completion: nil)
+                    self.albumTitle = self.editAlbumPopup.textField.text ?? ""
+                    self.title = self.albumTitle
+                    self.editAlbumPopup.textField.text = self.albumTitle
+                    self.showToast(type: .save)
+                }
+            }).disposed(by: disposeBag)
+        
+        output.deleteStatusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 200 {
+                    self.dismiss(animated: false, completion: nil)
+                    self.navigationController?.popViewController(animated: false)
+                }
+            }).disposed(by: disposeBag)
     }
     
     private func initNavigationBar() {
@@ -199,7 +232,7 @@ class PanoramaViewController: BaseViewController {
                                                         menuChildItem: menuItems)
         navigationItem.leftBarButtonItems = nil
         navigationItem.rightBarButtonItems?[1].customView?.isHidden = bodyPartData.isEmpty
-        title = albumData.name
+        title = albumTitle
     }
     
     private func initEditNavigationBar() {
@@ -285,18 +318,18 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func editAlbumButtonDidTap() {
-        let popUp = popUpViewController(type: .textField)
-        popUp.titleLabel.text = "앨범 이름을 수정해주세요."
-        popUp.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
-        self.present(popUp, animated: true, completion: nil)
+        setPopUpViewController(popUp: editAlbumPopup)
+        editAlbumPopup.titleLabel.text = "앨범 이름을 수정해주세요."
+        editAlbumPopup.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
+        self.present(editAlbumPopup, animated: true, completion: nil)
     }
     
     private func deleteAlbumButtonDidTap() {
-        let popUp = popUpViewController(type: .delete)
-        popUp.titleLabel.text = "정말 앨범을 삭제하시겠어요?"
-        popUp.descriptionLabel.text = "삭제를 누르면 앨범 속 사진이\n영구적으로 삭제됩니다."
-        popUp.setDeleteButton()
-        self.present(popUp, animated: true, completion: nil)
+        setPopUpViewController(popUp: deleteAlbumPopUp)
+        deleteAlbumPopUp.titleLabel.text = "정말 앨범을 삭제하시겠어요?"
+        deleteAlbumPopUp.descriptionLabel.text = "삭제를 누르면 앨범 속 사진이\n영구적으로 삭제됩니다."
+        deleteAlbumPopUp.setDeleteButton()
+        self.present(deleteAlbumPopUp, animated: true, completion: nil)
     }
     
     private func saveButtonDidTap() {
@@ -320,8 +353,9 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func presentWarningPopUp() {
-        let popUp = popUpViewController(type: .oneButton)
-        popUp.titleLabel.text = "사진이 최소 2장이상 필요해요."
+        let popUp = PopUpViewController(type: .oneButton)
+        setPopUpViewController(popUp: popUp)
+        popUp.titleLabel.text = "사진이 최소 2장 이상 필요해요."
         popUp.descriptionLabel.text = "영상 저장하기를 이용하고 싶으시다면\n최소 2장의 사진을 업로드해 주세요."
         popUp.setCancelButtonTitle(text: "확인")
         popUp.cancelButton.titleLabel?.font = .nbFont(type: .body2Bold)
@@ -329,12 +363,10 @@ class PanoramaViewController: BaseViewController {
         self.present(popUp, animated: true, completion: nil)
     }
     
-    private func popUpViewController(type: PopUpViewController.Style) -> PopUpViewController {
-        let popUp = PopUpViewController(type: type)
+    private func setPopUpViewController(popUp: PopUpViewController) {
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overCurrentContext
         popUp.delegate = self
-        return popUp
     }
     
     // MARK: - Actions
@@ -350,14 +382,11 @@ class PanoramaViewController: BaseViewController {
     
     @objc
     private func deletePictureButtonDidTap() {
-        let popUp = popupViewController
-        popUp.modalTransitionStyle = .crossDissolve
-        popUp.modalPresentationStyle = .overCurrentContext
-        popUp.delegate = self
-        popUp.titleLabel.text = "\(deleteData.count)장의 사진을 삭제하시겠어요?"
-        popUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
-        popUp.setDeleteButton()
-        self.present(popUp, animated: true, completion: nil)
+        setPopUpViewController(popUp: deletePicturePopUp)
+        deletePicturePopUp.titleLabel.text = "\(deleteData.count)장의 사진을 삭제하시겠어요?"
+        deletePicturePopUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
+        deletePicturePopUp.setDeleteButton()
+        self.present(deletePicturePopUp, animated: true, completion: nil)
     }
     
     @objc
@@ -439,13 +468,6 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    func confirmButtonDidTap(_ button: UIButton) {
-        
-    }
-    
-    func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
-        
+        self.editAlbumPopup.textField.text = albumTitle
     }
 }

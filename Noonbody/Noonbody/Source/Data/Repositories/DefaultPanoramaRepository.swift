@@ -17,7 +17,7 @@ class DefaultPanoramaRepository: PanoramaRepository {
                 switch response {
                 case .success(let data):
                     if let data = data {
-                    observer.onNext(data)
+                        observer.onNext(data)
                     }
                 case .failure(let err):
                     print(err)
@@ -26,5 +26,33 @@ class DefaultPanoramaRepository: PanoramaRepository {
             return Disposables.create(with: { requestReference })
         }
         return observable
+    }
+    
+    func editAlbum(albumId: Int, request: EditAlbumRequestModel) -> Observable<Int> {
+        return Observable.create { observer -> Disposable in
+            let requestReference: () = PanoramaService.shared.editAlbum(id: albumId, request: request) { response in
+                switch response {
+                case .success:
+                    observer.onNext(200)
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+    }
+    
+    func deleteAlbum(albumId: Int) -> Observable<Int> {
+        Observable<Int>.create { observer -> Disposable in
+            let requestReference: () = PanoramaService.shared.deleteAlbum(id: albumId) { response in
+                switch response {
+                case .success:
+                    observer.onNext(200)
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
     }
 }

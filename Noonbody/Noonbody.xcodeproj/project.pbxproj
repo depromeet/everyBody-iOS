@@ -148,6 +148,7 @@
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
 		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
+		FC342288279812F800200E90 /* EditAlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* EditAlbumRequestModel.swift */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -313,6 +314,7 @@
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		FC342287279812F800200E90 /* EditAlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAlbumRequestModel.swift; sourceTree = "<group>"; };
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
@@ -657,6 +659,7 @@
 				AABEA2E4273C578E00A06A8C /* Album.swift */,
 				AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */,
 				AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */,
+				FC342287279812F800200E90 /* EditAlbumRequestModel.swift */,
 				AA2F3184275AD61800855861 /* PhotoRequestModel.swift */,
 				AAE2FAA227640C9200FA2C5C /* SignUpRequestModel.swift */,
 				AAE2FAA4276410B300FA2C5C /* SignInRequestModel.swift */,
@@ -1238,6 +1241,7 @@
 				AA2F3181275AA17D00855861 /* MoyaLoggingPlugin.swift in Sources */,
 				AAEA23A127938E50005A08C9 /* VideoAPI.swift in Sources */,
 				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,
+				FC342288279812F800200E90 /* EditAlbumRequestModel.swift in Sources */,
 				AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */,
 				AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */,
 				AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */,
