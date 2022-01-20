@@ -51,9 +51,6 @@ class PrivacyPolicyViewController: BaseViewController {
         if let url = URL(string: "https://pointy-wakeboard-3b9.notion.site/112eea33354042f3a0df8cadd5aeae69") {
             let urlRequest = URLRequest(url: url)
             webKitView?.load(urlRequest)
-        } else {
-            // 에러처리문.. 예를들어서 alert를 띄워주거나..
-            print("에러")
-        }
+        } 
     }
 }
