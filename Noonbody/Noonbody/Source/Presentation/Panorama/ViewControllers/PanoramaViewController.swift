@@ -202,14 +202,12 @@ class PanoramaViewController: BaseViewController {
             .drive(renameAlbumPopUp.confirmButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.putStatusCode
-            .drive(onNext: { [weak self] statusCode in
+        output.name
+            .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
-                if statusCode == 200 {
-                    self.dismiss(animated: true, completion: nil)
-                    self.albumTitle = self.renameAlbumPopUp.textField.text ?? ""
-                    self.title = self.albumTitle
-                    self.renameAlbumPopUp.textField.text = self.albumTitle
+                if let data = data {
+                    self.title = data
+                    self.albumTitle = data
                     self.showToast(type: .save)
                 }
             }).disposed(by: disposeBag)
@@ -468,6 +466,10 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
 
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
         self.dismiss(animated: true, completion: nil)
     }
 }

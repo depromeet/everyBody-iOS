@@ -24,7 +24,7 @@ final class PanoramaViewModel {
     struct Output {
         let album: Driver<Album?>
         let canRename: Driver<Bool>
-        let putStatusCode: Driver<Int>
+        let name: Driver<String?>
         let deleteStatusCode: Driver<Int>
     }
     
@@ -39,7 +39,7 @@ final class PanoramaViewModel {
             .map { $0 }
             .share()
         
-        let putNameResponse =
+        let renameResponse =
         input.renameButtonControlEvent
             .withLatestFrom(input.albumNameTextField)
             .map { name in
@@ -67,11 +67,10 @@ final class PanoramaViewModel {
                 return !name.isEmpty
             }.asDriver(onErrorJustReturn: false)
         
-        let putNameStatusCode = putNameResponse
-            .compactMap { $0 }
-            .map { response -> Int in
+        let name = renameResponse
+            .map { response -> String in
                 return response
-            }.asDriver(onErrorJustReturn: 404)
+            }.asDriver(onErrorJustReturn: nil)
         
         let deleteStatusCode = deleteResponse
             .compactMap { $0 }
@@ -79,6 +78,6 @@ final class PanoramaViewModel {
                 return response
             }.asDriver(onErrorJustReturn: 404)
         
-        return Output(album: data, canRename: canRename, putStatusCode: putNameStatusCode, deleteStatusCode: deleteStatusCode)
+        return Output(album: data, canRename: canRename, name: name, deleteStatusCode: deleteStatusCode)
     }
 }

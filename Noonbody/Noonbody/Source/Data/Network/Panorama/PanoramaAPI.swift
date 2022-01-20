@@ -46,7 +46,7 @@ extension PanoramaAPI {
         case .getAlbum:
             return .requestPlain
         case .renameAlbum(_, let request):
-            return .requestParameters(parameters: ["name" : request.name],
+            return .requestParameters(parameters: ["name": request.name],
                                       encoding: JSONEncoding.default)
         case .deleteAlbum:
             return .requestPlain

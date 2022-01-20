@@ -11,7 +11,7 @@ import RxSwift
 
 protocol PanoramaUseCase {
     func getAlbum(albumId: Int) -> Observable<Album>
-    func renameAlbum(albumId: Int, request: RenameAlbumRequestModel) -> Observable<Int>
+    func renameAlbum(albumId: Int, request: RenameAlbumRequestModel) -> Observable<String>
     func deleteAlbum(albumId: Int) -> Observable<Int>
 }
 
@@ -26,7 +26,7 @@ final class DefaultPanoramaUseCase: PanoramaUseCase {
         return panoramaRepository.getAlbum(albumId: albumId)
     }
     
-    func renameAlbum(albumId: Int, request: RenameAlbumRequestModel) -> Observable<Int> {
+    func renameAlbum(albumId: Int, request: RenameAlbumRequestModel) -> Observable<String> {
         return panoramaRepository.renameAlbum(albumId: albumId, request: request)
     }
     
