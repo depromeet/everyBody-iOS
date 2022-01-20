@@ -27,7 +27,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     }
     private let descriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .caption1)
-        $0.textColor = Asset.Color.gray70.color
+        $0.textColor = Asset.Color.gray60.color
     }
     private let selectedView = SelectedView(style: .basic).then {
         $0.makeRounded(radius: 4)
@@ -67,6 +67,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViewHierarchy()
         setupContraint()
+        setupSkeletion()
     }
 
     required init?(coder: NSCoder) {
@@ -87,7 +88,7 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     }
     
     func setupViewHierarchy() {
-        addSubviews(thumbnailImageView, folderTitleLabel, descriptionLabel)
+        contentView.addSubviews(thumbnailImageView, folderTitleLabel, descriptionLabel)
     }
     
     func setupContraint() {
@@ -97,13 +98,13 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         }
         
         folderTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(thumbnailImageView.snp.bottom).offset(8)
-            $0.leading.equalToSuperview()
+            $0.top.equalTo(thumbnailImageView.snp.bottom).offset(12)
+            $0.leading.trailing.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints {
-            $0.top.equalTo(folderTitleLabel.snp.bottom).offset(2)
-            $0.leading.equalToSuperview()
+            $0.top.equalTo(thumbnailImageView.snp.bottom).offset(32)
+            $0.leading.trailing.equalToSuperview()
         }
     }
     
@@ -114,6 +115,15 @@ class AlbumCollectionViewCell: UICollectionViewCell {
             $0.edges.equalTo(thumbnailImageView)
         }
         
+    }
+    
+    func setupSkeletion() {
+        self.isSkeletonable = true
+        [contentView, thumbnailImageView,
+         folderTitleLabel, descriptionLabel].forEach { view in
+                view.isSkeletonable = true
+                view.skeletonCornerRadius = 4
+        }
     }
     
     func setUnselectedCell() {
