@@ -12,6 +12,7 @@ enum ProfileDataType: Equatable {
     case motto(motto: String)
     case pushNotification
     case saved
+    case privacyPolicy
     
     var title: String {
         switch self {
@@ -23,6 +24,8 @@ enum ProfileDataType: Equatable {
             return "알림 설정"
         case .saved:
             return "앱에만 저장"
+        case .privacyPolicy:
+            return "개인정보 처리방침"
         }
     }
 }

@@ -51,7 +51,8 @@ final class ProfileViewModel {
                     .nickName(nickname: response.nickname),
                     .motto(motto: response.motto),
                     .pushNotification,
-                    .saved
+                    .saved,
+                    .privacyPolicy
                 ]
             }.asDriver(onErrorJustReturn: [])
         
