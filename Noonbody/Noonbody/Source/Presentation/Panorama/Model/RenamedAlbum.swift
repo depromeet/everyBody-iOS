@@ -7,10 +7,6 @@
 
 import Foundation
 
-struct RenameAlbumResponse: Codable {
+struct RenamedAlbum: Codable {
     let name: String
-
-    enum CodingKeys: String, CodingKey {
-        case name
-    }
 }

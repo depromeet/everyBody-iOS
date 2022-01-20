@@ -202,12 +202,12 @@ class PanoramaViewController: BaseViewController {
             .drive(renameAlbumPopUp.confirmButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.albumName
-            .drive(onNext: { [weak self] albumName in
+        output.renamedAlbum
+            .drive(onNext: { [weak self] name in
                 guard let self = self else { return }
-                if let albumName = albumName {
-                    self.title = albumName
-                    self.albumName = albumName
+                if let name = name {
+                    self.title = name
+                    self.albumName = name
                     self.showToast(type: .save)
                 }
             }).disposed(by: disposeBag)

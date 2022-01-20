@@ -13,7 +13,7 @@ enum PanoramaAPI: BaseTargetType {
     typealias ResultModel = Album
     
     case getAlbum(albumId: Int)
-    case renameAlbum(albumId: Int, request: RenameAlbumRequestModel)
+    case renameAlbum(albumId: Int, request: AlbumRequestModel)
     case deleteAlbum(albumId: Int)
 }
 
