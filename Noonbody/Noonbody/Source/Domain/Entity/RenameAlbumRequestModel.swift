@@ -1,5 +1,5 @@
 //
-//  editAlbumRequestModel.swift
+//  RenameAlbumRequestModel.swift
 //  Noonbody
 //
 //  Created by kong on 2022/01/19.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct EditAlbumRequestModel {
+struct RenameAlbumRequestModel {
     let name: String
 }

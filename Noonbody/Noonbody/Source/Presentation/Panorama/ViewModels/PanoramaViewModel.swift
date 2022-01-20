@@ -18,12 +18,12 @@ final class PanoramaViewModel {
         let albumId: Int
         let albumNameTextField: Observable<String>
         let deleteButtonControlEvent: ControlEvent<Void>
-        let editButtonControlEvent: ControlEvent<Void>
+        let renameButtonControlEvent: ControlEvent<Void>
     }
     
     struct Output {
         let album: Driver<Album?>
-        let canEdit: Driver<Bool>
+        let canRename: Driver<Bool>
         let putStatusCode: Driver<Int>
         let deleteStatusCode: Driver<Int>
     }
@@ -39,14 +39,14 @@ final class PanoramaViewModel {
             .map { $0 }
             .share()
         
-        let putResponse =
-        input.editButtonControlEvent
+        let putNameResponse =
+        input.renameButtonControlEvent
             .withLatestFrom(input.albumNameTextField)
             .map { name in
-                return EditAlbumRequestModel(name: name)
+                return RenameAlbumRequestModel(name: name)
             }
             .flatMap { request in
-                self.panoramaUseCase.editAlbum(albumId: input.albumId, request: request)
+                self.panoramaUseCase.renameAlbum(albumId: input.albumId, request: request)
             }
             .share()
         
@@ -62,12 +62,12 @@ final class PanoramaViewModel {
                 return response
             }.asDriver(onErrorJustReturn: nil)
         
-        let canEdit = input.albumNameTextField
+        let canRename = input.albumNameTextField
             .map { name in
                 return !name.isEmpty
             }.asDriver(onErrorJustReturn: false)
         
-        let putStatusCode = putResponse
+        let putNameStatusCode = putNameResponse
             .compactMap { $0 }
             .map { response -> Int in
                 return response
@@ -79,6 +79,6 @@ final class PanoramaViewModel {
                 return response
             }.asDriver(onErrorJustReturn: 404)
         
-        return Output(album: data, canEdit: canEdit, putStatusCode: putStatusCode, deleteStatusCode: deleteStatusCode)
+        return Output(album: data, canRename: canRename, putStatusCode: putNameStatusCode, deleteStatusCode: deleteStatusCode)
     }
 }

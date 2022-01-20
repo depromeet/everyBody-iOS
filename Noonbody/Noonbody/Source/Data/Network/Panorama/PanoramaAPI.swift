@@ -13,7 +13,7 @@ enum PanoramaAPI: BaseTargetType {
     typealias ResultModel = Album
     
     case getAlbum(albumId: Int)
-    case editAlbum(albumId: Int, request: EditAlbumRequestModel)
+    case renameAlbum(albumId: Int, request: RenameAlbumRequestModel)
     case deleteAlbum(albumId: Int)
 }
 
@@ -23,7 +23,7 @@ extension PanoramaAPI {
         switch self {
         case .getAlbum(let albumId):
             return HTTPMethodURL.GET.album + "/\(albumId)"
-        case .editAlbum(let albumId, _):
+        case .renameAlbum(let albumId, _):
             return HTTPMethodURL.PUT.album + "/\(albumId)"
         case .deleteAlbum(let albumId):
             return HTTPMethodURL.DELETE.album + "/\(albumId)"
@@ -34,7 +34,7 @@ extension PanoramaAPI {
         switch self {
         case .getAlbum:
             return .get
-        case .editAlbum:
+        case .renameAlbum:
             return .put
         case .deleteAlbum:
             return .delete
@@ -45,7 +45,7 @@ extension PanoramaAPI {
         switch self {
         case .getAlbum:
             return .requestPlain
-        case .editAlbum(_, let request):
+        case .renameAlbum(_, let request):
             return .requestParameters(parameters: ["name" : request.name],
                                       encoding: JSONEncoding.default)
         case .deleteAlbum:

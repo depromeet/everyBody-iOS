@@ -20,8 +20,8 @@ public class PanoramaService {
         }
     }
     
-    func editAlbum(id: Int, request: EditAlbumRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
-        provider.requestNoResultAPI(PanoramaAPI.editAlbum(albumId: id, request: request)) { response in
+    func renameAlbum(id: Int, request: RenameAlbumRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
+        provider.requestNoResultAPI(PanoramaAPI.renameAlbum(albumId: id, request: request)) { response in
             completion(response)
         }
     }

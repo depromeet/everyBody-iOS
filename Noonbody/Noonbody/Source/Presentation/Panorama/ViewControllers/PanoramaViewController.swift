@@ -65,10 +65,10 @@ class PanoramaViewController: BaseViewController {
     private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))
     private var deletePicturePopUp = PopUpViewController(type: .delete)
     private var deleteAlbumPopUp = PopUpViewController(type: .delete)
-    private var editAlbumPopup = PopUpViewController(type: .textField)
+    private var renameAlbumPopUp = PopUpViewController(type: .textField)
     private var albumId: Int
     private var albumData: Album
-    private var albumTitle: String = ""
+    private var albumTitle: String
     var bodyPart = 0
     var deleteData: [Int: Int] = [:] {
         didSet {
@@ -133,6 +133,7 @@ class PanoramaViewController: BaseViewController {
     init(albumId: Int, albumData: Album) {
         self.albumId = albumId
         self.albumData = albumData
+        self.albumTitle = self.albumData.name
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -181,9 +182,9 @@ class PanoramaViewController: BaseViewController {
         
         let input = PanoramaViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
                                             albumId: albumId,
-                                            albumNameTextField: editAlbumPopup.textField.rx.text.orEmpty.asObservable(),
+                                            albumNameTextField: renameAlbumPopUp.textField.rx.text.orEmpty.asObservable(),
                                             deleteButtonControlEvent: deleteAlbumPopUp.confirmButton.rx.tap,
-                                            editButtonControlEvent: editAlbumPopup.confirmButton.rx.tap)
+                                            renameButtonControlEvent: renameAlbumPopUp.confirmButton.rx.tap)
         let output = viewModel.transform(input: input)
 
         output.album
@@ -191,16 +192,14 @@ class PanoramaViewController: BaseViewController {
                 guard let self = self else { return }
                 if let data = data {
                     self.albumData = data
-                    self.albumTitle = data.name
-                    self.editAlbumPopup.textField.text = data.name
                     self.initBodyPartData(index: self.bodyPart)
                 }
                 self.emptyView.isHidden = !self.bodyPartData.isEmpty ? true : false
             })
             .disposed(by: disposeBag)
         
-        output.canEdit
-            .drive(editAlbumPopup.confirmButton.rx.isEnabled)
+        output.canRename
+            .drive(renameAlbumPopUp.confirmButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         output.putStatusCode
@@ -208,9 +207,9 @@ class PanoramaViewController: BaseViewController {
                 guard let self = self else { return }
                 if statusCode == 200 {
                     self.dismiss(animated: true, completion: nil)
-                    self.albumTitle = self.editAlbumPopup.textField.text ?? ""
+                    self.albumTitle = self.renameAlbumPopUp.textField.text ?? ""
                     self.title = self.albumTitle
-                    self.editAlbumPopup.textField.text = self.albumTitle
+                    self.renameAlbumPopUp.textField.text = self.albumTitle
                     self.showToast(type: .save)
                 }
             }).disposed(by: disposeBag)
@@ -319,10 +318,11 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func editAlbumButtonDidTap() {
-        setPopUpViewController(popUp: editAlbumPopup)
-        editAlbumPopup.titleLabel.text = "앨범 이름을 수정해주세요."
-        editAlbumPopup.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
-        self.present(editAlbumPopup, animated: true, completion: nil)
+        setPopUpViewController(popUp: renameAlbumPopUp)
+        renameAlbumPopUp.titleLabel.text = "앨범 이름을 수정해주세요."
+        renameAlbumPopUp.textField.text = albumTitle
+        renameAlbumPopUp.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
+        self.present(renameAlbumPopUp, animated: true, completion: nil)
     }
     
     private func deleteAlbumButtonDidTap() {
@@ -469,6 +469,5 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
-        self.editAlbumPopup.textField.text = albumTitle
     }
 }
