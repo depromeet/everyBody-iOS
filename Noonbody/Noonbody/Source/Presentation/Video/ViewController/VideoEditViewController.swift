@@ -114,7 +114,6 @@ class VideoEditViewController: BaseViewController {
                 popUp.titleLabel.text = "비디오 저장 중 ...0%"
                 popUp.descriptionLabel.text = "눈바디 영상이 만들어지고 있어요!\n앱을 종료하거나 기기를 잠그지 마세요."
                 self.present(popUp, animated: true, completion: nil)
-
             })
             .disposed(by: disposeBag)
         
