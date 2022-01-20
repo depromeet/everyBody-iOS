@@ -24,7 +24,7 @@ final class PanoramaViewModel {
     struct Output {
         let album: Driver<Album?>
         let canRename: Driver<Bool>
-        let name: Driver<String?>
+        let albumName: Driver<String?>
         let deleteStatusCode: Driver<Int>
     }
     
@@ -67,9 +67,9 @@ final class PanoramaViewModel {
                 return !name.isEmpty
             }.asDriver(onErrorJustReturn: false)
         
-        let name = renameResponse
+        let albumName = renameResponse
             .map { response -> String in
-                return response
+                return response.name
             }.asDriver(onErrorJustReturn: nil)
         
         let deleteStatusCode = deleteResponse
@@ -78,6 +78,6 @@ final class PanoramaViewModel {
                 return response
             }.asDriver(onErrorJustReturn: 404)
         
-        return Output(album: data, canRename: canRename, name: name, deleteStatusCode: deleteStatusCode)
+        return Output(album: data, canRename: canRename, albumName: albumName, deleteStatusCode: deleteStatusCode)
     }
 }

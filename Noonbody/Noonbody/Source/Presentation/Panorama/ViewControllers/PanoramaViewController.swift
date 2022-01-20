@@ -68,7 +68,7 @@ class PanoramaViewController: BaseViewController {
     private var renameAlbumPopUp = PopUpViewController(type: .textField)
     private var albumId: Int
     private var albumData: Album
-    private var albumTitle: String
+    private var albumName: String
     var bodyPart = 0
     var deleteData: [Int: Int] = [:] {
         didSet {
@@ -133,7 +133,7 @@ class PanoramaViewController: BaseViewController {
     init(albumId: Int, albumData: Album) {
         self.albumId = albumId
         self.albumData = albumData
-        self.albumTitle = self.albumData.name
+        self.albumName = self.albumData.name
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -202,12 +202,12 @@ class PanoramaViewController: BaseViewController {
             .drive(renameAlbumPopUp.confirmButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        output.name
-            .drive(onNext: { [weak self] data in
+        output.albumName
+            .drive(onNext: { [weak self] albumName in
                 guard let self = self else { return }
-                if let data = data {
-                    self.title = data
-                    self.albumTitle = data
+                if let albumName = albumName {
+                    self.title = albumName
+                    self.albumName = albumName
                     self.showToast(type: .save)
                 }
             }).disposed(by: disposeBag)
@@ -230,7 +230,7 @@ class PanoramaViewController: BaseViewController {
                                                         menuChildItem: menuItems)
         navigationItem.leftBarButtonItems = nil
         navigationItem.rightBarButtonItems?[1].customView?.isHidden = bodyPartData.isEmpty
-        title = albumTitle
+        title = albumName
     }
     
     private func initEditNavigationBar() {
@@ -318,7 +318,7 @@ class PanoramaViewController: BaseViewController {
     private func editAlbumButtonDidTap() {
         setPopUpViewController(popUp: renameAlbumPopUp)
         renameAlbumPopUp.titleLabel.text = "앨범 이름을 수정해주세요."
-        renameAlbumPopUp.textField.text = albumTitle
+        renameAlbumPopUp.textField.text = albumName
         renameAlbumPopUp.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
         self.present(renameAlbumPopUp, animated: true, completion: nil)
     }

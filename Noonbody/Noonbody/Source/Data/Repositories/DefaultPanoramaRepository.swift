@@ -28,13 +28,13 @@ class DefaultPanoramaRepository: PanoramaRepository {
         return observable
     }
     
-    func renameAlbum(albumId: Int, request: RenameAlbumRequestModel) -> Observable<String> {
-        let observable = Observable<String>.create { observer -> Disposable in
+    func renameAlbum(albumId: Int, request: RenameAlbumRequestModel) -> Observable<RenameAlbumResponse> {
+        let observable = Observable<RenameAlbumResponse>.create { observer -> Disposable in
             let requestReference: () = PanoramaService.shared.renameAlbum(id: albumId, request: request) { response in
                 switch response {
                 case .success(let data):
                     if let data = data {
-                        observer.onNext(data.name)
+                        observer.onNext(data)
                     }
                 case .failure(let err):
                     print(err)
