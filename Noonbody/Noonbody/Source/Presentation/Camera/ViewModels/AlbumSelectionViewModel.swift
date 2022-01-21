@@ -66,7 +66,7 @@ final class AlbumSelectionViewModel {
         let albumResponse = input.creationControlEvent
             .withLatestFrom(input.albumNameTextField)
             .map { name in
-                return CreateAlbumRequestModel(name: name)
+                return AlbumRequestModel(name: name)
             }
             .flatMap { requestModel -> Observable<Album> in
                 return self.albumUseCase.createAlbum(request: requestModel)

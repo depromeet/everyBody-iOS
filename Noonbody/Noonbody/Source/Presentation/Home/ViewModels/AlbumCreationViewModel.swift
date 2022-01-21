@@ -36,7 +36,7 @@ final class AlbumCreationViewModel {
     
         let response = input.saveButtonControlEvent.withLatestFrom(input.albumNameTextField)
             .map { name in
-                return CreateAlbumRequestModel(name: name)
+                return AlbumRequestModel(name: name)
             }
             .flatMap { requestModel in
                 self.albumUseCase.createAlbum(requestModel: requestModel)

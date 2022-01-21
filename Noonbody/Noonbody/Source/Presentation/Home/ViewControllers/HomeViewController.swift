@@ -9,9 +9,9 @@ import UIKit
 
 import SnapKit
 import Then
-
 import RxCocoa
 import RxSwift
+import SkeletonView
 
 class HomeViewController: BaseViewController {
     
@@ -50,6 +50,7 @@ class HomeViewController: BaseViewController {
         $0.register(ListCollectionViewCell.self)
         $0.backgroundColor = .white
         $0.collectionViewLayout = layout
+        $0.isSkeletonable = true
     }
     
     // MARK: - Properties
@@ -74,14 +75,23 @@ class HomeViewController: BaseViewController {
         super.viewDidLoad()
         
         bind()
-        initListNavigationBar()
         setupCollectionView()
+        initListNavigationBar()
         setupViewHierarchy()
         setupConstraint()
+        setupSkeletion()
         navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Methods
+    
+    func setupSkeletion() {
+        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
+        albumCollectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: Asset.Color.gray20.color,
+                                                                              secondaryColor: Asset.Color.gray30.color),
+                                                         animation: animation,
+                                                         transition: .crossDissolve(1))
+    }
     
     func bind() {
         let input = AlbumViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in })
@@ -92,6 +102,9 @@ class HomeViewController: BaseViewController {
                 guard let self = self else { return }
                 self.albumData = data
                 self.emptyView.isHidden = self.albumData.count != 0 ? true : false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    self.albumCollectionView.hideSkeleton()
+                }
             })
             .disposed(by: disposeBag)
         
@@ -252,7 +265,18 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension HomeViewController: UICollectionViewDataSource {
+extension HomeViewController: SkeletonCollectionViewDelegate { }
+
+extension HomeViewController: SkeletonCollectionViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return AlbumCollectionViewCell.className
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return albumData.count
     }

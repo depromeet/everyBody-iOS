@@ -25,7 +25,7 @@ class PopUpViewController: BaseViewController {
     }
     
     lazy var titleLabel = UILabel().then {
-        $0.font = .nbFont(type: .subtitle)
+        $0.font = .nbFont(type: .body2Bold)
         $0.textColor = Asset.Color.gray90.color
     }
     
@@ -57,6 +57,7 @@ class PopUpViewController: BaseViewController {
         $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body2SemiBold)
         $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
+        $0.setTitleColor(Asset.Color.gray40.color, for: .disabled)
         $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
     }
     

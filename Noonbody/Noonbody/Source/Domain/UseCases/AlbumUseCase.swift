@@ -11,8 +11,8 @@ import RxSwift
 
 protocol AlbumUseCase {
     func getAlbumList() -> Observable<[Album]>
-    func createAlbum(request: CreateAlbumRequestModel) -> Observable<Album>
-    func createAlbum(requestModel: CreateAlbumRequestModel) -> Observable<Int>
+    func createAlbum(request: AlbumRequestModel) -> Observable<Album>
+    func createAlbum(requestModel: AlbumRequestModel) -> Observable<Int>
     func deletePicture(pictureId: Int) -> Observable<Int>
     func savePhoto(request: PhotoRequestModel) -> Observable<Int>
 }
@@ -29,11 +29,11 @@ final class DefaultAlbumUseCase: AlbumUseCase {
         return albumRepository.getAlbumList()
     }
     
-    func createAlbum(request: CreateAlbumRequestModel) -> Observable<Album> {
+    func createAlbum(request: AlbumRequestModel) -> Observable<Album> {
         return albumRepository.createAlbum(request: request)
     }
     
-    func createAlbum(requestModel: CreateAlbumRequestModel) -> Observable<Int> {
+    func createAlbum(requestModel: AlbumRequestModel) -> Observable<Int> {
         return albumRepository.createAlbum(request: requestModel)
     }
     

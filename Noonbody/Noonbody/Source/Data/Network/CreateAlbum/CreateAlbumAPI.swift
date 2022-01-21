@@ -12,7 +12,7 @@ import Moya
 enum CreateAlbumAPI: BaseTargetType {
     typealias ResultModel = Album
     
-    case postCreateAlbum(request: CreateAlbumRequestModel)
+    case postCreateAlbum(request: AlbumRequestModel)
 }
 
 extension CreateAlbumAPI {

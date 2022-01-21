@@ -62,6 +62,7 @@
 		AA7E0A8B26FB128100106DC2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8A26FB128100106DC2 /* Then */; };
 		AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A9326FB135300106DC2 /* .swiftlint.yml */; };
 		AA81D8BD279A05DD00D4D667 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */; };
+		AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AA81D8B82799C79400D4D667 /* SkeletonView */; };
 		AA95910F27442999007772BD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95910E27442999007772BD /* PopUpViewController.swift */; };
 		AA9591122744339D007772BD /* NBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591112744339D007772BD /* NBTextField.swift */; };
 		AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */; };
@@ -76,7 +77,6 @@
 		AA9FB3E72789D4DC00A97884 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E62789D4DC00A97884 /* RxCocoa */; };
 		AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3E82789D4DC00A97884 /* RxSwift */; };
 		AA9FB3EC2789D79000A97884 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = AA9FB3EB2789D79000A97884 /* Lottie */; };
-		AAA9A5262757FEF400FE92DB /* CreateAlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */; };
 		AAA9A5292757FFB400FE92DB /* CreateAlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */; };
 		AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A52A275800D600FE92DB /* CreateAlbumAPI.swift */; };
 		AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */; };
@@ -149,6 +149,8 @@
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
 		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
+		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
+		FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
@@ -243,7 +245,6 @@
 		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		AAA9A4F62753A71F00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumRequestModel.swift; sourceTree = "<group>"; };
 		AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumService.swift; sourceTree = "<group>"; };
 		AAA9A52A275800D600FE92DB /* CreateAlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumAPI.swift; sourceTree = "<group>"; };
 		AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumUseCase.swift; sourceTree = "<group>"; };
@@ -315,7 +316,9 @@
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
 		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
+		FC342287279812F800200E90 /* AlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequestModel.swift; sourceTree = "<group>"; };
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamedAlbum.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
@@ -335,6 +338,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */,
 				AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */,
 				AAE2FA882763F51300FA2C5C /* FirebaseMessaging in Frameworks */,
 				AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */,
@@ -517,6 +521,7 @@
 		AA7E0A5226FB0B6900106DC2 /* Panorama */ = {
 			isa = PBXGroup;
 			children = (
+				FC7D38CF2799FFD0001D43D0 /* Model */,
 				FCF8C9E0274B974E004263FF /* Extensions */,
 				AA7E0A6726FB0C0800106DC2 /* Cells */,
 				AA7E0A6626FB0C0300106DC2 /* ViewModels */,
@@ -656,8 +661,8 @@
 				AAC7ACBF272D7E0400B2BE1E /* Pose.swift */,
 				AA2F31782759F53F00855861 /* NotificationConfig.swift */,
 				AABEA2E4273C578E00A06A8C /* Album.swift */,
+				FC342287279812F800200E90 /* AlbumRequestModel.swift */,
 				AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */,
-				AAA9A5252757FEF400FE92DB /* CreateAlbumRequestModel.swift */,
 				AA2F3184275AD61800855861 /* PhotoRequestModel.swift */,
 				AAE2FAA227640C9200FA2C5C /* SignUpRequestModel.swift */,
 				AAE2FAA4276410B300FA2C5C /* SignInRequestModel.swift */,
@@ -978,6 +983,14 @@
 			path = Album;
 			sourceTree = "<group>";
 		};
+		FC7D38CF2799FFD0001D43D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FCAE821327832D6F007A729D /* Panorama */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,6 +1038,7 @@
 				AA9FB3E62789D4DC00A97884 /* RxCocoa */,
 				AA9FB3E82789D4DC00A97884 /* RxSwift */,
 				AA9FB3EB2789D79000A97884 /* Lottie */,
+				AA81D8B82799C79400D4D667 /* SkeletonView */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* Noonbody.app */;
@@ -1062,6 +1076,7 @@
 				AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */,
 				AA9FB3E52789D4DC00A97884 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AA9FB3EA2789D79000A97884 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -1147,6 +1162,7 @@
 				FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
 				AAE2FA9D27640ADC00FA2C5C /* LaunchService.swift in Sources */,
+				FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */,
 				AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */,
 				AA2F3183275AC84700855861 /* CameraRequestManager.swift in Sources */,
 				AA95910F27442999007772BD /* PopUpViewController.swift in Sources */,
@@ -1242,6 +1258,7 @@
 				AA2F3181275AA17D00855861 /* MoyaLoggingPlugin.swift in Sources */,
 				AAEA23A127938E50005A08C9 /* VideoAPI.swift in Sources */,
 				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,
+				FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */,
 				AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */,
 				AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */,
 				AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */,
@@ -1257,7 +1274,6 @@
 				AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */,
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
 				AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */,
-				AAA9A5262757FEF400FE92DB /* CreateAlbumRequestModel.swift in Sources */,
 				AA4EFD2127623F38005017FC /* SelectedView.swift in Sources */,
 				AABD83792784CC54004E8BF8 /* PreferenceRepository.swift in Sources */,
 				FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */,
@@ -1494,6 +1510,14 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -1551,6 +1575,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA7E0A8926FB128100106DC2 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		AA81D8B82799C79400D4D667 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		AA9FB3E32789D4A600A97884 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
