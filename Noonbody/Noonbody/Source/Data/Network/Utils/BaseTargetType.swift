@@ -21,7 +21,6 @@ extension BaseTargetType {
     }
 
     var headers: [String: String]? {
-        // swiftlint:disable force_cast
         let token = UserManager.token ?? ""
         let header = [
             "Content-Type": "application/json",

@@ -13,6 +13,7 @@ enum TextStyles {
     case header2Semibold
     case subtitle
     case body1
+    case body1Bold
     case body2
     case body2Bold
     case body2SemiBold
@@ -49,6 +50,8 @@ extension UIFont {
             return UIFont(name: "Pretendard-SemiBold", size: 20)!
         case .body1:
             return UIFont(name: "Pretendard-Regular", size: 18)!
+        case .body1Bold:
+            return UIFont(name: "Pretendard-Bold", size: 18)!
         case .body2:
             return UIFont(name: "Pretendard-Regular", size: 16)!
         case .body2Bold:

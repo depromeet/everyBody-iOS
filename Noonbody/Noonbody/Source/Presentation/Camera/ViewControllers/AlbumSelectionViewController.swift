@@ -65,7 +65,7 @@ class AlbumSelectionViewController: BaseViewController {
     // MARK: - Methods
     
     override func render() {
-        title = "폴더 선택"
+        title = "앨범 선택"
         
         navigationItem.rightBarButtonItem = completeBarButtonItem
     }
@@ -167,7 +167,7 @@ extension AlbumSelectionViewController: UICollectionViewDelegate {
             popUp.modalTransitionStyle = .crossDissolve
             popUp.modalPresentationStyle = .overCurrentContext
             popUp.delegate = self
-            popUp.titleLabel.text = "폴더명을 입력해주세요."
+            popUp.titleLabel.text = "앨범명을 입력해주세요."
             self.present(popUp, animated: true, completion: nil)
         } else {
             requestManager.albumId = albumData[indexPath.row - 1].id
