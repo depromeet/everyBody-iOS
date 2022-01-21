@@ -29,7 +29,7 @@ class DefaultAlbumRepositry: AlbumRepository {
         return observable
     }
     
-    func createAlbum(request: CreateAlbumRequestModel) -> Observable<Album> {
+    func createAlbum(request: AlbumRequestModel) -> Observable<Album> {
         let observable = Observable<Album>.create { observer -> Disposable in
             let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: request) { response in
                 switch response {
@@ -46,7 +46,7 @@ class DefaultAlbumRepositry: AlbumRepository {
         return observable
     }
     
-    func createAlbum(request: CreateAlbumRequestModel) -> Observable<Int> {
+    func createAlbum(request: AlbumRequestModel) -> Observable<Int> {
         return Observable<Int>.create { observer -> Disposable in
             let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: request) { response in
                 switch response {

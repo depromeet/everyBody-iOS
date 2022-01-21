@@ -26,10 +26,12 @@ enum HTTPMethodURL {
     struct PUT {
         static let userInfo = "/users/me"
         static let notification = "/notification-configs/me"
+        static let album = "/albums"
     }
     
     struct DELETE {
         static let pictures = "/pictures"
+        static let album = "/albums"
     }
     
 }
