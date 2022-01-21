@@ -19,7 +19,7 @@ class CircleProgressView: UIView {
         super.init(frame: frame)
         
         snp.makeConstraints {
-            $0.width.height.equalTo(80)
+            $0.width.height.equalTo(68)
         }
         backgroundColor = .clear
     }
@@ -31,7 +31,7 @@ class CircleProgressView: UIView {
     override func draw(_ rect: CGRect) {
         let center = CGPoint(x: self.frame.width / 2, y: self.frame.height / 2)
         let circularPath = UIBezierPath(arcCenter: .zero,
-                                        radius: 40,
+                                        radius: 34,
                                         startAngle: 0,
                                         endAngle: 2 * .pi,
                                         clockwise: true)

@@ -61,8 +61,9 @@
 		AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8726FB126C00106DC2 /* SnapKit */; };
 		AA7E0A8B26FB128100106DC2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8A26FB128100106DC2 /* Then */; };
 		AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A9326FB135300106DC2 /* .swiftlint.yml */; };
-		AA81D8BD279A05DD00D4D667 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */; };
 		AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AA81D8B82799C79400D4D667 /* SkeletonView */; };
+		AA81D8BD279A05DD00D4D667 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */; };
+		AA81D8C0279AF14800D4D667 /* UILabel+setLineHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */; };
 		AA95910F27442999007772BD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95910E27442999007772BD /* PopUpViewController.swift */; };
 		AA9591122744339D007772BD /* NBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591112744339D007772BD /* NBTextField.swift */; };
 		AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */; };
@@ -234,6 +235,7 @@
 		AA7E0A5726FB0BA600106DC2 /* ViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSample.swift; sourceTree = "<group>"; };
 		AA7E0A9326FB135300106DC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+setLineHeight.swift"; sourceTree = "<group>"; };
 		AA95910E27442999007772BD /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		AA9591112744339D007772BD /* NBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBTextField.swift; sourceTree = "<group>"; };
 		AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+addLeftPadding.swift"; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 				AABD8388278635EC004E8BF8 /* UserDefault.swift */,
 				AABD838A2786385C004E8BF8 /* UserManager.swift */,
 				AAEA239427933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift */,
+				AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1252,6 +1255,7 @@
 				AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
 				AAEA23A727960553005A08C9 /* CircleProgressView.swift in Sources */,
+				AA81D8C0279AF14800D4D667 /* UILabel+setLineHeight.swift in Sources */,
 				AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */,

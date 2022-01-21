@@ -25,20 +25,20 @@ class PopUpViewController: BaseViewController {
     }
     
     lazy var titleLabel = UILabel().then {
-        $0.font = .nbFont(type: .body2Bold)
+        $0.font = .nbFont(type: .body1Bold)
         $0.textColor = Asset.Color.gray90.color
     }
     
-    lazy var descriptionLabel = UILabel().then {
+    let descriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .body3)
         $0.textAlignment = .center
         $0.textColor = Asset.Color.gray90.color
-        $0.numberOfLines = 0
+        $0.numberOfLines = 2
     }
     
     lazy var textField = NBTextField().then {
         $0.font = .nbFont(type: .body2)
-        $0.setPlaceHoder(placehoder: "폴더명을 입력해주세요")
+        $0.setPlaceHoder(placehoder: "앨범명을 입력해주세요")
     }
     
     private lazy var datePicker = UIDatePicker().then {
@@ -48,14 +48,14 @@ class PopUpViewController: BaseViewController {
     
     let cancelButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
-        $0.titleLabel?.font = .nbFont(type: .body2)
+        $0.titleLabel?.font = .nbFont(type: .body1)
         $0.setTitleColor(Asset.Color.gray90.color, for: .normal)
         $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
     }
     
     let confirmButton = UIButton().then {
         $0.setTitle("완료", for: .normal)
-        $0.titleLabel?.font = .nbFont(type: .body2SemiBold)
+        $0.titleLabel?.font = .nbFont(type: .body1Bold)
         $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
         $0.setTitleColor(Asset.Color.gray40.color, for: .disabled)
         $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
@@ -70,10 +70,6 @@ class PopUpViewController: BaseViewController {
     var initalDate: [Int] = []
     
     // MARK: - Initalizer
-    
-    convenience init() {
-        self.init(type: nil)
-    }
     
     init(type: Style?) {
         self.type = type
@@ -93,6 +89,7 @@ class PopUpViewController: BaseViewController {
         setViewHierachy()
         setupConstraint()
         setupInitialPicerView()
+        setLineHeight()
     }
     
     // MARK: - Methods
@@ -111,109 +108,119 @@ class PopUpViewController: BaseViewController {
         containerView.snp.makeConstraints {
             $0.width.equalTo(320)
             $0.height.equalTo(220)
-            $0.centerX.centerY.equalToSuperview()
+            $0.center.equalToSuperview()
         }
         
         switch type {
         case .delete, .textField, .picker:
-            removeAllSubviews()
-            containerView.addSubviews(cancelButton, confirmButton)
-            
-            cancelButton.snp.makeConstraints {
-                $0.width.equalTo(160)
-                $0.height.equalTo(56)
-                $0.leading.bottom.equalToSuperview()
-            }
-            
-            confirmButton.snp.makeConstraints {
-                $0.width.equalTo(160)
-                $0.height.equalTo(56)
-                $0.trailing.bottom.equalToSuperview()
-            }
-            
-            if type == .picker {
-                containerView.addSubview(datePicker)
-                
-                datePicker.snp.makeConstraints {
-                    $0.top.equalToSuperview().offset(37)
-                    $0.centerX.equalToSuperview()
-                    $0.height.equalTo(120)
-                }
-            } else {
-                containerView.addSubview(titleLabel)
-                
-                titleLabel.snp.makeConstraints {
-                    $0.top.equalToSuperview().offset(32)
-                    $0.centerX.equalToSuperview()
-                }
-                
-                if type == .delete {
-                    containerView.addSubview(descriptionLabel)
-                    
-                    descriptionLabel.snp.makeConstraints {
-                        $0.top.equalTo(titleLabel.snp.bottom).offset(30)
-                        $0.centerX.equalToSuperview()
-                    }
-                } else if type == .textField {
-                    containerView.addSubview(textField)
-                    
-                    textField.snp.makeConstraints {
-                        $0.top.equalTo(titleLabel.snp.bottom).offset(24)
-                        $0.centerX.equalToSuperview()
-                        $0.width.equalTo(280)
-                        $0.height.equalTo(48)
-                    }
-                }
-            }
+            setTwoButtonUI()
         case .oneButton:
-            removeAllSubviews()
-            containerView.addSubviews(cancelButton, titleLabel, descriptionLabel)
-            
-            cancelButton.snp.makeConstraints {
-                $0.height.equalTo(56)
-                $0.leading.bottom.trailing.equalToSuperview()
-            }
-            
-            titleLabel.snp.makeConstraints {
-                $0.top.equalToSuperview().offset(32)
-                $0.centerX.equalToSuperview()
-            }
-            
-            descriptionLabel.snp.makeConstraints {
-                $0.top.equalTo(titleLabel.snp.bottom).offset(30)
-                $0.centerX.equalToSuperview()
-                $0.leading.trailing.equalToSuperview().inset(20)
-            }
-
-            return
+            setOneButtonUI()
         case .download:
-            removeAllSubviews()
-            containerView.addSubviews(titleLabel, downloadedPercentView, descriptionLabel, cancelButton)
+            setDownloadUI()
+        }
+    }
+    
+    func setTwoButtonUI() {
+        removeAllSubviews()
+        containerView.addSubviews(cancelButton, confirmButton)
+        
+        cancelButton.snp.makeConstraints {
+            $0.width.equalTo(160)
+            $0.leading.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(28)
+        }
+        
+        confirmButton.snp.makeConstraints {
+            $0.width.equalTo(160)
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(28)
+        }
+        
+        if type == .picker {
+            containerView.addSubview(datePicker)
             
-            containerView.snp.updateConstraints {
-                $0.width.equalTo(320)
-                $0.height.equalTo(283)
+            datePicker.snp.makeConstraints {
+                $0.top.equalToSuperview().offset(30)
+                $0.centerX.equalToSuperview()
+                $0.height.equalTo(120)
             }
-
+        } else {
+            containerView.addSubview(titleLabel)
+            
             titleLabel.snp.makeConstraints {
-                $0.top.equalToSuperview().offset(32)
+                $0.top.equalToSuperview().offset(36)
                 $0.centerX.equalToSuperview()
             }
             
-            downloadedPercentView.snp.makeConstraints {
-                $0.top.equalTo(titleLabel.snp.bottom).offset(20)
-                $0.centerX.equalToSuperview()
+            if type == .delete {
+                containerView.addSubview(descriptionLabel)
+                
+                descriptionLabel.snp.makeConstraints {
+                    $0.center.equalToSuperview()
+                }
+            } else if type == .textField {
+                containerView.addSubview(textField)
+                
+                textField.snp.makeConstraints {
+                    $0.top.equalTo(titleLabel.snp.bottom).offset(24)
+                    $0.centerX.equalToSuperview()
+                    $0.width.equalTo(280)
+                    $0.height.equalTo(48)
+                }
             }
-            
-            descriptionLabel.snp.makeConstraints {
-                $0.top.equalTo(downloadedPercentView.snp.bottom).offset(20)
-                $0.centerX.equalToSuperview()
-            }
-            
-            cancelButton.snp.makeConstraints {
-                $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
-                $0.centerX.equalToSuperview()
-            }
+        }
+    }
+    
+    func setOneButtonUI() {
+        removeAllSubviews()
+        containerView.addSubviews(cancelButton, titleLabel, descriptionLabel)
+        
+        cancelButton.snp.makeConstraints {
+            $0.width.equalTo(160)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(28)
+        }
+        
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(36)
+            $0.centerX.equalToSuperview()
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+//            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+            $0.center.equalToSuperview()
+            $0.leading.trailing.equalToSuperview().inset(20)
+        }
+    }
+    
+    func setDownloadUI() {
+        removeAllSubviews()
+        containerView.addSubviews(titleLabel, downloadedPercentView, descriptionLabel, cancelButton)
+        
+        containerView.snp.updateConstraints {
+            $0.width.equalTo(320)
+            $0.height.equalTo(283)
+        }
+
+        titleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(36)
+            $0.centerX.equalToSuperview()
+        }
+        
+        downloadedPercentView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        descriptionLabel.snp.makeConstraints {
+            $0.top.equalTo(downloadedPercentView.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
+        }
+        
+        cancelButton.snp.makeConstraints {
+            $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
+            $0.centerX.equalToSuperview()
         }
     }
     
@@ -285,5 +292,9 @@ class PopUpViewController: BaseViewController {
     func setDeleteButton() {
         confirmButton.setTitle("삭제", for: .normal)
         confirmButton.setTitleColor(Asset.Color.red.color, for: .normal)
+    }
+    
+    func setLineHeight() {
+        descriptionLabel.setLineHeight(20)
     }
 }

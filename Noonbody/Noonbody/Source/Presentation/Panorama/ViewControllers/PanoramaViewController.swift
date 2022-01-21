@@ -319,7 +319,7 @@ class PanoramaViewController: BaseViewController {
         setPopUpViewController(popUp: renameAlbumPopUp)
         renameAlbumPopUp.titleLabel.text = "앨범 이름을 수정해주세요."
         renameAlbumPopUp.textField.text = albumName
-        renameAlbumPopUp.confirmButton.titleLabel?.font = .nbFont(type: .body2Bold)
+        renameAlbumPopUp.confirmButton.titleLabel?.font = .nbFont(type: .body1Bold)
         self.present(renameAlbumPopUp, animated: true, completion: nil)
     }
     
@@ -357,7 +357,7 @@ class PanoramaViewController: BaseViewController {
         popUp.titleLabel.text = "사진이 최소 2장 이상 필요해요."
         popUp.descriptionLabel.text = "영상 저장하기를 이용하고 싶으시다면\n최소 2장의 사진을 업로드해 주세요."
         popUp.setCancelButtonTitle(text: "확인")
-        popUp.cancelButton.titleLabel?.font = .nbFont(type: .body2Bold)
+        popUp.cancelButton.titleLabel?.font = .nbFont(type: .body1Bold)
         popUp.cancelButton.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
         self.present(popUp, animated: true, completion: nil)
     }

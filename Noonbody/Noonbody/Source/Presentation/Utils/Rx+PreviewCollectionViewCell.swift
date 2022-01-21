@@ -10,7 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-
 class RxCollectionViewCellDelegateProxy: DelegateProxy<PreviewCollectionViewCell, DeleteButtonDelegate>, DelegateProxyType, DeleteButtonDelegate {
     
     static func registerKnownImplementations() {
