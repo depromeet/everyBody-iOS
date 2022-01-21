@@ -9,18 +9,14 @@ import UIKit
 import Kingfisher
 
 extension UIImageView {
-    @discardableResult
-    func setImage(with imagePath: String) -> Bool {
-        guard let url = URL(string: imagePath) else {
-            return false
-        }
-        self.kf.indicatorType = .activity
+    func setImage(with imagePath: String) {
+        guard let url = URL(string: imagePath) else { return }
         self.kf.setImage(
             with: url,
             placeholder: UIImage(),
             options: [
                 .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(0)),
+                .transition(.fade(0.45)),
                 .cacheOriginalImage
             ]) { result in
             switch result {
@@ -30,6 +26,5 @@ extension UIImageView {
                 print("Job failed: \(error.localizedDescription)")
             }
         }
-        return true
     }
 }

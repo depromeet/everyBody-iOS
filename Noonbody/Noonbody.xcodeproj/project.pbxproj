@@ -61,6 +61,7 @@
 		AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8726FB126C00106DC2 /* SnapKit */; };
 		AA7E0A8B26FB128100106DC2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8A26FB128100106DC2 /* Then */; };
 		AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A9326FB135300106DC2 /* .swiftlint.yml */; };
+		AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AA81D8B82799C79400D4D667 /* SkeletonView */; };
 		AA95910F27442999007772BD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95910E27442999007772BD /* PopUpViewController.swift */; };
 		AA9591122744339D007772BD /* NBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591112744339D007772BD /* NBTextField.swift */; };
 		AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */; };
@@ -335,6 +336,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */,
 				AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */,
 				AAE2FA882763F51300FA2C5C /* FirebaseMessaging in Frameworks */,
 				AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */,
@@ -1033,6 +1035,7 @@
 				AA9FB3E62789D4DC00A97884 /* RxCocoa */,
 				AA9FB3E82789D4DC00A97884 /* RxSwift */,
 				AA9FB3EB2789D79000A97884 /* Lottie */,
+				AA81D8B82799C79400D4D667 /* SkeletonView */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* Noonbody.app */;
@@ -1070,6 +1073,7 @@
 				AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */,
 				AA9FB3E52789D4DC00A97884 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AA9FB3EA2789D79000A97884 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -1502,6 +1506,14 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -1559,6 +1571,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA7E0A8926FB128100106DC2 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		AA81D8B82799C79400D4D667 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		AA9FB3E32789D4A600A97884 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
