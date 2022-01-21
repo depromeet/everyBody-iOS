@@ -114,6 +114,12 @@ class ProfileViewController: BaseViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    @objc
+    private func pushToPrivacyPolicyViewController() {
+        let viewController = PrivacyPolicyViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
 }
 
 // MARK: - UITableViewDelegate
@@ -141,27 +147,33 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ProfileTableViewCell = tableView.dequeueReusableCell(for: indexPath)
+        let title = cellData[indexPath.item].title
         
         switch cellData[indexPath.item] {
         case .nickName(let nickname):
             cell.type = .textField
-            cell.setData(title: cellData[indexPath.item].title, placeholder: "닉네임을 입력해주세요")
+            cell.setData(title: title, placeholder: "닉네임을 입력해주세요")
             cell.setTextField(text: nickname)
         case .motto(let motto):
             cell.type = .textField
-            cell.setData(title: cellData[indexPath.item].title, placeholder: "천천히 그리고 꾸준히!")
+            cell.setData(title: title, placeholder: "천천히 그리고 꾸준히!")
             cell.setTextField(text: motto)
         case .pushNotification:
             cell.type = .right
-            cell.setData(title: cellData[indexPath.item].title)
+            cell.setData(title: title)
             cell.setRightButtonEvent(target: self, action: #selector(pushToNotificationSetting))
             cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
         case .saved:
             cell.type = .appSwitch
             cell.setupConstraint()
-            cell.setData(title: cellData[indexPath.item].title)
+            cell.setData(title: title)
             cell.descriptionLabel.text = "눈바디 앱에서 촬영한 사진을 앱에만 저장합니다."
             cell.saveOnlyInAppSwitch.isOn = !UserManager.saveBulitInInLibrary
+        case .privacyPolicy:
+            cell.type = .right
+            cell.setData(title: title)
+            cell.setRightButtonEvent(target: self, action: #selector(pushToPrivacyPolicyViewController))
+            cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
         }
         
         arrayOfCells.append(cell)

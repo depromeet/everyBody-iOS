@@ -61,6 +61,7 @@
 		AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8726FB126C00106DC2 /* SnapKit */; };
 		AA7E0A8B26FB128100106DC2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8A26FB128100106DC2 /* Then */; };
 		AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A9326FB135300106DC2 /* .swiftlint.yml */; };
+		AA81D8BD279A05DD00D4D667 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */; };
 		AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AA81D8B82799C79400D4D667 /* SkeletonView */; };
 		AA95910F27442999007772BD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95910E27442999007772BD /* PopUpViewController.swift */; };
 		AA9591122744339D007772BD /* NBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591112744339D007772BD /* NBTextField.swift */; };
@@ -232,6 +233,7 @@
 		AA7E0A4626FB0A6200106DC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA7E0A5726FB0BA600106DC2 /* ViewSample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSample.swift; sourceTree = "<group>"; };
 		AA7E0A9326FB135300106DC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		AA95910E27442999007772BD /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		AA9591112744339D007772BD /* NBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBTextField.swift; sourceTree = "<group>"; };
 		AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+addLeftPadding.swift"; sourceTree = "<group>"; };
@@ -496,7 +498,6 @@
 		AA7E0A4F26FB0B4F00106DC2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				AA74A0DF274971B200FA6678 /* Data */,
 				AA7E0A5626FB0B9800106DC2 /* Views */,
 				AA7E0A5526FB0B8F00106DC2 /* Cells */,
 				AA7E0A5426FB0B7D00106DC2 /* ViewModels */,
@@ -766,6 +767,7 @@
 		AABD83832784D08F004E8BF8 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				AA74A0DF274971B200FA6678 /* Data */,
 				AABD83862784D0C9004E8BF8 /* ViewControllers */,
 				AABD83852784D0A8004E8BF8 /* ViewModel */,
 				AABD83842784D099004E8BF8 /* Cells */,
@@ -795,6 +797,7 @@
 			children = (
 				AA74A0F3274A696E00FA6678 /* NotificationViewController.swift */,
 				AA74A0D927495E2300FA6678 /* ProfileViewController.swift */,
+				AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1178,6 +1181,7 @@
 				AA2F31792759F53F00855861 /* NotificationConfig.swift in Sources */,
 				AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */,
 				AAE2FAB6276BA72A00FA2C5C /* UIButton+alignVertical.swift in Sources */,
+				AA81D8BD279A05DD00D4D667 /* PrivacyPolicyViewController.swift in Sources */,
 				AA2F3192275B413100855861 /* AlbumSelectionViewModel.swift in Sources */,
 				AAEA239527933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift in Sources */,
 				FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */,
