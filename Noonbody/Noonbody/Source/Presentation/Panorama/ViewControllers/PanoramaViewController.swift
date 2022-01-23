@@ -215,7 +215,7 @@ class PanoramaViewController: BaseViewController {
         output.deleteStatusCode
             .drive(onNext: { [weak self] statusCode in
                 guard let self = self else { return }
-                if statusCode == 200 {
+                if statusCode == 204 {
                     self.dismiss(animated: false, completion: nil)
                     self.navigationController?.popViewController(animated: false)
                 }
