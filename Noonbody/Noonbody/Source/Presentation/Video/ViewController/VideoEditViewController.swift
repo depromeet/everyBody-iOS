@@ -52,7 +52,7 @@ class VideoEditViewController: BaseViewController {
                                                         style: .plain,
                                                         target: self,
                                                         action: nil)
-    private let popUp = PopUpViewController(type: .download)
+    private var popUp = PopUpViewController(type: .download)
     
     // MARK: - Initializer
     
@@ -279,11 +279,13 @@ extension VideoEditViewController: PopUpActionProtocol {
         NotificationCenter.default.post(name: NSNotification.Name("requestCancel"),
                                         object: nil)
         dismiss(animated: true, completion: nil)
+        popUp = PopUpViewController(type: .download)
     }
     
     func confirmButtonDidTap(_ button: UIButton) {
         dismiss(animated: true, completion: nil)
         presentShareSheet()
+        popUp = PopUpViewController(type: .download)
     }
     
 }
