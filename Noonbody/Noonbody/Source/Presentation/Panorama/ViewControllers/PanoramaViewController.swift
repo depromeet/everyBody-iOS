@@ -62,6 +62,7 @@ class PanoramaViewController: BaseViewController {
     // MARK: - Properties
     
     let cellSpacing: CGFloat = 2
+    var cellWidth: CGFloat = 0
     private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))
     private var deletePicturePopUp = PopUpViewController(type: .delete)
     private var deleteAlbumPopUp = PopUpViewController(type: .delete)
@@ -302,7 +303,7 @@ class PanoramaViewController: BaseViewController {
         } else {
             topCollectionView.setCollectionViewLayout(horizontalFlowLayout, animated: false)
             bottomCollectionView.isHidden = false
-            setCollectionViewContentOffset()
+            setCollectionViewContentOffset(animated: false)
         }
     }
     
@@ -318,15 +319,12 @@ class PanoramaViewController: BaseViewController {
     
     func moveCellToCenter(animated: Bool) {
         bottomCollectionView.selectItem(at: selectedIndexByPart[bodyPart], animated: false, scrollPosition: .centeredHorizontally)
-        
     }
     
-    func setCollectionViewContentOffset() {
+    func setCollectionViewContentOffset(animated: Bool) {
         topCollectionView.setContentOffset(CGPoint(x: topCollectionView.frame.maxX * CGFloat(selectedIndexByPart[bodyPart].row),
                                                    y: 0.0), animated: false)
-        if let xPoint = centerCell?.frame.width {
-            bottomCollectionView.setContentOffset(CGPoint(x: xPoint * CGFloat(selectedIndexByPart[bodyPart].row), y: 0.0), animated: true)
-        }
+        bottomCollectionView.setContentOffset(CGPoint(x: cellWidth * CGFloat(selectedIndexByPart[bodyPart].row), y: 0.0), animated: animated)
     }
     
     private func editAlbumButtonDidTap() {
