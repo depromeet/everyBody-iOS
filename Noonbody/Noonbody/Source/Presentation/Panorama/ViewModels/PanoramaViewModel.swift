@@ -14,10 +14,10 @@ final class PanoramaViewModel {
     private let panoramaUseCase: PanoramaUseCase
     
     struct Input {
-        let viewWillAppear: Observable<Void>
+        let cameraDidDisappear: Observable<Void>
         let albumId: Int
         let albumNameTextField: Observable<String>
-        let deleteButtonControlEvent: ControlEvent<Void>
+        let deleteAlbumButtonControlEvent: ControlEvent<Void>
         let renameButtonControlEvent: ControlEvent<Void>
     }
     
@@ -25,7 +25,7 @@ final class PanoramaViewModel {
         let album: Driver<Album?>
         let canRename: Driver<Bool>
         let renamedAlbum: Driver<String?>
-        let deleteStatusCode: Driver<Int>
+        let deleteAlbumStatusCode: Driver<Int>
     }
     
     init(panoramaUseCase: PanoramaUseCase) {
@@ -33,14 +33,13 @@ final class PanoramaViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let album = input.viewWillAppear
-            .flatMap {
+        let album = input.cameraDidDisappear
+            .flatMap {_ in
                 self.panoramaUseCase.getAlbum(albumId: input.albumId) }
             .map { $0 }
             .share()
         
-        let renameResponse =
-        input.renameButtonControlEvent
+        let renameResponse = input.renameButtonControlEvent
             .withLatestFrom(input.albumNameTextField)
             .map { name in
                 return AlbumRequestModel(name: name)
@@ -50,7 +49,7 @@ final class PanoramaViewModel {
             }
             .share()
         
-        let deleteResponse = input.deleteButtonControlEvent
+        let deleteAlbumResponse = input.deleteAlbumButtonControlEvent
             .flatMap {
                 self.panoramaUseCase.deleteAlbum(albumId: input.albumId)
             }.map { $0 }
@@ -72,12 +71,12 @@ final class PanoramaViewModel {
                 return response.name
             }.asDriver(onErrorJustReturn: nil)
         
-        let deleteStatusCode = deleteResponse
+        let deleteAlbumStatusCode = deleteAlbumResponse
             .compactMap { $0 }
             .map { response -> Int in
                 return response
             }.asDriver(onErrorJustReturn: 404)
         
-        return Output(album: data, canRename: canRename, renamedAlbum: renamedAlbum, deleteStatusCode: deleteStatusCode)
+        return Output(album: data, canRename: canRename, renamedAlbum: renamedAlbum, deleteAlbumStatusCode: deleteAlbumStatusCode)
     }
 }
