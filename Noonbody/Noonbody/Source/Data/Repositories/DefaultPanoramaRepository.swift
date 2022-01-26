@@ -28,6 +28,20 @@ class DefaultPanoramaRepository: PanoramaRepository {
         return observable
     }
     
+    func deletePicture(pictureId: Int) -> Observable<Int> {
+        Observable<Int>.create { observer -> Disposable in
+            let requestReference: () = PanoramaService.shared.deletePicture(id: pictureId) { response in
+                switch response {
+                case .success:
+                    observer.onNext(200)
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+    }
+    
     func renameAlbum(albumId: Int, request: AlbumRequestModel) -> Observable<RenamedAlbum> {
         let observable = Observable<RenamedAlbum>.create { observer -> Disposable in
             let requestReference: () = PanoramaService.shared.renameAlbum(id: albumId, request: request) { response in

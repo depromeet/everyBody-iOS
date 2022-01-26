@@ -13,7 +13,6 @@ enum AlbumAPI: BaseTargetType {
     typealias ResultModel = [Album]
     
     case getAlbumList
-    case deletePicture(pictureId: Int)
     case savePhoto(request: PhotoRequestModel)
 }
 
@@ -23,8 +22,6 @@ extension AlbumAPI {
         switch self {
         case .getAlbumList:
             return HTTPMethodURL.GET.album
-        case .deletePicture(let pictureId):
-            return HTTPMethodURL.DELETE.pictures + "/\(pictureId)"
         case .savePhoto:
             return HTTPMethodURL.POST.photo
         }
@@ -34,8 +31,6 @@ extension AlbumAPI {
         switch self {
         case .getAlbumList:
             return .get
-        case .deletePicture:
-            return .delete
         case .savePhoto:
             return .post
         }
@@ -44,8 +39,6 @@ extension AlbumAPI {
     var task: Task {
         switch self {
         case .getAlbumList:
-            return .requestPlain
-        case .deletePicture:
             return .requestPlain
         case .savePhoto(let request):
             var multiPartFormData: [MultipartFormData] = []

@@ -61,21 +61,6 @@ class DefaultAlbumRepositry: AlbumRepository {
     }
     
     @discardableResult
-    func deletePicture(pictureId: Int) -> Observable<Int> {
-        Observable<Int>.create { observer -> Disposable in
-            let requestReference: () = AlbumService.shared.deletePicture(id: pictureId) { response in
-                switch response {
-                case .success:
-                    observer.onNext(200)
-                case .failure(let err):
-                    print(err)
-                }
-            }
-            return Disposables.create(with: { requestReference })
-        }
-    }
-    
-    @discardableResult
     func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
         Observable<Int>.create { observer -> Disposable in
             let requestReference: () = CameraService.shared.postPhoto(request: request) { response in

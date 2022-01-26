@@ -22,12 +22,6 @@ public class AlbumService {
         }
     }
     
-    func deletePicture(id: Int, completion: @escaping (Result<Int?, Error>) -> Void) {
-        provider.requestNoResultAPI(AlbumAPI.deletePicture(pictureId: id)) { response in
-            completion(response)
-        }
-    }
-    
     func savePhoto(request: PhotoRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
         provider.requestNoResultAPI(AlbumAPI.savePhoto(request: request)) { response in
             completion(response)
