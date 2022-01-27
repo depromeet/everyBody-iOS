@@ -48,6 +48,8 @@ class HomeViewController: BaseViewController {
         layout.itemSize = CGSize(width: (Constant.Size.screenWidth - 51) / 2, height: 211)
         $0.register(AlbumCollectionViewCell.self)
         $0.register(ListCollectionViewCell.self)
+        $0.registerReusableView(FeedBackCollectionReusableView.self,
+                                kind: UICollectionView.elementKindSectionFooter)
         $0.backgroundColor = .white
         $0.collectionViewLayout = layout
         $0.isSkeletonable = true
@@ -263,6 +265,18 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let viewController = PanoramaViewController(albumId: albumData[indexPath.row].id, albumData: albumData[indexPath.row])
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableView(FeedBackCollectionReusableView.self,
+                                                            indexPath: indexPath,
+                                                            kind: UICollectionView.elementKindSectionFooter)
+        footer.delegate = self
+        return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 60)
+    }
 }
 
 extension HomeViewController: SkeletonCollectionViewDelegate { }
@@ -293,4 +307,20 @@ extension HomeViewController: SkeletonCollectionViewDataSource {
         return cell
     }
     
+}
+
+extension HomeViewController: PopUpActionProtocol {
+    func cancelButtonDidTap(_ button: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController: footerDelegate {
+    func feedBackButtonDidTap() {
+        let popUp = FeedBackPopUpViewController()
+        popUp.modalTransitionStyle = .crossDissolve
+        popUp.modalPresentationStyle = .overCurrentContext
+        popUp.delegate = self
+        self.present(popUp, animated: true, completion: nil)
+    }
 }
