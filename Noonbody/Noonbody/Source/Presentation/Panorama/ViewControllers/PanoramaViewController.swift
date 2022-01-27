@@ -67,7 +67,7 @@ class PanoramaViewController: BaseViewController {
     private var deletePicturePopUp = PopUpViewController(type: .delete)
     private var deleteAlbumPopUp = PopUpViewController(type: .delete)
     private var renameAlbumPopUp = PopUpViewController(type: .textField)
-    var cameraViewcontroller = CameraViewController()
+    private var cameraViewcontroller = CameraViewController()
     private var albumId: Int
     private var albumData: Album
     private var albumName: String
@@ -159,6 +159,7 @@ class PanoramaViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         resetDeleteData()
+        editMode ? initEditNavigationBar() : initNavigationBar()
     }
     
     override func viewDidLayoutSubviews() {
@@ -187,7 +188,7 @@ class PanoramaViewController: BaseViewController {
                 self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
             }).disposed(by: disposeBag)
         
-        let input = PanoramaViewModel.Input(cameraDidDisappear: cameraViewcontroller.rx.viewDidDisappear.map { _ in },
+        let input = PanoramaViewModel.Input(cameraViewDidDisappear: cameraViewcontroller.rx.viewDidDisappear.map { _ in },
                                             albumId: albumId,
                                             albumNameTextField: renameAlbumPopUp.textField.rx.text.orEmpty.asObservable(),
                                             deleteAlbumButtonControlEvent: deleteAlbumPopUp.confirmButton.rx.tap,
@@ -216,6 +217,15 @@ class PanoramaViewController: BaseViewController {
                     self.title = name
                     self.albumName = name
                     self.showToast(type: .save)
+                }
+            }).disposed(by: disposeBag)
+        
+        output.deleteAlbumStatusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 204 {
+                    self.dismiss(animated: true, completion: nil)
+                    self.navigationController?.popViewController(animated: false)
                 }
             }).disposed(by: disposeBag)
     }

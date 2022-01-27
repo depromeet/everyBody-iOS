@@ -14,7 +14,7 @@ final class PanoramaViewModel {
     private let panoramaUseCase: PanoramaUseCase
     
     struct Input {
-        let cameraDidDisappear: Observable<Void>
+        let cameraViewDidDisappear: Observable<Void>
         let albumId: Int
         let albumNameTextField: Observable<String>
         let deleteAlbumButtonControlEvent: ControlEvent<Void>
@@ -33,8 +33,8 @@ final class PanoramaViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let album = input.cameraDidDisappear
-            .flatMap {_ in
+        let album = input.cameraViewDidDisappear
+            .flatMap { _ in
                 self.panoramaUseCase.getAlbum(albumId: input.albumId) }
             .map { $0 }
             .share()
