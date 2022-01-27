@@ -1,5 +1,5 @@
 //
-//  FeedBackPopUpViewController.swift
+//  FeedbackPopUpViewController.swift
 //  Noonbody
 //
 //  Created by kong on 2022/01/26.
@@ -7,7 +7,9 @@
 
 import UIKit
 
-class FeedBackPopUpViewController: BaseViewController {
+import RxSwift
+
+class FeedbackPopUpViewController: BaseViewController {
     
     // MARK: - UI Components
     
@@ -61,7 +63,8 @@ class FeedBackPopUpViewController: BaseViewController {
         $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
     }
     
-    private let confirmButton = UIButton().then {
+    let sendButton = UIButton().then {
+        $0.isEnabled = false
         $0.setTitle("피드백 보내기", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body1Bold)
         $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
@@ -72,14 +75,15 @@ class FeedBackPopUpViewController: BaseViewController {
     // MARK: - Properties
     
     weak var delegate: PopUpActionProtocol?
-    var rateButtonList: [(UIButton, State)] = []
-    var starRate = 0
+    var rateButtonList: [UIButton] = []
+    var starRate = PublishSubject<Int>()
     
     // MARK: - Initalizer
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
+        hideKeyboard()
         render()
         setViewHierachy()
         setupConstraint()
@@ -93,13 +97,13 @@ class FeedBackPopUpViewController: BaseViewController {
     
     private func setViewHierachy() {
         view.addSubview(containerView)
-        containerView.addSubviews(postEmojiLabel, titleLabel, descriptionLabel, textField, subDescriptionLabel, rateStackView, cancelButton, confirmButton)
+        containerView.addSubviews(postEmojiLabel, titleLabel, descriptionLabel, textField, subDescriptionLabel, rateStackView, cancelButton, sendButton)
         
         for index in 1...5 {
             let button = NBCircleButton(type: .rate)
             button.setTitle("\(index)", for: .normal)
             button.addTarget(self, action: #selector(self.setAction(sender:)), for: .touchUpInside)
-            rateButtonList.append((button, .unselected))
+            rateButtonList.append((button))
             self.rateStackView.addArrangedSubview(button)
         }
     }
@@ -149,7 +153,7 @@ class FeedBackPopUpViewController: BaseViewController {
             $0.bottom.equalToSuperview().inset(28)
         }
         
-        confirmButton.snp.makeConstraints {
+        sendButton.snp.makeConstraints {
             $0.width.equalTo(160)
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(28)
@@ -161,16 +165,10 @@ class FeedBackPopUpViewController: BaseViewController {
     @objc
     private func setAction(sender: UIButton) {
         guard let ratingScore = Int(sender.titleLabel?.text ?? "0") else { return }
-        if sender.isSelected, ratingScore < 5 {
-            for index in ratingScore...4 {
-                rateButtonList[index].0.isSelected = false
-            }
-        } else {
-            for index in 0...ratingScore - 1 {
-                rateButtonList[index].0.isSelected = true
-            }
+        rateButtonList.enumerated().forEach {
+            $1.isSelected = ratingScore - 1 == $0 ? true : false
         }
-        starRate = ratingScore
+        starRate.onNext(ratingScore)
     }
     
     @objc
@@ -180,6 +178,6 @@ class FeedBackPopUpViewController: BaseViewController {
     
     @objc
     func confirmButtonDidTap() {
-        delegate?.confirmButtonDidTap(confirmButton)
+        delegate?.confirmButtonDidTap(sendButton)
     }
 }

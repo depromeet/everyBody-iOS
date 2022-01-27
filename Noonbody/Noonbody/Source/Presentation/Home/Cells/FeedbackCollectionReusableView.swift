@@ -1,5 +1,5 @@
 //
-//  FeedBackCollectionReusableView.swift
+//  FeedbackCollectionReusableView.swift
 //  Noonbody
 //
 //  Created by kong on 2022/01/26.
@@ -11,15 +11,15 @@ import Then
 import SnapKit
 
 protocol footerDelegate: AnyObject {
-    func feedBackButtonDidTap()
+    func feedbackButtonDidTap()
 }
 
-class FeedBackCollectionReusableView: UICollectionReusableView {
+class FeedbackCollectionReusableView: UICollectionReusableView {
     
-    let feedBackButton = UIButton().then {
+    let feedbackButton = UIButton().then {
         $0.backgroundColor = Asset.Color.gray10.color
         $0.makeRounded(radius: 4)
-        $0.addTarget(self, action: #selector(feedBackButtonDidTap), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(feedbackButtonDidTap), for: .touchUpInside)
     }
     
     private let postEmojiLabel = UILabel().then {
@@ -49,12 +49,12 @@ class FeedBackCollectionReusableView: UICollectionReusableView {
     }
     
     func setupViewHierarchy() {
-        addSubviews(feedBackButton)
-        feedBackButton.addSubviews(postEmojiLabel, titleLabel, arrowImage)
+        addSubviews(feedbackButton)
+        feedbackButton.addSubviews(postEmojiLabel, titleLabel, arrowImage)
     }
     
     func setupConstraint() {
-        feedBackButton.snp.makeConstraints {
+        feedbackButton.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(20)
         }
@@ -76,7 +76,7 @@ class FeedBackCollectionReusableView: UICollectionReusableView {
     }
     
     @objc
-    private func feedBackButtonDidTap() {
-        delegate?.feedBackButtonDidTap()
+    private func feedbackButtonDidTap() {
+        delegate?.feedbackButtonDidTap()
     }
 }
