@@ -44,7 +44,7 @@
 		AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0DD27496F8E00FA6678 /* UITableView+Generic.swift */; };
 		AA74A0E1274971BF00FA6678 /* ProfileDataType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */; };
 		AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */; };
-		AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */; };
+		AA74A0E5274985F200FA6678 /* Rx+ViewLifeCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E4274985F200FA6678 /* Rx+ViewLifeCycle.swift */; };
 		AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0E8274993CF00FA6678 /* DefaultPreferenceRepository.swift */; };
 		AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0ED2749960300FA6678 /* UserInfo.swift */; };
 		AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */; };
@@ -220,7 +220,7 @@
 		AA74A0DD27496F8E00FA6678 /* UITableView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Generic.swift"; sourceTree = "<group>"; };
 		AA74A0E0274971BF00FA6678 /* ProfileDataType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataType.swift; sourceTree = "<group>"; };
 		AA74A0E227497E0000FA6678 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+ViewWillAppear.swift"; sourceTree = "<group>"; };
+		AA74A0E4274985F200FA6678 /* Rx+ViewLifeCycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Rx+ViewLifeCycle.swift"; sourceTree = "<group>"; };
 		AA74A0E8274993CF00FA6678 /* DefaultPreferenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceRepository.swift; sourceTree = "<group>"; };
 		AA74A0ED2749960300FA6678 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+attributedPlaceholder.swift"; sourceTree = "<group>"; };
@@ -748,7 +748,7 @@
 				AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */,
 				AA73665227485C3D002B726D /* String+2DigitFormat.swift */,
 				AA74A0DD27496F8E00FA6678 /* UITableView+Generic.swift */,
-				AA74A0E4274985F200FA6678 /* Rx+ViewWillAppear.swift */,
+				AA74A0E4274985F200FA6678 /* Rx+ViewLifeCycle.swift */,
 				AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */,
 				AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */,
 				AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */,
@@ -1173,7 +1173,7 @@
 				AAE2FA9D27640ADC00FA2C5C /* LaunchService.swift in Sources */,
 				FC91997627A180D200A6CD0D /* FeedBackPopUpViewController.swift in Sources */,
 				FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */,
-				AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */,
+				AA74A0E5274985F200FA6678 /* Rx+ViewLifeCycle.swift in Sources */,
 				AA2F3183275AC84700855861 /* CameraRequestManager.swift in Sources */,
 				AA95910F27442999007772BD /* PopUpViewController.swift in Sources */,
 				AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */,

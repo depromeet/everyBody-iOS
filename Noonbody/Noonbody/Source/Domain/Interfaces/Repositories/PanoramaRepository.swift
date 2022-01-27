@@ -11,4 +11,5 @@ import RxSwift
 
 protocol PanoramaRepository {
     func getAlbum(albumId: Int) -> Observable<Album>
+    func deletePicture(pictureId: Int) -> Observable<Int>
 }
