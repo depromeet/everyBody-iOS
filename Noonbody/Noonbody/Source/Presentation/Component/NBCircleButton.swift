@@ -40,7 +40,6 @@ class NBCircleButton: UIButton {
     }
     
     private func setSelectedState() {
-//        let selectedColor = type
         guard let type = self.type else { return }
         var selectedColor: UIColor
         
