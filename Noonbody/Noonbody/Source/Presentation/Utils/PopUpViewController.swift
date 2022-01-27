@@ -88,7 +88,6 @@ class PopUpViewController: BaseViewController {
         render()
         setViewHierachy()
         setupConstraint()
-        setupInitialPicerView()
         setLineHeight()
     }
     
@@ -188,7 +187,6 @@ class PopUpViewController: BaseViewController {
         }
         
         descriptionLabel.snp.makeConstraints {
-//            $0.top.equalTo(titleLabel.snp.bottom).offset(20)
             $0.center.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(20)
         }
@@ -224,16 +222,23 @@ class PopUpViewController: BaseViewController {
         }
     }
     
-    func changeCancleToConfirmButton() {
-        cancelButton.removeFromSuperview()
-        
+    func setShareButton() {
         containerView.addSubview(confirmButton)
         
-        confirmButton.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel.snp.bottom).offset(20)
-            $0.centerX.equalToSuperview()
+        cancelButton.snp.remakeConstraints {
+            $0.width.equalTo(160)
+            $0.leading.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(28)
         }
-        confirmButton.setTitle("확인", for: .normal)
+        
+        confirmButton.snp.makeConstraints {
+            $0.width.equalTo(160)
+            $0.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(28)
+        }
+        
+        cancelButton.setTitle("확인", for: .normal)
+        confirmButton.setTitle("공유하기", for: .normal)
     }
     
     private func removeAllSubviews() {
@@ -271,8 +276,8 @@ class PopUpViewController: BaseViewController {
         }
     }
     
-    private func setupInitialPicerView() {
-        if type == .picker {
+    func setupInitialPicerView() {
+        if type == .picker && !initalDate.isEmpty {
             let dateString: String = "\(initalDate[0]):\(initalDate[1])"
             
             let dateFormatter = DateFormatter()

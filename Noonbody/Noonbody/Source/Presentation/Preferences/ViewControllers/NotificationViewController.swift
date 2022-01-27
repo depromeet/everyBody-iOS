@@ -207,6 +207,7 @@ class NotificationViewController: BaseViewController {
         popUp.modalPresentationStyle = .overCurrentContext
         popUp.delegate = self
         popUp.initalDate = timeTextField.text?.split(separator: ":").map { Int(String($0))! } ?? []
+        popUp.setupInitialPicerView()
         self.present(popUp, animated: true, completion: nil)
     }
     

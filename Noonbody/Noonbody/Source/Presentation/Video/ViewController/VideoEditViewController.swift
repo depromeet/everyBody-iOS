@@ -52,6 +52,7 @@ class VideoEditViewController: BaseViewController {
                                                         style: .plain,
                                                         target: self,
                                                         action: nil)
+    private var popUp = PopUpViewController(type: .download)
     
     // MARK: - Initializer
     
@@ -103,30 +104,30 @@ class VideoEditViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        let popUp = PopUpViewController(type: .download)
-        
         saveBarButtonItem.rx.tap
             .asDriver()
-            .drive(onNext: {
-                popUp.modalTransitionStyle = .crossDissolve
-                popUp.modalPresentationStyle = .overCurrentContext
-                popUp.delegate = self
-                popUp.titleLabel.text = "비디오 저장 중 ...0%"
-                popUp.descriptionLabel.text = "눈바디 영상이 만들어지고 있어요!\n앱을 종료하거나 기기를 잠그지 마세요."
-                self.present(popUp, animated: true, completion: nil)
+            .drive(onNext: { [weak self] in
+                guard let self = self else { return }
+                self.popUp.modalTransitionStyle = .crossDissolve
+                self.popUp.modalPresentationStyle = .overCurrentContext
+                self.popUp.delegate = self
+                self.popUp.titleLabel.text = "비디오 저장 중 ...0%"
+                self.popUp.descriptionLabel.text = "눈바디 영상이 만들어지고 있어요!\n앱을 종료하거나 기기를 잠그지 마세요."
+                self.present(self.popUp, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
         progress
-            .subscribe(onNext: { percent in
-                popUp.titleLabel.text = "비디오 저장 중 ...\(Int(percent*100))%"
-                popUp.downloadedPercentView.shapeLayer.strokeEnd = percent
+            .subscribe(onNext: { [weak self] percent in
+                guard let self = self else { return }
+                self.popUp.titleLabel.text = "비디오 저장 중 ...\(Int(percent*100))%"
+                self.popUp.downloadedPercentView.shapeLayer.strokeEnd = percent
                 if percent == 1.0 {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        popUp.downloadedPercentView.setCompletedView()
-                        popUp.titleLabel.text = "비디오 저장 완료!"
-                        popUp.descriptionLabel.text = "비디오가 저장이 완료되었어요!\n사진 앨범에서 저장된 비디오를 확인해 보세요."
-                        popUp.changeCancleToConfirmButton()
+                        self.popUp.downloadedPercentView.setCompletedView()
+                        self.popUp.titleLabel.text = "비디오 저장 완료!"
+                        self.popUp.descriptionLabel.text = "비디오 저장이 완료되었어요!\n아이폰 앨범에서 저장된 비디오를 확인해 보세요."
+                        self.popUp.setShareButton()
                     }
                 }
             })
@@ -260,6 +261,16 @@ class VideoEditViewController: BaseViewController {
         selectedIndexLabel.text = "\(row + 1)번"
     }
     
+    private func presentShareSheet() {
+        guard let fileURL = videfileURL else { return }
+        let objectToShare = [fileURL]
+        
+        let activityViewController = UIActivityViewController(activityItems: objectToShare,
+                                                              applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
 }
 
 extension VideoEditViewController: PopUpActionProtocol {
@@ -268,16 +279,13 @@ extension VideoEditViewController: PopUpActionProtocol {
         NotificationCenter.default.post(name: NSNotification.Name("requestCancel"),
                                         object: nil)
         dismiss(animated: true, completion: nil)
+        popUp = PopUpViewController(type: .download)
     }
     
     func confirmButtonDidTap(_ button: UIButton) {
         dismiss(animated: true, completion: nil)
-        for controller in self.navigationController!.viewControllers as Array {
-            if controller.isKind(of: PanoramaViewController.self) {
-                self.navigationController?.popToViewController(controller, animated: true)
-                break
-            }
-        }
+        presentShareSheet()
+        popUp = PopUpViewController(type: .download)
     }
     
 }
