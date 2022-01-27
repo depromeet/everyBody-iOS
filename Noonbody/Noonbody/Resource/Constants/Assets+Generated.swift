@@ -75,6 +75,7 @@ internal enum Asset {
     internal static let manUpper02 = ImageAsset(name: "man_upper02")
     internal static let manWhole = ImageAsset(name: "man_whole")
     internal static let manWhole01 = ImageAsset(name: "man_whole01")
+    internal static let next = ImageAsset(name: "next")
     internal static let `none` = ImageAsset(name: "none")
     internal static let option = ImageAsset(name: "option")
     internal static let photoCamera = ImageAsset(name: "photo_camera")

@@ -49,7 +49,7 @@
 		AA74A0EE2749960300FA6678 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0ED2749960300FA6678 /* UserInfo.swift */; };
 		AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */; };
 		AA74A0F4274A696E00FA6678 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F3274A696E00FA6678 /* NotificationViewController.swift */; };
-		AA74A0F6274A6EDB00FA6678 /* NBDayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */; };
+		AA74A0F6274A6EDB00FA6678 /* NBCircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F5274A6EDB00FA6678 /* NBCircleButton.swift */; };
 		AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */; };
 		AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = AA74A0FA274AD5F100FA6678 /* Kingfisher */; };
 		AA74A0FD274AD66300FA6678 /* UIImageView+setImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */; };
@@ -153,6 +153,8 @@
 		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
 		FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
+		FC91997427A1552800A6CD0D /* FeedBackCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997327A1552800A6CD0D /* FeedBackCollectionReusableView.swift */; };
+		FC91997627A180D200A6CD0D /* FeedBackPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997527A180D200A6CD0D /* FeedBackPopUpViewController.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
 		FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */; };
@@ -223,7 +225,7 @@
 		AA74A0ED2749960300FA6678 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		AA74A0F1274A664D00FA6678 /* UITextField+attributedPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+attributedPlaceholder.swift"; sourceTree = "<group>"; };
 		AA74A0F3274A696E00FA6678 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDayButton.swift; sourceTree = "<group>"; };
+		AA74A0F5274A6EDB00FA6678 /* NBCircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBCircleButton.swift; sourceTree = "<group>"; };
 		AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBPrimaryButton.swift; sourceTree = "<group>"; };
 		AA74A0FC274AD66300FA6678 /* UIImageView+setImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+setImage.swift"; sourceTree = "<group>"; };
 		AA7E0A3226FB0A6100106DC2 /* Noonbody.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Noonbody.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -322,6 +324,8 @@
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamedAlbum.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC91997327A1552800A6CD0D /* FeedBackCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackCollectionReusableView.swift; sourceTree = "<group>"; };
+		FC91997527A180D200A6CD0D /* FeedBackPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackPopUpViewController.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
 		FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -535,6 +539,7 @@
 		AA7E0A5326FB0B7100106DC2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FC91997527A180D200A6CD0D /* FeedBackPopUpViewController.swift */,
 				AA5B85E027171072002276C3 /* HomeViewController.swift */,
 				AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */,
 			);
@@ -554,6 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE2FABA276CC10300FA2C5C /* ListCollectionViewCell.swift */,
+				FC91997327A1552800A6CD0D /* FeedBackCollectionReusableView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -628,7 +634,7 @@
 				AA4EFD2027623F38005017FC /* SelectedView.swift */,
 				AA9591112744339D007772BD /* NBTextField.swift */,
 				AA4EFD2827623F75005017FC /* NBSegmentedButton.swift */,
-				AA74A0F5274A6EDB00FA6678 /* NBDayButton.swift */,
+				AA74A0F5274A6EDB00FA6678 /* NBCircleButton.swift */,
 				AA74A0F7274AAB0E00FA6678 /* NBPrimaryButton.swift */,
 				AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */,
 				AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */,
@@ -1165,6 +1171,7 @@
 				FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
 				AAE2FA9D27640ADC00FA2C5C /* LaunchService.swift in Sources */,
+				FC91997627A180D200A6CD0D /* FeedBackPopUpViewController.swift in Sources */,
 				FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */,
 				AA74A0E5274985F200FA6678 /* Rx+ViewWillAppear.swift in Sources */,
 				AA2F3183275AC84700855861 /* CameraRequestManager.swift in Sources */,
@@ -1189,6 +1196,7 @@
 				AAEA239527933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift in Sources */,
 				FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */,
 				AA2F318A275ADB6400855861 /* CameraService.swift in Sources */,
+				FC91997427A1552800A6CD0D /* FeedBackCollectionReusableView.swift in Sources */,
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
 				AA95911827443FB9007772BD /* UIViewController+hideKeyboard.swift in Sources */,
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
@@ -1266,7 +1274,7 @@
 				AAC7ACB8272D5C0800B2BE1E /* UIDevice+hasNotch.swift in Sources */,
 				AA73AFB0274FE31B00FD7C70 /* MyPageService.swift in Sources */,
 				AA7E0A3626FB0A6100106DC2 /* AppDelegate.swift in Sources */,
-				AA74A0F6274A6EDB00FA6678 /* NBDayButton.swift in Sources */,
+				AA74A0F6274A6EDB00FA6678 /* NBCircleButton.swift in Sources */,
 				AA7E0A3826FB0A6100106DC2 /* SceneDelegate.swift in Sources */,
 				AA74A0DC274962F400FA6678 /* ProfileTableViewCell.swift in Sources */,
 				AABD838D27863887004E8BF8 /* UserDefaultKey.swift in Sources */,

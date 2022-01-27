@@ -36,8 +36,20 @@ extension UICollectionView {
         return cell
     }
     
+    func dequeueReusableView<T: UICollectionReusableView>(_: T.Type, indexPath: IndexPath, kind: String) -> T {
+        guard let view = dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: T.className, for: indexPath as IndexPath) as? T else {
+            fatalError("Unable Dequeue Reusable")
+        }
+                
+        return view
+        }
+    
     func register<T: UICollectionViewCell>(_: T.Type) {
         register(T.self, forCellWithReuseIdentifier: T.reuseIdentifier)
+    }
+    
+    func registerReusableView<T: UICollectionReusableView>(_: T.Type, kind: String) {
+        register(T.self, forSupplementaryViewOfKind: kind, withReuseIdentifier: T.className)
     }
 }
 

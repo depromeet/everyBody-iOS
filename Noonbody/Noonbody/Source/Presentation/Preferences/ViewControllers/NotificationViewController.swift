@@ -167,7 +167,7 @@ class NotificationViewController: BaseViewController {
     
     private func createButtons() {
         viewModel.weekday.forEach { day in
-            let button = NBDayButton()
+            let button = NBCircleButton(type: .day)
             button.setTitle(day, for: .normal)
             button.addTarget(self, action: #selector(self.setAction(sender:)), for: .touchUpInside)
             dayButtonList.append((button, .unselected))
