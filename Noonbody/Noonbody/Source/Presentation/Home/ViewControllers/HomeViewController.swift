@@ -142,6 +142,7 @@ class HomeViewController: BaseViewController {
                 guard let self = self else { return }
                 if statusCode == 200 {
                     self.dismiss(animated: true, completion: nil)
+                    self.showToast(type: .send)
                     self.resetFeedback()
                 }
             }).disposed(by: disposeBag)
@@ -172,6 +173,7 @@ class HomeViewController: BaseViewController {
     
     private func resetFeedback() {
         feedbackPopUp.textField.text = ""
+        feedbackPopUp.starRate.onNext(0)
         feedbackPopUp.rateButtonList.forEach { button in
             button.isSelected = false
         }

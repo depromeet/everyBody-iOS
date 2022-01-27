@@ -8,6 +8,7 @@
 import UIKit
 
 import RxSwift
+import Foundation
 
 class FeedbackPopUpViewController: BaseViewController {
     
@@ -76,7 +77,8 @@ class FeedbackPopUpViewController: BaseViewController {
     
     weak var delegate: PopUpActionProtocol?
     var rateButtonList: [UIButton] = []
-    var starRate = PublishSubject<Int>()
+    var starRate = BehaviorSubject<Int>(value: 0)
+    
     
     // MARK: - Initalizer
     
@@ -102,6 +104,7 @@ class FeedbackPopUpViewController: BaseViewController {
         for index in 1...5 {
             let button = NBCircleButton(type: .rate)
             button.setTitle("\(index)", for: .normal)
+            button.tag = index
             button.addTarget(self, action: #selector(self.setAction(sender:)), for: .touchUpInside)
             rateButtonList.append((button))
             self.rateStackView.addArrangedSubview(button)
@@ -164,9 +167,9 @@ class FeedbackPopUpViewController: BaseViewController {
     
     @objc
     private func setAction(sender: UIButton) {
-        guard let ratingScore = Int(sender.titleLabel?.text ?? "0") else { return }
+        let ratingScore = sender.tag
         rateButtonList.enumerated().forEach {
-            $1.isSelected = ratingScore - 1 == $0 ? true : false
+            $1.isSelected = ratingScore == $0 + 1 ? true : false
         }
         starRate.onNext(ratingScore)
     }
