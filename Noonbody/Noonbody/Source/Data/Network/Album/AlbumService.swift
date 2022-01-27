@@ -27,4 +27,10 @@ public class AlbumService {
             completion(response)
         }
     }
+    
+    func sendFeedback(request: FeedbackRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
+        provider.requestNoResultAPI(AlbumAPI.sendFeedback(request: request)) { response in
+            completion(response)
+        }
+    }
 }

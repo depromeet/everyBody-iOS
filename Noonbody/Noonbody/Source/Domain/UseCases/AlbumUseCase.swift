@@ -14,6 +14,7 @@ protocol AlbumUseCase {
     func createAlbum(request: AlbumRequestModel) -> Observable<Album>
     func createAlbum(requestModel: AlbumRequestModel) -> Observable<Int>
     func savePhoto(request: PhotoRequestModel) -> Observable<Int>
+    func sendFeedback(request: FeedbackRequestModel) -> Observable<Int>
 }
 
 final class DefaultAlbumUseCase: AlbumUseCase {
@@ -38,6 +39,10 @@ final class DefaultAlbumUseCase: AlbumUseCase {
     
     func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
         return albumRepository.savePhoto(request: request)
+    }
+    
+    func sendFeedback(request: FeedbackRequestModel) -> Observable<Int> {
+        return albumRepository.sendFeedback(request: request)
     }
     
 }

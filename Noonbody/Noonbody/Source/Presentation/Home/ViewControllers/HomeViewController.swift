@@ -48,7 +48,7 @@ class HomeViewController: BaseViewController {
         layout.itemSize = CGSize(width: (Constant.Size.screenWidth - 51) / 2, height: 211)
         $0.register(AlbumCollectionViewCell.self)
         $0.register(ListCollectionViewCell.self)
-        $0.registerReusableView(FeedBackCollectionReusableView.self,
+        $0.registerReusableView(FeedbackCollectionReusableView.self,
                                 kind: UICollectionView.elementKindSectionFooter)
         $0.backgroundColor = .white
         $0.collectionViewLayout = layout
@@ -70,6 +70,8 @@ class HomeViewController: BaseViewController {
             albumCollectionView.reloadData()
         }
     }
+    
+    private let feedbackPopUp = FeedbackPopUpViewController()
     
     // MARK: - View Life Cycle
     
@@ -96,7 +98,10 @@ class HomeViewController: BaseViewController {
     }
     
     func bind() {
-        let input = AlbumViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in })
+        let input = AlbumViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
+                                         content: feedbackPopUp.textField.rx.text.orEmpty.asObservable(),
+                                         starRate: feedbackPopUp.starRate.asObservable(),
+                                         sendButtonControlEvent: feedbackPopUp.sendButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output.album
@@ -127,6 +132,20 @@ class HomeViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        output.canSend
+            .drive(feedbackPopUp.sendButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        output.sendFeedbackStatusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 200 {
+                    self.dismiss(animated: true, completion: nil)
+                    self.showToast(type: .send)
+                    self.resetFeedback()
+                }
+            }).disposed(by: disposeBag)
     }
     
     private func initNavigationBar() {
@@ -150,6 +169,14 @@ class HomeViewController: BaseViewController {
         )
         
         makeProfileImage()
+    }
+    
+    private func resetFeedback() {
+        feedbackPopUp.textField.text = ""
+        feedbackPopUp.starRate.onNext(0)
+        feedbackPopUp.rateButtonList.forEach { button in
+            button.isSelected = false
+        }
     }
     
     private func makeProfileImage() {
@@ -267,9 +294,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footer = collectionView.dequeueReusableView(FeedBackCollectionReusableView.self,
-                                                            indexPath: indexPath,
-                                                            kind: UICollectionView.elementKindSectionFooter)
+        let footer = collectionView.dequeueReusableView(FeedbackCollectionReusableView.self,
+                                                        indexPath: indexPath,
+                                                        kind: UICollectionView.elementKindSectionFooter)
         footer.delegate = self
         return footer
     }
@@ -312,15 +339,15 @@ extension HomeViewController: SkeletonCollectionViewDataSource {
 extension HomeViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        resetFeedback()
     }
 }
 
 extension HomeViewController: footerDelegate {
-    func feedBackButtonDidTap() {
-        let popUp = FeedBackPopUpViewController()
-        popUp.modalTransitionStyle = .crossDissolve
-        popUp.modalPresentationStyle = .overCurrentContext
-        popUp.delegate = self
-        self.present(popUp, animated: true, completion: nil)
+    func feedbackButtonDidTap() {
+        feedbackPopUp.modalTransitionStyle = .crossDissolve
+        feedbackPopUp.modalPresentationStyle = .overCurrentContext
+        feedbackPopUp.delegate = self
+        self.present(feedbackPopUp, animated: true, completion: nil)
     }
 }

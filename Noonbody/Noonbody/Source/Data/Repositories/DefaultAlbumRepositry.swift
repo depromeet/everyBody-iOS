@@ -76,4 +76,20 @@ class DefaultAlbumRepositry: AlbumRepository {
             return Disposables.create(with: { requestReference })
         }
     }
+    
+    func sendFeedback(request: FeedbackRequestModel) -> Observable<Int> {
+        Observable<Int>.create { observer -> Disposable in
+            let requestReference: () = AlbumService.shared.sendFeedback(request: request) { response in
+                switch response {
+                case .success(let statusCode):
+                    if let statusCode = statusCode {
+                        observer.onNext(statusCode)
+                    }
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+    }
 }

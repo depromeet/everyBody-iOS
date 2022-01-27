@@ -21,6 +21,7 @@ enum HTTPMethodURL {
         static let signUp = "/auth/signup"
         static let singIn = "/auth/login"
         static let video = "/videos/download"
+        static let feedback = "/feedbacks"
     }
     
     struct PUT {

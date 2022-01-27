@@ -15,6 +15,7 @@ enum ToastType: String {
     case alarm = "알림 설정이 완료되었습니다."
     case delete = "사진이 삭제되었습니다."
     case save = "성공적으로 저장되었습니다."
+    case send = "소중한 피드백 감사합니다 💪👀"
 }
 
 class ToastView: UIView {

@@ -16,10 +16,15 @@ final class AlbumViewModel {
     
     struct Input {
         let viewWillAppear: Observable<Void>
+        let content: Observable<String>
+        let starRate: Observable<Int>
+        let sendButtonControlEvent: ControlEvent<Void>
     }
     
     struct Output {
         let album: Driver<[Album]>
+        let canSend: Driver<Bool>
+        let sendFeedbackStatusCode: Driver<Int>
     }
     
     init(albumUseCase: AlbumUseCase) {
@@ -27,6 +32,9 @@ final class AlbumViewModel {
     }
     
     func transform(input: Input) -> Output {
+        
+        let requestObservable = Observable.combineLatest(input.content, input.starRate)
+        
         let album = input.viewWillAppear
             .flatMap {
                 self.albumUseCase.getAlbumList() }
@@ -39,6 +47,28 @@ final class AlbumViewModel {
                 return response
             }.asDriver(onErrorJustReturn: [])
         
-        return Output(album: data)
+        let canSend = requestObservable
+            .map { content, statRate in
+                return !content.isEmpty && statRate != 0
+            }.asDriver(onErrorJustReturn: false)
+        
+        let sendFeedbackResponse = input.sendButtonControlEvent
+            .withLatestFrom(requestObservable)
+            .map { content, starRate in
+                return FeedbackRequestModel(content: content, starRate: starRate)
+            }
+            .flatMap { request in
+                self.albumUseCase.sendFeedback(request: request)
+            }
+            .map { $0 }
+            .share()
+        
+        let sendFeedbackStatusCode = sendFeedbackResponse
+            .compactMap { $0 }
+            .map { response -> Int in
+                return response
+            }.asDriver(onErrorJustReturn: 404)
+        
+        return Output(album: data, canSend: canSend, sendFeedbackStatusCode: sendFeedbackStatusCode)
     }
 }

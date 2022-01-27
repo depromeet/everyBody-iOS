@@ -14,6 +14,7 @@ enum AlbumAPI: BaseTargetType {
     
     case getAlbumList
     case savePhoto(request: PhotoRequestModel)
+    case sendFeedback(request: FeedbackRequestModel)
 }
 
 extension AlbumAPI {
@@ -24,6 +25,8 @@ extension AlbumAPI {
             return HTTPMethodURL.GET.album
         case .savePhoto:
             return HTTPMethodURL.POST.photo
+        case .sendFeedback:
+            return HTTPMethodURL.POST.feedback
         }
     }
     
@@ -32,6 +35,8 @@ extension AlbumAPI {
         case .getAlbumList:
             return .get
         case .savePhoto:
+            return .post
+        case .sendFeedback:
             return .post
         }
     }
@@ -63,6 +68,10 @@ extension AlbumAPI {
             multiPartFormData.append(multipartImage)
             
             return .uploadMultipart(multiPartFormData)
+        case .sendFeedback(let request):
+            return .requestParameters(parameters: ["content" : request.content,
+                                                   "star_rate": request.starRate],
+                                      encoding: JSONEncoding.default)
         }
     }
 }
