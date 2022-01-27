@@ -9,7 +9,6 @@ import Foundation
 
 import RxSwift
 import RxCocoa
-import Alamofire
 
 final class AlbumViewModel {
     
@@ -50,7 +49,7 @@ final class AlbumViewModel {
         
         let canSend = requestObservable
             .map { content, statRate in
-                return content != "" && statRate != 0
+                return !content.isEmpty && statRate != 0
             }.asDriver(onErrorJustReturn: false)
         
         let sendFeedbackResponse = input.sendButtonControlEvent

@@ -8,7 +8,6 @@
 import UIKit
 
 import RxSwift
-import Foundation
 
 class FeedbackPopUpViewController: BaseViewController {
     
@@ -78,9 +77,6 @@ class FeedbackPopUpViewController: BaseViewController {
     weak var delegate: PopUpActionProtocol?
     var rateButtonList: [UIButton] = []
     var starRate = BehaviorSubject<Int>(value: 0)
-    
-    
-    // MARK: - Initalizer
     
     // MARK: - View Life Cycle
     
