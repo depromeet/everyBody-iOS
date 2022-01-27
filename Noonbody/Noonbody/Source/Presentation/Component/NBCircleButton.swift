@@ -1,5 +1,5 @@
 //
-//  NBDayButton.swift
+//  NBCircleButton.swift
 //  everyBody-iOS
 //
 //  Created by 윤예지 on 2021/11/21.
@@ -7,7 +7,12 @@
 
 import UIKit
 
-class NBDayButton: UIButton {
+class NBCircleButton: UIButton {
+    
+    enum Style {
+        case day
+        case rate
+    }
 
     override var isSelected: Bool {
         didSet {
@@ -15,7 +20,10 @@ class NBDayButton: UIButton {
         }
     }
     
-    public init() {
+    var type: Style?
+    
+    public init(type: Style?) {
+        self.type = type
         super.init(frame: .zero)
         setInitialState()
     }
@@ -32,8 +40,19 @@ class NBDayButton: UIButton {
     }
     
     private func setSelectedState() {
+//        let selectedColor = type
+        guard let type = self.type else { return }
+        var selectedColor: UIColor
+        
+        switch type {
+        case .day:
+            selectedColor = Asset.Color.gray80.color
+        case .rate:
+            selectedColor = Asset.Color.keyPurple.color
+        }
+        
         if isSelected {
-            backgroundColor = Asset.Color.gray80.color
+            backgroundColor = selectedColor
             layer.borderColor = UIColor.clear.cgColor
             setTitleColor(.white, for: .normal)
             titleLabel?.font = .nbFont(type: .body3Semibold)
