@@ -46,7 +46,7 @@ class CameraViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         checkPermission()
         initNavigationBar()
         initGridView()
@@ -71,20 +71,21 @@ class CameraViewController: BaseViewController {
             camera.session.startRunning()
             return
         case .notDetermined:
-            AVCaptureDevice.requestAccess(for: .video) { status in
-                if status {
-                    self.camera.setUp()
-                    self.previewView = self.camera.makeCameraLayer()
-                    self.camera.cameraDataOutput()
-                    self.camera.session.startRunning()
+            AVCaptureDevice.requestAccess(for: .video) { granted in
+                guard granted else {
+                    DispatchQueue.main.async {
+                        self.showPopUp()
+                    }
                     return
                 }
-                DispatchQueue.main.async {
-                    self.showPopUp()
-                }
             }
+            camera.setUp()
+            previewView = camera.makeCameraLayer()
+            camera.cameraDataOutput()
+            camera.session.startRunning()
+            return
         case .denied:
-            self.showPopUp()
+            showPopUp()
         default:
             return
         }
@@ -134,7 +135,7 @@ class CameraViewController: BaseViewController {
                 bottomSheetWillAppear()
             })
             .disposed(by: disposeBag)
-
+        
         albumButtonView.rx
             .tapGesture()
             .when(.recognized)
@@ -156,7 +157,7 @@ class CameraViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
     }
-
+    
     private func updateConstraint(height: CGFloat) {
         bottomSheetView.snp.updateConstraints {
             $0.height.equalTo(height)
@@ -263,7 +264,7 @@ extension CameraViewController: PHPickerViewControllerDelegate {
                             let src = CGImageSourceCreateWithData(data as CFData, nil)!
                             if let metadata = CGImageSourceCopyPropertiesAtIndex(src, 0, nil) as? [String: Any] {
                                 let (date, time) = self.viewModel.getCreationDate(metadata: metadata)
-
+                                
                                 DispatchQueue.main.async {
                                     let viewController = CameraOutputViewController(image: image,
                                                                                     day: date,
@@ -359,7 +360,7 @@ extension CameraViewController {
             $0.bottom.leading.trailing.equalToSuperview()
             $0.height.equalTo(0)
         }
-
+        
         toastView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(40)
@@ -370,7 +371,7 @@ extension CameraViewController {
 }
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
-
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         guard let imageData = photo.fileDataRepresentation() else { return }
         let (day, time) = viewModel.getCreationDate(metadata: photo.metadata)

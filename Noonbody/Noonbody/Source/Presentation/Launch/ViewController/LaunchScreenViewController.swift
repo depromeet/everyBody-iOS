@@ -35,10 +35,14 @@ class LaunchScreenViewController: UIViewController {
     }
     
     private func addObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkFirstLaunch),
-                                               name: Notification.Name("setFcmToken"),
-                                               object: nil)
+        if UserManager.userId == nil {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(checkFirstLaunch),
+                                                   name: Notification.Name("setFcmToken"),
+                                                   object: nil)
+        } else {
+            requestSignIn()
+        }
     }
     
     @objc

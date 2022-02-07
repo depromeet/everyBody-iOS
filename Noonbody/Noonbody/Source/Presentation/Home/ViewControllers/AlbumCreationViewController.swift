@@ -58,9 +58,11 @@ class AlbumCreationViewController: BaseViewController {
         
         output.statusCode
             .drive { statusCode in
-                print(statusCode)
                 if statusCode == 200 {
                     self.showToast(type: .album)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 }
             }.disposed(by: disposeBag)
 
@@ -95,11 +97,6 @@ class AlbumCreationViewController: BaseViewController {
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseOut, animations: {
             self.saveButton.transform = CGAffineTransform(translationX: 0, y: 0)
         })
-    }
-
-    @objc
-    private func saveButtonDidTap() {
-        
     }
     
 }
