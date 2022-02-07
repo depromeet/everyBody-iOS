@@ -33,7 +33,7 @@ class PopUpViewController: BaseViewController {
         $0.font = .nbFont(type: .body3)
         $0.textAlignment = .center
         $0.textColor = Asset.Color.gray90.color
-        $0.numberOfLines = 2
+        $0.numberOfLines = 3
     }
     
     lazy var textField = NBTextField().then {

@@ -1436,7 +1436,7 @@
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -1462,7 +1462,7 @@
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
