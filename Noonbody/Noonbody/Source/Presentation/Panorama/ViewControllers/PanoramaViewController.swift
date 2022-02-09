@@ -152,7 +152,8 @@ class PanoramaViewController: BaseViewController {
         setupCollectionView()
         setupConstraint()
         initSegementData()
-        initSegmentedControl()
+        setSegmentedControlDelegation()
+        setSegmentedControlTap()
         render()
         bind()
     }
@@ -252,8 +253,11 @@ class PanoramaViewController: BaseViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-    private func initSegmentedControl() {
+    private func setSegmentedControlDelegation() {
         bodyPartSegmentControl.delegate = self
+    }
+    
+    private func setSegmentedControlTap() {
         if albumData.pictures.whole.isEmpty {
             if !albumData.pictures.upper.isEmpty {
                 bodyPartSegmentControl.buttons[0].isSelected = false
