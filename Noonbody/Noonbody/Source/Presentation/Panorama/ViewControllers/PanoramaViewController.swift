@@ -150,10 +150,10 @@ class PanoramaViewController: BaseViewController {
         initNavigationBar()
         setupViewHierarchy()
         setupCollectionView()
+        setDelegation()
         setupConstraint()
         initSegementData()
-        setSegmentedControlDelegation()
-        setSegmentedControlTap()
+        setDefaultTab()
         render()
         bind()
     }
@@ -253,11 +253,15 @@ class PanoramaViewController: BaseViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-    private func setSegmentedControlDelegation() {
+    private func setDelegation() {
         bodyPartSegmentControl.delegate = self
+        [topCollectionView, bottomCollectionView].forEach { collectionView in
+            collectionView.delegate = self
+            collectionView.dataSource = self
+        }
     }
     
-    private func setSegmentedControlTap() {
+    private func setDefaultTab() {
         if albumData.pictures.whole.isEmpty {
             if !albumData.pictures.upper.isEmpty {
                 bodyPartSegmentControl.buttons[0].isSelected = false
@@ -443,10 +447,6 @@ class PanoramaViewController: BaseViewController {
 extension PanoramaViewController {
     private func setupCollectionView() {
         topCollectionView.collectionViewLayout = horizontalFlowLayout
-        [topCollectionView, bottomCollectionView].forEach { collectionView in
-            collectionView.delegate = self
-            collectionView.dataSource = self
-        }
     }
     
     private func setupViewHierarchy() {
