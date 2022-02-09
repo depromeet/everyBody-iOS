@@ -150,9 +150,10 @@ class PanoramaViewController: BaseViewController {
         initNavigationBar()
         setupViewHierarchy()
         setupCollectionView()
+        setDelegation()
         setupConstraint()
         initSegementData()
-        initSegmentedControl()
+        setDefaultTab()
         render()
         bind()
     }
@@ -194,7 +195,7 @@ class PanoramaViewController: BaseViewController {
                                             deleteAlbumButtonControlEvent: deleteAlbumPopUp.confirmButton.rx.tap,
                                             renameButtonControlEvent: renameAlbumPopUp.confirmButton.rx.tap)
         let output = viewModel.transform(input: input)
-
+        
         output.album
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
@@ -252,8 +253,26 @@ class PanoramaViewController: BaseViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-    private func initSegmentedControl() {
+    private func setDelegation() {
         bodyPartSegmentControl.delegate = self
+        [topCollectionView, bottomCollectionView].forEach { collectionView in
+            collectionView.delegate = self
+            collectionView.dataSource = self
+        }
+    }
+    
+    private func setDefaultTab() {
+        if albumData.pictures.whole.isEmpty {
+            if !albumData.pictures.upper.isEmpty {
+                bodyPartSegmentControl.buttons[0].isSelected = false
+                bodyPartSegmentControl.buttons[1].isSelected = true
+                bodyPartData = albumData.pictures.upper
+            } else if !albumData.pictures.lower.isEmpty {
+                bodyPartSegmentControl.buttons[0].isSelected = false
+                bodyPartSegmentControl.buttons[2].isSelected = true
+                bodyPartData = albumData.pictures.lower
+            }
+        }
     }
     
     private func initSegementData() {
@@ -428,10 +447,6 @@ class PanoramaViewController: BaseViewController {
 extension PanoramaViewController {
     private func setupCollectionView() {
         topCollectionView.collectionViewLayout = horizontalFlowLayout
-        [topCollectionView, bottomCollectionView].forEach { collectionView in
-            collectionView.delegate = self
-            collectionView.dataSource = self
-        }
     }
     
     private func setupViewHierarchy() {
