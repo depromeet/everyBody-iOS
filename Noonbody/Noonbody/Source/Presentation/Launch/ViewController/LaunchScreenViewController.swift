@@ -58,7 +58,7 @@ class LaunchScreenViewController: UIViewController {
     }
     
     private func requestSignUp(fcmToken: String) {
-        AuthService.shared.postSignUp(request: SignUpRequestModel(password: fcmToken,
+        AuthService.shared.postSignUp(request: SignUpRequestModel(password: uuid,
                                                                   device: Device(deviceToken: fcmToken,
                                                                                  pushToken: fcmToken))) { response in
             switch response {
@@ -68,7 +68,7 @@ class LaunchScreenViewController: UIViewController {
                     UserManager.nickname = data.nickname
                     UserManager.motto = data.motto
                     UserManager.profile = data.profileImage
-                    self.requestSignIn(fcmToken: fcmToken)
+                    self.requestSignIn()
                 }
             case .failure(let err):
                 print(err)
@@ -77,10 +77,10 @@ class LaunchScreenViewController: UIViewController {
         
     }
     
-    private func requestSignIn(fcmToken: String) {
+    private func requestSignIn() {
         guard let userId = UserManager.userId else { return }
         AuthService.shared.postSignIn(request: SignInRequestModel(userId: userId,
-                                                                  password: fcmToken)) { response in
+                                                                  password: uuid)) { response in
             switch response {
             case .success(let data):
                 if let data = data {
