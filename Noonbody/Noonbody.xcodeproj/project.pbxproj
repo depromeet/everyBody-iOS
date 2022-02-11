@@ -1480,7 +1480,7 @@
 				AA7E0A4826FB0A6200106DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		AA7E0A4926FB0A6200106DC2 /* Build configuration list for PBXNativeTarget "Noonbody" */ = {
 			isa = XCConfigurationList;
@@ -1489,7 +1489,7 @@
 				AA7E0A4B26FB0A6200106DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
