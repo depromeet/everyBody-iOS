@@ -113,7 +113,7 @@ class AlbumSelectionViewController: BaseViewController {
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
                 if let data = data {
-                    self.albumData.append(data)
+                    self.albumData.insert(data, at: 0)
                 }
                 self.showToast(type: .album)
                 self.dismiss(animated: true, completion: nil)
