@@ -150,9 +150,10 @@ class PanoramaViewController: BaseViewController {
         initNavigationBar()
         setupViewHierarchy()
         setupCollectionView()
+        setDelegation()
         setupConstraint()
         initSegementData()
-        initSegmentedControl()
+        setDefaultTab()
         render()
         bind()
     }
@@ -165,6 +166,7 @@ class PanoramaViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         setHide()
         bottomCollectionView.reloadData()
+        moveCellToCenter(animated: false)
     }
     
     // MARK: - Methods
@@ -194,7 +196,7 @@ class PanoramaViewController: BaseViewController {
                                             deleteAlbumButtonControlEvent: deleteAlbumPopUp.confirmButton.rx.tap,
                                             renameButtonControlEvent: renameAlbumPopUp.confirmButton.rx.tap)
         let output = viewModel.transform(input: input)
-
+        
         output.album
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
@@ -202,7 +204,7 @@ class PanoramaViewController: BaseViewController {
                     self.albumData = data
                     self.initBodyPartData(index: self.bodyPart)
                 }
-                self.emptyView.isHidden = !self.bodyPartData.isEmpty ? true : false
+                self.moveCellToCenter(animated: false)
             })
             .disposed(by: disposeBag)
         
@@ -252,8 +254,26 @@ class PanoramaViewController: BaseViewController {
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
-    private func initSegmentedControl() {
+    private func setDelegation() {
         bodyPartSegmentControl.delegate = self
+        [topCollectionView, bottomCollectionView].forEach { collectionView in
+            collectionView.delegate = self
+            collectionView.dataSource = self
+        }
+    }
+    
+    private func setDefaultTab() {
+        if albumData.pictures.whole.isEmpty {
+            if !albumData.pictures.upper.isEmpty {
+                bodyPartSegmentControl.buttons[0].isSelected = false
+                bodyPartSegmentControl.buttons[1].isSelected = true
+                bodyPartData = albumData.pictures.upper
+            } else if !albumData.pictures.lower.isEmpty {
+                bodyPartSegmentControl.buttons[0].isSelected = false
+                bodyPartSegmentControl.buttons[2].isSelected = true
+                bodyPartData = albumData.pictures.lower
+            }
+        }
     }
     
     private func initSegementData() {
@@ -313,7 +333,7 @@ class PanoramaViewController: BaseViewController {
         } else {
             topCollectionView.setCollectionViewLayout(horizontalFlowLayout, animated: false)
             bottomCollectionView.isHidden = false
-            setCollectionViewContentOffset(animated: false)
+            moveCellToCenter(animated: false)
         }
     }
     
@@ -328,7 +348,10 @@ class PanoramaViewController: BaseViewController {
     }
     
     func moveCellToCenter(animated: Bool) {
-        bottomCollectionView.selectItem(at: selectedIndexByPart[bodyPart], animated: false, scrollPosition: .centeredHorizontally)
+        if !(bottomCollectionView.isHidden || bodyPartData.isEmpty) {
+            bottomCollectionView.selectItem(at: selectedIndexByPart[bodyPart], animated: false, scrollPosition: .centeredHorizontally)
+            setCollectionViewContentOffset(animated: false)
+        }
     }
     
     func setCollectionViewContentOffset(animated: Bool) {
@@ -428,10 +451,6 @@ class PanoramaViewController: BaseViewController {
 extension PanoramaViewController {
     private func setupCollectionView() {
         topCollectionView.collectionViewLayout = horizontalFlowLayout
-        [topCollectionView, bottomCollectionView].forEach { collectionView in
-            collectionView.delegate = self
-            collectionView.dataSource = self
-        }
     }
     
     private func setupViewHierarchy() {
@@ -479,8 +498,10 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
         bodyPart = index
         initBodyPartData(index: bodyPart)
         resetDeleteData()
-        selectedIndexByPart[bodyPart] = bodyPartData.isEmpty ? IndexPath(item: -1, section: 0) : selectedIndexByPart[index]
-        moveCellToCenter(animated: false)
+        if !bodyPartData.isEmpty {
+            selectedIndexByPart[bodyPart] = selectedIndexByPart[index]
+            moveCellToCenter(animated: false)
+        }
     }
 }
 

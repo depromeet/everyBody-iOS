@@ -530,7 +530,6 @@
 			isa = PBXGroup;
 			children = (
 				FC7D38CF2799FFD0001D43D0 /* Model */,
-				FCF8C9E0274B974E004263FF /* Extensions */,
 				AA7E0A6726FB0C0800106DC2 /* Cells */,
 				AA7E0A6626FB0C0300106DC2 /* ViewModels */,
 				AA7E0A6526FB0BFD00106DC2 /* ViewControllers */,
@@ -606,6 +605,7 @@
 			isa = PBXGroup;
 			children = (
 				FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */,
+				FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1010,14 +1010,6 @@
 				FCAE821527832D6F007A729D /* PanoramaAPI.swift */,
 			);
 			path = Panorama;
-			sourceTree = "<group>";
-		};
-		FCF8C9E0274B974E004263FF /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1490,7 +1482,7 @@
 				AA7E0A4826FB0A6200106DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		AA7E0A4926FB0A6200106DC2 /* Build configuration list for PBXNativeTarget "Noonbody" */ = {
 			isa = XCConfigurationList;
@@ -1499,7 +1491,7 @@
 				AA7E0A4B26FB0A6200106DC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 
