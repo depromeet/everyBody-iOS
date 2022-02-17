@@ -166,6 +166,7 @@ class PanoramaViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         setHide()
         bottomCollectionView.reloadData()
+        moveCellToCenter(animated: false)
     }
     
     // MARK: - Methods
@@ -203,7 +204,7 @@ class PanoramaViewController: BaseViewController {
                     self.albumData = data
                     self.initBodyPartData(index: self.bodyPart)
                 }
-                self.emptyView.isHidden = !self.bodyPartData.isEmpty ? true : false
+                self.moveCellToCenter(animated: false)
             })
             .disposed(by: disposeBag)
         
@@ -332,7 +333,7 @@ class PanoramaViewController: BaseViewController {
         } else {
             topCollectionView.setCollectionViewLayout(horizontalFlowLayout, animated: false)
             bottomCollectionView.isHidden = false
-            setCollectionViewContentOffset(animated: false)
+            moveCellToCenter(animated: false)
         }
     }
     
@@ -347,7 +348,10 @@ class PanoramaViewController: BaseViewController {
     }
     
     func moveCellToCenter(animated: Bool) {
-        bottomCollectionView.selectItem(at: selectedIndexByPart[bodyPart], animated: false, scrollPosition: .centeredHorizontally)
+        if !(bottomCollectionView.isHidden || bodyPartData.isEmpty) {
+            bottomCollectionView.selectItem(at: selectedIndexByPart[bodyPart], animated: false, scrollPosition: .centeredHorizontally)
+            setCollectionViewContentOffset(animated: false)
+        }
     }
     
     func setCollectionViewContentOffset(animated: Bool) {
@@ -494,8 +498,10 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
         bodyPart = index
         initBodyPartData(index: bodyPart)
         resetDeleteData()
-        selectedIndexByPart[bodyPart] = bodyPartData.isEmpty ? IndexPath(item: -1, section: 0) : selectedIndexByPart[index]
-        moveCellToCenter(animated: false)
+        if !bodyPartData.isEmpty {
+            selectedIndexByPart[bodyPart] = selectedIndexByPart[index]
+            moveCellToCenter(animated: false)
+        }
     }
 }
 

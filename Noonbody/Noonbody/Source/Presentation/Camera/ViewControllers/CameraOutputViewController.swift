@@ -93,6 +93,7 @@ class CameraOutputViewController: BaseViewController {
     
     override func viewDidLoad() {
         
+        setinitialPart()
         initNavigationBar()
         setViewHierarchy()
         setLayout()
@@ -101,6 +102,10 @@ class CameraOutputViewController: BaseViewController {
     }
     
     // MARK: - Methods
+    
+    private func setinitialPart() {
+        requestManager.bodyPart = "whole"
+    }
     
     private func initNavigationBar() {
         navigationController?.initNaviBarWithBackButton()
