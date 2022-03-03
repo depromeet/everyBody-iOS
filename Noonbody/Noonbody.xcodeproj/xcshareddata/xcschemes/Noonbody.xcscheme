@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA7E0A3126FB0A6100106DC2"
-               BuildableName = "Noonbody.app"
+               BuildableName = "Noonbody DEV.app"
                BlueprintName = "Noonbody"
                ReferencedContainer = "container:Noonbody.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
       </Testables>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA7E0A3126FB0A6100106DC2"
-            BuildableName = "Noonbody.app"
+            BuildableName = "Noonbody DEV.app"
             BlueprintName = "Noonbody"
             ReferencedContainer = "container:Noonbody.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA7E0A3126FB0A6100106DC2"
-            BuildableName = "Noonbody.app"
+            BuildableName = "Noonbody DEV.app"
             BlueprintName = "Noonbody"
             ReferencedContainer = "container:Noonbody.xcodeproj">
          </BuildableReference>

@@ -146,21 +146,30 @@
         }
       },
       {
+        "package": "RealmDatabase",
+        "repositoryURL": "https://github.com/realm/realm-core",
+        "state": {
+          "branch": null,
+          "revision": "6b81f1a7a2d421f9e0b9e7f04e76bcf736a54409",
+          "version": "11.9.0"
+        }
+      },
+      {
+        "package": "Realm",
+        "repositoryURL": "https://github.com/realm/realm-swift",
+        "state": {
+          "branch": "master",
+          "revision": "c6d8ff61221f2ef8a4cdc53a36f44e700c61b286",
+          "version": null
+        }
+      },
+      {
         "package": "RxGesture",
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxGesture.git",
         "state": {
           "branch": null,
           "revision": "e29e65a58c2f670677d17df9a18e846b87e78592",
           "version": "4.0.2"
-        }
-      },
-      {
-        "package": "RxSwift",
-        "repositoryURL": "https://github.com/ReactiveX/RxSwift",
-        "state": {
-          "branch": null,
-          "revision": "b4307ba0b6425c0ba4178e138799946c3da594f8",
-          "version": "6.5.0"
         }
       },
       {
