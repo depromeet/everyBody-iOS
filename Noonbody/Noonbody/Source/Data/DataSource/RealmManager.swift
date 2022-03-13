@@ -41,7 +41,6 @@ public class RealmManager {
         
         if let directoryPath = path.first {
             let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
-            // 3. UIImage로 불러오기
             return UIImage(contentsOfFile: imageURL.path)
         }
         

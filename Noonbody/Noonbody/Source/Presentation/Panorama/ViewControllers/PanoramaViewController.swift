@@ -264,20 +264,6 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-//    private func setDefaultTab() {
-//        if albumData.pictures.whole.isEmpty {
-//            if !albumData.pictures.upper.isEmpty {
-//                bodyPartSegmentControl.buttons[0].isSelected = false
-//                bodyPartSegmentControl.buttons[1].isSelected = true
-//                bodyPartData = albumData.pictures.upper
-//            } else if !albumData.pictures.lower.isEmpty {
-//                bodyPartSegmentControl.buttons[0].isSelected = false
-//                bodyPartSegmentControl.buttons[2].isSelected = true
-//                bodyPartData = albumData.pictures.lower
-//            }
-//        }
-//    }
-    
     private func setDefaultTab() {
         if albumData.wholeArray.isEmpty {
             if !albumData.upperArray.isEmpty {
