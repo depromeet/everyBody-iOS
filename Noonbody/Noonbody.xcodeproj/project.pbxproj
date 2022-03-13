@@ -152,6 +152,8 @@
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
 		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
 		FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */; };
+		FC7D798127D09A3E0022C223 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798027D09A3E0022C223 /* Realm */; };
+		FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798227D09A3E0022C223 /* RealmSwift */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC91997427A1552800A6CD0D /* FeedbackCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997327A1552800A6CD0D /* FeedbackCollectionReusableView.swift */; };
 		FC91997627A180D200A6CD0D /* FeedbackPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997527A180D200A6CD0D /* FeedbackPopUpViewController.swift */; };
@@ -349,9 +351,11 @@
 				AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */,
 				AA9FB3E92789D4DC00A97884 /* RxSwift in Frameworks */,
 				AAE2FA882763F51300FA2C5C /* FirebaseMessaging in Frameworks */,
+				FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */,
 				AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */,
 				AAE2FA862763F51300FA2C5C /* FirebaseAnalytics in Frameworks */,
 				AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */,
+				FC7D798127D09A3E0022C223 /* Realm in Frameworks */,
 				AA9FB3EC2789D79000A97884 /* Lottie in Frameworks */,
 				AAC7ACE5272DC28100B2BE1E /* RxGesture in Frameworks */,
 				AA9FB3E42789D4A600A97884 /* Moya in Frameworks */,
@@ -1043,6 +1047,8 @@
 				AA9FB3E82789D4DC00A97884 /* RxSwift */,
 				AA9FB3EB2789D79000A97884 /* Lottie */,
 				AA81D8B82799C79400D4D667 /* SkeletonView */,
+				FC7D798027D09A3E0022C223 /* Realm */,
+				FC7D798227D09A3E0022C223 /* RealmSwift */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* Noonbody DEV.app */;
@@ -1081,6 +1087,7 @@
 				AA9FB3E52789D4DC00A97884 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				AA9FB3EA2789D79000A97884 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				FC7D797F27D09A3E0022C223 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -1568,6 +1575,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		FC7D797F27D09A3E0022C223 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1625,6 +1640,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AAE2FA842763F51300FA2C5C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		FC7D798027D09A3E0022C223 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC7D797F27D09A3E0022C223 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		FC7D798227D09A3E0022C223 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC7D797F27D09A3E0022C223 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 
