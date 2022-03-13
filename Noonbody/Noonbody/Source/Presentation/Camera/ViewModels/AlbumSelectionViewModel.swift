@@ -27,7 +27,7 @@ final class AlbumSelectionViewModel {
     }
     
     struct Output {
-        let album: Driver<[Album]>
+        let album: Driver<[LocalAlbum]>
         let newAlbum: Driver<Album?>
         let statusCode: Driver<Int>
     }
@@ -38,16 +38,17 @@ final class AlbumSelectionViewModel {
     
     func transform(input: Input) -> Output {
         let albums = input.viewWillAppear
-            .flatMap { self.albumUseCase.getAlbumList() }
+            .flatMap {
+                self.albumUseCase.getAlbumList() }
             .map { $0 }
             .share()
         
         let data = albums
             .compactMap { $0 }
-            .map { response -> [Album] in
+            .map { response -> [LocalAlbum] in
                 return response
             }.asDriver(onErrorJustReturn: [])
-
+        
         let save = input.saveButtonControlEvent
             .withLatestFrom(input.photoRequestModel)
             .do(onNext: { _ in self.isLoading.accept(true) })

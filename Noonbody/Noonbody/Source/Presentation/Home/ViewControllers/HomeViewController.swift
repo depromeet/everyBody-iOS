@@ -59,7 +59,7 @@ class HomeViewController: BaseViewController {
     
     private let viewModel = AlbumViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
     
-    private var albumData: [Album] = [] {
+    private var albumData: [LocalAlbum] = [] {
         didSet {
             albumCollectionView.reloadData()
         }
@@ -77,7 +77,6 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         bind()
         setupCollectionView()
         initListNavigationBar()
@@ -85,6 +84,7 @@ class HomeViewController: BaseViewController {
         setupConstraint()
         setupSkeletion()
         navigationController?.isNavigationBarHidden = false
+        print("Realm Database fileUrl: ", RealmManager.getUrl())
     }
     
     // MARK: - Methods

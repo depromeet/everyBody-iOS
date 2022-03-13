@@ -1,18 +1,18 @@
 //
-//  AlbumRepository.swift
+//  LocalAlbumRepositories.swift
 //  Noonbody
 //
-//  Created by 윤예지 on 2022/01/05.
+//  Created by kong on 2022/03/11.
 //
 
 import Foundation
 
 import RxSwift
 
-protocol AlbumRepository {
-//    func getAlbumList() -> Observable<[Album]>
+protocol LocalAlbumRepository {
     func getAlbumList() -> Observable<[LocalAlbum]>
     func createAlbum(request: AlbumRequestModel) -> Observable<Album>
     func createAlbum(request: AlbumRequestModel) -> Observable<Int>
     func savePhoto(request: PhotoRequestModel) -> Observable<Int>
+//    func savePhoto(request: PhotoRequestModel)
 }

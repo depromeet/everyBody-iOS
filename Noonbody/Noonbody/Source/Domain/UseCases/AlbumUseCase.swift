@@ -10,10 +10,12 @@ import Foundation
 import RxSwift
 
 protocol AlbumUseCase {
-    func getAlbumList() -> Observable<[Album]>
+//    func getAlbumList() -> Observable<[Album]>
+    func getAlbumList() -> Observable<[LocalAlbum]>
     func createAlbum(request: AlbumRequestModel) -> Observable<Album>
     func createAlbum(requestModel: AlbumRequestModel) -> Observable<Int>
     func savePhoto(request: PhotoRequestModel) -> Observable<Int>
+//    func savePhoto(request: PhotoRequestModel)
     func sendFeedback(request: FeedbackRequestModel) -> Observable<Int>
 }
 
@@ -25,7 +27,7 @@ final class DefaultAlbumUseCase: AlbumUseCase {
         self.albumRepository = albumRepository
     }
     
-    func getAlbumList() -> Observable<[Album]> {
+    func getAlbumList() -> Observable<[LocalAlbum]> {
         return albumRepository.getAlbumList()
     }
     
@@ -40,6 +42,10 @@ final class DefaultAlbumUseCase: AlbumUseCase {
     func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
         return albumRepository.savePhoto(request: request)
     }
+    
+//    func savePhoto(request: PhotoRequestModel) {
+//        return albumRepository.savePhoto(request: request)
+//    }
     
     func sendFeedback(request: FeedbackRequestModel) -> Observable<Int> {
         return albumRepository.sendFeedback(request: request)

@@ -22,7 +22,7 @@ final class AlbumViewModel {
     }
     
     struct Output {
-        let album: Driver<[Album]>
+        let album: Driver<[LocalAlbum]>
         let canSend: Driver<Bool>
         let sendFeedbackStatusCode: Driver<Int>
     }
@@ -43,7 +43,7 @@ final class AlbumViewModel {
         
         let data = album
             .compactMap { $0 }
-            .map { response -> [Album] in
+            .map { response -> [LocalAlbum] in
                 return response
             }.asDriver(onErrorJustReturn: [])
         

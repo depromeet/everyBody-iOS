@@ -130,14 +130,14 @@ class AlbumCollectionViewCell: UICollectionViewCell {
         selectedView.removeFromSuperview()
     }
 
-    func setData(album: Album) {
+    func setData(album: LocalAlbum) {
         folderTitleLabel.text = album.name
         descriptionLabel.text = album.albumDescription
-        if let thumbnailURL = album.thumbnailURL {
-            thumbnailImageView.setImage(with: thumbnailURL)
-        } else {
-            thumbnailImageView.image = Asset.Image.empty.image
-        }
+//        if let thumbnailURL = album.thumbnailURL {
+//            thumbnailImageView.setImage(with: thumbnailURL)
+//        } else {
+//            thumbnailImageView.image = Asset.Image.empty.image
+//        }
     }
     
     func setFirstCell() {

@@ -9,6 +9,7 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import RealmSwift
 
 final class PanoramaViewModel {
     private let panoramaUseCase: PanoramaUseCase
@@ -22,7 +23,7 @@ final class PanoramaViewModel {
     }
     
     struct Output {
-        let album: Driver<Album?>
+        let album: Driver<LocalAlbum?>
         let canRename: Driver<Bool>
         let renamedAlbum: Driver<String?>
         let deleteAlbumStatusCode: Driver<Int>
@@ -57,7 +58,7 @@ final class PanoramaViewModel {
         
         let data = album
             .compactMap { $0 }
-            .map { response -> Album in
+            .map { response -> LocalAlbum in
                 return response
             }.asDriver(onErrorJustReturn: nil)
         

@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol PanoramaUseCase {
-    func getAlbum(albumId: Int) -> Observable<Album>
+    func getAlbum(albumId: Int) -> Observable<LocalAlbum>
     func deletePicture(pictureId: Int) -> Observable<Int>
     func renameAlbum(albumId: Int, request: AlbumRequestModel) -> Observable<RenamedAlbum>
     func deleteAlbum(albumId: Int) -> Observable<Int>
@@ -22,8 +22,7 @@ final class DefaultPanoramaUseCase: PanoramaUseCase {
     init(panoramaRepository: DefaultPanoramaRepository) {
         self.panoramaRepository = panoramaRepository
     }
-    
-    func getAlbum(albumId: Int) -> Observable<Album> {
+    func getAlbum(albumId: Int) -> Observable<LocalAlbum> {
         return panoramaRepository.getAlbum(albumId: albumId)
     }
     

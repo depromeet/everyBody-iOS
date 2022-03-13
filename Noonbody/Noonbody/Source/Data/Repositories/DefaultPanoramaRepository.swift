@@ -7,23 +7,16 @@
 
 import Foundation
 
+import RealmSwift
 import RxSwift
 import Moya
 
 class DefaultPanoramaRepository: PanoramaRepository {
-    func getAlbum(albumId: Int) -> Observable<Album> {
-        let observable = Observable<Album>.create { observer -> Disposable in
-            let requestReference: () = PanoramaService.shared.getAlbum(id: albumId) { response in
-                switch response {
-                case .success(let data):
-                    if let data = data {
-                        observer.onNext(data)
-                    }
-                case .failure(let err):
-                    print(err)
-                }
-            }
-            return Disposables.create(with: { requestReference })
+    func getAlbum(albumId: Int) -> Observable<LocalAlbum> {
+        let observable = Observable<LocalAlbum>.create { observer -> Disposable in
+            let result = RealmManager.realm()?.objects(LocalAlbum.self).filter("id == \(albumId)").first
+            observer.onNext(result!)
+            return Disposables.create()
         }
         return observable
     }

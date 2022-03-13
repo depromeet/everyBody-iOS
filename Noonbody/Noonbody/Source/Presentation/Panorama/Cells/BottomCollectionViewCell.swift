@@ -92,8 +92,8 @@ class BottomCollectionViewCell: UICollectionViewCell {
         
     }
     
-    func setCell(index: Int, imageURL: String) {
-        panoramaCellImage.setImage(with: imageURL)
+    func setCell(albumId: Int, bodyPart: String, imageName: Int, index: Int) {
+        panoramaCellImage.image = AlbumManager.loadImageFromDocumentDirectory(imageName: "\(albumId)/\(bodyPart)/\(imageName).png")
         tagLabel.text = "\(index+1)"
         tagLabel.sizeToFit()
     }
