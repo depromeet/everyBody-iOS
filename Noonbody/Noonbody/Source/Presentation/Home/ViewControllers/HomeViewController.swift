@@ -84,7 +84,6 @@ class HomeViewController: BaseViewController {
         setupConstraint()
         setupSkeletion()
         navigationController?.isNavigationBarHidden = false
-        print("Realm Database fileUrl: ", RealmManager.getUrl())
     }
     
     // MARK: - Methods
