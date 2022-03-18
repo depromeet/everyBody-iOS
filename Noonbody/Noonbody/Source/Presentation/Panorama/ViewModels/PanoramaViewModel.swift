@@ -23,7 +23,7 @@ final class PanoramaViewModel {
     }
     
     struct Output {
-        let album: Driver<LocalAlbum?>
+        let album: Driver<Album?>
         let canRename: Driver<Bool>
         let renamedAlbum: Driver<String?>
         let deleteAlbumStatusCode: Driver<Int>
@@ -58,7 +58,7 @@ final class PanoramaViewModel {
         
         let data = album
             .compactMap { $0 }
-            .map { response -> LocalAlbum in
+            .map { response -> Album in
                 return response
             }.asDriver(onErrorJustReturn: nil)
         

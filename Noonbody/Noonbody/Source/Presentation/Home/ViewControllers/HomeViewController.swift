@@ -57,9 +57,9 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let viewModel = AlbumViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
+    private let viewModel = AlbumViewModel(albumUseCase: DefaultFetchAlbumsUseCase(repository: LocalAlbumRepositry()), feedbackUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
     
-    private var albumData: [LocalAlbum] = [] {
+    private var albumData: [Album] = [] {
         didSet {
             albumCollectionView.reloadData()
         }

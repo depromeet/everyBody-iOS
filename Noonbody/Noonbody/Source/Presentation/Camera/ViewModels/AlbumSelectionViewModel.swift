@@ -27,7 +27,7 @@ final class AlbumSelectionViewModel {
     }
     
     struct Output {
-        let album: Driver<[LocalAlbum]>
+        let album: Driver<[Album]>
         let newAlbum: Driver<Album?>
         let statusCode: Driver<Int>
     }
@@ -45,7 +45,7 @@ final class AlbumSelectionViewModel {
         
         let data = albums
             .compactMap { $0 }
-            .map { response -> [LocalAlbum] in
+            .map { response -> [Album] in
                 return response
             }.asDriver(onErrorJustReturn: [])
         

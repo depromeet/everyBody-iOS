@@ -43,7 +43,7 @@ class AlbumSelectionViewController: BaseViewController {
     
     private let viewModel = AlbumSelectionViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
 
-    private lazy var albumData: [LocalAlbum] = [] {
+    private lazy var albumData: [Album] = [] {
         didSet {
             collectionView.reloadData()
         }

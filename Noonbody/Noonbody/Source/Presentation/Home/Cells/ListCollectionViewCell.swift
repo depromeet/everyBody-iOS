@@ -68,7 +68,7 @@ class ListCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func setData(album: LocalAlbum) {
+    func setData(album: Album) {
         titleLabel.text = album.name
         descriptionLabel.text = album.albumDescription
 //        if let thumbnailURL = album.thumbnailURL {

@@ -70,7 +70,7 @@ class PanoramaViewController: BaseViewController {
     private var renameAlbumPopUp = PopUpViewController(type: .textField)
     private var cameraViewcontroller = CameraViewController()
     private var albumId: Int
-    var albumData: LocalAlbum
+    var albumData: Album
     private var albumName: String
     var bodyPartIndex = 0
     var bodyPart = "whole"
@@ -83,7 +83,7 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    var bodyPartData: [Picture] {
+    var bodyPartData: [PictureInfo] {
         didSet {
             setHide()
             reloadCollectionView()
@@ -136,10 +136,10 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - View Life Cycle
     
-    init(albumId: Int, albumData: LocalAlbum) {
+    init(albumId: Int, albumData: Album) {
         self.albumId = albumId
         self.albumData = albumData
-        self.bodyPartData = albumData.wholeArray
+        self.bodyPartData = albumData.pictures.whole
         self.albumName = self.albumData.name
         super.init(nibName: nil, bundle: nil)
     }
@@ -265,15 +265,15 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func setDefaultTab() {
-        if albumData.wholeArray.isEmpty {
-            if !albumData.upperArray.isEmpty {
+        if albumData.pictures.whole.isEmpty {
+            if !albumData.pictures.upper.isEmpty {
                 bodyPartSegmentControl.buttons[0].isSelected = false
                 bodyPartSegmentControl.buttons[1].isSelected = true
-                bodyPartData = albumData.upperArray
-            } else if !albumData.lowerArray.isEmpty {
+                bodyPartData = albumData.pictures.upper
+            } else if !albumData.pictures.lower.isEmpty {
                 bodyPartSegmentControl.buttons[0].isSelected = false
                 bodyPartSegmentControl.buttons[2].isSelected = true
-                bodyPartData = albumData.lowerArray
+                bodyPartData = albumData.pictures.lower
             }
         }
     }
@@ -288,13 +288,13 @@ class PanoramaViewController: BaseViewController {
     private func initBodyPartData(index: Int) {
         switch index {
         case 0:
-            bodyPartData = albumData.wholeArray
+            bodyPartData = albumData.pictures.whole
             bodyPart = "whole"
         case 1:
-            bodyPartData = albumData.upperArray
+            bodyPartData = albumData.pictures.upper
             bodyPart = "upper"
         case 2:
-            bodyPartData = albumData.lowerArray
+            bodyPartData = albumData.pictures.lower
             bodyPart = "lower"
         default:
             return

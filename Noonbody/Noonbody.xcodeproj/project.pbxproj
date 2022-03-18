@@ -154,6 +154,8 @@
 		FC2FFF5327D0ABA30047E489 /* LocalAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5227D0ABA30047E489 /* LocalAlbums.swift */; };
 		FC2FFF5527D208780047E489 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5427D208770047E489 /* RealmManager.swift */; };
 		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
+		FC76A53127E39B0A00CFEA5A /* FetchAlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */; };
+		FC76A54227E3B53B00CFEA5A /* LocalAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */; };
 		FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */; };
 		FC7D798127D09A3E0022C223 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798027D09A3E0022C223 /* Realm */; };
 		FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798227D09A3E0022C223 /* RealmSwift */; };
@@ -170,7 +172,6 @@
 		FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */; };
 		FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821427832D6F007A729D /* PanoramaService.swift */; };
 		FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821527832D6F007A729D /* PanoramaAPI.swift */; };
-		FCB35E0027DB383A0080E45F /* LocalAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB35DFF27DB383A0080E45F /* LocalAlbumRepository.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
@@ -334,6 +335,8 @@
 		FC2FFF5427D208770047E489 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FC342287279812F800200E90 /* AlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequestModel.swift; sourceTree = "<group>"; };
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAlbumsUseCase.swift; sourceTree = "<group>"; };
+		FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbumRepository.swift; sourceTree = "<group>"; };
 		FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamedAlbum.swift; sourceTree = "<group>"; };
 		FC7D798527D0AA600022C223 /* LocalAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbum.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -348,7 +351,6 @@
 		FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPanoramaRepository.swift; sourceTree = "<group>"; };
 		FCAE821427832D6F007A729D /* PanoramaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaService.swift; sourceTree = "<group>"; };
 		FCAE821527832D6F007A729D /* PanoramaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaAPI.swift; sourceTree = "<group>"; };
-		FCB35DFF27DB383A0080E45F /* LocalAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbumRepository.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
@@ -411,15 +413,9 @@
 		AA73AFAD274FE2E200FD7C70 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				AAEA239D27938E2E005A08C9 /* Video */,
-				FCAE821327832D6F007A729D /* Panorama */,
-				AAE2FA8A2763FE8300FA2C5C /* Auth */,
-				AA2F3186275AD68100855861 /* Camera */,
-				AA2F31752759F3DC00855861 /* Notification */,
-				FC23AC0E275A03720067EEF7 /* Album */,
-				AAA9A5272757FF7200FE92DB /* CreateAlbum */,
-				AA73AFB3274FE33000FD7C70 /* Utils */,
-				AA73AFAE274FE30C00FD7C70 /* MyPage */,
+				AABD83802784CD88004E8BF8 /* Repositories */,
+				FC76A53B27E3B35800CFEA5A /* Model */,
+				FC76A53C27E3B36500CFEA5A /* MoyaService */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -673,8 +669,9 @@
 		AABD83722784BCCF004E8BF8 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				AABD83762784CC17004E8BF8 /* Interfaces */,
 				AABD83742784BD97004E8BF8 /* UseCases */,
+				FC76A53227E39F0800CFEA5A /* RepositoryProtocols */,
+				AABD83762784CC17004E8BF8 /* Interfaces */,
 				AABD83732784BD16004E8BF8 /* Entity */,
 			);
 			path = Domain;
@@ -701,6 +698,7 @@
 		AABD83742784BD97004E8BF8 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */,
 				FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */,
 				AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */,
 				AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */,
@@ -712,8 +710,7 @@
 		AABD83752784BDF0004E8BF8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				FC7D798427D0AA420022C223 /* DataSource */,
-				AABD83802784CD88004E8BF8 /* Repositories */,
+				FC76A53D27E3B39F00CFEA5A /* Realm */,
 				AA73AFAD274FE2E200FD7C70 /* Network */,
 			);
 			path = Data;
@@ -731,10 +728,8 @@
 			isa = PBXGroup;
 			children = (
 				AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */,
-				AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */,
 				AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */,
 				AAEA239927938DD4005A08C9 /* VideoRepository.swift */,
-				FCB35DFF27DB383A0080E45F /* LocalAlbumRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1014,7 +1009,56 @@
 			path = Album;
 			sourceTree = "<group>";
 		};
-		FC2FFF4F27D0AAF00047E489 /* Model */ = {
+		FC76A53227E39F0800CFEA5A /* RepositoryProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */,
+			);
+			path = RepositoryProtocols;
+			sourceTree = "<group>";
+		};
+		FC76A53B27E3B35800CFEA5A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FC76A53C27E3B36500CFEA5A /* MoyaService */ = {
+			isa = PBXGroup;
+			children = (
+				AAEA239D27938E2E005A08C9 /* Video */,
+				FCAE821327832D6F007A729D /* Panorama */,
+				AAE2FA8A2763FE8300FA2C5C /* Auth */,
+				AA2F3186275AD68100855861 /* Camera */,
+				AA2F31752759F3DC00855861 /* Notification */,
+				FC23AC0E275A03720067EEF7 /* Album */,
+				AAA9A5272757FF7200FE92DB /* CreateAlbum */,
+				AA73AFB3274FE33000FD7C70 /* Utils */,
+				AA73AFAE274FE30C00FD7C70 /* MyPage */,
+			);
+			path = MoyaService;
+			sourceTree = "<group>";
+		};
+		FC76A53D27E3B39F00CFEA5A /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				FC76A53E27E3B3B200CFEA5A /* Repositories */,
+				FC76A53F27E3B3F500CFEA5A /* Model */,
+				FC76A54027E3B40800CFEA5A /* RealmService */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		FC76A53E27E3B3B200CFEA5A /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		FC76A53F27E3B3F500CFEA5A /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				FC2FFF5027D0AB1C0047E489 /* Picture.swift */,
@@ -1024,21 +1068,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FC76A54027E3B40800CFEA5A /* RealmService */ = {
+			isa = PBXGroup;
+			children = (
+				FC2FFF5427D208770047E489 /* RealmManager.swift */,
+			);
+			path = RealmService;
+			sourceTree = "<group>";
+		};
 		FC7D38CF2799FFD0001D43D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		FC7D798427D0AA420022C223 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				FC2FFF5427D208770047E489 /* RealmManager.swift */,
-				FC2FFF4F27D0AAF00047E489 /* Model */,
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		FCAE821327832D6F007A729D /* Panorama */ = {
@@ -1238,6 +1281,7 @@
 				AAA9A52D2758040B00FE92DB /* AlbumUseCase.swift in Sources */,
 				AA95911827443FB9007772BD /* UIViewController+hideKeyboard.swift in Sources */,
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
+				FC76A53127E39B0A00CFEA5A /* FetchAlbumsUseCase.swift in Sources */,
 				AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */,
 				AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
@@ -1281,11 +1325,11 @@
 				AAC7AD262737B84400B2BE1E /* AlbumCollectionViewCell.swift in Sources */,
 				AAEA239827938D7F005A08C9 /* VideoUseCase.swift in Sources */,
 				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
-				FCB35E0027DB383A0080E45F /* LocalAlbumRepository.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
 				AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */,
 				AAEA239F27938E3C005A08C9 /* VideoService.swift in Sources */,
 				AAE2FABB276CC10300FA2C5C /* ListCollectionViewCell.swift in Sources */,
+				FC76A54227E3B53B00CFEA5A /* LocalAlbumRepository.swift in Sources */,
 				AA95911F27445CD0007772BD /* className.swift in Sources */,
 				AAEA239A27938DD4005A08C9 /* VideoRepository.swift in Sources */,
 				AA74A0DA27495E2300FA6678 /* ProfileViewController.swift in Sources */,

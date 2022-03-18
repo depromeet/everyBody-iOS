@@ -1,19 +1,17 @@
 //
-//  DefaultAlbumRepositry.swift
-//  everyBody-iOS
+//  RealmAlbumRepository.swift
+//  Noonbody
 //
-//  Created by 윤예지 on 2021/12/02.
+//  Created by kong on 2022/03/18.
 //
 
 import Foundation
 
-import RealmSwift
 import RxSwift
-import Moya
 
-class DefaultAlbumRepositry: AlbumRepository {
-    func getAlbumList() -> Observable<[LocalAlbum]> {
-        let observable = Observable<[LocalAlbum]>.create { observer -> Disposable in
+class LocalAlbumRepositry: AlbumRepository {
+    func albums() -> Observable<[Album]> {
+        let observable = Observable<[Album]>.create { observer -> Disposable in
             let result = RealmManager.realm()?.objects(LocalAlbums.self).first?.localAlbumArray
             observer.onNext(result ?? [])
             return Disposables.create()
@@ -21,7 +19,16 @@ class DefaultAlbumRepositry: AlbumRepository {
         return observable
     }
     
-    func createAlbum(request: AlbumRequestModel) -> Observable<Album> {
+    func album(albumId: Int) -> Observable<Album> {
+        let observable = Observable<Album>.create { observer -> Disposable in
+            let result = RealmManager.realm()?.objects(LocalAlbum.self).filter("id == \(albumId)").first
+            observer.onNext(result!.asEntity())
+            return Disposables.create()
+        }
+        return observable
+    }
+    
+    func create(request: AlbumRequestModel) -> Observable<Album> {
         let observable = Observable<Album>.create { observer -> Disposable in
             let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: request) { response in
                 switch response {
@@ -38,9 +45,9 @@ class DefaultAlbumRepositry: AlbumRepository {
         return observable
     }
     
-    func createAlbum(request: AlbumRequestModel) -> Observable<Int> {
+    func create(album: AlbumRequestModel) -> Observable<Int> {
         return Observable<Int>.create { observer -> Disposable in
-            let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: request) { response in
+            let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: album) { response in
                 switch response {
                 case .success:
                     observer.onNext(200)
@@ -50,6 +57,39 @@ class DefaultAlbumRepositry: AlbumRepository {
             }
             return Disposables.create(with: { requestReference })
         }
+    }
+    
+    func delete(albumId: Int) -> Observable<Int> {
+        Observable<Int>.create { observer -> Disposable in
+            let requestReference: () = PanoramaService.shared.deleteAlbum(id: albumId) { response in
+                switch response {
+                case .success(let statusCode):
+                    if let statusCode = statusCode {
+                        observer.onNext(statusCode)
+                    }
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+    }
+    
+    func rename(albumId: Int, request: AlbumRequestModel) -> Observable<RenamedAlbum> {
+        let observable = Observable<RenamedAlbum>.create { observer -> Disposable in
+            let requestReference: () = PanoramaService.shared.renameAlbum(id: albumId, request: request) { response in
+                switch response {
+                case .success(let data):
+                    if let data = data {
+                        observer.onNext(data)
+                    }
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+        return observable
     }
     
     func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
@@ -95,22 +135,6 @@ class DefaultAlbumRepositry: AlbumRepository {
             }
             
             return Disposables.create()
-        }
-    }
-    
-    func sendFeedback(request: FeedbackRequestModel) -> Observable<Int> {
-        Observable<Int>.create { observer -> Disposable in
-            let requestReference: () = AlbumService.shared.sendFeedback(request: request) { response in
-                switch response {
-                case .success(let statusCode):
-                    if let statusCode = statusCode {
-                        observer.onNext(statusCode)
-                    }
-                case .failure(let err):
-                    print(err)
-                }
-            }
-            return Disposables.create(with: { requestReference })
         }
     }
 }

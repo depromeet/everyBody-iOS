@@ -12,7 +12,8 @@ import RxCocoa
 
 final class AlbumViewModel {
     
-    private let albumUseCase: AlbumUseCase
+    private let albumUseCase: FetchAlbumsUseCase
+    private let feedbackUseCase: AlbumUseCase
     
     struct Input {
         let viewWillAppear: Observable<Void>
@@ -22,13 +23,14 @@ final class AlbumViewModel {
     }
     
     struct Output {
-        let album: Driver<[LocalAlbum]>
+        let album: Driver<[Album]>
         let canSend: Driver<Bool>
         let sendFeedbackStatusCode: Driver<Int>
     }
     
-    init(albumUseCase: AlbumUseCase) {
+    init(albumUseCase: FetchAlbumsUseCase, feedbackUseCase: AlbumUseCase) {
         self.albumUseCase = albumUseCase
+        self.feedbackUseCase = feedbackUseCase
     }
     
     func transform(input: Input) -> Output {
@@ -37,13 +39,13 @@ final class AlbumViewModel {
         
         let album = input.viewWillAppear
             .flatMap {
-                self.albumUseCase.getAlbumList() }
+                self.albumUseCase.albums() }
             .map { $0 }
             .share()
         
         let data = album
             .compactMap { $0 }
-            .map { response -> [LocalAlbum] in
+            .map { response -> [Album] in
                 return response
             }.asDriver(onErrorJustReturn: [])
         
@@ -58,7 +60,7 @@ final class AlbumViewModel {
                 return FeedbackRequestModel(content: content, starRate: starRate)
             }
             .flatMap { request in
-                self.albumUseCase.sendFeedback(request: request)
+                self.feedbackUseCase.sendFeedback(request: request)
             }
             .map { $0 }
             .share()
