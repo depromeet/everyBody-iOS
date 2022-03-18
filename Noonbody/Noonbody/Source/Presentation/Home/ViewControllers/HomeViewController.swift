@@ -57,7 +57,8 @@ class HomeViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let viewModel = AlbumViewModel(albumUseCase: DefaultFetchAlbumsUseCase(repository: LocalAlbumRepositry()), feedbackUseCase: DefaultSendFeedbackUseCase(sendFeedbackRepository: DefaultSendFeedbackRepository()))
+    private let viewModel = AlbumViewModel(albumUseCase: DefaultFetchAlbumsUseCase(repository: LocalAlbumRepositry()),
+                                           feedbackUseCase: DefaultSendFeedbackUseCase(sendFeedbackRepository: DefaultSendFeedbackRepository()))
     
     private var albumData: [Album] = [] {
         didSet {

@@ -12,7 +12,8 @@ import RxSwift
 class LocalAlbumRepositry: AlbumRepository {
     func albums() -> Observable<[Album]> {
         let observable = Observable<[Album]>.create { observer -> Disposable in
-            let result = RealmManager.realm()?.objects(RMAlbums.self).first?.localAlbumArray
+        let result = RealmManager.realm()?.objects(RMAlbums.self).first?.localAlbumArray
+            
             observer.onNext(result ?? [])
             return Disposables.create()
         }
@@ -97,9 +98,10 @@ class LocalAlbumRepositry: AlbumRepository {
             let fileManager = FileManager()
             let documentURL = RealmManager.getUrl()
             let task = Picture(date: request.takenAt)
+            let fileExtension = FileExtensions.png.rawValue
             
             let directoryURL = documentURL.appendingPathComponent("\(request.albumId)/\(request.bodyPart)")
-            let imageURL = directoryURL.appendingPathComponent("\(task.id).png")
+            let imageURL = directoryURL.appendingPathComponent("\(task.id).\(fileExtension)")
             
             do {
                 try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)

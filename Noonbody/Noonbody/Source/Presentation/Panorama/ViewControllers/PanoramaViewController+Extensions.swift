@@ -8,7 +8,6 @@
 import UIKit
 
 extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == bottomCollectionView {
             cellWidth = collectionView.frame.height * 0.54 + cellSpacing
@@ -94,12 +93,12 @@ extension PanoramaViewController: UICollectionViewDataSource {
             let cell: TopCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.selectedViewIsHidden(editMode: editMode)
             let indexPath = editMode ? indexPath.row - 1 : indexPath.row
-            cell.setPhotoCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath].id, contentMode: gridMode)
+            cell.setPhotoCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath].id, contentMode: gridMode, fileExtension: fileExtension)
             return cell
         }
         
         let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.setCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath.row].id, index: indexPath.row)
+        cell.setCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath.row].id, index: indexPath.row, fileExtension: fileExtension)
         if indexPath.item == selectedIndexByPart[bodyPartIndex].row {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
         } else {

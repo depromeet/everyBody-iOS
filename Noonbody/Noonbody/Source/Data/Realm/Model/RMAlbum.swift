@@ -59,6 +59,7 @@ final class RMAlbum: Object {
 extension RMAlbum {
     func asEntity() -> Album {
         let pictures = Pictures(lower: lowerArray, upper: upperArray, whole: wholeArray)
+        
         let description = calcuateDay(createdAt: createdAt)
         return Album(id: id, name: name, thumbnailURL: "", createdAt: "", albumDescription: description, pictures: pictures)
     }

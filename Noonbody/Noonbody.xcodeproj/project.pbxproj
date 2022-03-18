@@ -175,6 +175,7 @@
 		FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */; };
 		FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821427832D6F007A729D /* PanoramaService.swift */; };
 		FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821527832D6F007A729D /* PanoramaAPI.swift */; };
+		FCBEEC2A27E4F33C00CC2F0E /* FileExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBEEC2927E4F33C00CC2F0E /* FileExtensions.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
@@ -357,6 +358,7 @@
 		FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPanoramaRepository.swift; sourceTree = "<group>"; };
 		FCAE821427832D6F007A729D /* PanoramaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaService.swift; sourceTree = "<group>"; };
 		FCAE821527832D6F007A729D /* PanoramaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaAPI.swift; sourceTree = "<group>"; };
+		FCBEEC2927E4F33C00CC2F0E /* FileExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtensions.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
@@ -770,6 +772,7 @@
 				FC9B76CF27DDEFA300F80F21 /* AlbumManager.swift */,
 				AAEA239427933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift */,
 				AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */,
+				FCBEEC2927E4F33C00CC2F0E /* FileExtensions.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1313,6 +1316,7 @@
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
 				AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
+				FCBEEC2A27E4F33C00CC2F0E /* FileExtensions.swift in Sources */,
 				FC76A54827E4B38500CFEA5A /* SendFeedbackUseCase.swift in Sources */,
 				AAA9A5292757FFB400FE92DB /* CreateAlbumService.swift in Sources */,
 				AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */,

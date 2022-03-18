@@ -15,9 +15,9 @@ protocol SendFeedbackUseCase {
 
 final class DefaultSendFeedbackUseCase: SendFeedbackUseCase {
 
-    private let sendFeedbackRepository: DefaultSendFeedbackRepository
+    private let sendFeedbackRepository: SendFeedbackRepository
     
-    init(sendFeedbackRepository: DefaultSendFeedbackRepository) {
+    init(sendFeedbackRepository: SendFeedbackRepository) {
         self.sendFeedbackRepository = sendFeedbackRepository
     }
     

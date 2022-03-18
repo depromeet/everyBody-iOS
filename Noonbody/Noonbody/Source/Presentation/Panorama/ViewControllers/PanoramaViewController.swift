@@ -62,6 +62,7 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Properties
     
+    let fileExtension = FileExtensions.png.rawValue
     let cellSpacing: CGFloat = 2
     var cellWidth: CGFloat = 0
     private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))

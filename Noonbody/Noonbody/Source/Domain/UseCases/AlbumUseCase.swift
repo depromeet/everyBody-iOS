@@ -18,9 +18,9 @@ protocol AlbumUseCase {
 
 final class DefaultAlbumUseCase: AlbumUseCase {
 
-    private let albumRepository: DefaultAlbumRepositry
+    private let albumRepository: AlbumRepository
     
-    init(albumRepository: DefaultAlbumRepositry) {
+    init(albumRepository: AlbumRepository) {
         self.albumRepository = albumRepository
     }
     
