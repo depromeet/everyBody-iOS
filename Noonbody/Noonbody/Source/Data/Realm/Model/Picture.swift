@@ -9,7 +9,7 @@ import Foundation
 
 import RealmSwift
 
-class Picture: Object {
+final class Picture: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var date: String = ""
     

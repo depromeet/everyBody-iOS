@@ -1,5 +1,5 @@
 //
-//  Album.swift
+//  RMAlbum.swift
 //  Noonbody
 //
 //  Created by kong on 2022/03/03.
@@ -9,10 +9,9 @@ import Foundation
 
 import RealmSwift
 
-class LocalAlbum: Object {
+final class RMAlbum: Object {
     @Persisted(primaryKey: true) var id: Int
     @Persisted var name: String = ""
-    @Persisted var albumDescription: String = "일 간의 기록"
     @Persisted var createdAt = Date()
     @Persisted var whole: List<Picture> = List<Picture>()
     @Persisted var upper: List<Picture> = List<Picture>()
@@ -47,13 +46,20 @@ class LocalAlbum: Object {
     
     func incrementID() -> Int {
         guard let realm = RealmManager.realm() else { return 0 }
-        return (realm.objects(LocalAlbum.self).max(ofProperty: "id") as Int? ?? 0) + 1
+        return (realm.objects(RMAlbum.self).max(ofProperty: "id") as Int? ?? 0) + 1
+    }
+    
+    func calcuateDay(createdAt: Date) -> String {
+        let interval = Date().timeIntervalSince(createdAt)
+        let days = Int(interval / 86400) + 1
+        return "\(days)일간의 기록"
     }
 }
 
-extension LocalAlbum {
+extension RMAlbum {
     func asEntity() -> Album {
         let pictures = Pictures(lower: lowerArray, upper: upperArray, whole: wholeArray)
-        return Album(id: id, name: name, thumbnailURL: "", createdAt: "", albumDescription: albumDescription, pictures: pictures)
+        let description = calcuateDay(createdAt: createdAt)
+        return Album(id: id, name: name, thumbnailURL: "", createdAt: "", albumDescription: description, pictures: pictures)
     }
 }

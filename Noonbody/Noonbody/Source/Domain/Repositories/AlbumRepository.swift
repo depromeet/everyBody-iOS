@@ -19,7 +19,4 @@ protocol AlbumRepository {
     
     // PhotoRepository로
     func savePhoto(request: PhotoRequestModel) -> Observable<Int>
-    
-    // FeedbackRepository로
-    func sendFeedback(request: FeedbackRequestModel) -> Observable<Int>
 }

@@ -12,7 +12,7 @@ import RxSwift
 class LocalAlbumRepositry: AlbumRepository {
     func albums() -> Observable<[Album]> {
         let observable = Observable<[Album]>.create { observer -> Disposable in
-            let result = RealmManager.realm()?.objects(LocalAlbums.self).first?.localAlbumArray
+            let result = RealmManager.realm()?.objects(RMAlbums.self).first?.localAlbumArray
             observer.onNext(result ?? [])
             return Disposables.create()
         }
@@ -21,7 +21,7 @@ class LocalAlbumRepositry: AlbumRepository {
     
     func album(albumId: Int) -> Observable<Album> {
         let observable = Observable<Album>.create { observer -> Disposable in
-            let result = RealmManager.realm()?.objects(LocalAlbum.self).filter("id == \(albumId)").first
+            let result = RealmManager.realm()?.objects(RMAlbum.self).filter("id == \(albumId)").first
             observer.onNext(result!.asEntity())
             return Disposables.create()
         }
@@ -115,7 +115,7 @@ class LocalAlbumRepositry: AlbumRepository {
             do {
                 try data.write(to: imageURL)
                 try RealmManager.realm()?.write {
-                    let localAlbum = RealmManager.realm()?.objects(LocalAlbum.self).filter("id==\(request.albumId)").first
+                    let localAlbum = RealmManager.realm()?.objects(RMAlbum.self).filter("id==\(request.albumId)").first
                     switch request.bodyPart {
                     case "whole":
                         localAlbum?.whole.append(task)

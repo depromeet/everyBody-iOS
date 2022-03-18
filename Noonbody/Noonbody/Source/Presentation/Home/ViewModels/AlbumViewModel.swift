@@ -13,7 +13,7 @@ import RxCocoa
 final class AlbumViewModel {
     
     private let albumUseCase: FetchAlbumsUseCase
-    private let feedbackUseCase: AlbumUseCase
+    private let feedbackUseCase: SendFeedbackUseCase
     
     struct Input {
         let viewWillAppear: Observable<Void>
@@ -28,7 +28,7 @@ final class AlbumViewModel {
         let sendFeedbackStatusCode: Driver<Int>
     }
     
-    init(albumUseCase: FetchAlbumsUseCase, feedbackUseCase: AlbumUseCase) {
+    init(albumUseCase: FetchAlbumsUseCase, feedbackUseCase: SendFeedbackUseCase) {
         self.albumUseCase = albumUseCase
         self.feedbackUseCase = feedbackUseCase
     }

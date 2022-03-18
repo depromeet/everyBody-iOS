@@ -151,15 +151,18 @@
 		FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC0F275A038B0067EEF7 /* AlbumService.swift */; };
 		FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */; };
 		FC2FFF5127D0AB1C0047E489 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5027D0AB1C0047E489 /* Picture.swift */; };
-		FC2FFF5327D0ABA30047E489 /* LocalAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5227D0ABA30047E489 /* LocalAlbums.swift */; };
+		FC2FFF5327D0ABA30047E489 /* RMAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5227D0ABA30047E489 /* RMAlbums.swift */; };
 		FC2FFF5527D208780047E489 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5427D208770047E489 /* RealmManager.swift */; };
 		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
 		FC76A53127E39B0A00CFEA5A /* FetchAlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */; };
 		FC76A54227E3B53B00CFEA5A /* LocalAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */; };
+		FC76A54427E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */; };
+		FC76A54627E4B2B600CFEA5A /* SendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54527E4B2B600CFEA5A /* SendFeedbackRepository.swift */; };
+		FC76A54827E4B38500CFEA5A /* SendFeedbackUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */; };
 		FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */; };
 		FC7D798127D09A3E0022C223 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798027D09A3E0022C223 /* Realm */; };
 		FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798227D09A3E0022C223 /* RealmSwift */; };
-		FC7D798627D0AA600022C223 /* LocalAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D798527D0AA600022C223 /* LocalAlbum.swift */; };
+		FC7D798627D0AA600022C223 /* RMAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D798527D0AA600022C223 /* RMAlbum.swift */; };
 		FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */; };
 		FC91997427A1552800A6CD0D /* FeedbackCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997327A1552800A6CD0D /* FeedbackCollectionReusableView.swift */; };
 		FC91997627A180D200A6CD0D /* FeedbackPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997527A180D200A6CD0D /* FeedbackPopUpViewController.swift */; };
@@ -331,14 +334,17 @@
 		FC23AC0F275A038B0067EEF7 /* AlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumService.swift; sourceTree = "<group>"; };
 		FC23AC11275A03A30067EEF7 /* AlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumAPI.swift; sourceTree = "<group>"; };
 		FC2FFF5027D0AB1C0047E489 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
-		FC2FFF5227D0ABA30047E489 /* LocalAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbums.swift; sourceTree = "<group>"; };
+		FC2FFF5227D0ABA30047E489 /* RMAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAlbums.swift; sourceTree = "<group>"; };
 		FC2FFF5427D208770047E489 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FC342287279812F800200E90 /* AlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequestModel.swift; sourceTree = "<group>"; };
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAlbumsUseCase.swift; sourceTree = "<group>"; };
 		FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbumRepository.swift; sourceTree = "<group>"; };
+		FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSendFeedbackRepository.swift; sourceTree = "<group>"; };
+		FC76A54527E4B2B600CFEA5A /* SendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackRepository.swift; sourceTree = "<group>"; };
+		FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackUseCase.swift; sourceTree = "<group>"; };
 		FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamedAlbum.swift; sourceTree = "<group>"; };
-		FC7D798527D0AA600022C223 /* LocalAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbum.swift; sourceTree = "<group>"; };
+		FC7D798527D0AA600022C223 /* RMAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAlbum.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC91997327A1552800A6CD0D /* FeedbackCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCollectionReusableView.swift; sourceTree = "<group>"; };
 		FC91997527A180D200A6CD0D /* FeedbackPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPopUpViewController.swift; sourceTree = "<group>"; };
@@ -670,8 +676,7 @@
 			isa = PBXGroup;
 			children = (
 				AABD83742784BD97004E8BF8 /* UseCases */,
-				FC76A53227E39F0800CFEA5A /* RepositoryProtocols */,
-				AABD83762784CC17004E8BF8 /* Interfaces */,
+				AABD83772784CC2F004E8BF8 /* Repositories */,
 				AABD83732784BD16004E8BF8 /* Entity */,
 			);
 			path = Domain;
@@ -684,13 +689,6 @@
 				AAC7ACBF272D7E0400B2BE1E /* Pose.swift */,
 				AA2F31782759F53F00855861 /* NotificationConfig.swift */,
 				AABEA2E4273C578E00A06A8C /* Album.swift */,
-				FC342287279812F800200E90 /* AlbumRequestModel.swift */,
-				AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */,
-				AA2F3184275AD61800855861 /* PhotoRequestModel.swift */,
-				AAE2FAA227640C9200FA2C5C /* SignUpRequestModel.swift */,
-				AAE2FAA4276410B300FA2C5C /* SignInRequestModel.swift */,
-				AAEA23A227938EA1005A08C9 /* VideoRequestModel.swift */,
-				FC91997B27A2CD3100A6CD0D /* FeedbackRequestModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -703,6 +701,7 @@
 				AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */,
 				AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */,
 				AAEA239727938D7F005A08C9 /* VideoUseCase.swift */,
+				FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -716,20 +715,14 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		AABD83762784CC17004E8BF8 /* Interfaces */ = {
-			isa = PBXGroup;
-			children = (
-				AABD83772784CC2F004E8BF8 /* Repositories */,
-			);
-			path = Interfaces;
-			sourceTree = "<group>";
-		};
 		AABD83772784CC2F004E8BF8 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
 				AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */,
 				AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */,
 				AAEA239927938DD4005A08C9 /* VideoRepository.swift */,
+				AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */,
+				FC76A54527E4B2B600CFEA5A /* SendFeedbackRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -741,6 +734,7 @@
 				AA74A0E8274993CF00FA6678 /* DefaultPreferenceRepository.swift */,
 				AAA9A52E2758041A00FE92DB /* DefaultAlbumRepositry.swift */,
 				AAEA239B27938E01005A08C9 /* DefaultVideoRepository.swift */,
+				FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1009,17 +1003,14 @@
 			path = Album;
 			sourceTree = "<group>";
 		};
-		FC76A53227E39F0800CFEA5A /* RepositoryProtocols */ = {
-			isa = PBXGroup;
-			children = (
-				AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */,
-			);
-			path = RepositoryProtocols;
-			sourceTree = "<group>";
-		};
 		FC76A53B27E3B35800CFEA5A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AA73AFBF27502BB200FD7C70 /* ProfileRequestModel.swift */,
+				AAE2FAA4276410B300FA2C5C /* SignInRequestModel.swift */,
+				AAE2FAA227640C9200FA2C5C /* SignUpRequestModel.swift */,
+				AAEA23A227938EA1005A08C9 /* VideoRequestModel.swift */,
+				FC91997B27A2CD3100A6CD0D /* FeedbackRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1062,8 +1053,10 @@
 			isa = PBXGroup;
 			children = (
 				FC2FFF5027D0AB1C0047E489 /* Picture.swift */,
-				FC7D798527D0AA600022C223 /* LocalAlbum.swift */,
-				FC2FFF5227D0ABA30047E489 /* LocalAlbums.swift */,
+				FC7D798527D0AA600022C223 /* RMAlbum.swift */,
+				FC2FFF5227D0ABA30047E489 /* RMAlbums.swift */,
+				FC342287279812F800200E90 /* AlbumRequestModel.swift */,
+				AA2F3184275AD61800855861 /* PhotoRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1250,6 +1243,7 @@
 				FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
 				AAE2FA9D27640ADC00FA2C5C /* LaunchService.swift in Sources */,
+				FC76A54427E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift in Sources */,
 				FC91997627A180D200A6CD0D /* FeedbackPopUpViewController.swift in Sources */,
 				FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */,
 				AA74A0E5274985F200FA6678 /* Rx+ViewLifeCycle.swift in Sources */,
@@ -1295,7 +1289,7 @@
 				FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */,
 				AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */,
 				AABD8389278635EC004E8BF8 /* UserDefault.swift in Sources */,
-				FC2FFF5327D0ABA30047E489 /* LocalAlbums.swift in Sources */,
+				FC2FFF5327D0ABA30047E489 /* RMAlbums.swift in Sources */,
 				AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */,
 				AAE2FAB8276BA75800FA2C5C /* UIViewController+makeVibrate.swift in Sources */,
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
@@ -1311,6 +1305,7 @@
 				FC87D7CD2746E80B003EEB9B /* CameraCollectionViewCell.swift in Sources */,
 				AA95911D27444F4F007772BD /* PopUpActionDelegate.swift in Sources */,
 				AAA9A52F2758041A00FE92DB /* DefaultAlbumRepositry.swift in Sources */,
+				FC76A54627E4B2B600CFEA5A /* SendFeedbackRepository.swift in Sources */,
 				AA2F317B2759F5E200855861 /* NotificationService.swift in Sources */,
 				AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */,
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
@@ -1318,6 +1313,7 @@
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
 				AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
+				FC76A54827E4B38500CFEA5A /* SendFeedbackUseCase.swift in Sources */,
 				AAA9A5292757FFB400FE92DB /* CreateAlbumService.swift in Sources */,
 				AA95912327458F92007772BD /* UIVIew+renderToImageView.swift in Sources */,
 				FC2FFF5527D208780047E489 /* RealmManager.swift in Sources */,
@@ -1354,7 +1350,7 @@
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */,
 				AA2F3181275AA17D00855861 /* MoyaLoggingPlugin.swift in Sources */,
-				FC7D798627D0AA600022C223 /* LocalAlbum.swift in Sources */,
+				FC7D798627D0AA600022C223 /* RMAlbum.swift in Sources */,
 				AAEA23A127938E50005A08C9 /* VideoAPI.swift in Sources */,
 				AAC7ACF92734056700B2BE1E /* UIStackView+addArrangedSubviews.swift in Sources */,
 				FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */,
