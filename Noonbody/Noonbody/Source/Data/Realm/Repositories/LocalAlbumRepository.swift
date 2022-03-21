@@ -7,14 +7,14 @@
 
 import Foundation
 
+import RealmSwift
 import RxSwift
 
 class LocalAlbumRepositry: AlbumRepository {
     func albums() -> Observable<[Album]> {
         let observable = Observable<[Album]>.create { observer -> Disposable in
-        let result = RealmManager.realm()?.objects(RMAlbums.self).first?.localAlbumArray
-            
-            observer.onNext(result ?? [])
+            let albums = RealmManager.realm()?.objects(RMAlbum.self).map { $0.asEntity() }
+            observer.onNext(albums?.reversed() ?? [])
             return Disposables.create()
         }
         return observable

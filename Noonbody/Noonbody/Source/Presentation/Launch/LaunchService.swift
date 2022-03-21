@@ -33,9 +33,7 @@ final class LaunchService {
     }
     
     private func setDefaultAlbum() {
-        let albums = RMAlbums()
         let album = RMAlbum(name: "눈바디", createdAt: Date())
-        albums.rmAlbums.append(album)
-        RealmManager.saveObjects(objs: albums)
+        RealmManager.saveObjects(objs: album)
     }
 }
