@@ -31,64 +31,51 @@ class LocalAlbumRepositry: AlbumRepository {
     
     func create(request: AlbumRequestModel) -> Observable<Album> {
         let observable = Observable<Album>.create { observer -> Disposable in
-            let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: request) { response in
-                switch response {
-                case .success(let data):
-                    if let data = data {
-                        observer.onNext(data)
-                    }
-                case .failure(let err):
-                    print(err)
-                }
-            }
-            return Disposables.create(with: { requestReference })
+            let album = RMAlbum(name: request.name, createdAt: Date())
+            RealmManager.saveObjects(objs: album)
+            observer.onNext(album.asEntity())
+            return Disposables.create()
         }
         return observable
     }
     
     func create(album: AlbumRequestModel) -> Observable<Int> {
         return Observable<Int>.create { observer -> Disposable in
-            let requestReference: () = CreateAlbumService.shared.postCreateAlbum(request: album) { response in
-                switch response {
-                case .success:
-                    observer.onNext(200)
-                case .failure(let err):
-                    observer.onError(err)
-                }
-            }
-            return Disposables.create(with: { requestReference })
+            let album = RMAlbum(name: album.name, createdAt: Date())
+            RealmManager.saveObjects(objs: album)
+            observer.onNext(200)
+            return Disposables.create()
         }
     }
     
     func delete(albumId: Int) -> Observable<Int> {
         Observable<Int>.create { observer -> Disposable in
-            let requestReference: () = PanoramaService.shared.deleteAlbum(id: albumId) { response in
-                switch response {
-                case .success(let statusCode):
-                    if let statusCode = statusCode {
-                        observer.onNext(statusCode)
+            if let album = RealmManager.realm()?.objects(RMAlbum.self).filter("id == \(albumId)").first {
+                do {
+                    try RealmManager.realm()?.write {
+                        RealmManager.realm()?.delete(album)
+                        observer.onNext(204)
                     }
-                case .failure(let err):
+                } catch let err {
                     print(err)
                 }
             }
-            return Disposables.create(with: { requestReference })
+            return Disposables.create()
         }
     }
     
     func rename(albumId: Int, request: AlbumRequestModel) -> Observable<RenamedAlbum> {
         let observable = Observable<RenamedAlbum>.create { observer -> Disposable in
-            let requestReference: () = PanoramaService.shared.renameAlbum(id: albumId, request: request) { response in
-                switch response {
-                case .success(let data):
-                    if let data = data {
-                        observer.onNext(data)
-                    }
-                case .failure(let err):
-                    print(err)
+            let album = RealmManager.realm()?.objects(RMAlbum.self).filter("id == \(albumId)").first
+            do {
+                try RealmManager.realm()?.write {
+                    album?.name = request.name
+                    observer.onNext(RenamedAlbum(name: request.name))
                 }
+            } catch let err {
+                print(err)
             }
-            return Disposables.create(with: { requestReference })
+            return Disposables.create()
         }
         return observable
     }

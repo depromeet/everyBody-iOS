@@ -31,8 +31,7 @@ class AlbumCreationViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let viewModel = AlbumCreationViewModel(albumUseCase: DefaultAlbumUseCase(
-                                                   albumRepository: DefaultAlbumRepositry()))
+    private let viewModel = AlbumCreationViewModel(albumUseCase: DefaultCreateAlbumUseCase(repository: LocalAlbumRepositry()))
     
     // MARK: - View Life Cycle
     
