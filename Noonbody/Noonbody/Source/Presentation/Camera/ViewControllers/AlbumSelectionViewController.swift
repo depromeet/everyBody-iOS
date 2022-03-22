@@ -41,7 +41,9 @@ class AlbumSelectionViewController: BaseViewController {
     
     // MARK: - Properties
     
-    private let viewModel = AlbumSelectionViewModel(albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
+    private let viewModel = AlbumSelectionViewModel(fetchAlbumsUseCase: DefaultFetchAlbumsUseCase(repository: LocalAlbumRepositry()),
+                                                    createAlbumUseCase: DefaultCreateAlbumUseCase(repository: LocalAlbumRepositry()),
+                                                    albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
 
     private lazy var albumData: [Album] = [] {
         didSet {
