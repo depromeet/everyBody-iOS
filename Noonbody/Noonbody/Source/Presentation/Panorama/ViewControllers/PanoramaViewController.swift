@@ -11,6 +11,7 @@ import SnapKit
 import Then
 import RxSwift
 import RxRelay
+import RealmSwift
 
 class PanoramaViewController: BaseViewController {
     
@@ -69,9 +70,10 @@ class PanoramaViewController: BaseViewController {
     private var renameAlbumPopUp = PopUpViewController(type: .textField)
     private var cameraViewcontroller = CameraViewController()
     private var albumId: Int
-    private var albumData: Album
+    var albumData: Album
     private var albumName: String
-    var bodyPart = 0
+    var bodyPartIndex = 0
+    var bodyPart = "whole"
     var deleteData: [Int: Int] = [:] {
         didSet {
             navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty || !editMode
@@ -202,7 +204,7 @@ class PanoramaViewController: BaseViewController {
                 guard let self = self else { return }
                 if let data = data {
                     self.albumData = data
-                    self.initBodyPartData(index: self.bodyPart)
+                    self.initBodyPartData(index: self.bodyPartIndex)
                 }
                 self.moveCellToCenter(animated: false)
             })
@@ -287,26 +289,29 @@ class PanoramaViewController: BaseViewController {
         switch index {
         case 0:
             bodyPartData = albumData.pictures.whole
+            bodyPart = "whole"
         case 1:
             bodyPartData = albumData.pictures.upper
+            bodyPart = "upper"
         case 2:
             bodyPartData = albumData.pictures.lower
+            bodyPart = "lower"
         default:
             return
         }
     }
     
     private func deleteAlbumData(id: Int) {
-        switch bodyPart {
-        case 0:
-            albumData.pictures.whole.removeAll(where: {$0.id == id})
-        case 1:
-            albumData.pictures.upper.removeAll(where: {$0.id == id})
-        case 2:
-            albumData.pictures.lower.removeAll(where: {$0.id == id})
-        default:
-            return
-        }
+//        switch bodyPart {
+//        case 0:
+//            albumData.wholeArray.removeAll(where: {$0.id == id})
+//        case 1:
+//            albumData.upperArray.removeAll(where: {$0.id == id})
+//        case 2:
+//            albumData.lowerArray.removeAll(where: {$0.id == id})
+//        default:
+//            return
+//        }
     }
     
     private func resetDeleteData() {
@@ -314,7 +319,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func updateSeletedIndex(index: Int) {
-        let lastIndexPathItem = selectedIndexByPart[bodyPart].item
+        let lastIndexPathItem = selectedIndexByPart[bodyPartIndex].item
         var updatedIndexPathItem: Int
         
         if index == lastIndexPathItem {
@@ -323,7 +328,7 @@ class PanoramaViewController: BaseViewController {
             updatedIndexPathItem = index - lastIndexPathItem < 0 ? lastIndexPathItem - 1 : lastIndexPathItem
         }
         
-        selectedIndexByPart[bodyPart] = IndexPath(item: updatedIndexPathItem, section: 0)
+        selectedIndexByPart[bodyPartIndex] = IndexPath(item: updatedIndexPathItem, section: 0)
     }
     
     private func switchPanoramaMode() {
@@ -349,15 +354,15 @@ class PanoramaViewController: BaseViewController {
     
     func moveCellToCenter(animated: Bool) {
         if !(bottomCollectionView.isHidden || bodyPartData.isEmpty) {
-            bottomCollectionView.selectItem(at: selectedIndexByPart[bodyPart], animated: false, scrollPosition: .centeredHorizontally)
+            bottomCollectionView.selectItem(at: selectedIndexByPart[bodyPartIndex], animated: false, scrollPosition: .centeredHorizontally)
             setCollectionViewContentOffset(animated: false)
         }
     }
     
     func setCollectionViewContentOffset(animated: Bool) {
-        topCollectionView.setContentOffset(CGPoint(x: topCollectionView.frame.maxX * CGFloat(selectedIndexByPart[bodyPart].row),
+        topCollectionView.setContentOffset(CGPoint(x: topCollectionView.frame.maxX * CGFloat(selectedIndexByPart[bodyPartIndex].row),
                                                    y: 0.0), animated: false)
-        bottomCollectionView.setContentOffset(CGPoint(x: cellWidth * CGFloat(selectedIndexByPart[bodyPart].row), y: 0.0), animated: animated)
+        bottomCollectionView.setContentOffset(CGPoint(x: cellWidth * CGFloat(selectedIndexByPart[bodyPartIndex].row), y: 0.0), animated: animated)
     }
     
     private func editAlbumButtonDidTap() {
@@ -381,19 +386,19 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func pushVideoViewController() {
-        var imageList: [(String, String)] = []
-        switch bodyPart {
-        case 0:
-            imageList = albumData.pictures.whole.map { ($0.key, $0.imageURL) }
-        case 1:
-            imageList = albumData.pictures.upper.map { ($0.key, $0.imageURL) }
-        case 2:
-            imageList = albumData.pictures.lower.map { ($0.key, $0.imageURL) }
-        default:
-            return
-        }
-        let viewController = VideoEditViewController(albumData: imageList, title: albumData.name)
-        self.navigationController?.pushViewController(viewController, animated: true)
+//        var imageList: [(String, String)] = []
+//        switch bodyPart {
+//        case 0:
+//            imageList = albumData.pictures.whole.map { ($0.key, $0.imageURL) }
+//        case 1:
+//            imageList = albumData.pictures.upper.map { ($0.key, $0.imageURL) }
+//        case 2:
+//            imageList = albumData.pictures.lower.map { ($0.key, $0.imageURL) }
+//        default:
+//            return
+//        }
+//        let viewController = VideoEditViewController(albumData: imageList, title: albumData.name)
+//        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func presentWarningPopUp() {
@@ -495,11 +500,11 @@ extension PanoramaViewController {
 
 extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
-        bodyPart = index
-        initBodyPartData(index: bodyPart)
+        bodyPartIndex = index
+        initBodyPartData(index: bodyPartIndex)
         resetDeleteData()
         if !bodyPartData.isEmpty {
-            selectedIndexByPart[bodyPart] = selectedIndexByPart[index]
+            selectedIndexByPart[bodyPartIndex] = selectedIndexByPart[index]
             moveCellToCenter(animated: false)
         }
     }

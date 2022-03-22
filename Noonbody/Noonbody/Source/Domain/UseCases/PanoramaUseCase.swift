@@ -22,7 +22,6 @@ final class DefaultPanoramaUseCase: PanoramaUseCase {
     init(panoramaRepository: DefaultPanoramaRepository) {
         self.panoramaRepository = panoramaRepository
     }
-    
     func getAlbum(albumId: Int) -> Observable<Album> {
         return panoramaRepository.getAlbum(albumId: albumId)
     }
