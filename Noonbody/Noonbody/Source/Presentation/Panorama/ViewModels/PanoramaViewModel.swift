@@ -11,7 +11,9 @@ import RxSwift
 import RxCocoa
 
 final class PanoramaViewModel {
-    private let panoramaUseCase: PanoramaUseCase
+    private let fetchAlbumUseCase: FetchAlbumUseCase
+    private let renameAlbumUseCase: RenameAlbumUseCase
+    private let deleteAlbumUseCase: DeleteAlbumUseCase
     
     struct Input {
         let cameraViewDidDisappear: Observable<Void>
@@ -27,15 +29,18 @@ final class PanoramaViewModel {
         let renamedAlbum: Driver<String?>
         let deleteAlbumStatusCode: Driver<Int>
     }
-    
-    init(panoramaUseCase: PanoramaUseCase) {
-        self.panoramaUseCase = panoramaUseCase
+    init(fetchAlbumUseCase: FetchAlbumUseCase,
+         renameAlbumUseCase: RenameAlbumUseCase,
+         deleteAlbumUseCase: DeleteAlbumUseCase) {
+        self.fetchAlbumUseCase = fetchAlbumUseCase
+        self.renameAlbumUseCase = renameAlbumUseCase
+        self.deleteAlbumUseCase = deleteAlbumUseCase
     }
     
     func transform(input: Input) -> Output {
         let album = input.cameraViewDidDisappear
             .flatMap { _ in
-                self.panoramaUseCase.getAlbum(albumId: input.albumId) }
+                self.fetchAlbumUseCase.album(albumId: input.albumId) }
             .map { $0 }
             .share()
         
@@ -45,13 +50,13 @@ final class PanoramaViewModel {
                 return AlbumRequestModel(name: name)
             }
             .flatMap { request in
-                self.panoramaUseCase.renameAlbum(albumId: input.albumId, request: request)
+                self.renameAlbumUseCase.rename(albumId: input.albumId, request: request)
             }
             .share()
         
         let deleteAlbumResponse = input.deleteAlbumButtonControlEvent
             .flatMap {
-                self.panoramaUseCase.deleteAlbum(albumId: input.albumId)
+                self.deleteAlbumUseCase.delete(albumId: input.albumId)
             }.map { $0 }
             .share()
         

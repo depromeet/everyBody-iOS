@@ -64,7 +64,9 @@ class PanoramaViewController: BaseViewController {
     
     let cellSpacing: CGFloat = 2
     var cellWidth: CGFloat = 0
-    private let viewModel = PanoramaViewModel(panoramaUseCase: DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository()))
+    private let viewModel = PanoramaViewModel(fetchAlbumUseCase: DefaultFetchAlbumUseCase(repository: LocalAlbumRepositry()),
+                                              renameAlbumUseCase: DefaultRenameAlbumUseCase(repository: LocalAlbumRepositry()),
+                                              deleteAlbumUseCase: DefaultDeleteAlbumUseCase(repository: LocalAlbumRepositry()))
     private var deletePicturePopUp = PopUpViewController(type: .delete)
     private var deleteAlbumPopUp = PopUpViewController(type: .delete)
     private var renameAlbumPopUp = PopUpViewController(type: .textField)
