@@ -80,7 +80,7 @@ class TopCollectionViewCell: UICollectionViewCell {
     }
     
     func setPhotoCell(albumId: Int, bodyPart: String, imageName: Int, contentMode: Bool, fileExtension: FileExtension) {
-        panoramaImage.image = AlbumManager.loadImageFromDocumentDirectory(imageName: "\(albumId)/\(bodyPart)/\(imageName).\(fileExtension.rawValue)")
+        panoramaImage.image = AlbumManager.loadImageFromDocumentDirectory(imageName: "\(albumId)/\(bodyPart)/\(imageName).\(fileExtension)")
         
         if !UIDevice.current.hasNotch {
             panoramaImage.contentMode = contentMode ? .scaleAspectFill : .scaleAspectFit
