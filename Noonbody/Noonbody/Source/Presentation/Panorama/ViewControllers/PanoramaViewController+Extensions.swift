@@ -93,12 +93,12 @@ extension PanoramaViewController: UICollectionViewDataSource {
             let cell: TopCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.selectedViewIsHidden(editMode: editMode)
             let indexPath = editMode ? indexPath.row - 1 : indexPath.row
-            cell.setPhotoCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath].id, contentMode: gridMode, fileExtension: fileExtension)
+            cell.setPhotoCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath].id, contentMode: gridMode, fileExtension: FileExtension.png)
             return cell
         }
         
         let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.setCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath.row].id, index: indexPath.row, fileExtension: fileExtension)
+        cell.setCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath.row].id, index: indexPath.row, fileExtension: FileExtension.png)
         if indexPath.item == selectedIndexByPart[bodyPartIndex].row {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
         } else {

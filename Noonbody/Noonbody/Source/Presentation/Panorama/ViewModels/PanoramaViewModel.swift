@@ -9,7 +9,6 @@ import Foundation
 
 import RxSwift
 import RxCocoa
-import RealmSwift
 
 final class PanoramaViewModel {
     private let panoramaUseCase: PanoramaUseCase

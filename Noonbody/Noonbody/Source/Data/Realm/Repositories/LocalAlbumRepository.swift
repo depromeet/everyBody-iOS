@@ -98,7 +98,7 @@ class LocalAlbumRepositry: AlbumRepository {
             let fileManager = FileManager()
             let documentURL = RealmManager.getUrl()
             let task = Picture(date: request.takenAt)
-            let fileExtension = FileExtensions.png.rawValue
+            let fileExtension = FileExtension.png.rawValue
             
             let directoryURL = documentURL.appendingPathComponent("\(request.albumId)/\(request.bodyPart)")
             let imageURL = directoryURL.appendingPathComponent("\(task.id).\(fileExtension)")

@@ -79,8 +79,8 @@ class TopCollectionViewCell: UICollectionViewCell {
         selectedView.isHidden = !editMode
     }
     
-    func setPhotoCell(albumId: Int, bodyPart: String, imageName: Int, contentMode: Bool, fileExtension: String) {
-        panoramaImage.image = AlbumManager.loadImageFromDocumentDirectory(imageName: "\(albumId)/\(bodyPart)/\(imageName).\(fileExtension)")
+    func setPhotoCell(albumId: Int, bodyPart: String, imageName: Int, contentMode: Bool, fileExtension: FileExtension) {
+        panoramaImage.image = AlbumManager.loadImageFromDocumentDirectory(imageName: "\(albumId)/\(bodyPart)/\(imageName).\(fileExtension.rawValue)")
         
         if !UIDevice.current.hasNotch {
             panoramaImage.contentMode = contentMode ? .scaleAspectFill : .scaleAspectFit

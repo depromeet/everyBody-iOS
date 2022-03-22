@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum FileExtensions: String {
+enum FileExtension: String {
     case png, jpg, jpge
 }
