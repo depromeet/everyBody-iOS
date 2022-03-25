@@ -112,7 +112,9 @@ extension PanoramaViewController: UICollectionViewDataSource {
             if indexPath.row == 0 {
                 cameraButtonDidTap()
             } else {
-                deleteData[indexPath.row - 1] = bodyPartData[indexPath.row - 1].id
+                deletePictureDataValue[indexPath.row - 1] = bodyPartData[indexPath.row - 1].id
+                deletePictureData.accept(deletePictureDataValue)
+                
             }
         } else if !bodyPartData.isEmpty {
             if selectedIndexByPart[bodyPartIndex] == indexPath { return }
@@ -128,7 +130,8 @@ extension PanoramaViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         if collectionView == topCollectionView && editMode {
-            deleteData.removeValue(forKey: indexPath.row - 1)
+            deletePictureDataValue.removeValue(forKey: indexPath.row - 1)
+            deletePictureData.accept(deletePictureDataValue)
         }
     }
 }
