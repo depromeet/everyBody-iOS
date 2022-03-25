@@ -12,7 +12,10 @@ import RxCocoa
 
 final class AlbumSelectionViewModel {
     
+    private let fetchAlbumsUseCase: FetchAlbumsUseCase
+    private let createAlbumUseCase: CreateAlbumUseCase
     private let albumUseCase: AlbumUseCase
+    
     private let requestManager = CameraRequestManager.shared
     private let disposeBag = DisposeBag()
     let isLoading = BehaviorRelay<Bool>(value: false)
@@ -32,13 +35,16 @@ final class AlbumSelectionViewModel {
         let statusCode: Driver<Int>
     }
     
-    init(albumUseCase: AlbumUseCase) {
+    init(fetchAlbumsUseCase: FetchAlbumsUseCase, createAlbumUseCase: CreateAlbumUseCase, albumUseCase: AlbumUseCase) {
+        self.fetchAlbumsUseCase = fetchAlbumsUseCase
+        self.createAlbumUseCase = createAlbumUseCase
         self.albumUseCase = albumUseCase
     }
     
     func transform(input: Input) -> Output {
         let albums = input.viewWillAppear
-            .flatMap { self.albumUseCase.getAlbumList() }
+            .flatMap {
+                self.fetchAlbumsUseCase.albums() }
             .map { $0 }
             .share()
         
@@ -47,7 +53,7 @@ final class AlbumSelectionViewModel {
             .map { response -> [Album] in
                 return response
             }.asDriver(onErrorJustReturn: [])
-
+        
         let save = input.saveButtonControlEvent
             .withLatestFrom(input.photoRequestModel)
             .do(onNext: { _ in self.isLoading.accept(true) })
@@ -69,7 +75,7 @@ final class AlbumSelectionViewModel {
                 return AlbumRequestModel(name: name)
             }
             .flatMap { requestModel -> Observable<Album> in
-                return self.albumUseCase.createAlbum(request: requestModel)
+                return self.createAlbumUseCase.create(request: requestModel)
             }
             .share()
         

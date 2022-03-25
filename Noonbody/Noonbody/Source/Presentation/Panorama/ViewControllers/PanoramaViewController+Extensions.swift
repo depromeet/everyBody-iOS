@@ -8,7 +8,6 @@
 import UIKit
 
 extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == bottomCollectionView {
             cellWidth = collectionView.frame.height * 0.54 + cellSpacing
@@ -45,7 +44,7 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
             if let indexPath = bottomCollectionView.indexPathForItem(at: centerPoint), centerCell == nil {
                 centerCell = bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
                 topCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-                selectedIndexByPart[bodyPart] = indexPath
+                selectedIndexByPart[bodyPartIndex] = indexPath
                 centerCell?.transformToCenter()
             }
             
@@ -53,7 +52,7 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
                 let offsetX = centerPoint.x - cell.center.x
                 if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
                     cell.transformToStandard()
-                    bottomCollectionView.deselectItem(at: selectedIndexByPart[bodyPart], animated: false)
+                    bottomCollectionView.deselectItem(at: selectedIndexByPart[bodyPartIndex], animated: false)
                     self.centerCell = nil
                 }
             }
@@ -94,13 +93,13 @@ extension PanoramaViewController: UICollectionViewDataSource {
             let cell: TopCell = collectionView.dequeueReusableCell(for: indexPath)
             cell.selectedViewIsHidden(editMode: editMode)
             let indexPath = editMode ? indexPath.row - 1 : indexPath.row
-            cell.setPhotoCell(imageURL: bodyPartData[indexPath].imageURL, contentMode: gridMode)
+            cell.setPhotoCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath].id, contentMode: gridMode, fileExtension: .png)
             return cell
         }
         
         let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
-        cell.setCell(index: indexPath.row, imageURL: bodyPartData[indexPath.row].imageURL)
-        if indexPath.item == selectedIndexByPart[bodyPart].row {
+        cell.setCell(albumId: albumData.id, bodyPart: bodyPart, imageName: bodyPartData[indexPath.row].id, index: indexPath.row, fileExtension: .png)
+        if indexPath.item == selectedIndexByPart[bodyPartIndex].row {
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
         } else {
             collectionView.deselectItem(at: indexPath, animated: false)
@@ -116,10 +115,10 @@ extension PanoramaViewController: UICollectionViewDataSource {
                 deleteData[indexPath.row - 1] = bodyPartData[indexPath.row - 1].id
             }
         } else if !bodyPartData.isEmpty {
-            if selectedIndexByPart[bodyPart] == indexPath { return }
+            if selectedIndexByPart[bodyPartIndex] == indexPath { return }
             isSelectedEvent = true
             centerCell?.transformToStandard()
-            selectedIndexByPart[bodyPart] = indexPath
+            selectedIndexByPart[bodyPartIndex] = indexPath
             
             guard let bottomCell = bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell else { return }
             centerCell = bottomCell

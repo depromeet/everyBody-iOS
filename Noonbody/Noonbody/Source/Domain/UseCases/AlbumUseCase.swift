@@ -14,35 +14,29 @@ protocol AlbumUseCase {
     func createAlbum(request: AlbumRequestModel) -> Observable<Album>
     func createAlbum(requestModel: AlbumRequestModel) -> Observable<Int>
     func savePhoto(request: PhotoRequestModel) -> Observable<Int>
-    func sendFeedback(request: FeedbackRequestModel) -> Observable<Int>
 }
 
 final class DefaultAlbumUseCase: AlbumUseCase {
 
-    private let albumRepository: DefaultAlbumRepositry
+    private let albumRepository: AlbumRepository
     
-    init(albumRepository: DefaultAlbumRepositry) {
+    init(albumRepository: AlbumRepository) {
         self.albumRepository = albumRepository
     }
     
     func getAlbumList() -> Observable<[Album]> {
-        return albumRepository.getAlbumList()
+        return albumRepository.albums()
     }
     
     func createAlbum(request: AlbumRequestModel) -> Observable<Album> {
-        return albumRepository.createAlbum(request: request)
+        return albumRepository.create(request: request)
     }
     
     func createAlbum(requestModel: AlbumRequestModel) -> Observable<Int> {
-        return albumRepository.createAlbum(request: requestModel)
+        return albumRepository.create(album: requestModel)
     }
     
     func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
         return albumRepository.savePhoto(request: request)
     }
-    
-    func sendFeedback(request: FeedbackRequestModel) -> Observable<Int> {
-        return albumRepository.sendFeedback(request: request)
-    }
-    
 }

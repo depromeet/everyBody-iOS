@@ -7,6 +7,7 @@
 
 import Foundation
 
+import RealmSwift
 import RxSwift
 import Moya
 

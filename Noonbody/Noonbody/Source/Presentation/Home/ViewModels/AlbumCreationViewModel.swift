@@ -12,7 +12,7 @@ import RxSwift
 
 final class AlbumCreationViewModel {
     
-    private let albumUseCase: AlbumUseCase
+    private let albumUseCase: CreateAlbumUseCase
     
     struct Input {
         let albumNameTextField: Observable<String>
@@ -24,7 +24,7 @@ final class AlbumCreationViewModel {
         let statusCode: Driver<Int>
     }
     
-    init(albumUseCase: DefaultAlbumUseCase) {
+    init(albumUseCase: CreateAlbumUseCase) {
         self.albumUseCase = albumUseCase
     }
     
@@ -39,7 +39,7 @@ final class AlbumCreationViewModel {
                 return AlbumRequestModel(name: name)
             }
             .flatMap { requestModel in
-                self.albumUseCase.createAlbum(requestModel: requestModel)
+                self.albumUseCase.create(album: requestModel)
             }
             .share()
         
