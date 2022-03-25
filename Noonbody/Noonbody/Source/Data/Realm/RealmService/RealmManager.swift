@@ -12,8 +12,6 @@ import RealmSwift
 public class RealmManager {
     public static func getUrl() -> URL {
         let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        print("Realm Database fileUrl: ", documentDirectory)
-        
         return documentDirectory
     }
     
