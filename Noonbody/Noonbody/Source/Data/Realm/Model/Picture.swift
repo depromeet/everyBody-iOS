@@ -11,11 +11,17 @@ import RealmSwift
 
 final class Picture: Object {
     @Persisted(primaryKey: true) var id: Int
+    @Persisted var albumId: Int = 0
+    @Persisted var bodyPart: String = ""
+    @Persisted var directoryURL: String = ""
     @Persisted var date: String = ""
     
-    convenience init(date: String) {
+    convenience init(albumId: Int, bodyPart: String, directoryURL: String, date: String) {
         self.init()
         self.id = incrementID()
+        self.albumId = albumId
+        self.bodyPart = bodyPart
+        self.directoryURL = directoryURL
         self.date = date
     }
     
