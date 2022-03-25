@@ -13,7 +13,7 @@ enum AlbumAPI: BaseTargetType {
     typealias ResultModel = [Album]
     
     case getAlbumList
-    case savePhoto(request: PhotoRequestModel)
+    case savePhoto(request: PictureRequestModel)
     case sendFeedback(request: FeedbackRequestModel)
 }
 

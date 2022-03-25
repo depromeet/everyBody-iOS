@@ -43,7 +43,7 @@ class AlbumSelectionViewController: BaseViewController {
     
     private let viewModel = AlbumSelectionViewModel(fetchAlbumsUseCase: DefaultFetchAlbumsUseCase(repository: LocalAlbumRepositry()),
                                                     createAlbumUseCase: DefaultCreateAlbumUseCase(repository: LocalAlbumRepositry()),
-                                                    albumUseCase: DefaultAlbumUseCase(albumRepository: DefaultAlbumRepositry()))
+                                                    savePictureUseCase: DefaultSavePictureUseCase(repository: LocalPictureRepository()))
 
     private lazy var albumData: [Album] = [] {
         didSet {
@@ -51,7 +51,7 @@ class AlbumSelectionViewController: BaseViewController {
         }
     }
     private let requestManager = CameraRequestManager.shared
-    private var albumRequest = PublishSubject<PhotoRequestModel>()
+    private var albumRequest = PublishSubject<PictureRequestModel>()
     
     // MARK: - View Life Cycle
     
@@ -82,7 +82,7 @@ class AlbumSelectionViewController: BaseViewController {
         let input = AlbumSelectionViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
                                                   saveButtonControlEvent: completeBarButtonItem.rx.tap,
                                                   albumSelection: collectionView.rx.itemSelected.asDriver(),
-                                                  photoRequestModel: albumRequest,
+                                                  pictureRequestModel: albumRequest,
                                                   albumNameTextField: popUp.textField.rx.text.orEmpty.asObservable(),
                                                   creationControlEvent: popUp.confirmButton.rx.tap)
         let output = viewModel.transform(input: input)
@@ -174,7 +174,7 @@ extension AlbumSelectionViewController: UICollectionViewDelegate {
             self.present(popUp, animated: true, completion: nil)
         } else {
             requestManager.albumId = albumData[indexPath.row - 1].id
-            albumRequest.onNext(requestManager.toPhotoRequestModel())
+            albumRequest.onNext(requestManager.toPictureRequestModel())
         }
     }
     

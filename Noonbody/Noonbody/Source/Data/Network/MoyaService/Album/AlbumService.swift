@@ -22,7 +22,7 @@ public class AlbumService {
         }
     }
     
-    func savePhoto(request: PhotoRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
+    func savePhoto(request: PictureRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
         provider.requestNoResultAPI(AlbumAPI.savePhoto(request: request)) { response in
             completion(response)
         }

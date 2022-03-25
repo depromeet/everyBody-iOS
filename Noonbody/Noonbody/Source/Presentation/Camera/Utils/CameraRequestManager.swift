@@ -15,8 +15,8 @@ class CameraRequestManager {
     var bodyPart: String = "whole"
     var takenAt: String = ""
     
-    func toPhotoRequestModel() -> PhotoRequestModel {
-        return PhotoRequestModel(image: image,
+    func toPictureRequestModel() -> PictureRequestModel {
+        return PictureRequestModel(image: image,
                                  albumId: albumId,
                                  bodyPart: bodyPart,
                                  takenAt: takenAt)

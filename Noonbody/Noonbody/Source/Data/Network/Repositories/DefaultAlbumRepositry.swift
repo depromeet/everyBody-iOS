@@ -110,7 +110,7 @@ class DefaultAlbumRepositry: AlbumRepository {
         return observable
     }
     
-    func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
+    func save(request: PictureRequestModel) -> Observable<Int> {
         Observable<Int>.create { observer -> Disposable in
             let requestReference: () = CameraService.shared.postPhoto(request: request) { response in
                 switch response {
