@@ -13,15 +13,16 @@ import RxSwift
 class LocalPictureRepository: PictureRepository {
     func save(request: PictureRequestModel) -> Observable<Int> {
         return Observable<Int>.create { observer -> Disposable in
-            let fileManager = FileManager()
+            guard let realm = RealmManager.realm() else { return Disposables.create() }
             let documentURL = RealmManager.getUrl()
-            let task = Picture(albumId: request.albumId,
-                               bodyPart: request.bodyPart,
-                               directoryURL: "\(request.albumId)/\(request.bodyPart)",
-                               date: request.takenAt)
+            let fileManager = FileManager()
+            let picture = Picture(albumId: request.albumId,
+                                  bodyPart: "\(request.bodyPart)",
+                                  directoryURL: "\(request.albumId)/\(request.bodyPart)",
+                                  date: request.takenAt)
             
-            let directoryURL = documentURL.appendingPathComponent(task.directoryURL)
-            let imageURL = directoryURL.appendingPathComponent("\(task.id).\(FileExtension.png)")
+            let directoryURL = documentURL.appendingPathComponent(picture.directoryURL)
+            let imageURL = directoryURL.appendingPathComponent("\(picture.id).\(FileExtension.png)")
             
             do {
                 try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -59,7 +60,7 @@ class LocalPictureRepository: PictureRepository {
     func delete(pictureId: Int) -> Observable<Int> {
         Observable<Int>.create { observer -> Disposable in
             let documentDirectory = RealmManager.getUrl()
-            if let picture = RealmManager.realm()?.objects(Picture.self).filter("id==\(pictureId)").first {
+            if let picture = RealmManager.realm()?.objects(Picture.self).filter("id == \(pictureId)").first {
                 
                 let imageURL = documentDirectory.appendingPathComponent("\(picture.directoryURL)/\(pictureId).\(FileExtension.png)")
                 
