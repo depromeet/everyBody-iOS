@@ -23,17 +23,11 @@ final class LaunchService {
         self.wasLaunchedBefore = wasLaunchedBefore
         if !wasLaunchedBefore {
             setWasLaunchedBefore(true)
-            setDefaultAlbum()
         }
     }
     
     convenience init(userDefaults: UserDefaults, key: String) {
         self.init(getWasLaunchedBefore: { userDefaults.bool(forKey: key) },
                   setWasLaunchedBefore: { userDefaults.set($0, forKey: key) })
-    }
-    
-    private func setDefaultAlbum() {
-        let album = RMAlbum(name: "눈바디", createdAt: Date())
-        RealmManager.saveObjects(objs: album)
     }
 }
