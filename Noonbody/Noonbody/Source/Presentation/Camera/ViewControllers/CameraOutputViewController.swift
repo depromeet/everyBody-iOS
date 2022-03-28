@@ -104,7 +104,7 @@ class CameraOutputViewController: BaseViewController {
     // MARK: - Methods
     
     private func setinitialPart() {
-        requestManager.bodyPart = "whole"
+        requestManager.bodyPart = .whole
     }
     
     private func initNavigationBar() {
@@ -296,13 +296,13 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
         } else if segmentControl == partSegmentedControl {
             switch Part.init(rawValue: index) {
             case .whole:
-                requestManager.bodyPart = "whole"
+                requestManager.bodyPart = .whole
                 return
             case .upper:
-                requestManager.bodyPart = "upper"
+                requestManager.bodyPart = .upper
                 return
             case .lower:
-                requestManager.bodyPart = "lower"
+                requestManager.bodyPart = .lower
                 return
             default:
                 return

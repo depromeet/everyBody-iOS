@@ -10,6 +10,10 @@ import UIKit.UIImage
 struct PictureRequestModel {
     let image: UIImage
     let albumId: Int
-    let bodyPart: String
+    let bodyPart: BodyPart
     let takenAt: String
+    
+    enum BodyPart: String {
+        case whole, upper, lower
+    }
 }

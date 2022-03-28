@@ -76,7 +76,7 @@ class PanoramaViewController: BaseViewController {
     var albumData: Album
     private var albumName: String
     var bodyPartIndex = 0
-    var bodyPart = "whole"
+    var bodyPart: BodyPart = .whole
     
     var deletePictureData = BehaviorRelay<[Int: Int]>(value: [:])
     var deletePictureDataValue: [Int: Int]
@@ -278,10 +278,12 @@ class PanoramaViewController: BaseViewController {
                 bodyPartSegmentControl.buttons[0].isSelected = false
                 bodyPartSegmentControl.buttons[1].isSelected = true
                 bodyPartData = albumData.pictures.upper
+                bodyPart = .upper
             } else if !albumData.pictures.lower.isEmpty {
                 bodyPartSegmentControl.buttons[0].isSelected = false
                 bodyPartSegmentControl.buttons[2].isSelected = true
                 bodyPartData = albumData.pictures.lower
+                bodyPart = .lower
             }
         }
     }
@@ -297,13 +299,13 @@ class PanoramaViewController: BaseViewController {
         switch index {
         case 0:
             bodyPartData = albumData.pictures.whole
-            bodyPart = "whole"
+            bodyPart = .whole
         case 1:
             bodyPartData = albumData.pictures.upper
-            bodyPart = "upper"
+            bodyPart = .upper
         case 2:
             bodyPartData = albumData.pictures.lower
-            bodyPart = "lower"
+            bodyPart = .lower
         default:
             return
         }
@@ -311,14 +313,12 @@ class PanoramaViewController: BaseViewController {
     
     private func deleteAlbumData(id: Int) {
         switch bodyPart {
-        case "whole":
+        case .whole:
             albumData.pictures.whole.removeAll(where: {$0.id == id})
-        case "upper":
+        case .upper:
             albumData.pictures.upper.removeAll(where: {$0.id == id})
-        case "lower":
+        case .lower:
             albumData.pictures.lower.removeAll(where: {$0.id == id})
-        default:
-            return
         }
     }
     
