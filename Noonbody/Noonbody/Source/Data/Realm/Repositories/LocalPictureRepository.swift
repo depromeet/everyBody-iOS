@@ -30,30 +30,26 @@ class LocalPictureRepository: PictureRepository {
             }
             
             guard let data = request.image.pngData() else {
-                print("압축에 실패했습니다.")
                 return Disposables.create()
             }
             
             do {
                 try data.write(to: imageURL)
-                try RealmManager.realm()?.write {
-                    let localAlbum = RealmManager.realm()?.objects(RMAlbum.self).filter("id==\(request.albumId)").first
+                try realm.write {
+                    let localAlbum = realm.objects(RMAlbum.self).filter("id == \(request.albumId)").first
                     switch request.bodyPart {
-                    case "whole":
-                        localAlbum?.whole.append(task)
-                    case "upper":
-                        localAlbum?.upper.append(task)
-                    case "lower":
-                        localAlbum?.lower.append(task)
-                    default: break
+                    case .whole:
+                        localAlbum?.whole.append(picture)
+                    case .upper:
+                        localAlbum?.upper.append(picture)
+                    case .lower:
+                        localAlbum?.lower.append(picture)
                     }
                 }
-                
-                RealmManager.saveObjects(objs: task)
+                RealmManager.saveObjects(objs: picture)
                 observer.onNext(200)
-                print("이미지를 저장했습니다")
             } catch {
-                print("이미지를 저장하지 못했습니다.")
+                
             }
             
             return Disposables.create()
@@ -72,10 +68,9 @@ class LocalPictureRepository: PictureRepository {
                         RealmManager.realm()?.delete(picture)
                         try FileManager.default.removeItem(at: imageURL)
                         observer.onNext(200)
-                        print("이미지 삭제 완료")
                     }
                 } catch {
-                    print("이미지를 삭제하지 못했습니다.")
+                    
                 }
             }
             return Disposables.create()

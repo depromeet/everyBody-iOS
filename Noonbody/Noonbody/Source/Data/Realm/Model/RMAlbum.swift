@@ -55,7 +55,7 @@ final class RMAlbum: Object {
         return "\(days)일간의 기록"
     }
     
-    func getThumbnailURL() -> String? {
+    func thumbnailURL() -> String? {
         guard let picture = RealmManager.realm()?.objects(Picture.self).filter("albumId = \(id)").last else { return nil }
         return "\(picture.directoryURL)/\(picture.id).\(FileExtension.png)"
     }
@@ -65,6 +65,6 @@ extension RMAlbum {
     func asEntity() -> Album {
         let pictures = Pictures(lower: lowerArray, upper: upperArray, whole: wholeArray)
         let description = calcuateDay(createdAt: createdAt)
-        return Album(id: id, name: name, thumbnailURL: getThumbnailURL(), createdAt: "", albumDescription: description, pictures: pictures)
+        return Album(id: id, name: name, thumbnailURL: thumbnailURL(), createdAt: "", albumDescription: description, pictures: pictures)
     }
 }
