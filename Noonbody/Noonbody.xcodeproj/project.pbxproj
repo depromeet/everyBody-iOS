@@ -186,7 +186,6 @@
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
-		FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -376,7 +375,6 @@
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
-		FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PanoramaViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -639,7 +637,6 @@
 			isa = PBXGroup;
 			children = (
 				FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */,
-				FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1362,7 +1359,6 @@
 				FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */,
 				FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */,
 				AA2F3185275AD61800855861 /* PhotoRequestModel.swift in Sources */,
-				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
 				FC1F6A4327E9DB1F005AB343 /* CreateAlbumUseCase.swift in Sources */,
 				AAE2FA74276288E600FA2C5C /* NBDatePicker.swift in Sources */,

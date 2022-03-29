@@ -27,7 +27,7 @@ class PanoramaViewController: BaseViewController {
         $0.spacing = 10
     }
     
-    var topCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
+    private var topCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
         $0.register(TopCollectionViewCell.self)
         $0.register(CameraCollectionViewCell.self)
         $0.backgroundColor = .white
@@ -36,7 +36,7 @@ class PanoramaViewController: BaseViewController {
         $0.isScrollEnabled = false
     }
     
-    var bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
+    private var bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
         $0.register(BottomCollectionViewCell.self)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -62,8 +62,8 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Properties
     
-    let cellSpacing: CGFloat = 2
-    var cellWidth: CGFloat = 0
+    private let cellSpacing: CGFloat = 2
+    private var cellWidth: CGFloat = 0
     private let viewModel = PanoramaViewModel(fetchAlbumUseCase: DefaultFetchAlbumUseCase(repository: LocalAlbumRepositry()),
                                               renameAlbumUseCase: DefaultRenameAlbumUseCase(repository: LocalAlbumRepositry()),
                                               deleteAlbumUseCase: DefaultDeleteAlbumUseCase(repository: LocalAlbumRepositry()),
@@ -73,15 +73,15 @@ class PanoramaViewController: BaseViewController {
     private var popUpForAlbumRenaming = PopUpViewController(type: .textField)
     private var cameraViewcontroller = CameraViewController()
     private var albumId: Int
-    var albumData: Album
+    private var albumData: Album
     private var albumName: String
-    var bodyPartIndex = 0
-    var bodyPart: BodyPart = .whole
+    private var bodyPartIndex = 0
+    private var bodyPart: BodyPart = .whole
     
     private var seletedPictures = BehaviorRelay<[Int: Int]>(value: [:])
     private var seletedPicturesValue: [Int: Int]
     
-    var bodyPartData: [PictureInfo] {
+    private var bodyPartData: [PictureInfo] {
         didSet {
             setHide()
             reloadCollectionView()
@@ -89,7 +89,7 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    var gridMode = false {
+    private var gridMode = false {
         didSet {
             topCollectionView.reloadData()
             topCollectionView.bounces = gridMode
@@ -98,7 +98,7 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    var editMode = false {
+    private var editMode = false {
         didSet {
             topCollectionView.reloadData()
             topCollectionView.isScrollEnabled = editMode
@@ -115,9 +115,9 @@ class PanoramaViewController: BaseViewController {
     private var horizontalFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
     }
-    var centerCell: BottomCollectionViewCell?
-    var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
-    var isSelectedEvent: Bool = false
+    private var centerCell: BottomCollectionViewCell?
+    private var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
+    private var isSelectedEvent: Bool = false
     
     private lazy var menuItems: [UIAction] = [
         UIAction(title: "앨범 이름 수정",
@@ -505,6 +505,135 @@ extension PanoramaViewController {
 }
 
 // MARK: - Extension
+
+extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == bottomCollectionView {
+            cellWidth = collectionView.frame.height * 0.54 + cellSpacing
+            return CGSize(width: cellWidth, height: collectionView.frame.height )
+        } else {
+            let length =  Constant.Size.screenWidth
+            let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
+            return gridMode || editMode ?  CGSize(width: (length - 4)/3, height: (length - 4)/3) : CGSize(width: length, height: length * ratio)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == bottomCollectionView {
+            let inset = (collectionView.frame.width - (collectionView.frame.height * 0.54 + cellSpacing)) / 2
+            return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+        }
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return collectionView == topCollectionView && gridMode || editMode ? 2 : 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isSelectedEvent { return }
+        
+        if scrollView == bottomCollectionView && !bodyPartData.isEmpty {
+            let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
+            
+            if let indexPath = bottomCollectionView.indexPathForItem(at: centerPoint), centerCell == nil {
+                centerCell = bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
+                topCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+                selectedIndexByPart[bodyPartIndex] = indexPath
+                centerCell?.transformToCenter()
+            }
+            
+            if let cell = centerCell {
+                let offsetX = centerPoint.x - cell.center.x
+                if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
+                    cell.transformToStandard()
+                    bottomCollectionView.deselectItem(at: selectedIndexByPart[bodyPartIndex], animated: false)
+                    self.centerCell = nil
+                }
+            }
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        moveCellToCenter(animated: true)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        isSelectedEvent = false
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            moveCellToCenter(animated: true)
+        }
+    }
+}
+
+extension PanoramaViewController: UICollectionViewDataSource {
+    typealias CameraCell = CameraCollectionViewCell
+    typealias TopCell = TopCollectionViewCell
+    typealias BottomCell = BottomCollectionViewCell
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionView == topCollectionView && editMode ? bodyPartData.count + 1 : bodyPartData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == topCollectionView {
+            if editMode && indexPath.row == 0 {
+                let cell: CameraCell = collectionView.dequeueReusableCell(for: indexPath)
+                return cell
+            }
+            
+            let cell: TopCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.selectedViewIsHidden(editMode: editMode)
+            let indexPath = editMode ? indexPath.row - 1 : indexPath.row
+            cell.setPhotoCell(albumId: albumData.id, bodyPart: "\(bodyPart)", imageName: bodyPartData[indexPath].id, contentMode: gridMode, fileExtension: .png)
+            return cell
+        }
+        
+        let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.setCell(albumId: albumData.id, bodyPart: "\(bodyPart)", imageName: bodyPartData[indexPath.row].id, index: indexPath.row, fileExtension: .png)
+        if indexPath.item == selectedIndexByPart[bodyPartIndex].row {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        } else {
+            collectionView.deselectItem(at: indexPath, animated: false)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == topCollectionView && editMode {
+            if indexPath.row == 0 {
+                cameraButtonDidTap()
+            } else {
+                seletedPicturesValue[indexPath.row - 1] = bodyPartData[indexPath.row - 1].id
+                seletedPictures.accept(seletedPicturesValue)
+                
+            }
+        } else if !bodyPartData.isEmpty {
+            if selectedIndexByPart[bodyPartIndex] == indexPath { return }
+            isSelectedEvent = true
+            centerCell?.transformToStandard()
+            selectedIndexByPart[bodyPartIndex] = indexPath
+            
+            guard let bottomCell = bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell else { return }
+            centerCell = bottomCell
+            setCollectionViewContentOffset(animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == topCollectionView && editMode {
+            seletedPicturesValue.removeValue(forKey: indexPath.row - 1)
+            seletedPictures.accept(seletedPicturesValue)
+        }
+    }
+}
 
 extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {
