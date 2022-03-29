@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 
 import Firebase
+import RealmSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 options: authOptions, completionHandler: { (_, _) in }
             )
         application.registerForRemoteNotifications()
+        
+        // Realm Migration
+        let config = Realm.Configuration(
+            // current schemaVersion, 모델 변경사항이 있을 때마다 Version up
+            schemaVersion: 0,
+            migrationBlock: { migration, oldSchemaVersion in
+                
+            })
+        Realm.Configuration.defaultConfiguration = config
         
         return true
     }

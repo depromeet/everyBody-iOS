@@ -183,6 +183,7 @@
 		FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821427832D6F007A729D /* PanoramaService.swift */; };
 		FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821527832D6F007A729D /* PanoramaAPI.swift */; };
 		FCBEEC2A27E4F33C00CC2F0E /* FileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBEEC2927E4F33C00CC2F0E /* FileExtension.swift */; };
+		FCC2526C27F31942007779CD /* RealmMigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC2526B27F31942007779CD /* RealmMigrationManager.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
@@ -372,6 +373,7 @@
 		FCAE821427832D6F007A729D /* PanoramaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaService.swift; sourceTree = "<group>"; };
 		FCAE821527832D6F007A729D /* PanoramaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaAPI.swift; sourceTree = "<group>"; };
 		FCBEEC2927E4F33C00CC2F0E /* FileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtension.swift; sourceTree = "<group>"; };
+		FCC2526B27F31942007779CD /* RealmMigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationManager.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
@@ -1086,6 +1088,7 @@
 			isa = PBXGroup;
 			children = (
 				FC2FFF5427D208770047E489 /* RealmManager.swift */,
+				FCC2526B27F31942007779CD /* RealmMigrationManager.swift */,
 			);
 			path = RealmService;
 			sourceTree = "<group>";
@@ -1370,6 +1373,7 @@
 				AAEA23A727960553005A08C9 /* CircleProgressView.swift in Sources */,
 				AA81D8C0279AF14800D4D667 /* UILabel+setLineHeight.swift in Sources */,
 				FC2FFF5127D0AB1C0047E489 /* Picture.swift in Sources */,
+				FCC2526C27F31942007779CD /* RealmMigrationManager.swift in Sources */,
 				AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */,
