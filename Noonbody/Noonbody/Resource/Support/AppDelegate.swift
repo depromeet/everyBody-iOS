@@ -35,9 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // current schemaVersion, 모델 변경사항이 있을 때마다 Version up
             schemaVersion: 0,
             migrationBlock: { migration, oldSchemaVersion in
-                if oldSchemaVersion < 0 {
-                    // RealmMigrationManager.combineProperty(migration: migration, object: Object.className(), properties: [""], newProperty: "")
-                }
+                
             })
         Realm.Configuration.defaultConfiguration = config
         
