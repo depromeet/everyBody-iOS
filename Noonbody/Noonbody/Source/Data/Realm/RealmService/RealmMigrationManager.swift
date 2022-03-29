@@ -19,15 +19,4 @@ public class RealmMigrationManager {
             newObject![object] = "\(oldObject![object] ?? initialValue)"
         }
     }
-    
-    static func combineProperty(migration: Migration, object: String, properties: [String], newProperty: String) {
-        migration.enumerateObjects(ofType: object.className) { oldObject, newObject in
-            var combinedProperty = ""
-            for property in properties {
-                let oldProperty = oldObject![property] as? String
-                combinedProperty += oldProperty!
-            }
-            newObject![newProperty] = combinedProperty
-        }
-    }
 }
