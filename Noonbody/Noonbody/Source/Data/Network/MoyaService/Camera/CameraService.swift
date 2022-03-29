@@ -16,7 +16,7 @@ public class CameraService {
     
     private init() { }
         
-    func postPhoto(request: PhotoRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
+    func postPhoto(request: PictureRequestModel, completion: @escaping (Result<Int?, Error>) -> Void) {
         provider.requestNoResultAPI(CameraAPI.postPhoto(request: request)) { response in
             completion(response)
         }

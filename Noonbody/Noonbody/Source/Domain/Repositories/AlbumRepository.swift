@@ -16,7 +16,4 @@ protocol AlbumRepository {
     func create(album: AlbumRequestModel) -> Observable<Int>
     func delete(albumId: Int) -> Observable<Int>
     func rename(albumId: Int, request: AlbumRequestModel) -> Observable<RenamedAlbum>
-    
-    // PhotoRepository로
-    func savePhoto(request: PhotoRequestModel) -> Observable<Int>
 }

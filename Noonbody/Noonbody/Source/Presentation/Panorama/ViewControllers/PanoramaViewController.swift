@@ -27,7 +27,7 @@ class PanoramaViewController: BaseViewController {
         $0.spacing = 10
     }
     
-    var topCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
+    private var topCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
         $0.register(TopCollectionViewCell.self)
         $0.register(CameraCollectionViewCell.self)
         $0.backgroundColor = .white
@@ -36,7 +36,7 @@ class PanoramaViewController: BaseViewController {
         $0.isScrollEnabled = false
     }
     
-    var bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
+    private var bottomCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
         $0.register(BottomCollectionViewCell.self)
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -62,30 +62,26 @@ class PanoramaViewController: BaseViewController {
     
     // MARK: - Properties
     
-    let cellSpacing: CGFloat = 2
-    var cellWidth: CGFloat = 0
+    private let cellSpacing: CGFloat = 2
+    private var cellWidth: CGFloat = 0
     private let viewModel = PanoramaViewModel(fetchAlbumUseCase: DefaultFetchAlbumUseCase(repository: LocalAlbumRepositry()),
                                               renameAlbumUseCase: DefaultRenameAlbumUseCase(repository: LocalAlbumRepositry()),
-                                              deleteAlbumUseCase: DefaultDeleteAlbumUseCase(repository: LocalAlbumRepositry()))
-    private var deletePicturePopUp = PopUpViewController(type: .delete)
-    private var deleteAlbumPopUp = PopUpViewController(type: .delete)
-    private var renameAlbumPopUp = PopUpViewController(type: .textField)
+                                              deleteAlbumUseCase: DefaultDeleteAlbumUseCase(repository: LocalAlbumRepositry()),
+                                              deletePictureUseCase: DefaultDeletePictureUseCase(repository: LocalPictureRepository()))
+    private var popUpForPicturesDeletion = PopUpViewController(type: .delete)
+    private var popUpForAlbumDeletion = PopUpViewController(type: .delete)
+    private var popUpForAlbumRenaming = PopUpViewController(type: .textField)
     private var cameraViewcontroller = CameraViewController()
     private var albumId: Int
-    var albumData: Album
+    private var albumData: Album
     private var albumName: String
-    var bodyPartIndex = 0
-    var bodyPart = "whole"
-    var deleteData: [Int: Int] = [:] {
-        didSet {
-            navigationItem.rightBarButtonItem?.isEnabled = !deleteData.isEmpty || !editMode
-            if editMode {
-                self.title = "\(deleteData.count)장"
-            }
-        }
-    }
+    private var bodyPartIndex = 0
+    private var bodyPart: BodyPart = .whole
     
-    var bodyPartData: [PictureInfo] {
+    private var seletedPictures = BehaviorRelay<[Int: Int]>(value: [:])
+    private var seletedPicturesValue: [Int: Int]
+    
+    private var bodyPartData: [PictureInfo] {
         didSet {
             setHide()
             reloadCollectionView()
@@ -93,7 +89,7 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    var gridMode = false {
+    private var gridMode = false {
         didSet {
             topCollectionView.reloadData()
             topCollectionView.bounces = gridMode
@@ -102,7 +98,7 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    var editMode = false {
+    private var editMode = false {
         didSet {
             topCollectionView.reloadData()
             topCollectionView.isScrollEnabled = editMode
@@ -119,9 +115,9 @@ class PanoramaViewController: BaseViewController {
     private var horizontalFlowLayout = UICollectionViewFlowLayout().then {
         $0.scrollDirection = .horizontal
     }
-    var centerCell: BottomCollectionViewCell?
-    var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
-    var isSelectedEvent: Bool = false
+    private var centerCell: BottomCollectionViewCell?
+    private var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
+    private var isSelectedEvent: Bool = false
     
     private lazy var menuItems: [UIAction] = [
         UIAction(title: "앨범 이름 수정",
@@ -143,6 +139,8 @@ class PanoramaViewController: BaseViewController {
         self.albumData = albumData
         self.bodyPartData = albumData.pictures.whole
         self.albumName = self.albumData.name
+         
+        self.seletedPicturesValue = seletedPictures.value
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -176,29 +174,13 @@ class PanoramaViewController: BaseViewController {
     // MARK: - Methods
     
     private func bind() {
-        deletePicturePopUp.confirmButton.rx.tap
-            .subscribe(onNext: {
-                self.deleteData.forEach { key, value in
-                    DefaultPanoramaUseCase(panoramaRepository: DefaultPanoramaRepository())
-                        .deletePicture(pictureId: value).bind(onNext: { [weak self] statusCode in
-                            guard let self = self else { return }
-                            if statusCode == 200 {
-                                self.showToast(type: .delete)
-                            }
-                        }).disposed(by: self.disposeBag)
-                    self.deleteAlbumData(id: value)
-                    self.bodyPartData.removeAll(where: {$0.id == value})
-                    self.updateSeletedIndex(index: key)
-                }
-                self.resetDeleteData()
-                self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
-            }).disposed(by: disposeBag)
-        
         let input = PanoramaViewModel.Input(cameraViewDidDisappear: cameraViewcontroller.rx.viewDidDisappear.map { _ in },
                                             albumId: albumId,
-                                            albumNameTextField: renameAlbumPopUp.textField.rx.text.orEmpty.asObservable(),
-                                            deleteAlbumButtonControlEvent: deleteAlbumPopUp.confirmButton.rx.tap,
-                                            renameButtonControlEvent: renameAlbumPopUp.confirmButton.rx.tap)
+                                            albumNameTextField: popUpForAlbumRenaming.textField.rx.text.orEmpty.asObservable(),
+                                            deletePictureData: seletedPictures.asObservable(),
+                                            deletePictureButtonControlEvent: popUpForPicturesDeletion.confirmButton.rx.tap,
+                                            deleteAlbumButtonControlEvent: popUpForAlbumDeletion.confirmButton.rx.tap,
+                                            renameButtonControlEvent: popUpForAlbumRenaming.confirmButton.rx.tap)
         let output = viewModel.transform(input: input)
         
         output.album
@@ -213,7 +195,7 @@ class PanoramaViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         output.canRename
-            .drive(renameAlbumPopUp.confirmButton.rx.isEnabled)
+            .drive(popUpForAlbumRenaming.confirmButton.rx.isEnabled)
             .disposed(by: disposeBag)
         
         output.renamedAlbum
@@ -226,6 +208,30 @@ class PanoramaViewController: BaseViewController {
                 }
             }).disposed(by: disposeBag)
         
+        output.deletePictureCount
+            .drive(onNext: { [weak self] count in
+                guard let self = self else { return }
+                self.title = self.editMode ? "\(count)장" : self.albumName
+                    self.navigationItem.rightBarButtonItem?.isEnabled = count != 0
+                }
+            ).disposed(by: disposeBag)
+
+        output.deletePictureStatusCode
+            .drive(onNext: { [weak self] statusCode in
+                guard let self = self else { return }
+                if statusCode == 200 {
+                    self.seletedPictures.value.forEach { key, value in
+                        self.deleteAlbumData(id: value)
+                        self.bodyPartData.removeAll(where: {$0.id == value})
+                        self.seletedPicturesValue.removeValue(forKey: key)
+                        self.seletedPictures.accept(self.seletedPicturesValue)
+                        self.updateSeletedIndex(index: key)
+                    }
+                    self.showToast(type: .delete)
+                    self.dismiss(animated: true, completion: self.topCollectionView.reloadData)
+                }
+            }).disposed(by: disposeBag)
+
         output.deleteAlbumStatusCode
             .drive(onNext: { [weak self] statusCode in
                 guard let self = self else { return }
@@ -254,7 +260,7 @@ class PanoramaViewController: BaseViewController {
                                                 leftActions: [#selector(editOrCloseButtonDidTap)],
                                                 rightActions: [#selector(deletePictureButtonDidTap)])
         
-        self.title = "\(deleteData.count)장"
+        self.title = "\(seletedPictures.value.count)장"
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
     
@@ -272,10 +278,12 @@ class PanoramaViewController: BaseViewController {
                 bodyPartSegmentControl.buttons[0].isSelected = false
                 bodyPartSegmentControl.buttons[1].isSelected = true
                 bodyPartData = albumData.pictures.upper
+                bodyPart = .upper
             } else if !albumData.pictures.lower.isEmpty {
                 bodyPartSegmentControl.buttons[0].isSelected = false
                 bodyPartSegmentControl.buttons[2].isSelected = true
                 bodyPartData = albumData.pictures.lower
+                bodyPart = .lower
             }
         }
     }
@@ -291,33 +299,31 @@ class PanoramaViewController: BaseViewController {
         switch index {
         case 0:
             bodyPartData = albumData.pictures.whole
-            bodyPart = "whole"
+            bodyPart = .whole
         case 1:
             bodyPartData = albumData.pictures.upper
-            bodyPart = "upper"
+            bodyPart = .upper
         case 2:
             bodyPartData = albumData.pictures.lower
-            bodyPart = "lower"
+            bodyPart = .lower
         default:
             return
         }
     }
     
     private func deleteAlbumData(id: Int) {
-//        switch bodyPart {
-//        case 0:
-//            albumData.wholeArray.removeAll(where: {$0.id == id})
-//        case 1:
-//            albumData.upperArray.removeAll(where: {$0.id == id})
-//        case 2:
-//            albumData.lowerArray.removeAll(where: {$0.id == id})
-//        default:
-//            return
-//        }
+        switch bodyPart {
+        case .whole:
+            albumData.pictures.whole.removeAll(where: {$0.id == id})
+        case .upper:
+            albumData.pictures.upper.removeAll(where: {$0.id == id})
+        case .lower:
+            albumData.pictures.lower.removeAll(where: {$0.id == id})
+        }
     }
     
     private func resetDeleteData() {
-        deleteData.removeAll()
+        seletedPictures.accept([:])
     }
     
     private func updateSeletedIndex(index: Int) {
@@ -368,19 +374,19 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func editAlbumButtonDidTap() {
-        setPopUpViewController(popUp: renameAlbumPopUp)
-        renameAlbumPopUp.titleLabel.text = "앨범 이름을 수정해주세요."
-        renameAlbumPopUp.textField.text = albumName
-        renameAlbumPopUp.confirmButton.titleLabel?.font = .nbFont(type: .body1Bold)
-        self.present(renameAlbumPopUp, animated: true, completion: nil)
+        setPopUpViewController(popUp: popUpForAlbumRenaming)
+        popUpForAlbumRenaming.titleLabel.text = "앨범 이름을 수정해주세요."
+        popUpForAlbumRenaming.textField.text = albumName
+        popUpForAlbumRenaming.confirmButton.titleLabel?.font = .nbFont(type: .body1Bold)
+        self.present(popUpForAlbumRenaming, animated: true, completion: nil)
     }
     
     private func deleteAlbumButtonDidTap() {
-        setPopUpViewController(popUp: deleteAlbumPopUp)
-        deleteAlbumPopUp.titleLabel.text = "정말 앨범을 삭제하시겠어요?"
-        deleteAlbumPopUp.descriptionLabel.text = "삭제를 누르면 앨범 속 사진이\n영구적으로 삭제됩니다."
-        deleteAlbumPopUp.setDeleteButton()
-        self.present(deleteAlbumPopUp, animated: true, completion: nil)
+        setPopUpViewController(popUp: popUpForAlbumDeletion)
+        popUpForAlbumDeletion.titleLabel.text = "정말 앨범을 삭제하시겠어요?"
+        popUpForAlbumDeletion.descriptionLabel.text = "삭제를 누르면 앨범 속 사진이\n영구적으로 삭제됩니다."
+        popUpForAlbumDeletion.setDeleteButton()
+        self.present(popUpForAlbumDeletion, animated: true, completion: nil)
     }
     
     private func saveButtonDidTap() {
@@ -433,11 +439,11 @@ class PanoramaViewController: BaseViewController {
     
     @objc
     private func deletePictureButtonDidTap() {
-        setPopUpViewController(popUp: deletePicturePopUp)
-        deletePicturePopUp.titleLabel.text = "\(deleteData.count)장의 사진을 삭제하시겠어요?"
-        deletePicturePopUp.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
-        deletePicturePopUp.setDeleteButton()
-        self.present(deletePicturePopUp, animated: true, completion: nil)
+        setPopUpViewController(popUp: popUpForPicturesDeletion)
+        popUpForPicturesDeletion.titleLabel.text = "\(seletedPictures.value.count)장의 사진을 삭제하시겠어요?"
+        popUpForPicturesDeletion.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
+        popUpForPicturesDeletion.setDeleteButton()
+        self.present(popUpForPicturesDeletion, animated: true, completion: nil)
     }
     
     @objc
@@ -499,6 +505,135 @@ extension PanoramaViewController {
 }
 
 // MARK: - Extension
+
+extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == bottomCollectionView {
+            cellWidth = collectionView.frame.height * 0.54 + cellSpacing
+            return CGSize(width: cellWidth, height: collectionView.frame.height )
+        } else {
+            let length =  Constant.Size.screenWidth
+            let ratio = UIDevice.current.hasNotch ? (4.0/3.0) : (423/375)
+            return gridMode || editMode ?  CGSize(width: (length - 4)/3, height: (length - 4)/3) : CGSize(width: length, height: length * ratio)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == bottomCollectionView {
+            let inset = (collectionView.frame.width - (collectionView.frame.height * 0.54 + cellSpacing)) / 2
+            return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+        }
+        return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return collectionView == topCollectionView && gridMode || editMode ? 2 : 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 2
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if isSelectedEvent { return }
+        
+        if scrollView == bottomCollectionView && !bodyPartData.isEmpty {
+            let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
+            
+            if let indexPath = bottomCollectionView.indexPathForItem(at: centerPoint), centerCell == nil {
+                centerCell = bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
+                topCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+                selectedIndexByPart[bodyPartIndex] = indexPath
+                centerCell?.transformToCenter()
+            }
+            
+            if let cell = centerCell {
+                let offsetX = centerPoint.x - cell.center.x
+                if offsetX < -cell.frame.width/2 || offsetX > cell.frame.width/2 {
+                    cell.transformToStandard()
+                    bottomCollectionView.deselectItem(at: selectedIndexByPart[bodyPartIndex], animated: false)
+                    self.centerCell = nil
+                }
+            }
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        moveCellToCenter(animated: true)
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        isSelectedEvent = false
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            moveCellToCenter(animated: true)
+        }
+    }
+}
+
+extension PanoramaViewController: UICollectionViewDataSource {
+    typealias CameraCell = CameraCollectionViewCell
+    typealias TopCell = TopCollectionViewCell
+    typealias BottomCell = BottomCollectionViewCell
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return collectionView == topCollectionView && editMode ? bodyPartData.count + 1 : bodyPartData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == topCollectionView {
+            if editMode && indexPath.row == 0 {
+                let cell: CameraCell = collectionView.dequeueReusableCell(for: indexPath)
+                return cell
+            }
+            
+            let cell: TopCell = collectionView.dequeueReusableCell(for: indexPath)
+            cell.selectedViewIsHidden(editMode: editMode)
+            let indexPath = editMode ? indexPath.row - 1 : indexPath.row
+            cell.setPhotoCell(albumId: albumData.id, bodyPart: "\(bodyPart)", imageName: bodyPartData[indexPath].id, contentMode: gridMode, fileExtension: .png)
+            return cell
+        }
+        
+        let cell: BottomCell = collectionView.dequeueReusableCell(for: indexPath)
+        cell.setCell(albumId: albumData.id, bodyPart: "\(bodyPart)", imageName: bodyPartData[indexPath.row].id, index: indexPath.row, fileExtension: .png)
+        if indexPath.item == selectedIndexByPart[bodyPartIndex].row {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        } else {
+            collectionView.deselectItem(at: indexPath, animated: false)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == topCollectionView && editMode {
+            if indexPath.row == 0 {
+                cameraButtonDidTap()
+            } else {
+                seletedPicturesValue[indexPath.row - 1] = bodyPartData[indexPath.row - 1].id
+                seletedPictures.accept(seletedPicturesValue)
+                
+            }
+        } else if !bodyPartData.isEmpty {
+            if selectedIndexByPart[bodyPartIndex] == indexPath { return }
+            isSelectedEvent = true
+            centerCell?.transformToStandard()
+            selectedIndexByPart[bodyPartIndex] = indexPath
+            
+            guard let bottomCell = bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell else { return }
+            centerCell = bottomCell
+            setCollectionViewContentOffset(animated: true)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if collectionView == topCollectionView && editMode {
+            seletedPicturesValue.removeValue(forKey: indexPath.row - 1)
+            seletedPictures.accept(seletedPicturesValue)
+        }
+    }
+}
 
 extension PanoramaViewController: NBSegmentedControlDelegate {
     func changeToIndex(_ segmentControl: NBSegmentedControl, at index: Int) {

@@ -71,10 +71,10 @@ class ListCollectionViewCell: UICollectionViewCell {
     func setData(album: Album) {
         titleLabel.text = album.name
         descriptionLabel.text = album.albumDescription
-//        if let thumbnailURL = album.thumbnailURL {
-//            thumbnailImageView.setImage(with: thumbnailURL)
-//        } else {
-//            thumbnailImageView.image = Asset.Image.empty2.image
-//        }
+        if let thumbnailURL = album.thumbnailURL {
+            thumbnailImageView.image = AlbumManager.loadImageFromDocumentDirectory(imageName: thumbnailURL)
+        } else {
+            thumbnailImageView.image = Asset.Image.empty2.image
+        }
     }
 }

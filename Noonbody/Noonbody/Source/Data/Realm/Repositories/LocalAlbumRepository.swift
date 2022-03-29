@@ -32,8 +32,14 @@ class LocalAlbumRepositry: AlbumRepository {
     func create(request: AlbumRequestModel) -> Observable<Album> {
         let observable = Observable<Album>.create { observer -> Disposable in
             let album = RMAlbum(name: request.name, createdAt: Date())
-            RealmManager.saveObjects(objs: album)
-            observer.onNext(album.asEntity())
+            let directoryURL = RealmManager.getUrl().appendingPathComponent("\(album.id)")
+            do {
+                try FileManager().createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                RealmManager.saveObjects(objs: album)
+                observer.onNext(album.asEntity())
+            } catch let err {
+                print(err.localizedDescription)
+            }
             return Disposables.create()
         }
         return observable
@@ -42,18 +48,29 @@ class LocalAlbumRepositry: AlbumRepository {
     func create(album: AlbumRequestModel) -> Observable<Int> {
         return Observable<Int>.create { observer -> Disposable in
             let album = RMAlbum(name: album.name, createdAt: Date())
-            RealmManager.saveObjects(objs: album)
-            observer.onNext(200)
+            let directoryURL = RealmManager.getUrl().appendingPathComponent("\(album.id)")
+            do {
+                try FileManager().createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                RealmManager.saveObjects(objs: album)
+                observer.onNext(200)
+            } catch let err {
+                print(err.localizedDescription)
+            }
             return Disposables.create()
         }
     }
     
     func delete(albumId: Int) -> Observable<Int> {
         Observable<Int>.create { observer -> Disposable in
-            if let album = RealmManager.realm()?.objects(RMAlbum.self).filter("id == \(albumId)").first {
+            let documentDirectory = RealmManager.getUrl()
+            if let album = RealmManager.realm()?.objects(RMAlbum.self).filter("id == \(albumId)").first,
+               let pictures = RealmManager.realm()?.objects(Picture.self).filter("albumId == \(albumId)") {
                 do {
+                    let albumURL = documentDirectory.appendingPathComponent("\(albumId)")
                     try RealmManager.realm()?.write {
                         RealmManager.realm()?.delete(album)
+                        RealmManager.realm()?.delete(pictures)
+                        try FileManager.default.removeItem(at: albumURL)
                         observer.onNext(204)
                     }
                 } catch let err {
@@ -78,52 +95,5 @@ class LocalAlbumRepositry: AlbumRepository {
             return Disposables.create()
         }
         return observable
-    }
-    
-    func savePhoto(request: PhotoRequestModel) -> Observable<Int> {
-        return Observable<Int>.create { observer -> Disposable in
-            let fileManager = FileManager()
-            let documentURL = RealmManager.getUrl()
-            let task = Picture(date: request.takenAt)
-            let fileExtension = FileExtension.png
-            
-            let directoryURL = documentURL.appendingPathComponent("\(request.albumId)/\(request.bodyPart)")
-            let imageURL = directoryURL.appendingPathComponent("\(task.id).\(fileExtension)")
-            
-            do {
-                try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-            } catch let err {
-                print(err.localizedDescription)
-            }
-            
-            guard let data = request.image.pngData() else {
-                print("압축에 실패했습니다.")
-                return Disposables.create()
-            }
-            
-            do {
-                try data.write(to: imageURL)
-                try RealmManager.realm()?.write {
-                    let localAlbum = RealmManager.realm()?.objects(RMAlbum.self).filter("id==\(request.albumId)").first
-                    switch request.bodyPart {
-                    case "whole":
-                        localAlbum?.whole.append(task)
-                    case "upper":
-                        localAlbum?.upper.append(task)
-                    case "lower":
-                        localAlbum?.lower.append(task)
-                    default: break
-                    }
-                }
-                
-                RealmManager.saveObjects(objs: task)
-                observer.onNext(200)
-                print("이미지를 저장했습니다")
-            } catch {
-                print("이미지를 저장하지 못했습니다.")
-            }
-            
-            return Disposables.create()
-        }
     }
 }
