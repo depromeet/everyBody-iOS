@@ -12,7 +12,7 @@ import Moya
 enum CameraAPI: BaseTargetType {
     typealias ResultModel = NotificationConfig
     
-    case postPhoto(request: PhotoRequestModel)
+    case postPhoto(request: PictureRequestModel)
 }
 
 extension CameraAPI {

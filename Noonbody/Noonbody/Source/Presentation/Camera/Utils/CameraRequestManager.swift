@@ -12,13 +12,13 @@ class CameraRequestManager {
     
     var image: UIImage = UIImage()
     var albumId: Int = 0
-    var bodyPart: String = "whole"
+    var bodyPart: BodyPart = .whole
     var takenAt: String = ""
     
-    func toPhotoRequestModel() -> PhotoRequestModel {
-        return PhotoRequestModel(image: image,
-                                 albumId: albumId,
-                                 bodyPart: bodyPart,
-                                 takenAt: takenAt)
+    func toPictureRequestModel() -> PictureRequestModel {
+        return PictureRequestModel(image: image,
+                                   albumId: albumId,
+                                   bodyPart: bodyPart,
+                                   takenAt: takenAt)
     }
 }

@@ -157,6 +157,10 @@
 		FC2FFF5127D0AB1C0047E489 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5027D0AB1C0047E489 /* Picture.swift */; };
 		FC2FFF5527D208780047E489 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5427D208770047E489 /* RealmManager.swift */; };
 		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
+		FC67D5C127ECE88B00651378 /* PictureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C027ECE88B00651378 /* PictureRepository.swift */; };
+		FC67D5C327ECF50D00651378 /* SavePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */; };
+		FC67D5C527ECF52600651378 /* DeletePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C427ECF52600651378 /* DeletePictureUseCase.swift */; };
+		FC67D5C727ECF74700651378 /* LocalPictureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C627ECF74700651378 /* LocalPictureRepository.swift */; };
 		FC76A53127E39B0A00CFEA5A /* FetchAlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */; };
 		FC76A54227E3B53B00CFEA5A /* LocalAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */; };
 		FC76A54427E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */; };
@@ -179,10 +183,10 @@
 		FCAE821627832D6F007A729D /* PanoramaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821427832D6F007A729D /* PanoramaService.swift */; };
 		FCAE821727832D6F007A729D /* PanoramaAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821527832D6F007A729D /* PanoramaAPI.swift */; };
 		FCBEEC2A27E4F33C00CC2F0E /* FileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBEEC2927E4F33C00CC2F0E /* FileExtension.swift */; };
+		FCC2526C27F31942007779CD /* RealmMigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC2526B27F31942007779CD /* RealmMigrationManager.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
-		FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -345,6 +349,10 @@
 		FC2FFF5427D208770047E489 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FC342287279812F800200E90 /* AlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequestModel.swift; sourceTree = "<group>"; };
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		FC67D5C027ECE88B00651378 /* PictureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureRepository.swift; sourceTree = "<group>"; };
+		FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePictureUseCase.swift; sourceTree = "<group>"; };
+		FC67D5C427ECF52600651378 /* DeletePictureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePictureUseCase.swift; sourceTree = "<group>"; };
+		FC67D5C627ECF74700651378 /* LocalPictureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPictureRepository.swift; sourceTree = "<group>"; };
 		FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAlbumsUseCase.swift; sourceTree = "<group>"; };
 		FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbumRepository.swift; sourceTree = "<group>"; };
 		FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSendFeedbackRepository.swift; sourceTree = "<group>"; };
@@ -365,10 +373,10 @@
 		FCAE821427832D6F007A729D /* PanoramaService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaService.swift; sourceTree = "<group>"; };
 		FCAE821527832D6F007A729D /* PanoramaAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaAPI.swift; sourceTree = "<group>"; };
 		FCBEEC2927E4F33C00CC2F0E /* FileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtension.swift; sourceTree = "<group>"; };
+		FCC2526B27F31942007779CD /* RealmMigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationManager.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
-		FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PanoramaViewController+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -631,7 +639,6 @@
 			isa = PBXGroup;
 			children = (
 				FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */,
-				FCF8C9E1274B9792004263FF /* PanoramaViewController+Extensions.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -709,11 +716,13 @@
 				FC1F6A4227E9DB1F005AB343 /* CreateAlbumUseCase.swift */,
 				FC1F6A4427E9DB2F005AB343 /* DeleteAlbumUseCase.swift */,
 				FC1F6A4627E9DB3B005AB343 /* RenameAlbumUseCase.swift */,
+				FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */,
+				FC67D5C427ECF52600651378 /* DeletePictureUseCase.swift */,
+				FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */,
 				FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */,
 				AA73AFA9274FBA0500FD7C70 /* ProfileUseCase.swift */,
 				AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */,
 				AAEA239727938D7F005A08C9 /* VideoUseCase.swift */,
-				FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -731,6 +740,7 @@
 			isa = PBXGroup;
 			children = (
 				AABD837A2784CC75004E8BF8 /* AlbumRepository.swift */,
+				FC67D5C027ECE88B00651378 /* PictureRepository.swift */,
 				AABD83782784CC54004E8BF8 /* PreferenceRepository.swift */,
 				AABD837C2784CCAC004E8BF8 /* PanoramaRepository.swift */,
 				AAEA239927938DD4005A08C9 /* VideoRepository.swift */,
@@ -1058,6 +1068,7 @@
 			isa = PBXGroup;
 			children = (
 				FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */,
+				FC67D5C627ECF74700651378 /* LocalPictureRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1077,6 +1088,7 @@
 			isa = PBXGroup;
 			children = (
 				FC2FFF5427D208770047E489 /* RealmManager.swift */,
+				FCC2526B27F31942007779CD /* RealmMigrationManager.swift */,
 			);
 			path = RealmService;
 			sourceTree = "<group>";
@@ -1335,6 +1347,7 @@
 				AAEA239827938D7F005A08C9 /* VideoUseCase.swift in Sources */,
 				AAC7ACBC272D7AEC00B2BE1E /* PoseCollectionViewCell.swift in Sources */,
 				AA5B85D22716D4D8002276C3 /* UIView+addSubviews.swift in Sources */,
+				FC67D5C127ECE88B00651378 /* PictureRepository.swift in Sources */,
 				AA74A0F2274A664D00FA6678 /* UITextField+attributedPlaceholder.swift in Sources */,
 				AAEA239F27938E3C005A08C9 /* VideoService.swift in Sources */,
 				AAE2FABB276CC10300FA2C5C /* ListCollectionViewCell.swift in Sources */,
@@ -1349,7 +1362,6 @@
 				FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */,
 				FC23AC10275A038B0067EEF7 /* AlbumService.swift in Sources */,
 				AA2F3185275AD61800855861 /* PhotoRequestModel.swift in Sources */,
-				FCF8C9E2274B9792004263FF /* PanoramaViewController+Extensions.swift in Sources */,
 				AA74A0F8274AAB0E00FA6678 /* NBPrimaryButton.swift in Sources */,
 				FC1F6A4327E9DB1F005AB343 /* CreateAlbumUseCase.swift in Sources */,
 				AAE2FA74276288E600FA2C5C /* NBDatePicker.swift in Sources */,
@@ -1357,9 +1369,11 @@
 				AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */,
 				AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
+				FC67D5C527ECF52600651378 /* DeletePictureUseCase.swift in Sources */,
 				AAEA23A727960553005A08C9 /* CircleProgressView.swift in Sources */,
 				AA81D8C0279AF14800D4D667 /* UILabel+setLineHeight.swift in Sources */,
 				FC2FFF5127D0AB1C0047E489 /* Picture.swift in Sources */,
+				FCC2526C27F31942007779CD /* RealmMigrationManager.swift in Sources */,
 				AAA9A52B275800D600FE92DB /* CreateAlbumAPI.swift in Sources */,
 				FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */,
 				AAA9A531275808B500FE92DB /* AlbumCreationViewModel.swift in Sources */,
@@ -1385,9 +1399,11 @@
 				AA73AFC027502BB200FD7C70 /* ProfileRequestModel.swift in Sources */,
 				FC1F6A4127E9DB05005AB343 /* FetchAlbumUseCase.swift in Sources */,
 				AA4EFD2127623F38005017FC /* SelectedView.swift in Sources */,
+				FC67D5C327ECF50D00651378 /* SavePictureUseCase.swift in Sources */,
 				AABD83792784CC54004E8BF8 /* PreferenceRepository.swift in Sources */,
 				FC23AC12275A03A30067EEF7 /* AlbumAPI.swift in Sources */,
 				AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */,
+				FC67D5C727ECF74700651378 /* LocalPictureRepository.swift in Sources */,
 				FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */,
 				AA73AFAA274FBA0500FD7C70 /* ProfileUseCase.swift in Sources */,
 				AAEA2383278C9C59005A08C9 /* VideoEditViewController.swift in Sources */,

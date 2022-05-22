@@ -14,7 +14,7 @@ final class AlbumSelectionViewModel {
     
     private let fetchAlbumsUseCase: FetchAlbumsUseCase
     private let createAlbumUseCase: CreateAlbumUseCase
-    private let albumUseCase: AlbumUseCase
+    private let savePictureUseCase: SavePictureUseCase
     
     private let requestManager = CameraRequestManager.shared
     private let disposeBag = DisposeBag()
@@ -24,7 +24,7 @@ final class AlbumSelectionViewModel {
         let viewWillAppear: Observable<Void>
         let saveButtonControlEvent: ControlEvent<Void>
         let albumSelection: Driver<IndexPath>
-        let photoRequestModel: Observable<PhotoRequestModel>
+        let pictureRequestModel: Observable<PictureRequestModel>
         let albumNameTextField: Observable<String>
         let creationControlEvent: ControlEvent<Void>
     }
@@ -35,10 +35,10 @@ final class AlbumSelectionViewModel {
         let statusCode: Driver<Int>
     }
     
-    init(fetchAlbumsUseCase: FetchAlbumsUseCase, createAlbumUseCase: CreateAlbumUseCase, albumUseCase: AlbumUseCase) {
+    init(fetchAlbumsUseCase: FetchAlbumsUseCase, createAlbumUseCase: CreateAlbumUseCase, savePictureUseCase: SavePictureUseCase) {
         self.fetchAlbumsUseCase = fetchAlbumsUseCase
         self.createAlbumUseCase = createAlbumUseCase
-        self.albumUseCase = albumUseCase
+        self.savePictureUseCase = savePictureUseCase
     }
     
     func transform(input: Input) -> Output {
@@ -55,10 +55,10 @@ final class AlbumSelectionViewModel {
             }.asDriver(onErrorJustReturn: [])
         
         let save = input.saveButtonControlEvent
-            .withLatestFrom(input.photoRequestModel)
+            .withLatestFrom(input.pictureRequestModel)
             .do(onNext: { _ in self.isLoading.accept(true) })
             .flatMap { request in
-                self.albumUseCase.savePhoto(request: request)
+                self.savePictureUseCase.save(request: request)
             }
             .do(onNext: { _ in self.isLoading.accept(false)})
             .share()

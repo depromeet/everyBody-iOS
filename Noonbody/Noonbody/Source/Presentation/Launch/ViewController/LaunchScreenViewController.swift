@@ -24,6 +24,7 @@ class LaunchScreenViewController: UIViewController {
         view.backgroundColor = Asset.Color.keyPurple.color
         setupConstraint()
         addObserver()
+        setDefaultAlbum()
     }
     
     private func setupConstraint() {
@@ -42,6 +43,14 @@ class LaunchScreenViewController: UIViewController {
                                                    object: nil)
         } else {
             pushToHomeViewController()
+        }
+    }
+    
+    private func setDefaultAlbum() {
+        let path = RealmManager.getUrl().appendingPathComponent("default.realm")
+        if !FileManager.default.fileExists(atPath: path.path) {
+            let album = RMAlbum(name: "눈바디", createdAt: Date())
+            RealmManager.saveObjects(objs: album)
         }
     }
     
