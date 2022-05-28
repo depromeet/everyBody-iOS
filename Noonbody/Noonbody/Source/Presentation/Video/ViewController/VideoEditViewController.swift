@@ -52,7 +52,6 @@ class VideoEditViewController: BaseViewController {
                                                         style: .plain,
                                                         target: self,
                                                         action: nil)
-    private var popUp = PopUpViewController(type: .download)
     
     // MARK: - Initializer
     
@@ -95,39 +94,19 @@ class VideoEditViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
-        output.statusCode
-            .drive(onNext: { [weak self] statusCode in
-                if statusCode == 200 {
-                    self?.saveVideoInCameraRoll()
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        saveBarButtonItem.rx.tap
-            .asDriver()
-            .drive(onNext: { [weak self] in
+        output.isSaved
+            .drive(onNext: { [weak self] save in
                 guard let self = self else { return }
-                self.popUp.modalTransitionStyle = .crossDissolve
-                self.popUp.modalPresentationStyle = .overCurrentContext
-                self.popUp.delegate = self
-                self.popUp.titleLabel.text = "비디오 저장 중 ...0%"
-                self.popUp.descriptionLabel.text = "눈바디 영상이 만들어지고 있어요!\n앱을 종료하거나 기기를 잠그지 마세요."
-                self.present(self.popUp, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
-        
-        progress
-            .subscribe(onNext: { [weak self] percent in
-                guard let self = self else { return }
-                self.popUp.titleLabel.text = "비디오 저장 중 ...\(Int(percent*100))%"
-                self.popUp.downloadedPercentView.shapeLayer.strokeEnd = percent
-                if percent == 1.0 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.popUp.downloadedPercentView.setCompletedView()
-                        self.popUp.titleLabel.text = "비디오 저장 완료!"
-                        self.popUp.descriptionLabel.text = "비디오 저장이 완료되었어요!\n아이폰 앨범에서 저장된 비디오를 확인해 보세요."
-                        self.popUp.setShareButton()
-                    }
+                let popUp = PopUpViewController(type: .download)
+                if save {
+                    popUp.modalTransitionStyle = .crossDissolve
+                    popUp.modalPresentationStyle = .overCurrentContext
+                    popUp.delegate = self
+                    popUp.downloadedPercentView.setCompletedView()
+                    popUp.titleLabel.text = "비디오 저장 완료!"
+                    popUp.descriptionLabel.text = "비디오 저장이 완료되었어요!\n아이폰 앨범에서 저장된 비디오를 확인해 보세요."
+                    popUp.cancelButton.setTitle("확인", for: .normal)
+                    self.present(popUp, animated: true, completion: nil)
                 }
             })
             .disposed(by: disposeBag)
@@ -278,13 +257,12 @@ extension VideoEditViewController: PopUpActionProtocol {
         NotificationCenter.default.post(name: NSNotification.Name("requestCancel"),
                                         object: nil)
         dismiss(animated: true, completion: nil)
-        popUp = PopUpViewController(type: .download)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func confirmButtonDidTap(_ button: UIButton) {
         dismiss(animated: true, completion: nil)
         presentShareSheet()
-        popUp = PopUpViewController(type: .download)
     }
     
 }

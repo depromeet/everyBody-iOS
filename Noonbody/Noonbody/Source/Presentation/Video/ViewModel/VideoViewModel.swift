@@ -22,7 +22,7 @@ final class VideoViewModel {
     
     struct Output {
         let imageList: Driver<[String]>
-        let statusCode: Driver<Int>
+        let isSaved: Driver<Bool>
     }
 
     var imagePaths: [String]
@@ -51,27 +51,26 @@ final class VideoViewModel {
         
         let response =
             input.saveButtonControlEvent
-            .withLatestFrom(imageSubject)
-            .map({ imageList -> VideoRequestModel in
-                // TODO: LOCAL UIimage
-//                let imageKeys = imageList.map { $0.imageKey }
-                return VideoRequestModel(keys: [""])
-            })
-            .withUnretained(self)
-            .flatMap { owner, requestModel -> Observable<Int> in
-                // TODO: LOCAL VideoGenerator
-                owner.videoUsecase.downloadVideo(imageKeys: requestModel)
+            .flatMap { () -> Observable<Bool> in
+                let settings = RenderSettings()
+                let imageAnimator = ImageAnimator(renderSettings: settings)
+                imageAnimator.images = self.imagePaths.map { AlbumManager.loadImageFromDocumentDirectory(from: $0) ?? UIImage() }
+                var isSave = true
+                imageAnimator.render { save in
+                    isSave = save
+                }
+                return Observable.just(isSave)
             }
             .share()
         
-        let statusCode = response
+        let save = response
             .compactMap { $0 }
-            .map { response -> Int in
+            .map { response -> Bool in
                 return response
-            }.asDriver(onErrorJustReturn: 404)
+            }.asDriver(onErrorJustReturn: false)
         
         return Output(imageList: backingStore.asDriver(onErrorJustReturn: []),
-                      statusCode: statusCode)
+                      isSaved: save)
     }
     
     func deleteButtonDidTap(identifier: String) -> Int? {
