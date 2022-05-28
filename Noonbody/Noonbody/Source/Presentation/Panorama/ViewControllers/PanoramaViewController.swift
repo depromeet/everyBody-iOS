@@ -394,19 +394,11 @@ class PanoramaViewController: BaseViewController {
     }
     
     private func pushVideoViewController() {
-//        var imageList: [(String, String)] = []
-//        switch bodyPart {
-//        case 0:
-//            imageList = albumData.pictures.whole.map { ($0.key, $0.imageURL) }
-//        case 1:
-//            imageList = albumData.pictures.upper.map { ($0.key, $0.imageURL) }
-//        case 2:
-//            imageList = albumData.pictures.lower.map { ($0.key, $0.imageURL) }
-//        default:
-//            return
-//        }
-//        let viewController = VideoEditViewController(albumData: imageList, title: albumData.name)
-//        self.navigationController?.pushViewController(viewController, animated: true)
+        let imagePaths = AlbumManager.makePaths(albumId: albumData.id, pictureInfos: bodyPartData, fileExtension: .png)
+        let viewController = VideoEditViewController(imagePaths: imagePaths,
+                                                     albumData: [],
+                                                     title: albumData.name)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     private func presentWarningPopUp() {

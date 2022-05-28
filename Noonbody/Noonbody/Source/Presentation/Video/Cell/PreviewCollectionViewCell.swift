@@ -9,7 +9,7 @@ import UIKit
 
 @objc
 protocol DeleteButtonDelegate: AnyObject {
-    @objc optional func deleteButtonDidTap(_ button: UIButton, cellIdentifier: ImageInfo)
+    @objc optional func deleteButtonDidTap(_ button: UIButton, cellIdentifier: String)
 }
 
 class PreviewCollectionViewCell: UICollectionViewCell {
@@ -26,7 +26,7 @@ class PreviewCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Properties
     
-    var identifiter: ImageInfo = ImageInfo(imageKey: "", imageURL: "")
+    var identifiter: String = ""
     weak var delegate: DeleteButtonDelegate?
     
     // MARK: - Initializer
@@ -59,7 +59,8 @@ class PreviewCollectionViewCell: UICollectionViewCell {
     }
     
     func setImage(named imageName: String) {
-        imageView.setImage(with: imageName)
+//        imageView.setImage(with: imageName)
+        imageView.image = AlbumManager.loadImageFromDocumentDirectory(from: imageName)
     }
     
     func setSelectedUI() {

@@ -27,10 +27,10 @@ class VideoEditViewController: BaseViewController {
     
     // MARK: - UI Components
     
-    private var dataSource: UICollectionViewDiffableDataSource<SectionKind, ImageInfo>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<SectionKind, String>! = nil
     private var collectionView: UICollectionView!
     private var centerCell: PreviewCollectionViewCell?
-    private var imageView = UIImageView()
+    private var previewImageView = UIImageView()
     private var totalImageCountLabel = UILabel().then {
         $0.font = .nbFont(type: .caption1Semibold)
         $0.textColor = .white
@@ -56,9 +56,8 @@ class VideoEditViewController: BaseViewController {
     
     // MARK: - Initializer
     
-    init(albumData: [(String, String)], title: String) {
-        viewModel = VideoViewModel(imageList: albumData.map { ImageInfo(imageKey: $0.0,
-                                                                        imageURL: $0.1) },
+    init(imagePaths: [String], albumData: [(String, String)], title: String) {
+        viewModel = VideoViewModel(images: imagePaths,
                                    videoUsecase: DefaultVideoUseCase(videoRepository: DefaultVideoRepository()))
         super.init(nibName: nil, bundle: nil)
         self.title = title
@@ -90,7 +89,7 @@ class VideoEditViewController: BaseViewController {
                                          saveButtonControlEvent: saveBarButtonItem.rx.tap)
         let output = viewModel.transform(input: input)
         
-        output.restoredImageList
+        output.imageList
             .drive(onNext: { [weak self] restoreImageList in
                 self?.appendItemsToDataSource(with: restoreImageList)
             })
@@ -160,8 +159,8 @@ class VideoEditViewController: BaseViewController {
     
     private func createDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<PreviewCollectionViewCell,
-                                                                 ImageInfo>(handler: makeCellRegistration())
-        dataSource = UICollectionViewDiffableDataSource<SectionKind, ImageInfo>(
+                                                                 String>(handler: makeCellRegistration())
+        dataSource = UICollectionViewDiffableDataSource<SectionKind, String>(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 return collectionView.dequeueConfiguredReusableCell(
@@ -171,15 +170,15 @@ class VideoEditViewController: BaseViewController {
                 )
             }
         )
-        appendItemsToDataSource(with: viewModel.imageList)
+        appendItemsToDataSource(with: viewModel.imagePaths)
     }
     
     private func makeCellRegistration() -> (_ cell: PreviewCollectionViewCell,
                                             _ indexPath: IndexPath, _
-                                            itemIdentifier: ImageInfo) -> Void {
+                                            itemIdentifier: String) -> Void {
         return { [weak self] cell, _, image in
             guard let self = self else { return }
-            cell.setImage(named: image.imageURL)
+            cell.setImage(named: image)
             cell.identifiter = image
             self.bindDeleteButton(to: cell)
             if self.firstLaunch {
@@ -195,7 +194,7 @@ class VideoEditViewController: BaseViewController {
             .bind(onNext: { owner, imageInfo in
                 owner.deleteItemToDataSource(with: imageInfo)
                 if let deletedItemIndex = owner.viewModel.deleteButtonDidTap(identifier: imageInfo) {
-                    if deletedItemIndex == owner.viewModel.imageList.count {
+                    if deletedItemIndex == owner.viewModel.imagePaths.count {
                         owner.updateIndexLabel(row: deletedItemIndex - 1)
                     }
                     owner.updateCountLabel()
@@ -205,8 +204,8 @@ class VideoEditViewController: BaseViewController {
             .disposed(by: self.disposeBag)
     }
     
-    private func appendItemsToDataSource(with imageList: [ImageInfo]) {
-        var snapshot = NSDiffableDataSourceSnapshot<SectionKind, ImageInfo>()
+    private func appendItemsToDataSource(with imageList: [String]) {
+        var snapshot = NSDiffableDataSourceSnapshot<SectionKind, String>()
         snapshot.appendSections([.previewList])
         snapshot.appendItems(imageList)
         dataSource.apply(snapshot)
@@ -215,7 +214,7 @@ class VideoEditViewController: BaseViewController {
         updateCountLabel()
     }
     
-    private func deleteItemToDataSource(with identifier: ImageInfo) {
+    private func deleteItemToDataSource(with identifier: String) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteItems([identifier])
         dataSource.apply(snapshot)
@@ -225,7 +224,7 @@ class VideoEditViewController: BaseViewController {
         let centerPoint = CGPoint(x: collectionView.contentOffset.x + collectionView.frame.size.width / 2, y: 0.0)
         if let indexPath = collectionView.indexPathForItem(at: centerPoint) {
             self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            self.imageView.setImage(with: viewModel.imageList[indexPath.row].imageURL)
+            self.previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[indexPath.row])
             self.centerCell = self.collectionView.cellForItem(at: indexPath) as? PreviewCollectionViewCell
             self.centerCell?.setSelectedUI()
             updateIndexLabel(row: indexPath.row)
@@ -237,7 +236,7 @@ class VideoEditViewController: BaseViewController {
     private func setUnselectedCellUI() {
         let centerPoint =  CGPoint(x: collectionView.contentOffset.x + collectionView.frame.size.width / 2, y: 0.0)
         if let indexPath = collectionView.indexPathForItem(at: centerPoint) {
-            for row in 0..<viewModel.imageList.count where row != indexPath.row {
+            for row in 0..<viewModel.imagePaths.count where row != indexPath.row {
                 let cell = self.collectionView.cellForItem(at: [0, row]) as? PreviewCollectionViewCell
                 cell?.setUnselectedUI()
             }
@@ -250,11 +249,11 @@ class VideoEditViewController: BaseViewController {
             self.firstLaunch.toggle()
         }
         centerCell?.setSelectedUI()
-        imageView.setImage(with: viewModel.imageList[0].imageURL)
+        previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[0])
     }
     
     private func updateCountLabel() {
-        totalImageCountLabel.text = "\(viewModel.imageList.count)장"
+        totalImageCountLabel.text = "\(viewModel.imagePaths.count)장"
     }
     
     private func updateIndexLabel(row: Int) {
@@ -304,7 +303,7 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
         if let indexPath = collectionView.indexPathForItem(at: centerPoint), centerCell == nil {
             self.centerCell = self.collectionView.cellForItem(at: indexPath) as? PreviewCollectionViewCell
             self.centerCell?.setSelectedUI()
-            imageView.setImage(with: viewModel.imageList[indexPath.row].imageURL)
+            previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[indexPath.row])
             updateIndexLabel(row: indexPath.row)
         }
         
@@ -359,7 +358,7 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
         collectionView.setContentOffset(CGPoint(x: cell.frame.minX - (collectionView.frame.width / 2 - cellWidth / 2),
                                                 y: 0.0),
                                         animated: true)
-        imageView.setImage(with: viewModel.imageList[indexPath.row].imageURL)
+        previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[indexPath.row])
         updateIndexLabel(row: indexPath.row)
     }
 
@@ -370,17 +369,17 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
 extension VideoEditViewController {
     
     private func setupConstraint() {
-        view.addSubviews(imageView, collectionView, totalImageCountLabel,
+        view.addSubviews(previewImageView, collectionView, totalImageCountLabel,
                          ofLabel, selectedIndexLabel, backingButton)
         
-        imageView.snp.makeConstraints {
+        previewImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Constant.Size.screenWidth * (4.0/3.0))
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(UIDevice.current.hasNotch ? 28 : 5)
+            $0.top.equalTo(previewImageView.snp.bottom).offset(UIDevice.current.hasNotch ? 28 : 5)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(UIDevice.current.hasNotch ? 68 / Constant.Size.figmaHeight * Constant.Size.screenHeight : 40)
         }
