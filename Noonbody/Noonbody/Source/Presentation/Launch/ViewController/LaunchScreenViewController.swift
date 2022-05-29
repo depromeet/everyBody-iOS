@@ -24,7 +24,6 @@ class LaunchScreenViewController: UIViewController {
         view.backgroundColor = Asset.Color.keyPurple.color
         setupConstraint()
         addObserver()
-        setDefaultAlbum()
     }
     
     private func setupConstraint() {
@@ -41,16 +40,46 @@ class LaunchScreenViewController: UIViewController {
                                                    selector: #selector(signUp),
                                                    name: Notification.Name("setFcmToken"),
                                                    object: nil)
+            setDefaultAlbum()
         } else {
-            pushToHomeViewController()
+            checkDownloadComleted()
         }
     }
     
     private func setDefaultAlbum() {
         let path = RealmManager.getUrl().appendingPathComponent("default.realm")
         if !FileManager.default.fileExists(atPath: path.path) {
-            let album = RMAlbum(name: "눈바디", createdAt: Date())
-            RealmManager.saveObjects(objs: album)
+            let album = Album(id: 1, name: "눈바디", thumbnailURL: nil, createdAt: "", albumDescription: "",
+                              pictures: Pictures(lower: [], upper: [], whole: []))
+            RealmMigrationService.migrateAlbums(albums: [album])
+        }
+    }
+    
+    private func checkDownloadComleted() {
+        MyPageService.shared.getMyPage { response in
+            switch response {
+            case .success(let data):
+                if let data = data {
+                    data.downloadCompleted == nil ? self.migration() : self.pushToHomeViewController()
+                }
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    private func migration() {
+        AlbumService.shared.getAlbumList { response in
+            switch response {
+            case .success(let data):
+                if let data = data {
+                    RealmMigrationService.migrateAlbums(albums: data)
+                    _ = data.map { RealmMigrationService.migratePictures(album: $0) }
+                    self.completeDownload()
+                }
+            case .failure(let err):
+                print(err)
+            }
         }
     }
     
@@ -83,7 +112,6 @@ class LaunchScreenViewController: UIViewController {
                 print(err)
             }
         }
-        
     }
     
     private func requestSignIn() {
@@ -95,6 +123,17 @@ class LaunchScreenViewController: UIViewController {
                 if let data = data {
                     UserManager.token = data.accessToken
                 }
+                self.pushToHomeViewController()
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
+    
+    private func completeDownload() {
+        MyPageService.shared.putDownloadCompleted { response in
+            switch response {
+            case .success(_):
                 self.pushToHomeViewController()
             case .failure(let err):
                 print(err)

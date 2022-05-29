@@ -157,6 +157,7 @@
 		FC2FFF5127D0AB1C0047E489 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5027D0AB1C0047E489 /* Picture.swift */; };
 		FC2FFF5527D208780047E489 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5427D208770047E489 /* RealmManager.swift */; };
 		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
+		FC4EC4E8284234C90061623F /* DefaultPictureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4EC4E7284234C90061623F /* DefaultPictureRepository.swift */; };
 		FC67D5C127ECE88B00651378 /* PictureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C027ECE88B00651378 /* PictureRepository.swift */; };
 		FC67D5C327ECF50D00651378 /* SavePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */; };
 		FC67D5C527ECF52600651378 /* DeletePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C427ECF52600651378 /* DeletePictureUseCase.swift */; };
@@ -349,6 +350,7 @@
 		FC2FFF5027D0AB1C0047E489 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		FC2FFF5427D208770047E489 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FC342287279812F800200E90 /* AlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequestModel.swift; sourceTree = "<group>"; };
+		FC4EC4E7284234C90061623F /* DefaultPictureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPictureRepository.swift; sourceTree = "<group>"; };
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		FC67D5C027ECE88B00651378 /* PictureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureRepository.swift; sourceTree = "<group>"; };
 		FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePictureUseCase.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				AAA9A52E2758041A00FE92DB /* DefaultAlbumRepositry.swift */,
 				AAEA239B27938E01005A08C9 /* DefaultVideoRepository.swift */,
 				FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */,
+				FC4EC4E7284234C90061623F /* DefaultPictureRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1413,6 +1416,7 @@
 				AAEA2383278C9C59005A08C9 /* VideoEditViewController.swift in Sources */,
 				AA4EFD2727623F6F005017FC /* NBBasicButton.swift in Sources */,
 				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
+				FC4EC4E8284234C90061623F /* DefaultPictureRepository.swift in Sources */,
 				AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */,
 				FC1F6A4527E9DB2F005AB343 /* DeleteAlbumUseCase.swift in Sources */,
 				AAE2FA962764041800FA2C5C /* LaunchScreenViewController.swift in Sources */,
