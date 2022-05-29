@@ -13,6 +13,7 @@ enum MyPageAPI: BaseTargetType {
     
     case getMyPage
     case putMyPage(request: ProfileRequestModel)
+    case putDownloadCompleted
 }
 
 extension MyPageAPI {
@@ -23,6 +24,8 @@ extension MyPageAPI {
             return HTTPMethodURL.GET.userInfo
         case .putMyPage:
             return HTTPMethodURL.PUT.userInfo
+        case .putDownloadCompleted:
+            return HTTPMethodURL.PUT.downloadCompleted
         }
     }
     
@@ -31,6 +34,8 @@ extension MyPageAPI {
         case .getMyPage:
             return .get
         case .putMyPage:
+            return .put
+        case .putDownloadCompleted:
             return .put
         }
     }
@@ -43,6 +48,8 @@ extension MyPageAPI {
             return .requestParameters(parameters: ["nickname": request.nickname,
                                                    "motto": request.motto],
                                       encoding: JSONEncoding.default)
+        case .putDownloadCompleted:
+            return .requestPlain
         }
     }
 
