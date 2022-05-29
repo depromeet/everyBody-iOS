@@ -32,8 +32,10 @@ class DefaultPictureRepository: PictureRepository {
         Observable<Int>.create { observer -> Disposable in
             let requestReference: () = PanoramaService.shared.deletePicture(id: pictureId) { response in
                 switch response {
-                case .success:
-                    observer.onNext(200)
+                case .success(let statusCode):
+                    if let statusCode = statusCode {
+                        observer.onNext(statusCode)
+                    }
                 case .failure(let err):
                     print(err)
                 }

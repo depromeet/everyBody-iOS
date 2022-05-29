@@ -11,7 +11,7 @@ import RealmSwift
 
 public class RealmMigrationService {
     static func migrateAlbums(albums: Albums) {
-        _ = albums.map { album in
+        albums.forEach ({ album in
             let albumObject = RMAlbum(name: album.name, createdAt: Date())
             let directoryURL = RealmManager.getUrl().appendingPathComponent("\(albumObject.id)")
             do {
@@ -20,7 +20,7 @@ public class RealmMigrationService {
             } catch let err {
                 print(err.localizedDescription)
             }
-        }
+        })
     }
     
     static func migratePictures(album: Album) {
@@ -29,7 +29,7 @@ public class RealmMigrationService {
         let fileManager = FileManager()
         let bodyParts = [album.pictures.whole, album.pictures.upper, album.pictures.lower]
         
-        _ = bodyParts.flatMap { $0 }
+        bodyParts.flatMap { $0 }
         .map { picture -> PictureRequestModel in
             let url = URL(string: picture.imageURL)!
             let data = try? Data(contentsOf: url)
@@ -39,7 +39,7 @@ public class RealmMigrationService {
                                        albumId: album.id,
                                        bodyPart: picture.bodyPart,
                                        takenAt: picture.takenAt)
-        }.map { picture in
+        }.forEach({ picture in
             let pictureObject = Picture(albumId: picture.albumId,
                                         bodyPart: "\(picture.bodyPart)",
                                         directoryURL: "\(picture.albumId)/\(picture.bodyPart)",
@@ -66,6 +66,6 @@ public class RealmMigrationService {
             } catch let err {
                 print(err.localizedDescription)
             }
-        }
+        })
     }
 }

@@ -42,7 +42,7 @@ class LaunchScreenViewController: UIViewController {
                                                    object: nil)
             setDefaultAlbum()
         } else {
-            checkDownloadComleted()
+            checkDownloadCompleted()
         }
     }
     
@@ -55,7 +55,7 @@ class LaunchScreenViewController: UIViewController {
         }
     }
     
-    private func checkDownloadComleted() {
+    private func checkDownloadCompleted() {
         MyPageService.shared.getMyPage { response in
             switch response {
             case .success(let data):
@@ -133,7 +133,7 @@ class LaunchScreenViewController: UIViewController {
     private func completeDownload() {
         MyPageService.shared.putDownloadCompleted { response in
             switch response {
-            case .success(_):
+            case .success:
                 self.pushToHomeViewController()
             case .failure(let err):
                 print(err)
