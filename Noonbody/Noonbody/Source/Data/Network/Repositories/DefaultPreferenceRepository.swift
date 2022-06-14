@@ -73,4 +73,20 @@ class DefaultPreferenceRepository: PreferenceRepository {
         }
     }
     
+    func modifyDownloadCompleted() -> Observable<Int> {
+        return Observable.create { observer -> Disposable in
+            let requestReference: () = MyPageService.shared.putDownloadCompleted { response in
+                switch response {
+                case .success(let statusCode):
+                    if let statusCode = statusCode {
+                        observer.onNext(statusCode)
+                    }
+                case .failure(let err):
+                    print(err)
+                }
+            }
+            return Disposables.create(with: { requestReference })
+        }
+    }
+    
 }

@@ -27,4 +27,9 @@ public class MyPageService {
         }
     }
     
+    func putDownloadCompleted(completion: @escaping (Result<Int?, Error>) -> Void) {
+        provider.requestNoResultAPI(MyPageAPI.putDownloadCompleted) { response in
+            completion(response)
+        }
+    }
 }

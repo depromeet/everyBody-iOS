@@ -16,10 +16,12 @@ struct UserInfo: Codable {
     let kind: String
     let profileImage: String
     let createdAt: String
+    let downloadCompleted: String?
     
     enum CodingKeys: String, CodingKey {
         case id, nickname, motto, height, weight, kind
         case profileImage = "profile_image"
         case createdAt = "created_at"
+        case downloadCompleted = "download_completed"
     }
 }

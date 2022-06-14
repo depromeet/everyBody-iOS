@@ -158,6 +158,7 @@
 		FC2FFF5127D0AB1C0047E489 /* Picture.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5027D0AB1C0047E489 /* Picture.swift */; };
 		FC2FFF5527D208780047E489 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2FFF5427D208770047E489 /* RealmManager.swift */; };
 		FC342288279812F800200E90 /* AlbumRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC342287279812F800200E90 /* AlbumRequestModel.swift */; };
+		FC4EC4E8284234C90061623F /* DefaultPictureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4EC4E7284234C90061623F /* DefaultPictureRepository.swift */; };
 		FC67D5C127ECE88B00651378 /* PictureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C027ECE88B00651378 /* PictureRepository.swift */; };
 		FC67D5C327ECF50D00651378 /* SavePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */; };
 		FC67D5C527ECF52600651378 /* DeletePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C427ECF52600651378 /* DeletePictureUseCase.swift */; };
@@ -186,6 +187,7 @@
 		FCBEEC2A27E4F33C00CC2F0E /* FileExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBEEC2927E4F33C00CC2F0E /* FileExtension.swift */; };
 		FCC2526C27F31942007779CD /* RealmMigrationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC2526B27F31942007779CD /* RealmMigrationManager.swift */; };
 		FCC478E627491C2B00963504 /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */; };
+		FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59B9D2842634E00702FA8 /* RealmMigrationService.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
 /* End PBXBuildFile section */
@@ -350,6 +352,7 @@
 		FC2FFF5027D0AB1C0047E489 /* Picture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picture.swift; sourceTree = "<group>"; };
 		FC2FFF5427D208770047E489 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		FC342287279812F800200E90 /* AlbumRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumRequestModel.swift; sourceTree = "<group>"; };
+		FC4EC4E7284234C90061623F /* DefaultPictureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPictureRepository.swift; sourceTree = "<group>"; };
 		FC502231278F305700B50C41 /* loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 		FC67D5C027ECE88B00651378 /* PictureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureRepository.swift; sourceTree = "<group>"; };
 		FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePictureUseCase.swift; sourceTree = "<group>"; };
@@ -377,6 +380,7 @@
 		FCBEEC2927E4F33C00CC2F0E /* FileExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileExtension.swift; sourceTree = "<group>"; };
 		FCC2526B27F31942007779CD /* RealmMigrationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationManager.swift; sourceTree = "<group>"; };
 		FCC478E527491C2B00963504 /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
+		FCC59B9D2842634E00702FA8 /* RealmMigrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationService.swift; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -759,6 +763,7 @@
 				AAA9A52E2758041A00FE92DB /* DefaultAlbumRepositry.swift */,
 				AAEA239B27938E01005A08C9 /* DefaultVideoRepository.swift */,
 				FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */,
+				FC4EC4E7284234C90061623F /* DefaultPictureRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -1092,6 +1097,7 @@
 			children = (
 				FC2FFF5427D208770047E489 /* RealmManager.swift */,
 				FCC2526B27F31942007779CD /* RealmMigrationManager.swift */,
+				FCC59B9D2842634E00702FA8 /* RealmMigrationService.swift */,
 			);
 			path = RealmService;
 			sourceTree = "<group>";
@@ -1397,6 +1403,7 @@
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
 				AAEA239C27938E01005A08C9 /* DefaultVideoRepository.swift in Sources */,
+				FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,
 				AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */,
 				AABEA2E7273C585C00A06A8C /* AlbumViewModel.swift in Sources */,
@@ -1413,6 +1420,7 @@
 				AAEA2383278C9C59005A08C9 /* VideoEditViewController.swift in Sources */,
 				AA4EFD2727623F6F005017FC /* NBBasicButton.swift in Sources */,
 				AAC7ACA32729DFC700B2BE1E /* BaseViewController.swift in Sources */,
+				FC4EC4E8284234C90061623F /* DefaultPictureRepository.swift in Sources */,
 				AA73665327485C3D002B726D /* String+2DigitFormat.swift in Sources */,
 				FC1F6A4527E9DB2F005AB343 /* DeleteAlbumUseCase.swift in Sources */,
 				AAE2FA962764041800FA2C5C /* LaunchScreenViewController.swift in Sources */,

@@ -28,6 +28,7 @@ enum HTTPMethodURL {
         static let userInfo = "/users/me"
         static let notification = "/notification-configs/me"
         static let album = "/albums"
+        static let downloadCompleted = "/users/me/download-completed"
     }
     
     struct DELETE {
