@@ -10,9 +10,9 @@ import UIKit
 import RealmSwift
 
 public class AlbumManager {
-    static func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+    static func loadImageFromDocumentDirectory(from path: String) -> UIImage? {
         let documentDirectory = RealmManager.getUrl()
-        let imageURL = documentDirectory.appendingPathComponent(imageName)
+        let imageURL = documentDirectory.appendingPathComponent(path)
         return UIImage(contentsOfFile: imageURL.path)
     }
     
@@ -27,6 +27,12 @@ public class AlbumManager {
             } catch {
                 print("이미지를 삭제하지 못했습니다.")
             }
+        }
+    }
+    
+    static func makePaths(albumId: Int, pictureInfos: [PictureInfo], fileExtension: FileExtension) -> [String]{
+        return pictureInfos.map { picture in
+            return "\(albumId)/\(picture.bodyPart)/\(picture.id).\(fileExtension)"
         }
     }
 }

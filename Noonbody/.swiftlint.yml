@@ -14,3 +14,5 @@ excluded:
 identifier_name:
   excluded:
     - id
+    - x
+    - y

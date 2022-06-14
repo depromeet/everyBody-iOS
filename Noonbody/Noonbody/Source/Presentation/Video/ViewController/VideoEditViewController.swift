@@ -27,10 +27,10 @@ class VideoEditViewController: BaseViewController {
     
     // MARK: - UI Components
     
-    private var dataSource: UICollectionViewDiffableDataSource<SectionKind, ImageInfo>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<SectionKind, String>! = nil
     private var collectionView: UICollectionView!
     private var centerCell: PreviewCollectionViewCell?
-    private var imageView = UIImageView()
+    private var previewImageView = UIImageView()
     private var totalImageCountLabel = UILabel().then {
         $0.font = .nbFont(type: .caption1Semibold)
         $0.textColor = .white
@@ -52,13 +52,11 @@ class VideoEditViewController: BaseViewController {
                                                         style: .plain,
                                                         target: self,
                                                         action: nil)
-    private var popUp = PopUpViewController(type: .download)
     
     // MARK: - Initializer
     
-    init(albumData: [(String, String)], title: String) {
-        viewModel = VideoViewModel(imageList: albumData.map { ImageInfo(imageKey: $0.0,
-                                                                        imageURL: $0.1) },
+    init(imagePaths: [String], albumData: [(String, String)], title: String) {
+        viewModel = VideoViewModel(images: imagePaths,
                                    videoUsecase: DefaultVideoUseCase(videoRepository: DefaultVideoRepository()))
         super.init(nibName: nil, bundle: nil)
         self.title = title
@@ -90,45 +88,25 @@ class VideoEditViewController: BaseViewController {
                                          saveButtonControlEvent: saveBarButtonItem.rx.tap)
         let output = viewModel.transform(input: input)
         
-        output.restoredImageList
+        output.imageList
             .drive(onNext: { [weak self] restoreImageList in
                 self?.appendItemsToDataSource(with: restoreImageList)
             })
             .disposed(by: disposeBag)
         
-        output.statusCode
-            .drive(onNext: { [weak self] statusCode in
-                if statusCode == 200 {
-                    self?.saveVideoInCameraRoll()
-                }
-            })
-            .disposed(by: disposeBag)
-        
-        saveBarButtonItem.rx.tap
-            .asDriver()
-            .drive(onNext: { [weak self] in
+        output.isSaved
+            .drive(onNext: { [weak self] save in
                 guard let self = self else { return }
-                self.popUp.modalTransitionStyle = .crossDissolve
-                self.popUp.modalPresentationStyle = .overCurrentContext
-                self.popUp.delegate = self
-                self.popUp.titleLabel.text = "비디오 저장 중 ...0%"
-                self.popUp.descriptionLabel.text = "눈바디 영상이 만들어지고 있어요!\n앱을 종료하거나 기기를 잠그지 마세요."
-                self.present(self.popUp, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
-        
-        progress
-            .subscribe(onNext: { [weak self] percent in
-                guard let self = self else { return }
-                self.popUp.titleLabel.text = "비디오 저장 중 ...\(Int(percent*100))%"
-                self.popUp.downloadedPercentView.shapeLayer.strokeEnd = percent
-                if percent == 1.0 {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.popUp.downloadedPercentView.setCompletedView()
-                        self.popUp.titleLabel.text = "비디오 저장 완료!"
-                        self.popUp.descriptionLabel.text = "비디오 저장이 완료되었어요!\n아이폰 앨범에서 저장된 비디오를 확인해 보세요."
-                        self.popUp.setShareButton()
-                    }
+                let popUp = PopUpViewController(type: .download)
+                if save {
+                    popUp.modalTransitionStyle = .crossDissolve
+                    popUp.modalPresentationStyle = .overCurrentContext
+                    popUp.delegate = self
+                    popUp.downloadedPercentView.setCompletedView()
+                    popUp.titleLabel.text = "비디오 저장 완료!"
+                    popUp.descriptionLabel.text = "비디오 저장이 완료되었어요!\n아이폰 앨범에서 저장된 비디오를 확인해 보세요."
+                    popUp.cancelButton.setTitle("확인", for: .normal)
+                    self.present(popUp, animated: true, completion: nil)
                 }
             })
             .disposed(by: disposeBag)
@@ -160,8 +138,8 @@ class VideoEditViewController: BaseViewController {
     
     private func createDataSource() {
         let cellRegistration = UICollectionView.CellRegistration<PreviewCollectionViewCell,
-                                                                 ImageInfo>(handler: makeCellRegistration())
-        dataSource = UICollectionViewDiffableDataSource<SectionKind, ImageInfo>(
+                                                                 String>(handler: makeCellRegistration())
+        dataSource = UICollectionViewDiffableDataSource<SectionKind, String>(
             collectionView: collectionView,
             cellProvider: { collectionView, indexPath, item in
                 return collectionView.dequeueConfiguredReusableCell(
@@ -171,15 +149,15 @@ class VideoEditViewController: BaseViewController {
                 )
             }
         )
-        appendItemsToDataSource(with: viewModel.imageList)
+        appendItemsToDataSource(with: viewModel.imagePaths)
     }
     
     private func makeCellRegistration() -> (_ cell: PreviewCollectionViewCell,
                                             _ indexPath: IndexPath, _
-                                            itemIdentifier: ImageInfo) -> Void {
+                                            itemIdentifier: String) -> Void {
         return { [weak self] cell, _, image in
             guard let self = self else { return }
-            cell.setImage(named: image.imageURL)
+            cell.setImage(named: image)
             cell.identifiter = image
             self.bindDeleteButton(to: cell)
             if self.firstLaunch {
@@ -195,7 +173,7 @@ class VideoEditViewController: BaseViewController {
             .bind(onNext: { owner, imageInfo in
                 owner.deleteItemToDataSource(with: imageInfo)
                 if let deletedItemIndex = owner.viewModel.deleteButtonDidTap(identifier: imageInfo) {
-                    if deletedItemIndex == owner.viewModel.imageList.count {
+                    if deletedItemIndex == owner.viewModel.imagePaths.count {
                         owner.updateIndexLabel(row: deletedItemIndex - 1)
                     }
                     owner.updateCountLabel()
@@ -205,8 +183,8 @@ class VideoEditViewController: BaseViewController {
             .disposed(by: self.disposeBag)
     }
     
-    private func appendItemsToDataSource(with imageList: [ImageInfo]) {
-        var snapshot = NSDiffableDataSourceSnapshot<SectionKind, ImageInfo>()
+    private func appendItemsToDataSource(with imageList: [String]) {
+        var snapshot = NSDiffableDataSourceSnapshot<SectionKind, String>()
         snapshot.appendSections([.previewList])
         snapshot.appendItems(imageList)
         dataSource.apply(snapshot)
@@ -215,7 +193,7 @@ class VideoEditViewController: BaseViewController {
         updateCountLabel()
     }
     
-    private func deleteItemToDataSource(with identifier: ImageInfo) {
+    private func deleteItemToDataSource(with identifier: String) {
         var snapshot = dataSource.snapshot()
         snapshot.deleteItems([identifier])
         dataSource.apply(snapshot)
@@ -225,7 +203,7 @@ class VideoEditViewController: BaseViewController {
         let centerPoint = CGPoint(x: collectionView.contentOffset.x + collectionView.frame.size.width / 2, y: 0.0)
         if let indexPath = collectionView.indexPathForItem(at: centerPoint) {
             self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            self.imageView.setImage(with: viewModel.imageList[indexPath.row].imageURL)
+            self.previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[indexPath.row])
             self.centerCell = self.collectionView.cellForItem(at: indexPath) as? PreviewCollectionViewCell
             self.centerCell?.setSelectedUI()
             updateIndexLabel(row: indexPath.row)
@@ -237,7 +215,7 @@ class VideoEditViewController: BaseViewController {
     private func setUnselectedCellUI() {
         let centerPoint =  CGPoint(x: collectionView.contentOffset.x + collectionView.frame.size.width / 2, y: 0.0)
         if let indexPath = collectionView.indexPathForItem(at: centerPoint) {
-            for row in 0..<viewModel.imageList.count where row != indexPath.row {
+            for row in 0..<viewModel.imagePaths.count where row != indexPath.row {
                 let cell = self.collectionView.cellForItem(at: [0, row]) as? PreviewCollectionViewCell
                 cell?.setUnselectedUI()
             }
@@ -250,11 +228,11 @@ class VideoEditViewController: BaseViewController {
             self.firstLaunch.toggle()
         }
         centerCell?.setSelectedUI()
-        imageView.setImage(with: viewModel.imageList[0].imageURL)
+        previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[0])
     }
     
     private func updateCountLabel() {
-        totalImageCountLabel.text = "\(viewModel.imageList.count)장"
+        totalImageCountLabel.text = "\(viewModel.imagePaths.count)장"
     }
     
     private func updateIndexLabel(row: Int) {
@@ -279,13 +257,12 @@ extension VideoEditViewController: PopUpActionProtocol {
         NotificationCenter.default.post(name: NSNotification.Name("requestCancel"),
                                         object: nil)
         dismiss(animated: true, completion: nil)
-        popUp = PopUpViewController(type: .download)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func confirmButtonDidTap(_ button: UIButton) {
         dismiss(animated: true, completion: nil)
         presentShareSheet()
-        popUp = PopUpViewController(type: .download)
     }
     
 }
@@ -304,7 +281,7 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
         if let indexPath = collectionView.indexPathForItem(at: centerPoint), centerCell == nil {
             self.centerCell = self.collectionView.cellForItem(at: indexPath) as? PreviewCollectionViewCell
             self.centerCell?.setSelectedUI()
-            imageView.setImage(with: viewModel.imageList[indexPath.row].imageURL)
+            previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[indexPath.row])
             updateIndexLabel(row: indexPath.row)
         }
         
@@ -359,7 +336,7 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
         collectionView.setContentOffset(CGPoint(x: cell.frame.minX - (collectionView.frame.width / 2 - cellWidth / 2),
                                                 y: 0.0),
                                         animated: true)
-        imageView.setImage(with: viewModel.imageList[indexPath.row].imageURL)
+        previewImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: viewModel.imagePaths[indexPath.row])
         updateIndexLabel(row: indexPath.row)
     }
 
@@ -370,17 +347,17 @@ extension VideoEditViewController: UICollectionViewDelegateFlowLayout {
 extension VideoEditViewController {
     
     private func setupConstraint() {
-        view.addSubviews(imageView, collectionView, totalImageCountLabel,
+        view.addSubviews(previewImageView, collectionView, totalImageCountLabel,
                          ofLabel, selectedIndexLabel, backingButton)
         
-        imageView.snp.makeConstraints {
+        previewImageView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Constant.Size.screenWidth * (4.0/3.0))
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(imageView.snp.bottom).offset(UIDevice.current.hasNotch ? 28 : 5)
+            $0.top.equalTo(previewImageView.snp.bottom).offset(UIDevice.current.hasNotch ? 28 : 5)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(UIDevice.current.hasNotch ? 68 / Constant.Size.figmaHeight * Constant.Size.screenHeight : 40)
         }

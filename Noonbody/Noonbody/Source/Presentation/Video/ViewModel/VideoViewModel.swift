@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 import RxCocoa
 import RxSwift
@@ -20,65 +21,66 @@ final class VideoViewModel {
     }
     
     struct Output {
-        let restoredImageList: Driver<[ImageInfo]>
-        let statusCode: Driver<Int>
+        let imageList: Driver<[String]>
+        let isSaved: Driver<Bool>
     }
 
-    var imageList: [ImageInfo]
-    var backingList: [(image: ImageInfo, index: Int)] = []
-    var imageSubject = BehaviorSubject<[ImageInfo]>(value: [])
+    var imagePaths: [String]
+    var backingList: [(image: String, index: Int)] = []
+    var imageSubject = BehaviorSubject<[String]>(value: [])
     let videoUsecase: VideoUseCase
     
-    init(imageList: [ImageInfo], videoUsecase: VideoUseCase) {
-        self.imageList = imageList
+    init(images: [String], videoUsecase: VideoUseCase) {
+        self.imagePaths = images
         self.videoUsecase = videoUsecase
-        imageSubject.onNext(imageList)
+        imageSubject.onNext(images)
     }
     
     func transform(input: Input) -> Output {
-        let backingStore: BehaviorSubject<[ImageInfo]> = BehaviorSubject(value: imageList)
+        let backingStore: BehaviorSubject<[String]> = BehaviorSubject(value: imagePaths)
         
         _ = input.backingButtonControlEvent
             .withUnretained(self)
             .subscribe(onNext: { owner, _ in
                 guard let deletedItem = owner.backingList.popLast() else { return }
-                owner.imageList.insert(deletedItem.image, at: deletedItem.index)
-                backingStore.onNext(owner.imageList)
-                owner.imageSubject.onNext(owner.imageList)
+                owner.imagePaths.insert(deletedItem.image, at: deletedItem.index)
+                backingStore.onNext(owner.imagePaths)
+                owner.imageSubject.onNext(owner.imagePaths)
             })
             .disposed(by: disposeBag)
         
         let response =
             input.saveButtonControlEvent
-            .withLatestFrom(imageSubject)
-            .map({ imageList -> VideoRequestModel in
-                let imageKeys = imageList.map { $0.imageKey }
-                return VideoRequestModel(keys: imageKeys)
-            })
-            .withUnretained(self)
-            .flatMap { owner, requestModel -> Observable<Int> in
-                owner.videoUsecase.downloadVideo(imageKeys: requestModel)
+            .flatMap { () -> Observable<Bool> in
+                let settings = RenderSettings()
+                let imageAnimator = ImageAnimator(renderSettings: settings)
+                imageAnimator.images = self.imagePaths.map { AlbumManager.loadImageFromDocumentDirectory(from: $0) ?? UIImage() }
+                var isSave = true
+                imageAnimator.render { save in
+                    isSave = save
+                }
+                return Observable.just(isSave)
             }
             .share()
         
-        let statusCode = response
+        let save = response
             .compactMap { $0 }
-            .map { response -> Int in
+            .map { response -> Bool in
                 return response
-            }.asDriver(onErrorJustReturn: 404)
+            }.asDriver(onErrorJustReturn: false)
         
-        return Output(restoredImageList: backingStore.asDriver(onErrorJustReturn: []),
-                      statusCode: statusCode)
+        return Output(imageList: backingStore.asDriver(onErrorJustReturn: []),
+                      isSaved: save)
     }
     
-    func deleteButtonDidTap(identifier: ImageInfo) -> Int? {
-        guard let index = imageList.firstIndex(where: { item in
-            item.imageKey == identifier.imageKey
+    func deleteButtonDidTap(identifier: String) -> Int? {
+        guard let index = imagePaths.firstIndex(where: { item in
+            item == identifier
         }) else { return nil }
         
-        backingList.append((imageList[index], index))
-        imageList.remove(at: index)
-        imageSubject.onNext(imageList)
+        backingList.append((imagePaths[index], index))
+        imagePaths.remove(at: index)
+        imageSubject.onNext(imagePaths)
         
         return index
     }

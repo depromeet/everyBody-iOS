@@ -34,11 +34,11 @@ extension Reactive where Base: PreviewCollectionViewCell {
         return RxCollectionViewCellDelegateProxy.proxy(for: self.base)
     }
 
-    var deleteButtonDelegate: Observable<ImageInfo> {
+    var deleteButtonDelegate: Observable<String> {
         return delegate
             .methodInvoked(#selector(DeleteButtonDelegate.deleteButtonDidTap(_:cellIdentifier:)))
             .map({ parameters in
-                return parameters[1] as? ImageInfo ?? ImageInfo(imageKey: "", imageURL: "")
+                return parameters[1] as? String ?? ""
             })
     }
 }

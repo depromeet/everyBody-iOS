@@ -17,6 +17,7 @@
 		AA2F3188275AD68900855861 /* CameraAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3187275AD68900855861 /* CameraAPI.swift */; };
 		AA2F318A275ADB6400855861 /* CameraService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3189275ADB6400855861 /* CameraService.swift */; };
 		AA2F3192275B413100855861 /* AlbumSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */; };
+		AA3B027E284222B90038A993 /* VideoGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA3B027D284222B80038A993 /* VideoGenerator.swift */; };
 		AA4033D3274C36FC009C4A7E /* AlbumCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */; };
 		AA4EFD2127623F38005017FC /* SelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD2027623F38005017FC /* SelectedView.swift */; };
 		AA4EFD2327623F3F005017FC /* NBSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA4EFD2227623F3F005017FC /* NBSegmentedControl.swift */; };
@@ -214,6 +215,7 @@
 		AA2F3187275AD68900855861 /* CameraAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAPI.swift; sourceTree = "<group>"; };
 		AA2F3189275ADB6400855861 /* CameraService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraService.swift; sourceTree = "<group>"; };
 		AA2F3191275B413100855861 /* AlbumSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumSelectionViewModel.swift; sourceTree = "<group>"; };
+		AA3B027D284222B80038A993 /* VideoGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoGenerator.swift; sourceTree = "<group>"; };
 		AA4033D2274C36FC009C4A7E /* AlbumCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCreationViewController.swift; sourceTree = "<group>"; };
 		AA4EFD2027623F38005017FC /* SelectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedView.swift; sourceTree = "<group>"; };
 		AA4EFD2227623F3F005017FC /* NBSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NBSegmentedControl.swift; sourceTree = "<group>"; };
@@ -963,6 +965,7 @@
 			isa = PBXGroup;
 			children = (
 				AAEA2382278C9C59005A08C9 /* VideoEditViewController.swift */,
+				AA3B027D284222B80038A993 /* VideoGenerator.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1267,6 +1270,7 @@
 				FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */,
 				AA5B85DB271700D5002276C3 /* Constant.swift in Sources */,
 				AAE2FA9D27640ADC00FA2C5C /* LaunchService.swift in Sources */,
+				AA3B027E284222B90038A993 /* VideoGenerator.swift in Sources */,
 				FC76A54427E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift in Sources */,
 				FC91997627A180D200A6CD0D /* FeedbackPopUpViewController.swift in Sources */,
 				FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */,

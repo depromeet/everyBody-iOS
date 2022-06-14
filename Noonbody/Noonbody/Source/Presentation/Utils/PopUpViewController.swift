@@ -223,7 +223,7 @@ class PopUpViewController: BaseViewController {
     }
     
     func setShareButton() {
-        containerView.addSubview(confirmButton)
+        containerView.addSubviews(confirmButton, cancelButton)
         
         cancelButton.snp.remakeConstraints {
             $0.width.equalTo(160)
