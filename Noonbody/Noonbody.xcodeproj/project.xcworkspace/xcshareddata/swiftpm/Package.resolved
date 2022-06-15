@@ -173,6 +173,24 @@
         }
       },
       {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift",
+        "state": {
+          "branch": null,
+          "revision": "b4307ba0b6425c0ba4178e138799946c3da594f8",
+          "version": "6.5.0"
+        }
+      },
+      {
+        "package": "Siren",
+        "repositoryURL": "https://github.com/ArtSabintsev/Siren",
+        "state": {
+          "branch": null,
+          "revision": "9173fc529731705a737658b2801ccbc19dd385c8",
+          "version": "5.8.1"
+        }
+      },
+      {
         "package": "SkeletonView",
         "repositoryURL": "https://github.com/Juanpe/SkeletonView.git",
         "state": {
