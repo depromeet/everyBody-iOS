@@ -11,7 +11,7 @@ import RealmSwift
 
 public class RealmMigrationService {
     static func migrateAlbums(albums: Albums) {
-        albums.forEach ({ album in
+        albums.forEach({ album in
             let albumObject = RMAlbum(name: album.name, createdAt: Date())
             let directoryURL = RealmManager.getUrl().appendingPathComponent("\(albumObject.id)")
             do {
@@ -20,10 +20,11 @@ public class RealmMigrationService {
             } catch let err {
                 print(err.localizedDescription)
             }
+            migratePictures(album: album, albumId: albumObject.id)
         })
     }
     
-    static func migratePictures(album: Album) {
+    static func migratePictures(album: Album, albumId: Int) {
         guard let realm = RealmManager.realm() else { return }
         let documentURL = RealmManager.getUrl()
         let fileManager = FileManager()
@@ -36,7 +37,7 @@ public class RealmMigrationService {
             let image = UIImage(data: data!)!
             
             return PictureRequestModel(image: image,
-                                       albumId: album.id,
+                                       albumId: albumId,
                                        bodyPart: picture.bodyPart,
                                        takenAt: picture.takenAt)
         }.forEach({ picture in
@@ -45,14 +46,14 @@ public class RealmMigrationService {
                                         directoryURL: "\(picture.albumId)/\(picture.bodyPart)",
                                         date: picture.takenAt)
             let directoryURL = documentURL.appendingPathComponent(pictureObject.directoryURL)
-            let imageURL = directoryURL.appendingPathComponent("\(album.id).\(FileExtension.png)")
+            let imageURL = directoryURL.appendingPathComponent("\(pictureObject.id).\(FileExtension.png)")
             let data = picture.image.pngData()!
             
             do {
                 try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
                 try data.write(to: imageURL)
                 try realm.write {
-                    let localAlbum = realm.objects(RMAlbum.self).filter("id == \(album.id)").first
+                    let localAlbum = realm.objects(RMAlbum.self).filter("id == \(albumId)").first
                     switch picture.bodyPart {
                     case .whole:
                         localAlbum?.whole.append(pictureObject)
