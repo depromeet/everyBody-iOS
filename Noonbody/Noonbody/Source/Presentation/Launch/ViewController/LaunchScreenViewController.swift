@@ -104,7 +104,6 @@ class LaunchScreenViewController: UIViewController {
             case .success(let data):
                 if let data = data {
                     RealmMigrationService.migrateAlbums(albums: data)
-                    _ = data.map { RealmMigrationService.migratePictures(album: $0) }
                     self.completeDownload()
                 }
             case .failure(let err):
