@@ -254,6 +254,8 @@ class PopUpViewController: BaseViewController {
     func cancelButtonDidTap() {
         delegate?.cancelButtonDidTap(cancelButton)
         downloadedPercentView.removeCompletedView()
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc
