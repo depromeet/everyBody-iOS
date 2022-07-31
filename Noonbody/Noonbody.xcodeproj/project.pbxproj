@@ -65,6 +65,8 @@
 		AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AA81D8B82799C79400D4D667 /* SkeletonView */; };
 		AA81D8BD279A05DD00D4D667 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */; };
 		AA81D8C0279AF14800D4D667 /* UILabel+setLineHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */; };
+		AA8B661B285A252A008C5005 /* Siren in Frameworks */ = {isa = PBXBuildFile; productRef = AA8B661A285A252A008C5005 /* Siren */; };
+		AA8B661D285A2E66008C5005 /* UIDevice+modelname.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B661C285A2E66008C5005 /* UIDevice+modelname.swift */; };
 		AA95910F27442999007772BD /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA95910E27442999007772BD /* PopUpViewController.swift */; };
 		AA9591122744339D007772BD /* NBTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9591112744339D007772BD /* NBTextField.swift */; };
 		AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */; };
@@ -263,6 +265,7 @@
 		AA7E0A9326FB135300106DC2 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+setLineHeight.swift"; sourceTree = "<group>"; };
+		AA8B661C285A2E66008C5005 /* UIDevice+modelname.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+modelname.swift"; sourceTree = "<group>"; };
 		AA95910E27442999007772BD /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		AA9591112744339D007772BD /* NBTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBTextField.swift; sourceTree = "<group>"; };
 		AA959113274435DD007772BD /* UITextField+addLeftPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+addLeftPadding.swift"; sourceTree = "<group>"; };
@@ -396,6 +399,7 @@
 				FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */,
 				AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */,
 				AAE2FA862763F51300FA2C5C /* FirebaseAnalytics in Frameworks */,
+				AA8B661B285A252A008C5005 /* Siren in Frameworks */,
 				AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */,
 				FC7D798127D09A3E0022C223 /* Realm in Frameworks */,
 				AA9FB3EC2789D79000A97884 /* Lottie in Frameworks */,
@@ -800,6 +804,7 @@
 				AAEA239427933E25005A08C9 /* Rx+PreviewCollectionViewCell.swift */,
 				AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */,
 				FCBEEC2927E4F33C00CC2F0E /* FileExtension.swift */,
+				AA8B661C285A2E66008C5005 /* UIDevice+modelname.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1152,6 +1157,7 @@
 				AA81D8B82799C79400D4D667 /* SkeletonView */,
 				FC7D798027D09A3E0022C223 /* Realm */,
 				FC7D798227D09A3E0022C223 /* RealmSwift */,
+				AA8B661A285A252A008C5005 /* Siren */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* Noonbody DEV.app */;
@@ -1191,6 +1197,7 @@
 				AA9FB3EA2789D79000A97884 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				FC7D797F27D09A3E0022C223 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				AA8B6619285A252A008C5005 /* XCRemoteSwiftPackageReference "Siren" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -1380,6 +1387,7 @@
 				AA73AFC627518B8900FD7C70 /* MultiMoyaProvider.swift in Sources */,
 				AA5B85CF2716D068002276C3 /* CameraViewController.swift in Sources */,
 				FC67D5C527ECF52600651378 /* DeletePictureUseCase.swift in Sources */,
+				AA8B661D285A2E66008C5005 /* UIDevice+modelname.swift in Sources */,
 				AAEA23A727960553005A08C9 /* CircleProgressView.swift in Sources */,
 				AA81D8C0279AF14800D4D667 /* UILabel+setLineHeight.swift in Sources */,
 				FC2FFF5127D0AB1C0047E489 /* Picture.swift in Sources */,
@@ -1560,7 +1568,7 @@
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -1568,6 +1576,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.noonbody${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME) DEV";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1587,7 +1596,7 @@
 				CODE_SIGN_ENTITLEMENTS = Noonbody/Noonbody.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 22PTX8V7Q5;
 				INFOPLIST_FILE = Noonbody/Resource/Support/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
@@ -1595,6 +1604,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.noonbody${BUNDLE_ID_SUFFIX}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1657,6 +1667,15 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.0.0;
+			};
+		};
+		AA8B6619285A252A008C5005 /* XCRemoteSwiftPackageReference "Siren" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ArtSabintsev/Siren";
+			requirement = {
+				kind = versionRange;
+				maximumVersion = 6.0.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 		AA9FB3E22789D4A500A97884 /* XCRemoteSwiftPackageReference "Moya" */ = {
@@ -1729,6 +1748,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
+		};
+		AA8B661A285A252A008C5005 /* Siren */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA8B6619285A252A008C5005 /* XCRemoteSwiftPackageReference "Siren" */;
+			productName = Siren;
 		};
 		AA9FB3E32789D4A600A97884 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
