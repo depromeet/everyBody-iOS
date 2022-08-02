@@ -25,7 +25,7 @@ class ProfileTableViewCell: UITableViewCell {
         $0.textColor = Asset.Color.gray80.color
         $0.clearButtonMode = .whileEditing
     }
-    lazy var saveOnlyInAppSwitch = CustomSwitch(width: 40, height: 24).then {
+    lazy var switchButton = CustomSwitch(width: 40, height: 24).then {
         $0.descriptionLabel.isHidden = true
         $0.setOffColor(color: Asset.Color.gray30.color)
         $0.delegate = self
@@ -49,6 +49,8 @@ class ProfileTableViewCell: UITableViewCell {
             setupConstraint()
         }
     }
+    
+    var dataType: ProfileDataType?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -80,7 +82,7 @@ class ProfileTableViewCell: UITableViewCell {
             addSubview(profileTextField)
             rightButton?.removeFromSuperview()
             descriptionLabel.removeFromSuperview()
-            saveOnlyInAppSwitch.removeFromSuperview()
+            switchButton.removeFromSuperview()
             
             profileTextField.snp.makeConstraints {
                 $0.centerY.equalToSuperview()
@@ -100,7 +102,7 @@ class ProfileTableViewCell: UITableViewCell {
             }
         case .appSwitch:
             profileTextField.removeFromSuperview()
-            addSubviews(descriptionLabel, saveOnlyInAppSwitch)
+            addSubviews(descriptionLabel, switchButton)
             
             titleLabel.snp.remakeConstraints {
                 $0.top.equalToSuperview().offset(16)
@@ -110,7 +112,7 @@ class ProfileTableViewCell: UITableViewCell {
                 $0.top.equalTo(titleLabel.snp.bottom).offset(11)
                 $0.leading.equalTo(titleLabel.snp.leading)
             }
-            saveOnlyInAppSwitch.snp.makeConstraints {
+            switchButton.snp.makeConstraints {
                 $0.top.equalTo(titleLabel.snp.top)
                 $0.trailing.equalToSuperview().offset(-20)
                 $0.width.equalTo(38)
@@ -147,7 +149,13 @@ class ProfileTableViewCell: UITableViewCell {
 extension ProfileTableViewCell: CustomSwitchDelegate {
     
     func switchButtonStateChanged(isOn: Bool) {
-        UserManager.saveBulitInInLibrary = !isOn
+        switch dataType {
+        case .saved:
+            UserManager.saveBulitInInLibrary = !isOn
+        case .hideThumbnail:
+            UserManager.hideThumbnail = isOn
+        default: break
+        }
     }
 
 }

@@ -116,7 +116,9 @@ class ProfileViewController: BaseViewController {
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if cellData[indexPath.item] == .saved {
+        let isAppSwitch = [.saved, .hideThumbnail, .biometricAuthentication]
+                        .contains(cellData[indexPath.item])
+        if isAppSwitch {
             return 80
         }
         return 50
@@ -137,7 +139,6 @@ extension ProfileViewController: UITableViewDataSource {
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ProfileTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         let title = cellData[indexPath.item].title
-        
         switch cellData[indexPath.item] {
         case .nickName(let nickname):
             cell.type = .textField
@@ -154,21 +155,36 @@ extension ProfileViewController: UITableViewDataSource {
             cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
         case .saved:
             cell.type = .appSwitch
+            cell.dataType = .saved
             cell.setupConstraint()
             cell.setData(title: title)
             cell.descriptionLabel.text = "눈바디 앱에서 촬영한 사진을 앱에만 저장합니다."
-            cell.saveOnlyInAppSwitch.isOn = !UserManager.saveBulitInInLibrary
+            cell.switchButton.isOn = !UserManager.saveBulitInInLibrary
+        case .hideThumbnail:
+            cell.type = .appSwitch
+            cell.dataType = .hideThumbnail
+            cell.setupConstraint()
+            cell.setData(title: title)
+            cell.descriptionLabel.text = "앨범 썸네일을 기본 이미지로 가릴 수 있습니다."
+            cell.switchButton.isOn = UserManager.hideThumbnail
+            
+        case .biometricAuthentication:
+            cell.type = .appSwitch
+            cell.dataType = .biometricAuthentication
+            cell.setupConstraint()
+            cell.setData(title: title)
+            cell.descriptionLabel.text = "Face ID, Touch ID를 등록해 앱 잠금을 할 수 있습니다."
+            cell.switchButton.isOn = UserManager.biometricAuthentication
+
         case .privacyPolicy:
             cell.type = .right
             cell.setData(title: title)
             cell.setRightButtonEvent(target: self, action: #selector(pushToPrivacyPolicyViewController))
             cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
         }
-        
         arrayOfCells.append(cell)
         return cell
     }
-    
 }
 
 // MARK: - Layout
