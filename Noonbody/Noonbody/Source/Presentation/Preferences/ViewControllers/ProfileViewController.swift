@@ -14,10 +14,6 @@ class ProfileViewController: BaseViewController {
 
     // MARK: - UI Components
     
-    private let profileImageView = UIImageView().then {
-        $0.makeRounded(radius: 44)
-        $0.backgroundColor = Asset.Color.gray10.color
-    }
     private let tableView = UITableView().then {
         $0.register(ProfileTableViewCell.self)
         $0.separatorStyle = .none
@@ -78,13 +74,6 @@ class ProfileViewController: BaseViewController {
             .drive(onNext: { [weak self] data in
                 guard let self = self else { return }
                 self.cellData = data
-            })
-            .disposed(by: disposeBag)
-        
-        output.profileImage
-            .drive(onNext: { [weak self] imageURL in
-                guard let self = self else { return }
-                self.profileImageView.setImage(with: imageURL)
             })
             .disposed(by: disposeBag)
     }
@@ -187,16 +176,9 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController {
     
     func setupConstraint() {
-        view.addSubviews(profileImageView, tableView)
-        
-        profileImageView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
-            $0.centerX.equalToSuperview()
-            $0.width.height.equalTo(88)
-        }
-        
+        view.addSubview(tableView)
         tableView.snp.makeConstraints {
-            $0.top.equalTo(profileImageView.snp.bottom).offset(58)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(32)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }
