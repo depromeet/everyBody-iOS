@@ -21,6 +21,12 @@ class UserManager {
     @UserDefault(key: Constant.UserDefault.profile, defaultValue: nil)
     static var profile: String?
     
+    @UserDefault(key: Constant.UserDefault.hideThumbnail, defaultValue: false)
+    static var hideThumbnail: Bool
+    
+    @UserDefault(key: Constant.UserDefault.biometricAuthentication, defaultValue: false)
+    static var biometricAuthentication: Bool
+    
     @UserDefault(key: Constant.UserDefault.token, defaultValue: nil)
     static var token: String?
     

@@ -14,6 +14,8 @@ extension Constant {
         static let nickname = "nickname"
         static let motto = "motto"
         static let profile = "profile"
+        static let hideThumbnail = "hideThumbnail"
+        static let biometricAuthentication = "biometricAuthentication"
         static let token = "token"
         static let saveBuiltInLibrary = "builtInLibrary"
         static let gridMode = "gridMode"
