@@ -26,7 +26,6 @@ final class ProfileViewModel {
     
     struct Output {
         let cellData: Driver<[ProfileDataType]>
-        let profileImage: Driver<String>
     }
     
     struct CellOutput {
@@ -47,22 +46,16 @@ final class ProfileViewModel {
         let cellData = userInfo
             .compactMap { $0 }
             .map { response -> [ProfileDataType] in
-                return [
-                    .nickName(nickname: response.nickname),
-                    .motto(motto: response.motto),
+                return [.motto(motto: response.motto),
                     .pushNotification,
                     .saved,
+                    .hideThumbnail,
+                    .biometricAuthentication,
                     .privacyPolicy
                 ]
             }.asDriver(onErrorJustReturn: [])
         
-        let imageURL = userInfo
-            .compactMap { $0 }
-            .map { response -> String in
-                return response.profileImage
-            }.asDriver(onErrorJustReturn: "")
-        
-        return Output(cellData: cellData, profileImage: imageURL)
+        return Output(cellData: cellData)
     }
     
     func transformCellData(input: CellInput) -> CellOutput {
