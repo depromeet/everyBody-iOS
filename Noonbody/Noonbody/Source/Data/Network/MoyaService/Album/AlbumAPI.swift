@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit.UIDevice
 
 import Moya
 
@@ -69,7 +70,8 @@ extension AlbumAPI {
             
             return .uploadMultipart(multiPartFormData)
         case .sendFeedback(let request):
-            return .requestParameters(parameters: ["content" : request.content,
+            return .requestParameters(parameters: ["content" : request.content
+                                                   + "\n(iOS \(UIDevice.current.systemVersion), \(UIDevice.modelName))",
                                                    "star_rate": request.starRate],
                                       encoding: JSONEncoding.default)
         }

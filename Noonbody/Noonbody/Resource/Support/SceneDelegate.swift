@@ -7,6 +7,8 @@
 
 import UIKit
 
+import Siren
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -15,6 +17,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        let siren = Siren.shared
+        siren.presentationManager = PresentationManager(
+          appName: "Noonbody",
+          alertTitle: "업데이트 해주세요!",
+          alertMessage: "좀 더 나은 눈바디가 되기 위해 노력했어요 :)",
+          updateButtonTitle: "업데이트 하러가기",
+          forceLanguageLocalization: .korean
+        )
+        siren.rulesManager = RulesManager(globalRules: .critical)
+        siren.apiManager = APIManager(country: .korea) // 기준 위치 대한민국 앱스토어로 변경
+        siren.wail(performCheck: .onDemand) { _ in }
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
