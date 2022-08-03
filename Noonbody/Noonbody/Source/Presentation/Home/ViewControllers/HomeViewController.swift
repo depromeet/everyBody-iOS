@@ -241,13 +241,8 @@ class HomeViewController: BaseViewController {
     
     @objc
     private func pushToPreferenceViewController() {
-        let popUpViewController = PopUpViewController(type: .oneButton)
-        popUpViewController.modalTransitionStyle = .crossDissolve
-        popUpViewController.modalPresentationStyle = .overCurrentContext
-        popUpViewController.titleLabel.text = "곧 돌아올게요! 💪"
-        popUpViewController.descriptionLabel.text = "더 나은 눈바디를 위해 재정비 중인 기능이에요. \n조금만 기다려주세요! 🥲"
-        popUpViewController.cancelButton.setTitle("확인", for: .normal)
-        self.present(popUpViewController, animated: true, completion: nil)
+        let viewController = ProfileViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc func albumCreationButtonDidTap() {
