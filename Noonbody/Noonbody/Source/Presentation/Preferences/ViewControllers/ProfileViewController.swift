@@ -167,7 +167,6 @@ extension ProfileViewController: UITableViewDataSource {
             cell.setData(title: title)
             cell.descriptionLabel.text = "앨범 썸네일을 기본 이미지로 가릴 수 있습니다."
             cell.switchButton.isOn = UserManager.hideThumbnail
-            
         case .biometricAuthentication:
             cell.type = .appSwitch
             cell.dataType = .biometricAuthentication
@@ -175,7 +174,6 @@ extension ProfileViewController: UITableViewDataSource {
             cell.setData(title: title)
             cell.descriptionLabel.text = "Face ID, Touch ID를 등록해 앱 잠금을 할 수 있습니다."
             cell.switchButton.isOn = UserManager.biometricAuthentication
-
         case .privacyPolicy:
             cell.type = .right
             cell.setData(title: title)
