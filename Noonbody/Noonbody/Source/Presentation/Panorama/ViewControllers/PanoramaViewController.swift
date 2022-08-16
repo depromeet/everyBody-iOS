@@ -212,9 +212,10 @@ class PanoramaViewController: BaseViewController {
             .drive(onNext: { [weak self] count in
                 guard let self = self else { return }
                 self.title = self.editMode ? "\(count)장" : self.albumName
-                    self.navigationItem.rightBarButtonItem?.isEnabled = count != 0
+                if self.editMode {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = count > 0
                 }
-            ).disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
 
         output.deletePictureStatusCode
             .drive(onNext: { [weak self] statusCode in
@@ -261,7 +262,7 @@ class PanoramaViewController: BaseViewController {
                                                 rightActions: [#selector(deletePictureButtonDidTap)])
         
         self.title = "\(seletedPictures.value.count)장"
-        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItems?[0].isEnabled = seletedPictures.value.count > 0
     }
     
     private func setDelegation() {
