@@ -10,7 +10,7 @@ import UIKit
 class ProfileTableViewCell: UITableViewCell {
 
     enum Style {
-        case textField
+        case textLabel
         case right
         case appSwitch
     }
@@ -21,9 +21,8 @@ class ProfileTableViewCell: UITableViewCell {
         $0.font = .nbFont(type: .body2SemiBold)
         $0.textColor = Asset.Color.gray80.color
     }
-    public let profileTextField = UITextField().then {
+    public let profileTextLabel = UILabel().then {
         $0.textColor = Asset.Color.gray80.color
-        $0.clearButtonMode = .whileEditing
     }
     lazy var switchButton = CustomSwitch(width: 40, height: 24).then {
         $0.descriptionLabel.isHidden = true
@@ -78,19 +77,10 @@ class ProfileTableViewCell: UITableViewCell {
         }
         
         switch type {
-        case .textField:
-            addSubview(profileTextField)
-            rightButton?.removeFromSuperview()
+        case .right:
             descriptionLabel.removeFromSuperview()
             switchButton.removeFromSuperview()
-            
-            profileTextField.snp.makeConstraints {
-                $0.centerY.equalToSuperview()
-                $0.leading.equalToSuperview().offset(113)
-                $0.trailing.equalToSuperview().offset(-20)
-            }
-        case .right:
-            profileTextField.removeFromSuperview()
+            profileTextLabel.removeFromSuperview()
             rightButton = UIButton()
             
             guard let button = rightButton else { return }
@@ -100,8 +90,27 @@ class ProfileTableViewCell: UITableViewCell {
                 $0.centerY.equalToSuperview()
                 $0.trailing.equalToSuperview().inset(20)
             }
+        case .textLabel:
+            descriptionLabel.removeFromSuperview()
+            switchButton.removeFromSuperview()
+            rightButton = UIButton()
+            
+            guard let button = rightButton else { return }
+            addSubviews(button, profileTextLabel)
+            
+            button.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.width.height.equalTo(24)
+                $0.trailing.equalToSuperview().inset(20)
+            }
+            profileTextLabel.snp.makeConstraints {
+                $0.centerY.equalToSuperview()
+                $0.leading.equalToSuperview().offset(113)
+                $0.trailing.equalTo(button.snp.leading).offset(-20)
+            }
         case .appSwitch:
-            profileTextField.removeFromSuperview()
+            rightButton?.removeFromSuperview()
+            profileTextLabel.removeFromSuperview()
             addSubviews(descriptionLabel, switchButton)
             
             titleLabel.snp.remakeConstraints {
@@ -121,15 +130,12 @@ class ProfileTableViewCell: UITableViewCell {
         }
     }
     
-    func setData(title: String, placeholder: String? = nil) {
+    func setData(title: String) {
         titleLabel.text = title
-        
-        guard let text = placeholder else { return }
-        profileTextField.addPlaceHolderAttributed(text: text)
     }
     
-    func setTextField(text: String) {
-        profileTextField.text = text
+    func setTextLabel(text: String) {
+        profileTextLabel.text = text
     }
     
     func setRightButtonEvent(target: Any, action: Selector) {

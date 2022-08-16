@@ -34,13 +34,7 @@ class ProfileViewController: BaseViewController {
             tableView.reloadData()
         }
     }
-    private lazy var arrayOfCells: [ProfileTableViewCell] = [] {
-        didSet {
-            if arrayOfCells.count == 4 {
-                bindCellTextfield()
-            }
-        }
-    }
+    private lazy var arrayOfCells: [ProfileTableViewCell] = []
     
     // MARK: - View Life Cycle
     
@@ -57,7 +51,6 @@ class ProfileViewController: BaseViewController {
     
     func setupNavigationBar() {
         navigationController?.initNaviBarWithBackButton()
-        navigationItem.rightBarButtonItem = completeBarButtonItem
         title = "프로필 설정"
     }
     
@@ -78,23 +71,10 @@ class ProfileViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    func bindCellTextfield() {
-        let input = ProfileViewModel.CellInput(nickNameTextField: arrayOfCells[0].profileTextField.rx.text.orEmpty.asObservable(),
-                                               mottoTextfield: arrayOfCells[1].profileTextField.rx.text.orEmpty.asObservable(),
-                                               completeButtonTap: completeBarButtonItem.rx.tap)
-        let output = viewModel.transformCellData(input: input)
-        
-        output.canSave
-            .drive(completeBarButtonItem.rx.isEnabled)
-            .disposed(by: disposeBag)
-        
-        output.statusCode
-            .drive(onNext: { [weak self] statusCode in
-                guard let self = self else { return }
-                if statusCode == 200 {
-                    self.showToast(type: .save)
-                }
-            }).disposed(by: disposeBag)
+    @objc
+    private func pushToMottoViewController() {
+        let viewController = MottoViewController()
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc
@@ -140,14 +120,12 @@ extension ProfileViewController: UITableViewDataSource {
         let cell: ProfileTableViewCell = tableView.dequeueReusableCell(for: indexPath)
         let title = cellData[indexPath.item].title
         switch cellData[indexPath.item] {
-        case .nickName(let nickname):
-            cell.type = .textField
-            cell.setData(title: title, placeholder: "닉네임을 입력해주세요")
-            cell.setTextField(text: nickname)
         case .motto(let motto):
-            cell.type = .textField
-            cell.setData(title: title, placeholder: "천천히 그리고 꾸준히!")
-            cell.setTextField(text: motto)
+            cell.type = .textLabel
+            cell.setData(title: title)
+            cell.setTextLabel(text: motto)
+            cell.setRightButtonEvent(target: self, action: #selector(pushToMottoViewController))
+            cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
         case .pushNotification:
             cell.type = .right
             cell.setData(title: title)

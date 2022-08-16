@@ -8,7 +8,6 @@
 import Foundation
 
 enum ProfileDataType: Equatable {
-    case nickName(nickname: String)
     case motto(motto: String)
     case pushNotification
     case saved
@@ -18,8 +17,6 @@ enum ProfileDataType: Equatable {
     
     var title: String {
         switch self {
-        case .nickName:
-            return "닉네임"
         case .motto:
             return "좌우명"
         case .pushNotification:

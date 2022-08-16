@@ -180,6 +180,7 @@
 		FC91997C27A2CD3100A6CD0D /* FeedbackRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997B27A2CD3100A6CD0D /* FeedbackRequestModel.swift */; };
 		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
 		FC9B76D027DDEFA300F80F21 /* AlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9B76CF27DDEFA300F80F21 /* AlbumManager.swift */; };
+		FC9D30C128ABA79600E7FD48 /* MottoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9D30C028ABA79600E7FD48 /* MottoViewController.swift */; };
 		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
 		FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */; };
 		FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */; };
@@ -374,6 +375,7 @@
 		FC91997B27A2CD3100A6CD0D /* FeedbackRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRequestModel.swift; sourceTree = "<group>"; };
 		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
 		FC9B76CF27DDEFA300F80F21 /* AlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumManager.swift; sourceTree = "<group>"; };
+		FC9D30C028ABA79600E7FD48 /* MottoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MottoViewController.swift; sourceTree = "<group>"; };
 		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
 		FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaUseCase.swift; sourceTree = "<group>"; };
@@ -853,6 +855,7 @@
 				AA74A0F3274A696E00FA6678 /* NotificationViewController.swift */,
 				AA74A0D927495E2300FA6678 /* ProfileViewController.swift */,
 				AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */,
+				FC9D30C028ABA79600E7FD48 /* MottoViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1054,6 +1057,7 @@
 		FC76A53C27E3B36500CFEA5A /* MoyaService */ = {
 			isa = PBXGroup;
 			children = (
+				AA73AFB3274FE33000FD7C70 /* Utils */,
 				AAEA239D27938E2E005A08C9 /* Video */,
 				FCAE821327832D6F007A729D /* Panorama */,
 				AAE2FA8A2763FE8300FA2C5C /* Auth */,
@@ -1061,7 +1065,6 @@
 				AA2F31752759F3DC00855861 /* Notification */,
 				FC23AC0E275A03720067EEF7 /* Album */,
 				AAA9A5272757FF7200FE92DB /* CreateAlbum */,
-				AA73AFB3274FE33000FD7C70 /* Utils */,
 				AA73AFAE274FE30C00FD7C70 /* MyPage */,
 			);
 			path = MoyaService;
@@ -1374,6 +1377,7 @@
 				AA74A0DA27495E2300FA6678 /* ProfileViewController.swift in Sources */,
 				AA7366512746BD53002B726D /* DateViewModel.swift in Sources */,
 				AABEA2E5273C578E00A06A8C /* Album.swift in Sources */,
+				FC9D30C128ABA79600E7FD48 /* MottoViewController.swift in Sources */,
 				AA4EFD2927623F75005017FC /* NBSegmentedButton.swift in Sources */,
 				AAE2FAAC276411E900FA2C5C /* SignInResponse.swift in Sources */,
 				FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */,
