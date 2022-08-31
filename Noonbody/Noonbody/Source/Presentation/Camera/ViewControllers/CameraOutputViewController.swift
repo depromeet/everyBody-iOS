@@ -229,8 +229,8 @@ class CameraOutputViewController: BaseViewController {
     
     private func initWeightLabel() {
         selectedWeight = "\(UserManager.weight)"
-        selectedDemicalWeight = "\(UserManager.demicalWeight)"
-        weightLabel.text = "\(selectedWeight).\(selectedDemicalWeight)kg"
+        selectedDemicalWeight = ".\(UserManager.demicalWeight)"
+        weightLabel.text = selectedWeight + selectedDemicalWeight
     }
 
     // MARK: - Actions
@@ -379,7 +379,7 @@ extension CameraOutputViewController: UIPickerViewDelegate {
             return
         }
         
-        weightLabel.text = "\(selectedWeight).\(selectedDemicalWeight)kg"
+        weightLabel.text = selectedWeight + selectedDemicalWeight + "kg"
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
