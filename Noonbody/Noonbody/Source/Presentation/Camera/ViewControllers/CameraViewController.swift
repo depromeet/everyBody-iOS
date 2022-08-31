@@ -20,7 +20,7 @@ class CameraViewController: BaseViewController {
     // MARK: - UI Components
     
     private lazy var takeButton = UIButton()
-    private lazy var gridSwitch = CustomSwitch(width: 59, height: 24).then {
+    private lazy var gridSwitch = NBSwitch(width: 59, height: 24).then {
         $0.type = .text
         $0.delegate = self
     }
@@ -383,7 +383,7 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
     }
 }
 
-extension CameraViewController: CustomSwitchDelegate {
+extension CameraViewController: NBSwitchDelegate {
     
     func switchButtonStateChanged(isOn: Bool) {
         UserManager.gridMode = isOn

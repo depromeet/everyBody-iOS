@@ -25,7 +25,7 @@ class NotificationViewController: BaseViewController {
         $0.textColor = Asset.Color.gray80.color
     }
     
-    private lazy var pushSwitch = CustomSwitch(width: 38, height: 24).then {
+    private lazy var pushSwitch = NBSwitch(width: 38, height: 24).then {
         $0.descriptionLabel.isHidden = true
         $0.setOffColor(color: Asset.Color.gray30.color)
         $0.delegate = self
@@ -235,7 +235,7 @@ extension NotificationViewController: PopUpActionProtocol {
     
 }
 
-extension NotificationViewController: CustomSwitchDelegate {
+extension NotificationViewController: NBSwitchDelegate {
     
     func switchButtonStateChanged(isOn: Bool) {
         guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
