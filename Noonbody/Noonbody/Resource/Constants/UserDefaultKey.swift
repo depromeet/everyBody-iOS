@@ -17,6 +17,9 @@ extension Constant {
         static let token = "token"
         static let saveBuiltInLibrary = "builtInLibrary"
         static let gridMode = "gridMode"
+        static let weightMode = "weightMode"
+        static let weight = "weight"
+        static let demicalWeight = "demicalWeight"
     }
     
 }

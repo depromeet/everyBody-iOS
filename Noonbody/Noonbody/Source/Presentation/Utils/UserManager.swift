@@ -29,4 +29,14 @@ class UserManager {
     
     @UserDefault(key: Constant.UserDefault.gridMode, defaultValue: true)
     static var gridMode: Bool
+    
+    @UserDefault(key: Constant.UserDefault.weightMode, defaultValue: false)
+    static var weightMode: Bool
+    
+    @UserDefault(key: Constant.UserDefault.weight, defaultValue: 50)
+    static var weight: Int
+    
+    @UserDefault(key: Constant.UserDefault.demicalWeight, defaultValue: 0)
+    static var demicalWeight: Int
+    
 }
