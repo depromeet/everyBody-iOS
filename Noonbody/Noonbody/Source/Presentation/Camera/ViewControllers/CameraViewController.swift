@@ -47,7 +47,7 @@ class CameraViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkPermission()
+//        checkPermission()
         initNavigationBar()
         initGridView()
         setupViewHierarchy()
