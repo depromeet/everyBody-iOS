@@ -10,6 +10,8 @@ import UIKit
 import Then
 import SnapKit
 
+import LocalAuthentication
+
 class LaunchScreenViewController: UIViewController {
     
     private let logoImageView = UIImageView().then {
@@ -89,7 +91,7 @@ class LaunchScreenViewController: UIViewController {
                     } else {
                         self.migrationLabel.alpha = 0
                         self.loadingView.alpha = 0
-                        self.pushToHomeViewController()
+                        UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
                     }
                 }
             case .failure(let err):
@@ -124,6 +126,13 @@ class LaunchScreenViewController: UIViewController {
         self.navigationController?.pushViewController(homeViewController, animated: false)
     }
     
+    private func presentToAuthenticationPopup() {
+        let popUp = AuthenticationPopupViewController()
+        popUp.modalTransitionStyle = .crossDissolve
+        popUp.modalPresentationStyle = .overFullScreen
+        self.present(popUp, animated: false)
+    }
+    
     private func requestSignUp(fcmToken: String) {
         AuthService.shared.postSignUp(request: SignUpRequestModel(password: uuid,
                                                                   device: Device(deviceToken: fcmToken,
@@ -151,7 +160,7 @@ class LaunchScreenViewController: UIViewController {
                 if let data = data {
                     UserManager.token = data.accessToken
                 }
-                self.pushToHomeViewController()
+                UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
             case .failure(let err):
                 print(err)
             }
@@ -168,4 +177,17 @@ class LaunchScreenViewController: UIViewController {
             }
         }
     }
+    
+    private func evaluateAuthentication() {
+        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+            DispatchQueue.main.async {
+                if response {
+                    self.pushToHomeViewController()
+                } else if error != nil {
+                    self.presentToAuthenticationPopup()
+                }
+            }
+        }
+    }
+    
 }
