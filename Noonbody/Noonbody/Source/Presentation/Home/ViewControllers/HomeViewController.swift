@@ -82,19 +82,10 @@ class HomeViewController: BaseViewController {
         initListNavigationBar()
         setupViewHierarchy()
         setupConstraint()
-        setupSkeletion()
         navigationController?.isNavigationBarHidden = false
     }
     
     // MARK: - Methods
-    
-    func setupSkeletion() {
-        let animation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
-        albumCollectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: Asset.Color.gray20.color,
-                                                                              secondaryColor: Asset.Color.gray30.color),
-                                                         animation: animation,
-                                                         transition: .crossDissolve(1))
-    }
     
     func bind() {
         let input = AlbumViewModel.Input(viewWillAppear: rx.viewWillAppear.map { _ in },
@@ -108,9 +99,6 @@ class HomeViewController: BaseViewController {
                 guard let self = self else { return }
                 self.albumData = data
                 self.emptyView.isHidden = self.albumData.count != 0 ? true : false
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
-                    self.albumCollectionView.hideSkeleton()
-                }
             })
             .disposed(by: disposeBag)
         
@@ -283,9 +271,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension HomeViewController: SkeletonCollectionViewDelegate { }
-
-extension HomeViewController: SkeletonCollectionViewDataSource {
+extension HomeViewController: UICollectionViewDataSource {
     
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return AlbumCollectionViewCell.className

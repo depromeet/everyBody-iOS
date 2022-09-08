@@ -230,7 +230,7 @@ class CameraOutputViewController: BaseViewController {
     private func initWeightLabel() {
         selectedWeight = "\(UserManager.weight)"
         selectedDemicalWeight = ".\(UserManager.demicalWeight)"
-        weightLabel.text = selectedWeight + selectedDemicalWeight
+        weightLabel.text = selectedWeight + selectedDemicalWeight + "kg"
     }
 
     // MARK: - Actions
