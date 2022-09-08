@@ -25,7 +25,7 @@ class ProfileTableViewCell: UITableViewCell {
         $0.textColor = Asset.Color.gray80.color
         $0.clearButtonMode = .whileEditing
     }
-    lazy var saveOnlyInAppSwitch = CustomSwitch(width: 40, height: 24).then {
+    lazy var saveOnlyInAppSwitch = NBSwitch(width: 40, height: 24).then {
         $0.descriptionLabel.isHidden = true
         $0.setOffColor(color: Asset.Color.gray30.color)
         $0.delegate = self
@@ -144,7 +144,7 @@ class ProfileTableViewCell: UITableViewCell {
     
 }
 
-extension ProfileTableViewCell: CustomSwitchDelegate {
+extension ProfileTableViewCell: NBSwitchDelegate {
     
     func switchButtonStateChanged(isOn: Bool) {
         UserManager.saveBulitInInLibrary = !isOn

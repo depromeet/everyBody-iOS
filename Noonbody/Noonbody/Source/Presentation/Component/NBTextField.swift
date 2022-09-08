@@ -13,7 +13,7 @@ class NBTextField: UITextField {
     
     open var borderColor: UIColor = Asset.Color.gray90.color
     
-    var cornerRadius: CGFloat = 4
+    var cornerRadius: CGFloat = 8
     
     public override init(frame: CGRect) {
         super.init(frame: frame)

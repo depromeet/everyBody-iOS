@@ -116,7 +116,7 @@
 		AAE2FA72276288D800FA2C5C /* TextWithIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */; };
 		AAE2FA74276288E600FA2C5C /* NBDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */; };
 		AAE2FA76276288FE00FA2C5C /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA75276288FE00FA2C5C /* GuideView.swift */; };
-		AAE2FA782762892D00FA2C5C /* CustomSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */; };
+		AAE2FA782762892D00FA2C5C /* NBSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA772762892D00FA2C5C /* NBSwitch.swift */; };
 		AAE2FA7A2762895100FA2C5C /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA792762895100FA2C5C /* BottomSheetView.swift */; };
 		AAE2FA7D27628A3E00FA2C5C /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */; };
 		AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */; };
@@ -312,7 +312,7 @@
 		AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithIconView.swift; sourceTree = "<group>"; };
 		AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBDatePicker.swift; sourceTree = "<group>"; };
 		AAE2FA75276288FE00FA2C5C /* GuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
-		AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSwitch.swift; sourceTree = "<group>"; };
+		AAE2FA772762892D00FA2C5C /* NBSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBSwitch.swift; sourceTree = "<group>"; };
 		AAE2FA792762895100FA2C5C /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		AAE2FA7E27628A5E00FA2C5C /* UIViewController+ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ToastView.swift"; sourceTree = "<group>"; };
@@ -684,6 +684,7 @@
 				AAC7AD252737B84400B2BE1E /* AlbumCollectionViewCell.swift */,
 				AAE2FA7C27628A3E00FA2C5C /* ToastView.swift */,
 				FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */,
+				AAE2FA772762892D00FA2C5C /* NBSwitch.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -885,7 +886,6 @@
 				AAE2FA71276288D800FA2C5C /* TextWithIconView.swift */,
 				AAE2FA73276288E600FA2C5C /* NBDatePicker.swift */,
 				AAE2FA75276288FE00FA2C5C /* GuideView.swift */,
-				AAE2FA772762892D00FA2C5C /* CustomSwitch.swift */,
 				AAE2FA792762895100FA2C5C /* BottomSheetView.swift */,
 			);
 			path = Views;
@@ -1335,7 +1335,7 @@
 				AA5B85DD271700E6002276C3 /* Size.swift in Sources */,
 				AA5B85D42716F1A1002276C3 /* UIView+makeRounded.swift in Sources */,
 				AA959114274435DD007772BD /* UITextField+addLeftPadding.swift in Sources */,
-				AAE2FA782762892D00FA2C5C /* CustomSwitch.swift in Sources */,
+				AAE2FA782762892D00FA2C5C /* NBSwitch.swift in Sources */,
 				AA2F31772759F3F900855861 /* NotificationAPI.swift in Sources */,
 				AAEA23A327938EA1005A08C9 /* VideoRequestModel.swift in Sources */,
 				AAE2FAA327640C9200FA2C5C /* SignUpRequestModel.swift in Sources */,
