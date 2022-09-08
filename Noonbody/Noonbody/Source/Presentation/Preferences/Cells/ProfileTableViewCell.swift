@@ -24,7 +24,8 @@ class ProfileTableViewCell: UITableViewCell {
     public let profileTextLabel = UILabel().then {
         $0.textColor = Asset.Color.gray80.color
     }
-    lazy var switchButton = CustomSwitch(width: 40, height: 24).then {
+
+    lazy var switchButton = NBSwitch(width: 40, height: 24).then {
         $0.descriptionLabel.isHidden = true
         $0.setOffColor(color: Asset.Color.gray30.color)
         $0.delegate = self
@@ -152,7 +153,7 @@ class ProfileTableViewCell: UITableViewCell {
     
 }
 
-extension ProfileTableViewCell: CustomSwitchDelegate {
+extension ProfileTableViewCell: NBSwitchDelegate {
     
     func switchButtonStateChanged(isOn: Bool) {
         switch dataType {

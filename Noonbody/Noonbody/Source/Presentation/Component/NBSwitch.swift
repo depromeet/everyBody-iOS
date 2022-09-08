@@ -10,11 +10,11 @@ import UIKit
 import RxSwift
 import RxGesture
 
-protocol CustomSwitchDelegate: AnyObject {
+protocol NBSwitchDelegate: AnyObject {
     func switchButtonStateChanged(isOn: Bool)
 }
 
-class CustomSwitch: UIView {
+class NBSwitch: UIView {
     
     enum Style {
         case basic
@@ -31,13 +31,14 @@ class CustomSwitch: UIView {
         $0.text = "그리드"
         $0.font = .nbFont(type: .caption2Semibold)
         $0.textColor = .white
+        $0.isHidden = true
     }
     var toggleOnColor = Asset.Color.keyPurple.color
     var toggleOffColor = Asset.Color.gray60.color
     
     // MARK: - Properties
     
-    weak var delegate: CustomSwitchDelegate?
+    weak var delegate: NBSwitchDelegate?
     
     let disposeBag = DisposeBag()
     var isOn: Bool = true {
