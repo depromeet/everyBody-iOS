@@ -9,7 +9,7 @@ import Foundation
 
 enum ProfileDataType: Equatable {
     case motto(motto: String)
-    case pushNotification
+//    case pushNotification
     case saved
     case hideThumbnail
     case biometricAuthentication
@@ -19,8 +19,8 @@ enum ProfileDataType: Equatable {
         switch self {
         case .motto:
             return "좌우명"
-        case .pushNotification:
-            return "알림 설정"
+//        case .pushNotification:
+//            return "알림 설정"
         case .saved:
             return "앱에만 저장"
         case .hideThumbnail:

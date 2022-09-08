@@ -165,6 +165,7 @@
 		FC67D5C327ECF50D00651378 /* SavePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */; };
 		FC67D5C527ECF52600651378 /* DeletePictureUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C427ECF52600651378 /* DeletePictureUseCase.swift */; };
 		FC67D5C727ECF74700651378 /* LocalPictureRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC67D5C627ECF74700651378 /* LocalPictureRepository.swift */; };
+		FC751D4028B6172500A6F4E1 /* AuthenticationPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC751D3F28B6172500A6F4E1 /* AuthenticationPopupViewController.swift */; };
 		FC76A53127E39B0A00CFEA5A /* FetchAlbumsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */; };
 		FC76A54227E3B53B00CFEA5A /* LocalAlbumRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */; };
 		FC76A54427E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */; };
@@ -193,6 +194,7 @@
 		FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59B9D2842634E00702FA8 /* RealmMigrationService.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
+		FCF13C1C28ACFCC6003D3B60 /* LocalAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF13C1B28ACFCC6003D3B60 /* LocalAuthenticationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -362,6 +364,7 @@
 		FC67D5C227ECF50D00651378 /* SavePictureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePictureUseCase.swift; sourceTree = "<group>"; };
 		FC67D5C427ECF52600651378 /* DeletePictureUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePictureUseCase.swift; sourceTree = "<group>"; };
 		FC67D5C627ECF74700651378 /* LocalPictureRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalPictureRepository.swift; sourceTree = "<group>"; };
+		FC751D3F28B6172500A6F4E1 /* AuthenticationPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationPopupViewController.swift; sourceTree = "<group>"; };
 		FC76A53027E39B0A00CFEA5A /* FetchAlbumsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAlbumsUseCase.swift; sourceTree = "<group>"; };
 		FC76A54127E3B53B00CFEA5A /* LocalAlbumRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAlbumRepository.swift; sourceTree = "<group>"; };
 		FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSendFeedbackRepository.swift; sourceTree = "<group>"; };
@@ -388,6 +391,7 @@
 		FCC59B9D2842634E00702FA8 /* RealmMigrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationService.swift; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
+		FCF13C1B28ACFCC6003D3B60 /* LocalAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -825,6 +829,7 @@
 		AABD83832784D08F004E8BF8 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				FCF13C1B28ACFCC6003D3B60 /* LocalAuthenticationService.swift */,
 				AA74A0DF274971B200FA6678 /* Data */,
 				AABD83862784D0C9004E8BF8 /* ViewControllers */,
 				AABD83852784D0A8004E8BF8 /* ViewModel */,
@@ -857,6 +862,7 @@
 				AA74A0D927495E2300FA6678 /* ProfileViewController.swift */,
 				AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */,
 				FC9D30C028ABA79600E7FD48 /* MottoViewController.swift */,
+				FC751D3F28B6172500A6F4E1 /* AuthenticationPopupViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1353,6 +1359,7 @@
 				AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */,
 				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
 				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
+				FC751D4028B6172500A6F4E1 /* AuthenticationPopupViewController.swift in Sources */,
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
 				AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */,
 				AA9A41472715EC2C002BBE15 /* Camera.swift in Sources */,
@@ -1414,6 +1421,7 @@
 				FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */,
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
+				FCF13C1C28ACFCC6003D3B60 /* LocalAuthenticationService.swift in Sources */,
 				AAEA239C27938E01005A08C9 /* DefaultVideoRepository.swift in Sources */,
 				FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,

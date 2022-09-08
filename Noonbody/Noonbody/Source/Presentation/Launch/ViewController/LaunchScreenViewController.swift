@@ -10,6 +10,8 @@ import UIKit
 import Then
 import SnapKit
 
+import LocalAuthentication
+
 class LaunchScreenViewController: UIViewController {
     
     private let logoImageView = UIImageView().then {
@@ -28,6 +30,7 @@ class LaunchScreenViewController: UIViewController {
     }
     private let launchService = LaunchService(userDefaults: .standard, key: "user")
     private let uuid = UIDevice.current.identifierForVendor!.uuidString
+    private let defaultRealmPath = RealmManager.getUrl().appendingPathComponent("default.realm")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +72,7 @@ class LaunchScreenViewController: UIViewController {
     }
     
     private func setDefaultAlbum() {
-        let path = RealmManager.getUrl().appendingPathComponent("default.realm")
-        if !FileManager.default.fileExists(atPath: path.path) {
+        if !FileManager.default.fileExists(atPath: defaultRealmPath.path) {
             let album = Album(id: 1, name: "눈바디", thumbnailURL: nil, createdAt: "", albumDescription: "",
                               pictures: Pictures(lower: [], upper: [], whole: []))
             RealmMigrationService.migrateAlbums(albums: [album])
@@ -82,14 +84,14 @@ class LaunchScreenViewController: UIViewController {
             switch response {
             case .success(let data):
                 if let data = data {
-                    if data.downloadCompleted == nil {
+                    if data.downloadCompleted == nil && !FileManager.default.fileExists(atPath: self.defaultRealmPath.path) {
                         self.migrationLabel.alpha = 1
                         self.loadingView.alpha = 1
                         self.migration()
                     } else {
                         self.migrationLabel.alpha = 0
                         self.loadingView.alpha = 0
-                        self.pushToHomeViewController()
+                        UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
                     }
                 }
             case .failure(let err):
@@ -124,6 +126,13 @@ class LaunchScreenViewController: UIViewController {
         self.navigationController?.pushViewController(homeViewController, animated: false)
     }
     
+    private func presentToAuthenticationPopup() {
+        let popUp = AuthenticationPopupViewController()
+        popUp.modalTransitionStyle = .crossDissolve
+        popUp.modalPresentationStyle = .overFullScreen
+        self.present(popUp, animated: false)
+    }
+    
     private func requestSignUp(fcmToken: String) {
         AuthService.shared.postSignUp(request: SignUpRequestModel(password: uuid,
                                                                   device: Device(deviceToken: fcmToken,
@@ -151,7 +160,7 @@ class LaunchScreenViewController: UIViewController {
                 if let data = data {
                     UserManager.token = data.accessToken
                 }
-                self.pushToHomeViewController()
+                UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
             case .failure(let err):
                 print(err)
             }
@@ -168,4 +177,17 @@ class LaunchScreenViewController: UIViewController {
             }
         }
     }
+    
+    private func evaluateAuthentication() {
+        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+            DispatchQueue.main.async {
+                if response {
+                    self.pushToHomeViewController()
+                } else if error != nil {
+                    self.presentToAuthenticationPopup()
+                }
+            }
+        }
+    }
+    
 }

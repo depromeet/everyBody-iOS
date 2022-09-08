@@ -126,11 +126,11 @@ extension ProfileViewController: UITableViewDataSource {
             cell.setTextLabel(text: motto)
             cell.setRightButtonEvent(target: self, action: #selector(pushToMottoViewController))
             cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
-        case .pushNotification:
-            cell.type = .right
-            cell.setData(title: title)
-            cell.setRightButtonEvent(target: self, action: #selector(pushToNotificationSetting))
-            cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
+//        case .pushNotification:
+//            cell.type = .right
+//            cell.setData(title: title)
+//            cell.setRightButtonEvent(target: self, action: #selector(pushToNotificationSetting))
+//            cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
         case .saved:
             cell.type = .appSwitch
             cell.dataType = .saved

@@ -118,8 +118,10 @@ class PanoramaViewController: BaseViewController {
     private var centerCell: BottomCollectionViewCell?
     private var selectedIndexByPart = Array(repeating: IndexPath(item: 0, section: 0), count: 3)
     private var isSelectedEvent: Bool = false
-    
     private lazy var menuItems: [UIAction] = [
+        UIAction(title: "사진 선택",
+                 image: Asset.Image.done.image,
+                 handler: { _ in self.editOrCloseButtonDidTap()}),
         UIAction(title: "앨범 이름 수정",
                  image: Asset.Image.folderOpen.image,
                  handler: { _ in self.editAlbumButtonDidTap()}),
@@ -245,13 +247,18 @@ class PanoramaViewController: BaseViewController {
     
     private func initNavigationBar() {
         navigationController?.initNavigationBarWithMenu(navigationItem: self.navigationItem,
-                                                        rightButtonImage: Asset.Image.create.image,
-                                                        rightAction: #selector(editOrCloseButtonDidTap),
                                                         menuButtonImage: Asset.Image.option.image,
-                                                        menuChildItem: menuItems)
+                                                        menuChildItem: getMenuItems())
         navigationItem.leftBarButtonItems = nil
-        navigationItem.rightBarButtonItems?[1].customView?.isHidden = bodyPartData.isEmpty
         title = albumName
+    }
+    
+    private func getMenuItems() -> [UIAction] {
+        var items = menuItems
+        if bodyPartData.isEmpty {
+            items.remove(at: 0)
+        }
+        return items
     }
     
     private func initEditNavigationBar() {
@@ -532,7 +539,7 @@ extension PanoramaViewController: UICollectionViewDelegateFlowLayout {
         
         if scrollView == bottomCollectionView && !bodyPartData.isEmpty {
             let centerPoint = CGPoint(x: bottomCollectionView.contentOffset.x + bottomCollectionView.frame.midX, y: 100)
-            
+                
             if let indexPath = bottomCollectionView.indexPathForItem(at: centerPoint), centerCell == nil {
                 centerCell = bottomCollectionView.cellForItem(at: indexPath) as? BottomCollectionViewCell
                 topCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)

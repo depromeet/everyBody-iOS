@@ -42,7 +42,7 @@ final class ProfileViewModel {
             .compactMap { UserManager.motto }
             .map { motto -> [ProfileDataType] in
                 return [.motto(motto: motto),
-                    .pushNotification,
+//                    .pushNotification,
                     .saved,
                     .hideThumbnail,
                     .biometricAuthentication,

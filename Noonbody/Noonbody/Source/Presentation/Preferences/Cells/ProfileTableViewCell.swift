@@ -151,6 +151,15 @@ class ProfileTableViewCell: UITableViewCell {
         button.setImage(image, for: .normal)
     }
     
+    func presentToFailedPopupViewcontroller() {
+        DispatchQueue.main.async {
+            let popUp = AuthenticationPopupViewController()
+            popUp.modalTransitionStyle = .crossDissolve
+            popUp.modalPresentationStyle = .overFullScreen
+            self.window?.rootViewController?.present(popUp, animated: false)
+            self.switchButton.isOn = false
+        }
+    }
 }
 
 extension ProfileTableViewCell: NBSwitchDelegate {
@@ -161,6 +170,16 @@ extension ProfileTableViewCell: NBSwitchDelegate {
             UserManager.saveBulitInInLibrary = !isOn
         case .hideThumbnail:
             UserManager.hideThumbnail = isOn
+        case .biometricAuthentication:
+            if isOn { // 생체인증 on
+                LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+                    UserManager.biometricAuthentication = response
+                    if error != nil { self.presentToFailedPopupViewcontroller()
+                    }
+                }
+            } else { // 생체인증 off
+                UserManager.biometricAuthentication = isOn
+            }
         default: break
         }
     }
