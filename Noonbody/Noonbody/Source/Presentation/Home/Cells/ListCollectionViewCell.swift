@@ -22,11 +22,15 @@ class ListCollectionViewCell: UICollectionViewCell {
     }
     private let thumbnailImageView = UIImageView().then {
         $0.image = Asset.Image.empty2.image
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
+        $0.makeRounded(radius: 6)
+        $0.clipsToBounds = true
     }
     private let gradationImageView = UIImageView().then {
         $0.image = Asset.Image.listGradation.image
-        $0.contentMode = .scaleAspectFit
+        $0.contentMode = .scaleAspectFill
+        $0.makeRounded(radius: 6)
+        $0.clipsToBounds = true
     }
     
     override init(frame: CGRect) {
@@ -45,7 +49,7 @@ class ListCollectionViewCell: UICollectionViewCell {
     }
     
     func setupViewHierarchy() {
-        addSubviews(gradationImageView, thumbnailImageView, titleLabel, descriptionLabel)
+        addSubviews(thumbnailImageView, gradationImageView, titleLabel, descriptionLabel)
     }
     
     func setupConstraint() {
@@ -71,10 +75,14 @@ class ListCollectionViewCell: UICollectionViewCell {
     func setData(album: Album) {
         titleLabel.text = album.name
         descriptionLabel.text = album.albumDescription
-        if let thumbnailURL = album.thumbnailURL {
-            thumbnailImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: thumbnailURL)
+        if UserManager.hideThumbnail {
+            thumbnailImageView.image = Asset.Image.privacyThumbnail.image
         } else {
-            thumbnailImageView.image = Asset.Image.empty2.image
+            if let thumbnailURL = album.thumbnailURL {
+                thumbnailImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: thumbnailURL)
+            } else {
+                thumbnailImageView.image = Asset.Image.empty2.image
+            }
         }
     }
 }

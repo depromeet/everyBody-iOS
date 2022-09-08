@@ -133,10 +133,15 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     func setData(album: Album) {
         folderTitleLabel.text = album.name
         descriptionLabel.text = album.albumDescription
-        if let thumbnailURL = album.thumbnailURL {
-            thumbnailImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: thumbnailURL)
+        
+        if UserManager.hideThumbnail {
+            thumbnailImageView.image = Asset.Image.privacyThumbnail.image
         } else {
-            thumbnailImageView.image = Asset.Image.empty.image
+            if let thumbnailURL = album.thumbnailURL {
+                thumbnailImageView.image = AlbumManager.loadImageFromDocumentDirectory(from: thumbnailURL)
+            } else {
+                thumbnailImageView.image = Asset.Image.empty.image
+            }
         }
     }
     

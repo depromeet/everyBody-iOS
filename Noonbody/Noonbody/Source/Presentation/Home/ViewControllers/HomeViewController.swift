@@ -30,9 +30,8 @@ class HomeViewController: BaseViewController {
     }
     
     private lazy var mottoLabel = UILabel().then {
-        $0.text = UserManager.motto ?? ""
-        $0.font = .nbFont(type: .body3)
-        $0.textColor = Asset.Color.gray60.color
+        $0.text = UserManager.motto
+        $0.font = .nbFont(type: .subtitle)
     }
     
     private var emptyView = AlbumEmptyView(type: .album).then {
@@ -114,15 +113,6 @@ class HomeViewController: BaseViewController {
                 }
             })
             .disposed(by: disposeBag)
-
-//        UserDefaults.standard.rx
-//            .observe(String.self, Constant.UserDefault.nickname)
-//            .subscribe(onNext: { (value) in
-//                if let value = value {
-//                    self.nicknameLabel.text = value
-//                }
-//            })
-//            .disposed(by: disposeBag)
         
         UserDefaults.standard.rx
             .observe(String.self, Constant.UserDefault.motto)
@@ -181,18 +171,10 @@ class HomeViewController: BaseViewController {
     
     private func makeProfileImage() {
         let button = UIButton(type: .system)
+        button.imageView?.image = Asset.Image.profileImg.image
         button.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
-        button.layer.cornerRadius = 20
-        button.clipsToBounds = true
-        button.imageView?.contentMode = .scaleAspectFit
+        button.setBackgroundImage(Asset.Image.profileImg.image, for: .normal)
         button.addTarget(self, action: #selector(pushToPreferenceViewController), for: .touchUpInside)
-        
-        let imageData = try? Data(contentsOf: URL(string: UserManager.profile ?? "")!)
-        
-        if let imageData = imageData, let image =  UIImage(data: imageData)?.resizeImage(to: button.frame.size) {
-            button.setBackgroundImage(image, for: .normal)
-        }
-        
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: button)
     }
     
@@ -202,7 +184,7 @@ class HomeViewController: BaseViewController {
     }
     
     private func setupViewHierarchy() {
-        view.addSubviews(nicknameLabel, mottoLabel, albumCollectionView, cameraButton, emptyView)
+        view.addSubviews(mottoLabel, albumCollectionView, cameraButton, emptyView)
     }
     
     // MARK: - Actions
@@ -241,13 +223,8 @@ class HomeViewController: BaseViewController {
     
     @objc
     private func pushToPreferenceViewController() {
-        let popUpViewController = PopUpViewController(type: .oneButton)
-        popUpViewController.modalTransitionStyle = .crossDissolve
-        popUpViewController.modalPresentationStyle = .overCurrentContext
-        popUpViewController.titleLabel.text = "곧 돌아올게요! 💪"
-        popUpViewController.descriptionLabel.text = "더 나은 눈바디를 위해 재정비 중인 기능이에요. \n조금만 기다려주세요! 🥲"
-        popUpViewController.cancelButton.setTitle("확인", for: .normal)
-        self.present(popUpViewController, animated: true, completion: nil)
+        let viewController = ProfileViewController()
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc func albumCreationButtonDidTap() {
@@ -269,14 +246,9 @@ extension HomeViewController {
             $0.width.height.equalTo(56)
         }
         
-        nicknameLabel.snp.makeConstraints {
+        mottoLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(12)
             $0.leading.equalTo(20)
-        }
-        
-        mottoLabel.snp.makeConstraints {
-            $0.top.equalTo(nicknameLabel.snp.bottom).offset(4)
-            $0.leading.equalTo(nicknameLabel)
         }
         
         albumCollectionView.snp.makeConstraints {

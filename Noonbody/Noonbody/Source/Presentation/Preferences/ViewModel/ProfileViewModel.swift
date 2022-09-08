@@ -26,7 +26,6 @@ final class ProfileViewModel {
     
     struct Output {
         let cellData: Driver<[ProfileDataType]>
-        let profileImage: Driver<String>
     }
     
     struct CellOutput {
@@ -39,30 +38,19 @@ final class ProfileViewModel {
     }
     
     func transform(input: Input) -> Output {
-        let userInfo = input.viewWillAppear
-            .flatMap { self.profileUseCase.getUserInfo() }
-            .map { $0 }
-            .share()
-        
-        let cellData = userInfo
-            .compactMap { $0 }
-            .map { response -> [ProfileDataType] in
-                return [
-                    .nickName(nickname: response.nickname),
-                    .motto(motto: response.motto),
+        let cellData = input.viewWillAppear
+            .compactMap { UserManager.motto }
+            .map { motto -> [ProfileDataType] in
+                return [.motto(motto: motto),
                     .pushNotification,
                     .saved,
+                    .hideThumbnail,
+                    .biometricAuthentication,
                     .privacyPolicy
                 ]
             }.asDriver(onErrorJustReturn: [])
         
-        let imageURL = userInfo
-            .compactMap { $0 }
-            .map { response -> String in
-                return response.profileImage
-            }.asDriver(onErrorJustReturn: "")
-        
-        return Output(cellData: cellData, profileImage: imageURL)
+        return Output(cellData: cellData)
     }
     
     func transformCellData(input: CellInput) -> CellOutput {

@@ -80,6 +80,8 @@ internal enum Asset {
     internal static let `none` = ImageAsset(name: "none")
     internal static let option = ImageAsset(name: "option")
     internal static let photoCamera = ImageAsset(name: "photo_camera")
+    internal static let privacyThumbnail = ImageAsset(name: "privacyThumbnail")
+    internal static let profileImg = ImageAsset(name: "profile_img")
     internal static let refresh = ImageAsset(name: "refresh")
     internal static let sample = ImageAsset(name: "sample")
     internal static let samplePose = ImageAsset(name: "samplePose")

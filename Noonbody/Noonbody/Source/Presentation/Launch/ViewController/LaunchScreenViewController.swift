@@ -133,7 +133,6 @@ class LaunchScreenViewController: UIViewController {
                 if let data = data {
                     UserManager.userId = data.id
                     UserManager.nickname = data.nickname
-                    UserManager.motto = data.motto
                     UserManager.profile = data.profileImage
                     self.requestSignIn()
                 }
