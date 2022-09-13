@@ -174,7 +174,10 @@ extension ProfileTableViewCell: NBSwitchDelegate {
             if isOn { // 생체인증 on
                 LocalAuthenticationService.shared.evaluateAuthentication { response, error in
                     UserManager.biometricAuthentication = response
-                    if error != nil { self.presentToFailedPopupViewcontroller()
+                    if error != nil {
+                        DispatchQueue.main.async {
+                        self.switchButton.isOn = false  
+                        }
                     }
                 }
             } else { // 생체인증 off

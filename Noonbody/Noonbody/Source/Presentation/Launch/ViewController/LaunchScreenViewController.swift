@@ -128,6 +128,7 @@ class LaunchScreenViewController: UIViewController {
     
     private func presentToAuthenticationPopup() {
         let popUp = AuthenticationPopupViewController()
+        popUp.delegate = self
         popUp.modalTransitionStyle = .crossDissolve
         popUp.modalPresentationStyle = .overFullScreen
         self.present(popUp, animated: false)
@@ -185,6 +186,21 @@ class LaunchScreenViewController: UIViewController {
                     self.pushToHomeViewController()
                 } else if error != nil {
                     self.presentToAuthenticationPopup()
+                }
+            }
+        }
+    }
+    
+}
+
+extension LaunchScreenViewController: PopUpActionProtocol {
+    
+    func cancelButtonDidTap(_ button: UIButton) {
+        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+            DispatchQueue.main.async {
+                if response {
+                    self.dismiss(animated: false)
+                    self.pushToHomeViewController()
                 }
             }
         }

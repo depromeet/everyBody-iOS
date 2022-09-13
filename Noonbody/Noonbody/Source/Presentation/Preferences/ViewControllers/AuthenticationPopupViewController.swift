@@ -12,6 +12,8 @@ import Then
 
 class AuthenticationPopupViewController: BaseViewController {
     
+    // MARK: - UI Components
+    
     private var biometricImage = UIImageView().then {
         $0.image = Asset.Image.faceID.image
     }
@@ -36,13 +38,20 @@ class AuthenticationPopupViewController: BaseViewController {
         $0.isEnabled = true
         $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
     }
+    
+    // MARK: - Properties
+    
+    var delegate: PopUpActionProtocol?
 
     // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewHierarchy()
         setupConstraints()
     }
+    
+    // MARK: - Methods
     
     private func setupViewHierarchy() {
         view.addSubviews(biometricImage, failedLabel, descriptionLabel, confirmButton)
@@ -69,8 +78,8 @@ class AuthenticationPopupViewController: BaseViewController {
             $0.height.equalTo(56)
         }
     }
-
+    
     @objc func confirmButtonDidTap() {
-        self.dismiss(animated: false)
+        delegate?.cancelButtonDidTap(confirmButton)
     }
 }
