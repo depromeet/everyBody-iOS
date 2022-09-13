@@ -10,11 +10,23 @@ import CoreData
 
 import Firebase
 import RealmSwift
+import Mixpanel
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        #if DEBUG
+        // swiftlint:disable force_cast
+            let tokenDev = Bundle.main.infoDictionary?["TOKEN_dev"] as! String
+            Mixpanel.initialize(token: tokenDev, trackAutomaticEvents: true)
+        #else
+        // swiftlint:disable force_cast
+            let tokenRelease = Bundle.main.infoDictionary?["TOKEN_release"] as! String
+            Mixpanel.initialize(token: tokenRelease)
+        #endif
+        
         // firebase 연동
         FirebaseApp.configure()
         
