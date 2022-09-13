@@ -39,8 +39,10 @@
 	<string>눈바디 사진을 가져오기 위한 접근 권한이 필요합니다.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>눈바디 앱 잠금을 위해 Face ID가 필요합니다.</string>
-	<key>TOKEN</key>
-	<string>$(TOKEN)</string>
+	<key>TOKEN_release</key>
+	<string>$(TOKEN_release)</string>
+	<key>TOKEN_dev</key>
+	<string>$(TOKEN_dev)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gilroy-Light.ttf</string>
