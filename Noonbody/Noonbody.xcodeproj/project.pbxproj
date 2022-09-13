@@ -62,6 +62,7 @@
 		AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8726FB126C00106DC2 /* SnapKit */; };
 		AA7E0A8B26FB128100106DC2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = AA7E0A8A26FB128100106DC2 /* Then */; };
 		AA7E0A9426FB135300106DC2 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = AA7E0A9326FB135300106DC2 /* .swiftlint.yml */; };
+		AA81667B28D0B98200278240 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = AA81667A28D0B98200278240 /* Mixpanel */; };
 		AA81D8B92799C79400D4D667 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = AA81D8B82799C79400D4D667 /* SkeletonView */; };
 		AA81D8BD279A05DD00D4D667 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BC279A05DD00D4D667 /* PrivacyPolicyViewController.swift */; };
 		AA81D8C0279AF14800D4D667 /* UILabel+setLineHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA81D8BF279AF14800D4D667 /* UILabel+setLineHeight.swift */; };
@@ -405,6 +406,7 @@
 				FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */,
 				AA74A0FB274AD5F100FA6678 /* Kingfisher in Frameworks */,
 				AAE2FA862763F51300FA2C5C /* FirebaseAnalytics in Frameworks */,
+				AA81667B28D0B98200278240 /* Mixpanel in Frameworks */,
 				AA8B661B285A252A008C5005 /* Siren in Frameworks */,
 				AA7E0A8826FB126C00106DC2 /* SnapKit in Frameworks */,
 				FC7D798127D09A3E0022C223 /* Realm in Frameworks */,
@@ -1167,6 +1169,7 @@
 				FC7D798027D09A3E0022C223 /* Realm */,
 				FC7D798227D09A3E0022C223 /* RealmSwift */,
 				AA8B661A285A252A008C5005 /* Siren */,
+				AA81667A28D0B98200278240 /* Mixpanel */,
 			);
 			productName = "everyBody-iOS";
 			productReference = AA7E0A3226FB0A6100106DC2 /* Noonbody DEV.app */;
@@ -1207,6 +1210,7 @@
 				AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				FC7D797F27D09A3E0022C223 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				AA8B6619285A252A008C5005 /* XCRemoteSwiftPackageReference "Siren" */,
+				AA81667928D0B98200278240 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = AA7E0A3326FB0A6100106DC2 /* Products */;
 			projectDirPath = "";
@@ -1673,6 +1677,14 @@
 				minimumVersion = 2.7.0;
 			};
 		};
+		AA81667928D0B98200278240 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		AA81D8B72799C79400D4D667 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
@@ -1755,6 +1767,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AA7E0A8926FB128100106DC2 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		AA81667A28D0B98200278240 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA81667928D0B98200278240 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 		AA81D8B82799C79400D4D667 /* SkeletonView */ = {
 			isa = XCSwiftPackageProductDependency;
