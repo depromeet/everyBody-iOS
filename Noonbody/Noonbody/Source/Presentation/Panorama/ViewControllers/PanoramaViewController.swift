@@ -12,6 +12,7 @@ import Then
 import RxSwift
 import RxRelay
 import RealmSwift
+import Mixpanel
 
 class PanoramaViewController: BaseViewController {
     
@@ -68,9 +69,24 @@ class PanoramaViewController: BaseViewController {
                                               renameAlbumUseCase: DefaultRenameAlbumUseCase(repository: LocalAlbumRepositry()),
                                               deleteAlbumUseCase: DefaultDeleteAlbumUseCase(repository: LocalAlbumRepositry()),
                                               deletePictureUseCase: DefaultDeletePictureUseCase(repository: LocalPictureRepository()))
-    private var popUpForPicturesDeletion = PopUpViewController(type: .delete)
-    private var popUpForAlbumDeletion = PopUpViewController(type: .delete)
-    private var popUpForAlbumRenaming = PopUpViewController(type: .textField)
+    private var popUpForPicturesDeletion = PopUpViewController(type: .delete).then {
+        $0.confirmButton.addTarget(self, action: #selector(deletePictureCompleteButtonDidTap),
+                                   for: .touchUpInside)
+        $0.cancelButton.addTarget(self, action: #selector(deletePictureCancleButtonDidTap),
+                                  for: .touchUpInside)
+    }
+    private var popUpForAlbumDeletion = PopUpViewController(type: .delete).then {
+        $0.confirmButton.addTarget(self, action: #selector(deleteAlbumCompleteButtonDidTap),
+                                   for: .touchUpInside)
+        $0.cancelButton.addTarget(self, action: #selector(deleteAlbumCancleButtonDidTap),
+                                  for: .touchUpInside)
+    }
+    private var popUpForAlbumRenaming = PopUpViewController(type: .textField).then {
+        $0.confirmButton.addTarget(self, action: #selector(renameAlbumCompleteButtonDidTap),
+                                   for: .touchUpInside)
+        $0.cancelButton.addTarget(self, action: #selector(renameAlbumCancleButtonDidTap),
+                                  for: .touchUpInside)
+    }
     private var cameraViewcontroller = CameraViewController()
     private var albumId: Int
     private var albumData: Album
@@ -247,6 +263,7 @@ class PanoramaViewController: BaseViewController {
     
     private func initNavigationBar() {
         navigationController?.initNavigationBarWithMenu(navigationItem: self.navigationItem,
+                                                        action: #selector(menuButtonDidTap),
                                                         menuButtonImage: Asset.Image.option.image,
                                                         menuChildItem: getMenuItems())
         navigationItem.leftBarButtonItems = nil
@@ -317,6 +334,7 @@ class PanoramaViewController: BaseViewController {
         default:
             return
         }
+        Mixpanel.mainInstance().track(event: "selectPhoto/tab/\(bodyPart.rawValue)")
     }
     
     private func deleteAlbumData(id: Int) {
@@ -387,6 +405,8 @@ class PanoramaViewController: BaseViewController {
         popUpForAlbumRenaming.textField.text = albumName
         popUpForAlbumRenaming.confirmButton.titleLabel?.font = .nbFont(type: .body1Bold)
         self.present(popUpForAlbumRenaming, animated: true, completion: nil)
+        
+        Mixpanel.mainInstance().track(event: "viewAlbum/dropDown/editAlbumName")
     }
     
     private func deleteAlbumButtonDidTap() {
@@ -395,10 +415,14 @@ class PanoramaViewController: BaseViewController {
         popUpForAlbumDeletion.descriptionLabel.text = "삭제를 누르면 앨범 속 사진이\n영구적으로 삭제됩니다."
         popUpForAlbumDeletion.setDeleteButton()
         self.present(popUpForAlbumDeletion, animated: true, completion: nil)
+        
+        Mixpanel.mainInstance().track(event: "viewAlbum/dropDown/deleteAlbum")
     }
     
     private func saveButtonDidTap() {
         bodyPartData.count > 1 ? pushVideoViewController() : presentWarningPopUp()
+        
+        Mixpanel.mainInstance().track(event: "viewAlbum/dropDown/saveVideo")
     }
     
     private func pushVideoViewController() {
@@ -427,8 +451,7 @@ class PanoramaViewController: BaseViewController {
     }
     
     // MARK: - Actions
-    @objc
-    private func editOrCloseButtonDidTap() {
+    @objc private func editOrCloseButtonDidTap() {
         resetDeleteData()
         editMode ? initNavigationBar() : initEditNavigationBar()
         editMode.toggle()
@@ -437,24 +460,49 @@ class PanoramaViewController: BaseViewController {
         }
     }
     
-    @objc
-    private func deletePictureButtonDidTap() {
+    @objc private func deletePictureButtonDidTap() {
         setPopUpViewController(popUp: popUpForPicturesDeletion)
         popUpForPicturesDeletion.titleLabel.text = "\(seletedPictures.value.count)장의 사진을 삭제하시겠어요?"
         popUpForPicturesDeletion.descriptionLabel.text = "삭제를 누르시면 앨범에서\n영구 삭제가 됩니다."
         popUpForPicturesDeletion.setDeleteButton()
         self.present(popUpForPicturesDeletion, animated: true, completion: nil)
+        
+        Mixpanel.mainInstance().track(event: "selectPhoto/btn/delete")
     }
     
-    @objc
-    private func gridButtonDidTap() {
+    @objc private func gridButtonDidTap() {
         gridButton.isSelected.toggle()
         gridMode.toggle()
         switchPanoramaMode()
     }
     
+    @objc func menuButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "viewAlbum/btn/setting")
+    }
+    
     @objc func cameraButtonDidTap() {
         self.navigationController?.pushViewController(cameraViewcontroller, animated: true)
+        
+        Mixpanel.mainInstance().track(event: "selectPhoto/btn/addPhoto")
+    }
+    
+    @objc func deletePictureCancleButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "selectPhoto/deletePhotoModal/btn/cancle")
+    }
+    @objc func deletePictureCompleteButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "selectPhoto/deletePhotoModal/btn/complete")
+    }
+    @objc func renameAlbumCancleButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "viewAlbum/editModal/btn/cancel")
+    }
+    @objc func renameAlbumCompleteButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "viewAlbum/editModal/btn/complete")
+    }
+    @objc func deleteAlbumCancleButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "viewAlbum/deleteModal/btn/cancel")
+    }
+    @objc func deleteAlbumCompleteButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "viewAlbum/deleteModal/btn/delete")
     }
     
 }
@@ -650,9 +698,12 @@ extension PanoramaViewController: NBSegmentedControlDelegate {
 extension PanoramaViewController: PopUpActionProtocol {
     func cancelButtonDidTap(_ button: UIButton) {
         self.dismiss(animated: true, completion: nil)
+        Mixpanel.mainInstance().track(event: "selectPhoto/deletePhotoModal/btn/cancle")
     }
     
     func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
         self.dismiss(animated: true, completion: nil)
+        
+        Mixpanel.mainInstance().track(event: "selectPhoto/deletePhotoModal/btn/complete")
     }
 }

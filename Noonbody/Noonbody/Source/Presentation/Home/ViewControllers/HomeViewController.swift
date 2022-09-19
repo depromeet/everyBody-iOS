@@ -12,6 +12,7 @@ import Then
 import RxCocoa
 import RxSwift
 import SkeletonView
+import Mixpanel
 
 class HomeViewController: BaseViewController {
     
@@ -200,12 +201,14 @@ class HomeViewController: BaseViewController {
     @objc
     private func pushToFolderCreationView() {
         let viewController = AlbumCreationViewController()
+        Mixpanel.mainInstance().track(event: "main/btn/addAlbum")
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     @objc
     private func pushToCameraViewController() {
         let viewController = CameraViewController()
+        Mixpanel.mainInstance().track(event: "main/btn/shot")
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -217,6 +220,7 @@ class HomeViewController: BaseViewController {
     
     @objc func albumCreationButtonDidTap() {
         let viewController = AlbumCreationViewController()
+        Mixpanel.mainInstance().track(event: "main/btn/settingProfile")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -255,6 +259,7 @@ extension HomeViewController {
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let viewController = PanoramaViewController(albumId: albumData[indexPath.row].id, albumData: albumData[indexPath.row])
+        Mixpanel.mainInstance().track(event: "main/album")
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -311,6 +316,7 @@ extension HomeViewController: footerDelegate {
         feedbackPopUp.modalTransitionStyle = .crossDissolve
         feedbackPopUp.modalPresentationStyle = .overCurrentContext
         feedbackPopUp.delegate = self
+        Mixpanel.mainInstance().track(event: "main/bn/feedBack")
         self.present(feedbackPopUp, animated: true, completion: nil)
     }
 }
