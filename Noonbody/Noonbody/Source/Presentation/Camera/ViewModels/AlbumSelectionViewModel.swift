@@ -9,6 +9,7 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import Mixpanel
 
 final class AlbumSelectionViewModel {
     
@@ -56,11 +57,16 @@ final class AlbumSelectionViewModel {
         
         let save = input.saveButtonControlEvent
             .withLatestFrom(input.pictureRequestModel)
-            .do(onNext: { _ in self.isLoading.accept(true) })
+            .do(onNext: { _ in
+                self.isLoading.accept(true)
+                Mixpanel.mainInstance().track(event: "selectAlbum/btn/complete")
+            })
             .flatMap { request in
                 self.savePictureUseCase.save(request: request)
             }
-            .do(onNext: { _ in self.isLoading.accept(false)})
+            .do(onNext: { _ in
+                self.isLoading.accept(false)
+            })
             .share()
 
         let statusCode = save

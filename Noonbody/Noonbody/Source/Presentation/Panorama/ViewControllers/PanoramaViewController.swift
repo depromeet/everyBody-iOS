@@ -181,6 +181,7 @@ class PanoramaViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         resetDeleteData()
         editMode ? initEditNavigationBar() : initNavigationBar()
+        isPushed = false
     }
     
     override func viewDidLayoutSubviews() {
@@ -188,6 +189,13 @@ class PanoramaViewController: BaseViewController {
         bottomCollectionView.reloadData()
         moveCellToCenter(animated: false)
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !isPushed {
+            Mixpanel.mainInstance().track(event: "camera/btn/back")
+        }
+    }
+    
     
     // MARK: - Methods
     

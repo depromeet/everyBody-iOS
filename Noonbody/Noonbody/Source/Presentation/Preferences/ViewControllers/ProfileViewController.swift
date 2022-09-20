@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import Mixpanel
 
 class ProfileViewController: BaseViewController {
 
@@ -47,6 +48,17 @@ class ProfileViewController: BaseViewController {
         setupConstraint()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        isPushed = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !isPushed {
+            Mixpanel.mainInstance().track(event: "camera/btn/back")
+        }
+    }
+    
+    
     // MARK: - Methods
     
     func setupNavigationBar() {
@@ -75,12 +87,14 @@ class ProfileViewController: BaseViewController {
     private func pushToMottoViewController() {
         let viewController = MottoViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
+        Mixpanel.mainInstance().track(event: "setting/sentence")
     }
     
     @objc
     private func pushToNotificationSetting() {
         let viewController = NotificationViewController()
         self.navigationController?.pushViewController(viewController, animated: true)
+        Mixpanel.mainInstance().track(event: "setting/alarm")
     }
     
     @objc

@@ -9,6 +9,7 @@ import UIKit
 
 import RxCocoa
 import RxSwift
+import Mixpanel
 
 class BottomSheetView: UIView {
     
@@ -87,8 +88,10 @@ extension BottomSheetView: UICollectionViewDataSource {
         if indexPath.row == 0 {
             cell.backgroundColor = Asset.Color.gray30.color
             cell.setFirstCell()
+            Mixpanel.mainInstance().track(event: "camera/poseFilter/noPose")
         } else {
             cell.setData(image: viewModel.allPose[indexPath.row - 1].thumnailImage)
+            Mixpanel.mainInstance().track(event: "camera/poseFilter/pose\(indexPath.row)")
         }
         return cell
     }

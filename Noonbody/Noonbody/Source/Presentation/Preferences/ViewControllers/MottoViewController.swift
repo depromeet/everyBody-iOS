@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import Then
 import SnapKit
+import Mixpanel
 
 final class MottoViewController: BaseViewController {
     // MARK: - UI Components
@@ -30,14 +31,28 @@ final class MottoViewController: BaseViewController {
     }
 
     // MARK: - Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         hideKeyboard()
         setupViewHierarchy()
         setupConstraints()
         setupNavigationBar()
         bindCellTextfield()
+        addMixpanelEvent()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        isPushed = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !isPushed {
+            Mixpanel.mainInstance().track(event: "setting/btn/back")
+        }
+    }
+    
 
     // MARK: - Method
     
@@ -70,6 +85,14 @@ final class MottoViewController: BaseViewController {
                     self.mottoTextField.placeholder = "좌우명을 입력해주세요."
                 }
             }).disposed(by: self.disposeBag)
-        
+    }
+    
+    private func addMixpanelEvent() {
+        mottoTextField.addTarget(self, action: #selector(setMixpanelEvent), for: .touchDown)
+    }
+    
+    @objc
+    private func setMixpanelEvent() {
+        Mixpanel.mainInstance().track(event: "setting/sentence/btn/input")
     }
 }
