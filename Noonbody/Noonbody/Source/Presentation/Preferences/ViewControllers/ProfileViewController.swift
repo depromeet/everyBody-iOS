@@ -54,7 +54,7 @@ class ProfileViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         if !isPushed {
-            Mixpanel.mainInstance().track(event: "camera/btn/back")
+            Mixpanel.mainInstance().track(event: "setting/btn/back")
         }
     }
     

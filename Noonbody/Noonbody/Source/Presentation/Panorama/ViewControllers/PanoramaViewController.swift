@@ -192,7 +192,7 @@ class PanoramaViewController: BaseViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         if !isPushed {
-            Mixpanel.mainInstance().track(event: "camera/btn/back")
+            Mixpanel.mainInstance().track(event: "viewAlbum/btn/back")
         }
     }
     
