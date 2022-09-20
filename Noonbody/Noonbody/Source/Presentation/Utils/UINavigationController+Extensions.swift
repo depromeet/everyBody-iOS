@@ -81,16 +81,16 @@ extension UINavigationController {
     }
     
     func initNavigationBarWithMenu(navigationItem: UINavigationItem?,
+                                   action: Selector,
                                    menuButtonImage: UIImage,
                                    menuChildItem: [UIAction],
                                    tintColor: UIColor = Asset.Color.gray90.color) {
         
         initNaviBarWithBackButton(tintColor: tintColor)
-        
         guard let menuButton = navigationItem?.makeCustomBarItem(self.topViewController,
-                                                                 image: menuButtonImage,
-                                                                 childItem: menuChildItem) else { return }
-        
+                                          action: action,
+                                          image: menuButtonImage,
+                                          childItem: menuChildItem) else { return }
         let barButtonItems: [UIBarButtonItem] = [menuButton]
         navigationItem?.rightBarButtonItems = barButtonItems
     }

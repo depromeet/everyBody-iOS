@@ -280,7 +280,6 @@
 		AA9591202744EDDC007772BD /* UICollectionView+Generic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Generic.swift"; sourceTree = "<group>"; };
 		AA95912227458F92007772BD /* UIVIew+renderToImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+renderToImageView.swift"; sourceTree = "<group>"; };
 		AA9A41462715EC2C002BBE15 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
-		AAA9A4F62753A71F00FE92DB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		AAA9A5282757FFB400FE92DB /* CreateAlbumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumService.swift; sourceTree = "<group>"; };
 		AAA9A52A275800D600FE92DB /* CreateAlbumAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumAPI.swift; sourceTree = "<group>"; };
 		AAA9A52C2758040B00FE92DB /* AlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumUseCase.swift; sourceTree = "<group>"; };
@@ -350,6 +349,7 @@
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		FC03884C28D0C31D003119CC /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		FC1F6A4027E9DB05005AB343 /* FetchAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAlbumUseCase.swift; sourceTree = "<group>"; };
 		FC1F6A4227E9DB1F005AB343 /* CreateAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumUseCase.swift; sourceTree = "<group>"; };
 		FC1F6A4427E9DB2F005AB343 /* DeleteAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAlbumUseCase.swift; sourceTree = "<group>"; };
@@ -539,8 +539,8 @@
 				AAF2D4282724137E0029219D /* Image.xcassets */,
 				AA5B85D52716F4FF002276C3 /* Color.xcassets */,
 				AA7E0A4E26FB0B2D00106DC2 /* Support */,
-				AAA9A4F62753A71F00FE92DB /* Config.xcconfig */,
 				AAE2FA972764078900FA2C5C /* LaunchScreen.storyboard */,
+				FC03884C28D0C31D003119CC /* Config.xcconfig */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1457,7 +1457,6 @@
 /* Begin XCBuildConfiguration section */
 		AA7E0A4726FB0A6200106DC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAA9A4F62753A71F00FE92DB /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1576,6 +1575,7 @@
 		};
 		AA7E0A4A26FB0A6200106DC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC03884C28D0C31D003119CC /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1603,7 +1603,7 @@
 		};
 		AA7E0A4B26FB0A6200106DC2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAA9A4F62753A71F00FE92DB /* Config.xcconfig */;
+			baseConfigurationReference = FC03884C28D0C31D003119CC /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import Lottie
+import Mixpanel
 
 class AlbumSelectionViewController: BaseViewController {
     
@@ -29,7 +30,7 @@ class AlbumSelectionViewController: BaseViewController {
     private let completeBarButtonItem = UIBarButtonItem(title: "완료",
                                                         style: .plain,
                                                         target: self,
-                                                        action: nil)
+                                                        action: #selector(completeButtonDidTap))
     
     private let popUp = PopUpViewController(type: .textField)
     private let loadingView = AnimationView(name: "loading").then {
@@ -147,16 +148,22 @@ class AlbumSelectionViewController: BaseViewController {
         self.loadingView.isHidden = true
         self.backgroundView.isHidden = true
     }
+    
+    @objc private func completeButtonDidTap() {
+        Mixpanel.mainInstance().track(event: "selectAlbum/btn/complete")
+    }
 }
 
 extension AlbumSelectionViewController: PopUpActionProtocol {
     
     func cancelButtonDidTap(_ button: UIButton) {
         dismiss(animated: true, completion: nil)
+        Mixpanel.mainInstance().track(event: "albumCreateModal/btn/cancle")
     }
     
     func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
         dismiss(animated: true, completion: nil)
+        Mixpanel.mainInstance().track(event: "albumCreateModal/btn/complete")
     }
     
 }
@@ -172,9 +179,13 @@ extension AlbumSelectionViewController: UICollectionViewDelegate {
             popUp.delegate = self
             popUp.titleLabel.text = "앨범명을 입력해주세요."
             self.present(popUp, animated: true, completion: nil)
+            
+            Mixpanel.mainInstance().track(event: "selectAlbum/btn/addAlbum")
         } else {
             requestManager.albumId = albumData[indexPath.row - 1].id
             albumRequest.onNext(requestManager.toPictureRequestModel())
+            
+            Mixpanel.mainInstance().track(event: "selectAlbum/btn/album")
         }
     }
     
