@@ -9,10 +9,12 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import Mixpanel
 
 class BaseViewController: UIViewController {
 
     let disposeBag = DisposeBag()
+    var isPushed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -66,6 +66,16 @@ class AlbumSelectionViewController: BaseViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        isPushed = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !isPushed {
+            Mixpanel.mainInstance().track(event: "selectAlbum/btn/back")
+        }
+    }
+    
     // MARK: - Methods
     
     override func render() {
@@ -158,7 +168,7 @@ extension AlbumSelectionViewController: PopUpActionProtocol {
     
     func cancelButtonDidTap(_ button: UIButton) {
         dismiss(animated: true, completion: nil)
-        Mixpanel.mainInstance().track(event: "albumCreateModal/btn/cancle")
+        Mixpanel.mainInstance().track(event: "albumCreateModal/btn/cancel")
     }
     
     func confirmButtonDidTap(_ button: UIButton, textInfo: String) {
@@ -205,8 +215,10 @@ extension AlbumSelectionViewController: UICollectionViewDataSource {
             cell.style = .folder
             cell.setNoFirstCell()
             cell.setData(album: albumData[indexPath.row - 1])
+            Mixpanel.mainInstance().track(event: "selectAlbum/btn/album")
         } else {
             cell.setFirstCell()
+            Mixpanel.mainInstance().track(event: "selectAlbum/btn/addAlbum")
         }
         return cell
     }

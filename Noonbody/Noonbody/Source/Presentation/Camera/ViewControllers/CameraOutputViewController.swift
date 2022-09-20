@@ -10,6 +10,7 @@ import AVFoundation
 
 import RxCocoa
 import RxSwift
+import Mixpanel
 
 class CameraOutputViewController: BaseViewController {
     
@@ -137,6 +138,16 @@ class CameraOutputViewController: BaseViewController {
         initSegementData()
         setDefaultWeight()
         initWeightUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        isPushed = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !isPushed {
+            Mixpanel.mainInstance().track(event: "photo/btn/back")
+        }
     }
     
     // MARK: - Methods
@@ -430,14 +441,17 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
                 showPartComponents()
                 hidePhotoComponents()
                 hideWeightComponents()
+                Mixpanel.mainInstance().track(event: "photo/tab/selectPart")
             case 1:
                 showPhotoComponents()
                 hidePartComponents()
                 hideWeightComponents()
+                Mixpanel.mainInstance().track(event: "photo/tab/inputTime")
             case 2:
                 showWeightComponents()
                 hidePartComponents()
                 hidePhotoComponents()
+                Mixpanel.mainInstance().track(event: "photo/tab/inputWeight")
             default:
                 return
             }
@@ -447,15 +461,18 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
                 takenAtPickerView.setMetaDataTime(dataArray: metaDataArray)
                 takenAtPickerView.isUserInteractionEnabled = false
                 takenAtPickerView.reloadPickerView()
+                Mixpanel.mainInstance().track(event: "photo/btn/photoTime")
                 return
             case .current:
                 takenAtPickerView.setCurrnetTime()
                 takenAtPickerView.isUserInteractionEnabled = false
                 takenAtPickerView.reloadPickerView()
+                Mixpanel.mainInstance().track(event: "photo/btn/currentTime")
                 return
             case .custom:
                 takenAtPickerView.isUserInteractionEnabled = true
                 takenAtPickerView.reloadPickerView()
+                Mixpanel.mainInstance().track(event: "photo/btn/directInput")
                 return
             default:
                 return
@@ -464,12 +481,15 @@ extension CameraOutputViewController: NBSegmentedControlDelegate {
             switch Part.init(rawValue: index) {
             case .whole:
                 requestManager.bodyPart = .whole
+                Mixpanel.mainInstance().track(event: "photo/selectPart/btn/whole")
                 return
             case .upper:
                 requestManager.bodyPart = .upper
+                Mixpanel.mainInstance().track(event: "photo/selectPart/btn/upper")
                 return
             case .lower:
                 requestManager.bodyPart = .lower
+                Mixpanel.mainInstance().track(event: "photo/selectPart/btn/lower")
                 return
             default:
                 return
@@ -539,6 +559,11 @@ extension CameraOutputViewController: NBSwitchDelegate {
         weightPickerView.isUserInteractionEnabled = isOn
         decimalWeightPickerView.isUserInteractionEnabled = isOn
         weightDisableView.isHidden = isOn
+        if isOn {
+            Mixpanel.mainInstance().track(event: "photo/inputWeight/toggle/on")
+        } else {
+            Mixpanel.mainInstance().track(event: "photo/inputWeight/toggle/off")
+        }
     }
     
 }

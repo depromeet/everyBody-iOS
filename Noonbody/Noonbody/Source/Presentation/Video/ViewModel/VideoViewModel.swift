@@ -10,6 +10,7 @@ import UIKit.UIImage
 
 import RxCocoa
 import RxSwift
+import Mixpanel
 
 final class VideoViewModel {
     
@@ -46,6 +47,7 @@ final class VideoViewModel {
                 owner.imagePaths.insert(deletedItem.image, at: deletedItem.index)
                 backingStore.onNext(owner.imagePaths)
                 owner.imageSubject.onNext(owner.imagePaths)
+                Mixpanel.mainInstance().track(event: "saveVideo/btn/undo")
             })
             .disposed(by: disposeBag)
         
@@ -59,6 +61,7 @@ final class VideoViewModel {
                 imageAnimator.render { save in
                     isSave = save
                 }
+                Mixpanel.mainInstance().track(event: "saveVideo/btn/save")
                 return Observable.just(isSave)
             }
             .share()
@@ -81,6 +84,8 @@ final class VideoViewModel {
         backingList.append((imagePaths[index], index))
         imagePaths.remove(at: index)
         imageSubject.onNext(imagePaths)
+        
+        Mixpanel.mainInstance().track(event: "saveVideo/btn/photoDelete")
         
         return index
     }

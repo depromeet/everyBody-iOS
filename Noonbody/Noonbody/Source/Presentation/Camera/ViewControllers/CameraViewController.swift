@@ -14,6 +14,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import RxGesture
+import Mixpanel
 
 class CameraViewController: BaseViewController {
     
@@ -56,8 +57,18 @@ class CameraViewController: BaseViewController {
         bind()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        isPushed = false
+    }
+    
     override func viewDidLayoutSubviews() {
         initAttributes()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !isPushed {
+            Mixpanel.mainInstance().track(event: "camera/btn/back")
+        }
     }
     
     // MARK: - Methods
@@ -118,6 +129,8 @@ class CameraViewController: BaseViewController {
             .tap
             .bind { [self] in
                 takePicture()
+                isPushed = true
+                Mixpanel.mainInstance().track(event: "camera/btn/shot")
             }
             .disposed(by: disposeBag)
         
@@ -133,6 +146,7 @@ class CameraViewController: BaseViewController {
             .when(.recognized)
             .subscribe(onNext: { [self] _ in
                 bottomSheetWillAppear()
+                Mixpanel.mainInstance().track(event: "camera/btn/pose")
             })
             .disposed(by: disposeBag)
         
@@ -140,6 +154,7 @@ class CameraViewController: BaseViewController {
             .tapGesture()
             .when(.recognized)
             .subscribe(onNext: { _ in
+                Mixpanel.mainInstance().track(event: "camera/btn/album")
                 self.openAlbumLibrary()
             })
             .disposed(by: disposeBag)
@@ -388,6 +403,11 @@ extension CameraViewController: NBSwitchDelegate {
     func switchButtonStateChanged(isOn: Bool) {
         UserManager.gridMode = isOn
         gridIndicatorView.isHidden = !isOn
+        if isOn {
+            Mixpanel.mainInstance().track(event: "camera/toggle/on")
+        } else {
+            Mixpanel.mainInstance().track(event: "camera/toggle/off")
+        }
     }
     
 }

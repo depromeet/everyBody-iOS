@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class ProfileTableViewCell: UITableViewCell {
 
@@ -168,8 +169,18 @@ extension ProfileTableViewCell: NBSwitchDelegate {
         switch dataType {
         case .saved:
             UserManager.saveBulitInInLibrary = !isOn
+            if isOn {
+                Mixpanel.mainInstance().track(event: "setting/saveApp/toggle/on")
+            } else {
+                Mixpanel.mainInstance().track(event: "setting/saveApp/toggle/off")
+            }
         case .hideThumbnail:
             UserManager.hideThumbnail = isOn
+            if isOn {
+                Mixpanel.mainInstance().track(event: "setting/hideThumb/toggle/on")
+            } else {
+                Mixpanel.mainInstance().track(event: "setting/hideThumb/toggle/off")
+            }
         case .biometricAuthentication:
             if isOn { // 생체인증 on
                 LocalAuthenticationService.shared.evaluateAuthentication { response, error in
@@ -180,8 +191,10 @@ extension ProfileTableViewCell: NBSwitchDelegate {
                         }
                     }
                 }
+                Mixpanel.mainInstance().track(event: "setting/faceId/toggle/on")
             } else { // 생체인증 off
                 UserManager.biometricAuthentication = isOn
+                Mixpanel.mainInstance().track(event: "setting/faceId/toggle/off")
             }
         default: break
         }

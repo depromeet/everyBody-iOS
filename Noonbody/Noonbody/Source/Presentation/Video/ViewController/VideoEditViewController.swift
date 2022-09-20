@@ -10,6 +10,7 @@ import Photos
 
 import RxCocoa
 import RxSwift
+import Mixpanel
 
 class VideoEditViewController: BaseViewController {
     
@@ -81,6 +82,16 @@ class VideoEditViewController: BaseViewController {
         view.backgroundColor = .black
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        isPushed = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if !isPushed {
+            Mixpanel.mainInstance().track(event: "saveVideo/btn/back")
+        }
+    }
+    
     // MARK: - Methods
     
     private func bind() {
@@ -107,6 +118,7 @@ class VideoEditViewController: BaseViewController {
                     popUp.descriptionLabel.text = "비디오 저장이 완료되었어요!\n아이폰 앨범에서 저장된 비디오를 확인해 보세요."
                     popUp.cancelButton.setTitle("확인", for: .normal)
                     self.present(popUp, animated: true, completion: nil)
+                    Mixpanel.mainInstance().track(event: "saveVideo/saveModal/btn/confirm")
                 }
             })
             .disposed(by: disposeBag)
@@ -257,6 +269,7 @@ extension VideoEditViewController: PopUpActionProtocol {
         NotificationCenter.default.post(name: NSNotification.Name("requestCancel"),
                                         object: nil)
         dismiss(animated: true, completion: nil)
+        isPushed = true // 임의로 pop 시키는 것이기 때문에 back 이벤트 트래킹 하지 않기 위함
         self.navigationController?.popViewController(animated: true)
     }
     
