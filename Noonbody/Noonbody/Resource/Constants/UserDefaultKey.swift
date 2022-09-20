@@ -11,6 +11,7 @@ extension Constant {
     
     struct UserDefault {
         static let id = "id"
+        static let userCreatedAt = "userCreatedAt"
         static let nickname = "nickname"
         static let motto = "motto"
         static let profile = "profile"
