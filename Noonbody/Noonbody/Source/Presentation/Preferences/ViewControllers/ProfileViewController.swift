@@ -58,7 +58,6 @@ class ProfileViewController: BaseViewController {
         }
     }
     
-    
     // MARK: - Methods
     
     func setupNavigationBar() {
