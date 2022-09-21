@@ -183,7 +183,7 @@ extension ProfileTableViewCell: NBSwitchDelegate {
             }
         case .biometricAuthentication:
             if isOn { // 생체인증 on
-                LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+                BiometricsAuth.execute { response, error in
                     UserManager.biometricAuthentication = response
                     if error != nil {
                         DispatchQueue.main.async {

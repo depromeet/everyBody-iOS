@@ -197,7 +197,7 @@
 		FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCC59B9D2842634E00702FA8 /* RealmMigrationService.swift */; };
 		FCCCB71E273BCCC300F57A5E /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */; };
 		FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */; };
-		FCF13C1C28ACFCC6003D3B60 /* LocalAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF13C1B28ACFCC6003D3B60 /* LocalAuthenticationService.swift */; };
+		FCF13C1C28ACFCC6003D3B60 /* BiometricsAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF13C1B28ACFCC6003D3B60 /* BiometricsAuth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -395,7 +395,7 @@
 		FCC59B9D2842634E00702FA8 /* RealmMigrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmMigrationService.swift; sourceTree = "<group>"; };
 		FCCCB71D273BCCC300F57A5E /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCCE684A276C884A00E72F57 /* AlbumEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumEmptyView.swift; sourceTree = "<group>"; };
-		FCF13C1B28ACFCC6003D3B60 /* LocalAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationService.swift; sourceTree = "<group>"; };
+		FCF13C1B28ACFCC6003D3B60 /* BiometricsAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricsAuth.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -835,7 +835,7 @@
 		AABD83832784D08F004E8BF8 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				FCF13C1B28ACFCC6003D3B60 /* LocalAuthenticationService.swift */,
+				FCF13C1B28ACFCC6003D3B60 /* BiometricsAuth.swift */,
 				AA74A0DF274971B200FA6678 /* Data */,
 				AABD83862784D0C9004E8BF8 /* ViewControllers */,
 				AABD83852784D0A8004E8BF8 /* ViewModel */,
@@ -1431,7 +1431,7 @@
 				FCCE684B276C884A00E72F57 /* AlbumEmptyView.swift in Sources */,
 				AA9591212744EDDC007772BD /* UICollectionView+Generic.swift in Sources */,
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
-				FCF13C1C28ACFCC6003D3B60 /* LocalAuthenticationService.swift in Sources */,
+				FCF13C1C28ACFCC6003D3B60 /* BiometricsAuth.swift in Sources */,
 				AAEA239C27938E01005A08C9 /* DefaultVideoRepository.swift in Sources */,
 				FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,

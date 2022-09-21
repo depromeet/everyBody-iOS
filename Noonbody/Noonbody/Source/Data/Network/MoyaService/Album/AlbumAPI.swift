@@ -70,8 +70,26 @@ extension AlbumAPI {
             
             return .uploadMultipart(multiPartFormData)
         case .sendFeedback(let request):
-            return .requestParameters(parameters: ["content" : request.content
-                                                   + "\n(iOS \(UIDevice.current.systemVersion), \(UIDevice.modelName))",
+            var content = request.content
+            
+            content += "\n\n" + "------ User Information ------"
+            
+            let versionInformation = "- App Version : iOS \(UIDevice.current.systemVersion), \(UIDevice.modelName)"
+            content += "\n" + versionInformation
+            
+            if let createAt = UserManager.createdAt {
+                content += "\n" + "- App Installation Date : \(createAt)"
+            }
+            
+            let totalPictureCount = RealmManager.realm()?.objects(RMAlbum.self)
+                .map { $0.asEntity().pictures }
+                .map { pictures in
+                pictures.lower.count + pictures.upper.count + pictures.whole.count
+                }.first
+            
+            content += "\n" + "- Total Picture Count : \(totalPictureCount ?? -1)"
+            
+            return .requestParameters(parameters: ["content": content,
                                                    "star_rate": request.starRate],
                                       encoding: JSONEncoding.default)
         }

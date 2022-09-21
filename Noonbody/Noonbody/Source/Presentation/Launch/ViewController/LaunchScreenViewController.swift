@@ -37,7 +37,8 @@ class LaunchScreenViewController: UIViewController {
         
         view.backgroundColor = Asset.Color.keyPurple.color
         setupConstraint()
-        addObserver()
+        setFirstInstallationInformation()
+        UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
     }
     
     private func setupConstraint() {
@@ -59,15 +60,16 @@ class LaunchScreenViewController: UIViewController {
         }
     }
     
-    private func addObserver() {
-        if UserManager.userId == nil {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(signUp),
-                                                   name: Notification.Name("setFcmToken"),
-                                                   object: nil)
+    private func setFirstInstallationInformation() {
+        if UserManager.userId == nil && UserManager.createdAt == nil {
             setDefaultAlbum()
-        } else {
-            checkDownloadCompleted()
+        }
+        
+        if UserManager.createdAt == nil {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let userCreateDate = formatter.string(from: Date())
+            UserManager.createdAt = userCreateDate
         }
     }
     
@@ -79,47 +81,47 @@ class LaunchScreenViewController: UIViewController {
         }
     }
     
-    private func checkDownloadCompleted() {
-        MyPageService.shared.getMyPage { response in
-            switch response {
-            case .success(let data):
-                if let data = data {
-                    if data.downloadCompleted == nil && !FileManager.default.fileExists(atPath: self.defaultRealmPath.path) {
-                        self.migrationLabel.alpha = 1
-                        self.loadingView.alpha = 1
-                        self.migration()
-                    } else {
-                        self.migrationLabel.alpha = 0
-                        self.loadingView.alpha = 0
-                        UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
-                    }
-                }
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    private func migration() {
-        AlbumService.shared.getAlbumList { response in
-            switch response {
-            case .success(let data):
-                if let data = data {
-                    RealmMigrationService.migrateAlbums(albums: data)
-                    self.completeDownload()
-                }
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    @objc
-    private func signUp(notification: NSNotification) {
-        if let fcmToken = notification.object as? String {
-            requestSignUp(fcmToken: fcmToken)
-        }
-    }
+//    private func checkDownloadCompleted() {
+//        MyPageService.shared.getMyPage { response in
+//            switch response {
+//            case .success(let data):
+//                if let data = data {
+//                    if data.downloadCompleted == nil && !FileManager.default.fileExists(atPath: self.defaultRealmPath.path) {
+//                        self.migrationLabel.alpha = 1
+//                        self.loadingView.alpha = 1
+//                        self.migration()
+//                    } else {
+//                        self.migrationLabel.alpha = 0
+//                        self.loadingView.alpha = 0
+//                        UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
+//                    }
+//                }
+//            case .failure(let err):
+//                print(err)
+//            }
+//        }
+//    }
+//
+//    private func migration() {
+//        AlbumService.shared.getAlbumList { response in
+//            switch response {
+//            case .success(let data):
+//                if let data = data {
+//                    RealmMigrationService.migrateAlbums(albums: data)
+//                    self.completeDownload()
+//                }
+//            case .failure(let err):
+//                print(err)
+//            }
+//        }
+//    }
+//
+//    @objc
+//    private func signUp(notification: NSNotification) {
+//        if let fcmToken = notification.object as? String {
+//            requestSignUp(fcmToken: fcmToken)
+//        }
+//    }
     
     private func pushToHomeViewController() {
         let homeViewController = HomeViewController()
@@ -134,53 +136,53 @@ class LaunchScreenViewController: UIViewController {
         self.present(popUp, animated: false)
     }
     
-    private func requestSignUp(fcmToken: String) {
-        AuthService.shared.postSignUp(request: SignUpRequestModel(password: uuid,
-                                                                  device: Device(deviceToken: fcmToken,
-                                                                                 pushToken: fcmToken))) { response in
-            switch response {
-            case .success(let data):
-                if let data = data {
-                    UserManager.userId = data.id
-                    UserManager.nickname = data.nickname
-                    UserManager.profile = data.profileImage
-                    self.requestSignIn()
-                }
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
+//    private func requestSignUp(fcmToken: String) {
+//        AuthService.shared.postSignUp(request: SignUpRequestModel(password: uuid,
+//                                                                  device: Device(deviceToken: fcmToken,
+//                                                                                 pushToken: fcmToken))) { response in
+//            switch response {
+//            case .success(let data):
+//                if let data = data {
+//                    UserManager.userId = data.id
+//                    UserManager.nickname = data.nickname
+//                    UserManager.profile = data.profileImage
+//                    self.requestSignIn()
+//                }
+//            case .failure(let err):
+//                print(err)
+//            }
+//        }
+//    }
     
-    private func requestSignIn() {
-        guard let userId = UserManager.userId else { return }
-        AuthService.shared.postSignIn(request: SignInRequestModel(userId: userId,
-                                                                  password: uuid)) { response in
-            switch response {
-            case .success(let data):
-                if let data = data {
-                    UserManager.token = data.accessToken
-                }
-                UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
-    
-    private func completeDownload() {
-        MyPageService.shared.putDownloadCompleted { response in
-            switch response {
-            case .success:
-                self.pushToHomeViewController()
-            case .failure(let err):
-                print(err)
-            }
-        }
-    }
+//    private func requestSignIn() {
+//        guard let userId = UserManager.userId else { return }
+//        AuthService.shared.postSignIn(request: SignInRequestModel(userId: userId,
+//                                                                  password: uuid)) { response in
+//            switch response {
+//            case .success(let data):
+//                if let data = data {
+//                    UserManager.token = data.accessToken
+//                }
+//                UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()
+//            case .failure(let err):
+//                print(err)
+//            }
+//        }
+//    }
+//    
+//    private func completeDownload() {
+//        MyPageService.shared.putDownloadCompleted { response in
+//            switch response {
+//            case .success:
+//                self.pushToHomeViewController()
+//            case .failure(let err):
+//                print(err)
+//            }
+//        }
+//    }
     
     private func evaluateAuthentication() {
-        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+        BiometricsAuth.execute { response, error in
             DispatchQueue.main.async {
                 if response {
                     self.pushToHomeViewController()
@@ -196,7 +198,7 @@ class LaunchScreenViewController: UIViewController {
 extension LaunchScreenViewController: PopUpActionProtocol {
     
     func cancelButtonDidTap(_ button: UIButton) {
-        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+        BiometricsAuth.execute { response, error in
             DispatchQueue.main.async {
                 if response {
                     self.dismiss(animated: false)

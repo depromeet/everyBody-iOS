@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // swiftlint:disable force_cast
         if env() == .production {
             let tokenRelease = Bundle.main.infoDictionary?["TOKEN_release"] as! String
-            Mixpanel.initialize(token: tokenRelease)
+            Mixpanel.initialize(token: tokenRelease, trackAutomaticEvents: true)
         }
         #endif
         

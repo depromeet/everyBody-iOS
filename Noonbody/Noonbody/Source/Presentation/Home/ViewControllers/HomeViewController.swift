@@ -84,6 +84,7 @@ class HomeViewController: BaseViewController {
         setupViewHierarchy()
         setupConstraint()
         navigationController?.isNavigationBarHidden = false
+        
     }
     
     // MARK: - Methods

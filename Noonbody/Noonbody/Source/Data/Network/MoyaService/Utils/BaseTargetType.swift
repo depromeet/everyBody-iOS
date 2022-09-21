@@ -15,8 +15,7 @@ protocol BaseTargetType: Moya.TargetType {
 extension BaseTargetType {
 
     var baseURL: URL {
-        // swiftlint:disable force_cast
-        let url = Bundle.main.infoDictionary?["API_URL"] as! String
+        let url = Bundle.main.infoDictionary?["API_URL"] as? String ?? ""
         return URL(string: "https://" + url)!
     }
 

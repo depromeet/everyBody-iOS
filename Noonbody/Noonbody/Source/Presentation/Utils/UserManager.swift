@@ -12,6 +12,9 @@ class UserManager {
     @UserDefault(key: Constant.UserDefault.id, defaultValue: nil)
     static var userId: Int?
     
+    @UserDefault(key: Constant.UserDefault.userCreatedAt, defaultValue: nil)
+    static var createdAt: String?
+    
     @UserDefault(key: Constant.UserDefault.motto, defaultValue: "천천히 그리고 꾸준히!")
     static var motto: String
     

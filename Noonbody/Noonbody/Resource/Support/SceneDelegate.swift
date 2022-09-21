@@ -83,7 +83,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 extension SceneDelegate {
     
     private func evaluateAuthentication() {
-        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+        BiometricsAuth.execute { response, error in
             DispatchQueue.main.async {
                 if response {
                     self.window?.rootViewController?.presentedViewController?.dismiss(animated: false)
@@ -112,7 +112,7 @@ extension SceneDelegate {
 extension SceneDelegate: PopUpActionProtocol {
     
     func cancelButtonDidTap(_ button: UIButton) {
-        LocalAuthenticationService.shared.evaluateAuthentication { response, _ in
+        BiometricsAuth.execute { response, _ in
             DispatchQueue.main.async {
                 if response {
                     self.window?.rootViewController?.presentedViewController?.dismiss(animated: false)
