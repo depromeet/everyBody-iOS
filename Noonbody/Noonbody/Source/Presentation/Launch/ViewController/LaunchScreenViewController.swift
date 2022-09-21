@@ -182,7 +182,7 @@ class LaunchScreenViewController: UIViewController {
 //    }
     
     private func evaluateAuthentication() {
-        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+        BiometricsAuth.execute { response, error in
             DispatchQueue.main.async {
                 if response {
                     self.pushToHomeViewController()
@@ -198,7 +198,7 @@ class LaunchScreenViewController: UIViewController {
 extension LaunchScreenViewController: PopUpActionProtocol {
     
     func cancelButtonDidTap(_ button: UIButton) {
-        LocalAuthenticationService.shared.evaluateAuthentication { response, error in
+        BiometricsAuth.execute { response, error in
             DispatchQueue.main.async {
                 if response {
                     self.dismiss(animated: false)
