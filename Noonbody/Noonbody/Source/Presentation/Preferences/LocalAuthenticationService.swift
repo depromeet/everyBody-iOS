@@ -11,9 +11,9 @@ import LocalAuthentication
 
 public class LocalAuthenticationService {
     static let shared = LocalAuthenticationService()
-    let autoContext = LAContext()
     
     func evaluateAuthentication(completion: @escaping (Bool, Error?) -> Void) {
+        let autoContext = LAContext()
         var error: NSError?
         if autoContext.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
             // Face ID가 등록된 경우는 Face ID로, Touch ID가 등록된 경우는 Touch ID로 인증 실행
