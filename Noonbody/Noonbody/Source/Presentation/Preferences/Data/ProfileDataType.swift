@@ -14,6 +14,7 @@ enum ProfileDataType: Equatable {
     case hideThumbnail
     case biometricAuthentication
     case privacyPolicy
+    case instagram
     
     var title: String {
         switch self {
@@ -29,6 +30,8 @@ enum ProfileDataType: Equatable {
             return "생체 인증"
         case .privacyPolicy:
             return "개인정보 처리방침"
+        case .instagram:
+            return "눈바디 인스타그램"
         }
     }
 }

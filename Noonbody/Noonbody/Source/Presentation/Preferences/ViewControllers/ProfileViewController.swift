@@ -102,6 +102,20 @@ class ProfileViewController: BaseViewController {
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
+    @objc
+    private func loadInstagram() {
+        let instagram = "https://www.instagram.com/noonbody_official" //2
+        
+        let instagramURL = NSURL(string: instagram) //3
+        
+        if UIApplication.shared.canOpenURL(instagramURL! as URL) { //4
+            UIApplication.shared.open( //5
+                instagramURL! as URL,
+                options: [:],
+                completionHandler: nil
+            )
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -169,6 +183,11 @@ extension ProfileViewController: UITableViewDataSource {
             cell.type = .right
             cell.setData(title: title)
             cell.setRightButtonEvent(target: self, action: #selector(pushToPrivacyPolicyViewController))
+            cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
+        case .instagram:
+            cell.type = .right
+            cell.setData(title: title)
+            cell.setRightButtonEvent(target: self, action: #selector(loadInstagram))
             cell.setRightButtonImage(image: Asset.Image.backwardsBack.image)
         }
         arrayOfCells.append(cell)

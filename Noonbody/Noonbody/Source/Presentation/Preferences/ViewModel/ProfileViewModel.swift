@@ -41,12 +41,14 @@ final class ProfileViewModel {
         let cellData = input.viewWillAppear
             .compactMap { UserManager.motto }
             .map { motto -> [ProfileDataType] in
-                return [.motto(motto: motto),
+                return [
+                    .motto(motto: motto),
 //                    .pushNotification,
                     .saved,
                     .hideThumbnail,
                     .biometricAuthentication,
-                    .privacyPolicy
+                    .privacyPolicy,
+                    .instagram
                 ]
             }.asDriver(onErrorJustReturn: [])
         
