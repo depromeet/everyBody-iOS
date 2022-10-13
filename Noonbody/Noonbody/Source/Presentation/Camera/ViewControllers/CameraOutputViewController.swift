@@ -53,16 +53,17 @@ class CameraOutputViewController: BaseViewController {
     private lazy var weightLabel = UILabel().then {
         $0.font = .nbFont(ofSize: 30, weight: .bold, type: .pretendard)
         $0.textColor = .white
+        $0.addShadow(offset: CGSize(width: 0, height: 0), opacity: 0.3)
     }
     private lazy var dateLabel = UILabel().then {
         $0.font = .nbFont(ofSize: 14, weight: .bold, type: .gilroy)
         $0.textColor = .white
-        $0.addShadow(offset: CGSize(width: 0, height: 0), radius: 10)
+        $0.addShadow(offset: CGSize(width: 0, height: 0), opacity: 0.3, radius: 10)
     }
     private lazy var meridiemLabel = UILabel().then {
         $0.font = .nbFont(ofSize: 14, weight: .bold, type: .gilroy)
         $0.textColor = .white
-        $0.addShadow(offset: CGSize(width: 0, height: 0), radius: 10)
+        $0.addShadow(offset: CGSize(width: 0, height: 0), opacity: 0.3, radius: 10)
     }
     private lazy var takenAtPickerView = NBDatePicker().then {
         $0.isUserInteractionEnabled = false
@@ -94,6 +95,9 @@ class CameraOutputViewController: BaseViewController {
         $0.backgroundColor = .white
         $0.isHidden = true
         $0.alpha = 0.7
+    }
+    private lazy var appLogoImageView = UIImageView().then {
+        $0.image = Asset.Image.logoShadow.image
     }
     
     // MARK: - Properties
@@ -272,7 +276,7 @@ extension CameraOutputViewController {
                                  weightSwitch,
                                  weightOptionLabel,
                                  weightDisableView)
-        containerView.addSubviews(photoOutputImageView, weightLabel, dateLabel, meridiemLabel)
+        containerView.addSubviews(photoOutputImageView, weightLabel, dateLabel, meridiemLabel, appLogoImageView)
         scrollView.addSubview(contentsView)
         view.addSubview(scrollView)
     }
@@ -286,6 +290,10 @@ extension CameraOutputViewController {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(Constant.Size.screenWidth * (4.0 / 3.0))
+        }
+        
+        appLogoImageView.snp.makeConstraints {
+            $0.top.leading.equalToSuperview().offset(24)
         }
         
         photoOutputImageView.snp.makeConstraints {
@@ -319,12 +327,12 @@ extension CameraOutputViewController {
         }
         
         weightLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(24)
             $0.bottom.equalTo(dateLabel.snp.top).offset(-10)
         }
         
         dateLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().offset(20)
+            $0.leading.equalToSuperview().offset(24)
             $0.bottom.equalTo(photoOutputImageView.snp.bottom).inset(24)
         }
         

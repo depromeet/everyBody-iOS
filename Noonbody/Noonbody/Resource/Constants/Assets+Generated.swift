@@ -48,6 +48,7 @@ internal enum Asset {
     internal static let list = ImageAsset(name: "List")
     internal static let listGradation = ImageAsset(name: "ListGradation")
     internal static let logo = ImageAsset(name: "Logo")
+    internal static let logoShadow = ImageAsset(name: "Logo_shadow")
     internal static let lower = ImageAsset(name: "Lower")
     internal static let mUpper = ImageAsset(name: "M_Upper")
     internal static let mUpper2 = ImageAsset(name: "M_Upper2")
