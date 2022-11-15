@@ -5,9 +5,9 @@ name: Noonbody Builder
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "develop", "ci-test" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "ci-test" ]
 
 jobs:
   build:
@@ -17,5 +17,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run tests
-      run: xcodebuild clean test -workspace Noonbody/Noonbody.xcworkspace -scheme Noonbody -destination 'platform=iOS Simulator,name=iPhone 12 Pro,OS=lastest'
+      run: xcodebuild clean test -workspace ./Noonbdoy/Noonbody.xcworkspace -scheme Noonbody -destination 'platform=iOS Simulator,name=iPhone 12 Pro,OS=lastest'
 
