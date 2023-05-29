@@ -19,15 +19,15 @@ class AlbumCollectionViewCell: UICollectionViewCell {
     private let thumbnailImageView = UIImageView().then {
         $0.makeRounded(radius: 4)
         $0.contentMode = .scaleAspectFill
-        $0.backgroundColor = Asset.Color.gray20.color
+        $0.backgroundColor = Asset.Color.Background.neutral.color
     }
     private let folderTitleLabel = UILabel().then {
         $0.font = .nbFont(type: .body2SemiBold)
-        $0.textColor = Asset.Color.gray90.color
+        $0.textColor = Asset.Color.Text.primary.color
     }
     private let descriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .caption1)
-        $0.textColor = Asset.Color.gray60.color
+        $0.textColor = Asset.Color.Text.tertirary.color
     }
     private let selectedView = SelectedView(style: .basic).then {
         $0.makeRounded(radius: 4)

@@ -21,13 +21,14 @@ class BottomSheetView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: 54, height: 72)
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
         $0.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
         $0.showsHorizontalScrollIndicator = false
         $0.collectionViewLayout = layout
     }
     let downButton = UIButton().then {
-        $0.setImage(Asset.Image.downBtn.image, for: .normal)
+        $0.setImage(Asset.Image.downBtn.image.withRenderingMode(.alwaysTemplate), for: .normal)
+        $0.tintColor = Asset.Color.Text.primary.color
     }
     
     override init(frame: CGRect) {
@@ -45,7 +46,7 @@ class BottomSheetView: UIView {
     }
     
     private func render() {
-        backgroundColor = .white
+        backgroundColor = Asset.Color.Background.default.color
     }
     
     private func setLayout() {
@@ -86,7 +87,7 @@ extension BottomSheetView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: PoseCollectionViewCell = poseCollectionView.dequeueReusableCell(for: indexPath)
         if indexPath.row == 0 {
-            cell.backgroundColor = Asset.Color.gray30.color
+            cell.backgroundColor = Asset.Color.Background.neutral.color
             cell.setFirstCell()
             Mixpanel.mainInstance().track(event: "camera/poseFilter/noPose")
         } else {

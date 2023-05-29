@@ -32,8 +32,15 @@ class CameraViewController: BaseViewController {
         $0.isHidden = !UserManager.gridMode
         $0.image = Asset.Image.gridIndicator.image
     }
-    private let poseButtonView = TextWithIconView(icon: Asset.Image.pose.image, title: "포즈")
-    private let albumButtonView = TextWithIconView(icon: Asset.Image.photo.image, title: "앨범")
+    private let poseButtonView = TextWithIconView(icon: Asset.Image.pose.image.withRenderingMode(.alwaysTemplate),
+                                                  title: "포즈").then {
+        $0.tintColor = Asset.Color.Text.primary.color
+    }
+    private let albumButtonView = TextWithIconView(icon: Asset.Image.photo.image.withRenderingMode(.alwaysTemplate),
+                                                   title: "앨범").then {
+        $0.tintColor = Asset.Color.Text.primary.color
+    }
+
     private let bottomSheetView = BottomSheetView()
     private let toastView = GuideView()
     private let guideImageView = UIImageView()
@@ -115,7 +122,7 @@ class CameraViewController: BaseViewController {
     
     private func initAttributes() {
         takeButton.makeRoundedWithBorder(radius: takeButton.bounds.height / 2,
-                                         color: Asset.Color.keyPurple.color.cgColor, borderWith: 6)
+                                         color: Asset.Color.Primary.main.color.cgColor, borderWith: 6)
     }
     
     private func addPinchGesture() {

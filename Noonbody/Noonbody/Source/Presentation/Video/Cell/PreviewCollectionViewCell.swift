@@ -64,7 +64,7 @@ class PreviewCollectionViewCell: UICollectionViewCell {
     }
     
     func setSelectedUI() {
-        imageView.makeRoundedWithBorder(radius: 4, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
+        imageView.makeRoundedWithBorder(radius: 4, color: Asset.Color.Primary.main.color.cgColor, borderWith: 2)
         xButton.setImage(Asset.Image.selectedClose.image, for: .normal)
     }
     

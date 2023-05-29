@@ -10,8 +10,8 @@ import UIKit
 class NBTextField: UITextField {
     
     open var borderSize: CGFloat = 1
-    
-    open var borderColor: UIColor = Asset.Color.gray90.color
+
+    open var borderColor: UIColor = Asset.Color.Input.border.color
     
     var cornerRadius: CGFloat = 8
     
@@ -23,19 +23,24 @@ class NBTextField: UITextField {
         addLeftPadding()
         setBorder()
     }
-    
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layer.borderColor = borderColor.cgColor
+    }
+
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     private func render() {
-        backgroundColor = .white
+        backgroundColor = Asset.Color.Input.background.color
     }
     
     private func setBorder() {
         layer.cornerRadius = cornerRadius
         layer.borderWidth = borderSize
-        layer.borderColor = borderColor.cgColor
+        layer.borderColor = Asset.Color.Input.border.color.cgColor
     }
     
     func setPlaceHoder(placehoder: String) {

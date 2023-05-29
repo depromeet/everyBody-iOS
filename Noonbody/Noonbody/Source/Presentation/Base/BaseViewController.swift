@@ -24,7 +24,7 @@ class BaseViewController: UIViewController {
     }
     
     func render() {
-        view.backgroundColor = .white
+        view.backgroundColor = Asset.Color.Background.default.color
     }
     
     private func initNavigationBar() {

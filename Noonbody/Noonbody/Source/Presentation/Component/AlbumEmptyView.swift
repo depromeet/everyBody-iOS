@@ -21,11 +21,11 @@ class AlbumEmptyView: UIView {
         $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.font = .nbFont(type: .body2)
-        $0.textColor = Asset.Color.gray50.color
+        $0.textColor = Asset.Color.Text.tertirary.color
     }
     
     var button = UIButton().then {
-        $0.backgroundColor = Asset.Color.keyPurple.color
+        $0.backgroundColor = Asset.Color.Primary.main.color
         $0.makeRounded(radius: 28)
     }
     
@@ -36,6 +36,7 @@ class AlbumEmptyView: UIView {
         super.init(frame: .zero)
         setLayout()
         setText(type: type)
+        backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

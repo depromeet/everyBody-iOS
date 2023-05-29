@@ -22,17 +22,17 @@ class NotificationViewController: BaseViewController {
     private let pushSettingLabel = UILabel().then {
         $0.text = "앱 푸시 알림"
         $0.font = .nbFont(type: .body2)
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.secondary.color
     }
     
     private lazy var pushSwitch = NBSwitch(width: 38, height: 24).then {
         $0.descriptionLabel.isHidden = true
-        $0.setOffColor(color: Asset.Color.gray30.color)
+        $0.setOffColor(color: Asset.Color.Switch.enabled.color)
         $0.delegate = self
     }
     
     private let separatorLine = UIView().then {
-        $0.backgroundColor = Asset.Color.gray10.color
+        $0.backgroundColor = Asset.Color.Background.layer.color
     }
     
     private let pushSettingContainerView = UIView()
@@ -40,25 +40,25 @@ class NotificationViewController: BaseViewController {
     private let timeLabel = UILabel().then {
         $0.text = "시간"
         $0.font = .nbFont(type: .body3)
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.secondary.color
     }
     
     private let timeTextField = UITextField().then {
         $0.font = .nbFont(type: .body3)
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.secondary.color
         $0.isUserInteractionEnabled = false
     }
     
     private let timeContainerView = UIView().then {
         $0.makeRoundedWithBorder(radius: 4,
-                                 color: Asset.Color.gray80.color.cgColor,
+                                 color: Asset.Color.Text.secondary.color.cgColor,
                                  borderWith: 1)
     }
     
     private let dayLabel = UILabel().then {
         $0.text = "요일"
         $0.font = .nbFont(type: .body3)
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.secondary.color
     }
     
     private let dayStackView = UIStackView().then {

@@ -31,7 +31,7 @@ class PanoramaViewController: BaseViewController {
     private var topCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout()).then {
         $0.register(TopCollectionViewCell.self)
         $0.register(CameraCollectionViewCell.self)
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
         $0.showsHorizontalScrollIndicator = false
         $0.bounces = false
         $0.isScrollEnabled = false
@@ -43,7 +43,7 @@ class PanoramaViewController: BaseViewController {
         layout.scrollDirection = .horizontal
         $0.collectionViewLayout = layout
         $0.bounces = false
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
         $0.showsHorizontalScrollIndicator = false
         $0.allowsMultipleSelection = false
         $0.setContentHuggingPriority(.defaultLow, for: .vertical)
@@ -53,7 +53,7 @@ class PanoramaViewController: BaseViewController {
         $0.axis = .vertical
         $0.spacing = UIDevice.current.hasNotch ? 22 : 5
         $0.distribution = .fill
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
     }
     
     private var emptyView = AlbumEmptyView(type: .picture).then {
@@ -448,7 +448,7 @@ class PanoramaViewController: BaseViewController {
         popUp.descriptionLabel.text = "영상 저장하기를 이용하고 싶으시다면\n최소 2장의 사진을 업로드해 주세요."
         popUp.setCancelButtonTitle(text: "확인")
         popUp.cancelButton.titleLabel?.font = .nbFont(type: .body1Bold)
-        popUp.cancelButton.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
+        popUp.cancelButton.setTitleColor(Asset.Color.Primary.main.color, for: .normal)
         self.present(popUp, animated: true, completion: nil)
     }
     

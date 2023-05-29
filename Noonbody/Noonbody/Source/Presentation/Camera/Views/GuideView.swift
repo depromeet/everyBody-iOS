@@ -27,7 +27,7 @@ class GuideView: UIView {
     }
 
     private func render() {
-        backgroundColor = Asset.Color.keyPurple.color.withAlphaComponent(0.8)
+        backgroundColor = Asset.Color.Primary.main.color.withAlphaComponent(0.8)
     }
 
     private func setLayout() {

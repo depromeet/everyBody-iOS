@@ -35,7 +35,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = Asset.Color.keyPurple.color
+        view.backgroundColor = Asset.Color.Primary.main.color
         setupConstraint()
         setFirstInstallationInformation()
         UserManager.biometricAuthentication ? self.evaluateAuthentication() : self.pushToHomeViewController()

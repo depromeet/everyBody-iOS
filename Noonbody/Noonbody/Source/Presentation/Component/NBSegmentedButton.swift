@@ -25,8 +25,8 @@ class NBSegmentedButton: UIButton {
     }
     
     private func setInitalState() {
-        backgroundColor = Asset.Color.gray20.color
-        setTitleColor(.black, for: .normal)
+        backgroundColor = Asset.Color.Background.neutral.color
+        setTitleColor(Asset.Color.Text.primary.color, for: .normal)
         titleLabel?.font = .nbFont(type: .body3)
     }
     
@@ -35,13 +35,13 @@ class NBSegmentedButton: UIButton {
             makeVibrate()
             setTitleColor(.white, for: .normal)
             titleLabel?.font = .nbFont(ofSize: 14, weight: .bold)
-            backgroundColor = Asset.Color.keyPurple.color
+            backgroundColor = Asset.Color.Primary.main.color
             imageView?.tintColor = .white
         } else {
-            setTitleColor(.black, for: .normal)
+            setTitleColor(Asset.Color.Text.primary.color, for: .normal)
             titleLabel?.font = .nbFont(ofSize: 14, weight: .regular)
-            backgroundColor = Asset.Color.gray20.color
-            imageView?.tintColor = .black
+            backgroundColor = Asset.Color.Background.neutral.color
+            imageView?.tintColor = Asset.Color.Text.primary.color
         }
     }
 }
