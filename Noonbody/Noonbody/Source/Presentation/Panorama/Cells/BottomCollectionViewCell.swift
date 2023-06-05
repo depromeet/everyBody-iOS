@@ -22,7 +22,7 @@ class BottomCollectionViewCell: UICollectionViewCell {
     private var bottomView = UIView()
     private var tagView = UIView()
     private var tagLabel = UILabel().then {
-        $0.textColor = Asset.Color.gray50.color
+        $0.textColor = Asset.Color.Text.tertirary.color
         $0.textAlignment = .center
         $0.font = .nbFont(ofSize: 10, weight: .bold, type: .pretendard)
     }
@@ -99,15 +99,15 @@ class BottomCollectionViewCell: UICollectionViewCell {
     }
     
     func transformToCenter() {
-        tagView.backgroundColor = Asset.Color.keyPurple.color
+        tagView.backgroundColor = Asset.Color.Primary.main.color
         tagLabel.textColor = .white
-        panoramaCellImage.makeRoundedWithBorder(radius: 4, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
-        tagView.makeRoundedWithBorder(radius: 10, color: Asset.Color.keyPurple.color.cgColor, borderWith: 2)
+        panoramaCellImage.makeRoundedWithBorder(radius: 4, color: Asset.Color.Primary.main.color.cgColor, borderWith: 2)
+        tagView.makeRoundedWithBorder(radius: 10, color: Asset.Color.Primary.main.color.cgColor, borderWith: 2)
     }
     
     func transformToStandard() {
         tagView.backgroundColor = .clear
-        tagLabel.textColor = Asset.Color.gray50.color
+        tagLabel.textColor = Asset.Color.Text.tertirary.color
         panoramaCellImage.makeRoundedWithBorder(radius: 4, color: UIColor.clear.cgColor)
         tagView.makeRoundedWithBorder(radius: 10, color: UIColor.clear.cgColor)
     }

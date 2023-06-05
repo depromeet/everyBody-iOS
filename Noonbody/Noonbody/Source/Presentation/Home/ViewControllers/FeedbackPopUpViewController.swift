@@ -14,7 +14,7 @@ class FeedbackPopUpViewController: BaseViewController {
     // MARK: - UI Components
     
     private let containerView = UIView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = Asset.Color.Background.default.color
         $0.makeRounded(radius: 8)
     }
     
@@ -25,14 +25,14 @@ class FeedbackPopUpViewController: BaseViewController {
     
     private let titleLabel = UILabel().then {
         $0.font = .nbFont(type: .body1Bold)
-        $0.textColor = Asset.Color.gray90.color
+        $0.textColor = Asset.Color.Text.primary.color
         $0.text = "솔직한 의견을 들려 주세요!"
     }
     
     private let descriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .body3)
         $0.textAlignment = .center
-        $0.textColor = Asset.Color.gray90.color
+        $0.textColor = Asset.Color.Text.tertirary.color
         $0.numberOfLines = 2
         $0.text = "의견을 보내주시면 서비스 개선에 반영할게요."
     }
@@ -40,13 +40,14 @@ class FeedbackPopUpViewController: BaseViewController {
     lazy var textField = UITextView().then {
         $0.font = .nbFont(type: .body3)
         $0.textContainerInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
-        $0.makeRoundedWithBorder(radius: 4, color: Asset.Color.gray90.color.cgColor)
+        $0.backgroundColor = Asset.Color.Input.background.color
+        $0.makeRoundedWithBorder(radius: 4, color: Asset.Color.Input.border.color.cgColor)
     }
     
     private let subDescriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .caption1)
         $0.textAlignment = .left
-        $0.textColor = Asset.Color.gray70.color
+        $0.textColor = Asset.Color.Text.tertirary.color
         $0.text = "얼마나 만족하시나요?"
     }
     
@@ -59,7 +60,7 @@ class FeedbackPopUpViewController: BaseViewController {
     private let cancelButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body1)
-        $0.setTitleColor(Asset.Color.gray90.color, for: .normal)
+        $0.setTitleColor(Asset.Color.Text.secondary.color, for: .normal)
         $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
     }
     
@@ -67,8 +68,8 @@ class FeedbackPopUpViewController: BaseViewController {
         $0.isEnabled = false
         $0.setTitle("피드백 보내기", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body1Bold)
-        $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
-        $0.setTitleColor(Asset.Color.gray40.color, for: .disabled)
+        $0.setTitleColor(Asset.Color.Primary.main.color, for: .normal)
+        $0.setTitleColor(Asset.Color.Text.disabled.color, for: .disabled)
         $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
     }
     
@@ -88,9 +89,14 @@ class FeedbackPopUpViewController: BaseViewController {
     }
     
     // MARK: - Methods
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        textField.layer.borderColor = Asset.Color.Input.border.color.cgColor
+    }
     
     override func render() {
-        view.backgroundColor = Asset.Color.gray90.color.withAlphaComponent(0.3)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
     }
     
     private func setViewHierachy() {

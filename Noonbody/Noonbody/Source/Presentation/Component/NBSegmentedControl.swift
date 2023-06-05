@@ -106,6 +106,11 @@ class NBSegmentedControl: UIView {
     
     func setAttributes() {
         buttons[0].isSelected = true
+        if buttons.count > 1 {
+            for index in 1..<buttons.count {
+                buttons[index].isSelected = false
+            }
+        }
     }
     
     func setTitle(at index: Int, title: String) {
@@ -114,7 +119,7 @@ class NBSegmentedControl: UIView {
     
     func setImage(at index: Int, image: UIImage) {
         buttons[index].setImage(image, for: .normal)
-        buttons[index].tintColor = .black
+        buttons[index].tintColor = Asset.Color.Text.primary.color
         buttons[index].alignVertical()
     }
     

@@ -34,7 +34,7 @@ extension UINavigationController {
             )
     }
     
-    func initNaviBarWithBackButton(tintColor: UIColor = Asset.Color.gray90.color) {
+    func initNaviBarWithBackButton(tintColor: UIColor = Asset.Color.Text.primary.color) {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.titleTextAttributes = [
@@ -62,7 +62,7 @@ extension UINavigationController {
                            rightButtonImages: [UIImage]? = nil,
                            leftActions: [Selector]? = nil,
                            rightActions: [Selector]? = nil,
-                           tintColor: UIColor = Asset.Color.gray90.color) {
+                           tintColor: UIColor = Asset.Color.Text.primary.color) {
         
         initNaviBarWithBackButton(tintColor: tintColor)
         
@@ -84,7 +84,7 @@ extension UINavigationController {
                                    action: Selector,
                                    menuButtonImage: UIImage,
                                    menuChildItem: [UIAction],
-                                   tintColor: UIColor = Asset.Color.gray90.color) {
+                                   tintColor: UIColor = Asset.Color.Text.primary.color) {
         
         initNaviBarWithBackButton(tintColor: tintColor)
         guard let menuButton = navigationItem?.makeCustomBarItem(self.topViewController,

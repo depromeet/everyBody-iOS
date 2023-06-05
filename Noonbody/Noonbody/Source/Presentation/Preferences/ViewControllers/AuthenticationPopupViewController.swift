@@ -29,7 +29,7 @@ class AuthenticationPopupViewController: BaseViewController {
         $0.textAlignment = .center
         $0.numberOfLines = 0
         $0.font = .nbFont(type: .caption1)
-        $0.textColor = Asset.Color.gray60.color
+        $0.textColor = Asset.Color.Text.tertirary.color
     }
     
     private lazy var confirmButton = NBPrimaryButton().then {

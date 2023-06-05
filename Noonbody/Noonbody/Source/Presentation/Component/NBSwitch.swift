@@ -33,8 +33,8 @@ class NBSwitch: UIView {
         $0.textColor = .white
         $0.isHidden = true
     }
-    var toggleOnColor = Asset.Color.keyPurple.color
-    var toggleOffColor = Asset.Color.gray60.color
+    var toggleOnColor = Asset.Color.Switch.focused.color
+    var toggleOffColor = Asset.Color.Switch.enabled.color
     
     // MARK: - Properties
     
@@ -76,7 +76,7 @@ class NBSwitch: UIView {
     // MARK: - Methods
     
     private func render() {
-        backgroundColor = Asset.Color.keyPurple.color
+        backgroundColor = Asset.Color.Primary.main.color
     }
     
     func setAttribute() {
@@ -84,11 +84,11 @@ class NBSwitch: UIView {
         circleView.makeRounded(radius: circleView.frame.height / 2)
     }
     
-    func setOffColor(color: UIColor = Asset.Color.gray60.color) {
+    func setOffColor(color: UIColor = Asset.Color.Switch.enabled.color) {
         toggleOffColor = color
     }
     
-    func setOnColor(color: UIColor = Asset.Color.keyPurple.color) {
+    func setOnColor(color: UIColor = Asset.Color.Switch.focused.color) {
         toggleOnColor = color
     }
     

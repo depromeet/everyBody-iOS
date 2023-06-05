@@ -25,11 +25,15 @@ class CameraOutputViewController: BaseViewController {
     // MARK: - UI Components
     
     private let scrollView = UIScrollView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = Asset.Color.Background.default.color
         $0.showsVerticalScrollIndicator = false
     }
-    private let contentsView = UIView()
-    private let containerView = UIView()
+    private let contentsView = UIView().then {
+        $0.backgroundColor = .clear
+    }
+    private let containerView = UIView().then {
+        $0.backgroundColor = .clear
+    }
     
     private let photoOutputImageView = UIImageView().then {
         $0.backgroundColor = .black
@@ -48,7 +52,7 @@ class CameraOutputViewController: BaseViewController {
     private let descriptionLabel = UILabel().then {
         $0.text = "해당 부위로 사진이 분류됩니다."
         $0.font = .nbFont(type: .caption1)
-        $0.textColor = Asset.Color.gray60.color
+        $0.textColor = Asset.Color.Text.tertirary.color
     }
     private lazy var weightLabel = UILabel().then {
         $0.font = .nbFont(ofSize: 30, weight: .bold, type: .pretendard)
@@ -82,7 +86,7 @@ class CameraOutputViewController: BaseViewController {
     }
     private lazy var weightSwitch = NBSwitch(width: 38, height: 24).then {
         $0.type = .basic
-        $0.setOffColor(color: Asset.Color.gray30.color)
+        $0.setOffColor(color: Asset.Color.Switch.enabled.color)
         $0.delegate = self
         $0.isHidden = true
     }
@@ -92,7 +96,7 @@ class CameraOutputViewController: BaseViewController {
         $0.isHidden = true
     }
     private lazy var weightDisableView = UIView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
         $0.isHidden = true
         $0.alpha = 0.7
     }

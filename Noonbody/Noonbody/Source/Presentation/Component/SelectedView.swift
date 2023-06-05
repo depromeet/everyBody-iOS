@@ -31,7 +31,7 @@ class SelectedView: UIView {
     }
     
     func render() {
-        backgroundColor = Asset.Color.keyPurple.color.withAlphaComponent(0.6)
+        backgroundColor = Asset.Color.Primary.main.color.withAlphaComponent(0.6)
     }
     
     func setupAttribute() {

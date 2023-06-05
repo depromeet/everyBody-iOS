@@ -17,16 +17,16 @@ final class MottoViewController: BaseViewController {
     private let titleLabel = UILabel().then {
         $0.text = "좌우명 수정"
         $0.font = .nbFont(type: .body3)
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.primary.color
     }
     
     private let mottoTextField = UITextField().then {
         $0.text = UserManager.motto
         $0.font = .nbFont(type: .body3)
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.disabled.color
         $0.addLeftPadding()
         $0.makeRoundedWithBorder(radius: 4,
-                                 color: Asset.Color.gray80.color.cgColor,
+                                 color: Asset.Color.Input.border.color.cgColor,
                                  borderWith: 1)
     }
 
@@ -52,9 +52,13 @@ final class MottoViewController: BaseViewController {
             Mixpanel.mainInstance().track(event: "setting/btn/back")
         }
     }
-    
 
     // MARK: - Method
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        mottoTextField.layer.borderColor = Asset.Color.Input.border.color.cgColor
+    }
     
     private func setupNavigationBar() {
         title = "좌우명 수정"

@@ -38,7 +38,7 @@ class CircleProgressView: UIView {
         
         let backLayer = CAShapeLayer()
         backLayer.path = circularPath.cgPath
-        backLayer.strokeColor = Asset.Color.gray30.color.cgColor
+        backLayer.strokeColor = Asset.Color.Background.neutral.color.cgColor
         backLayer.lineWidth = 5
         backLayer.fillColor = UIColor.clear.cgColor
         backLayer.lineCap = .round
@@ -46,7 +46,7 @@ class CircleProgressView: UIView {
         layer.addSublayer(backLayer)
         
         shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = Asset.Color.keyPurple.color.cgColor
+        shapeLayer.strokeColor = Asset.Color.Primary.main.color.cgColor
         shapeLayer.lineWidth = 5
         shapeLayer.strokeEnd = 0
         shapeLayer.fillColor = UIColor.clear.cgColor

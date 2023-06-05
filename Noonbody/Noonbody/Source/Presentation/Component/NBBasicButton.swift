@@ -25,17 +25,17 @@ class NBBasicButton: UIButton {
     }
     
     private func setInitialState() {
-        backgroundColor = .white
-        setTitleColor(Asset.Color.gray80.color, for: .normal)
+        backgroundColor = .clear
+        setTitleColor(Asset.Color.Primary.main.color, for: .normal)
         titleLabel?.font = .nbFont(type: .body2)
     }
     
     private func setButtonState() {
         if isSelected {
-            setTitleColor(Asset.Color.keyPurple.color, for: .normal)
+            setTitleColor(Asset.Color.Primary.main.color, for: .normal)
             titleLabel?.font = .nbFont(ofSize: 16, weight: .bold)
         } else {
-            setTitleColor(Asset.Color.gray80.color, for: .normal)
+            setTitleColor(Asset.Color.Text.tertirary.color, for: .normal)
             titleLabel?.font = .nbFont(type: .body2)
         }
     }

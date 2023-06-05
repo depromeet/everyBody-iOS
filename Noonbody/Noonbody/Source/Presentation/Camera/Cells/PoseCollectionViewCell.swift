@@ -17,7 +17,8 @@ class PoseCollectionViewCell: UICollectionViewCell {
     private let poseThumnailImageView = UIImageView()
     private let selectedView = SelectedView(style: .basic)
     private let nonePoseImageView = UIImageView().then {
-        $0.image = Asset.Image.none.image
+        $0.image = Asset.Image.none.image.withRenderingMode(.alwaysTemplate)
+        $0.tintColor = Asset.Color.Text.primary.color
     }
     
     // MARK: - Properties

@@ -20,27 +20,27 @@ class ProfileTableViewCell: UITableViewCell {
     
     private let titleLabel = UILabel().then {
         $0.font = .nbFont(type: .body2SemiBold)
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.primary.color
     }
     public let profileTextLabel = UILabel().then {
-        $0.textColor = Asset.Color.gray80.color
+        $0.textColor = Asset.Color.Text.primary.color
     }
 
     lazy var switchButton = NBSwitch(width: 40, height: 24).then {
         $0.descriptionLabel.isHidden = true
-        $0.setOffColor(color: Asset.Color.gray30.color)
+        $0.setOffColor(color: Asset.Color.Switch.enabled.color)
         $0.delegate = self
     }
     
     private let separatorLine = UIView().then {
-        $0.backgroundColor = Asset.Color.gray20.color
+        $0.backgroundColor = Asset.Color.borderLine.color
     }
     
     var rightButton: UIButton?
     
     let descriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .caption1)
-        $0.textColor = Asset.Color.gray60.color
+        $0.textColor = Asset.Color.Text.tertirary.color
     }
     
     // MARK: - Properties
@@ -55,7 +55,7 @@ class ProfileTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        backgroundColor = .clear
         selectionStyle = .none
     }
 
@@ -149,7 +149,8 @@ class ProfileTableViewCell: UITableViewCell {
     func setRightButtonImage(image: UIImage?) {
         guard let button = rightButton else { return }
         
-        button.setImage(image, for: .normal)
+        button.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = Asset.Color.Text.primary.color
     }
     
     func presentToFailedPopupViewcontroller() {

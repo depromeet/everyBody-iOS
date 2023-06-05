@@ -31,12 +31,19 @@ class NBCircleButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        layer.borderColor = isSelected ? UIColor.clear.cgColor : Asset.Color.borderLine.color.cgColor
+    }
     
     private func setInitialState() {
-        backgroundColor = .white
-        setTitleColor(Asset.Color.gray80.color, for: .normal)
+        backgroundColor = .clear
+        setTitleColor(Asset.Color.Text.primary.color, for: .normal)
         titleLabel?.font = .nbFont(type: .body3)
-        makeRoundedWithBorder(radius: 20, color: Asset.Color.gray40.color.cgColor, borderWith: 1)
+        makeRoundedWithBorder(radius: 20,
+                              color: Asset.Color.borderLine.color.cgColor,
+                              borderWith: 1)
     }
     
     private func setSelectedState() {
@@ -45,9 +52,9 @@ class NBCircleButton: UIButton {
         
         switch type {
         case .day:
-            selectedColor = Asset.Color.gray80.color
+            selectedColor = Asset.Color.Primary.text.color
         case .rate:
-            selectedColor = Asset.Color.keyPurple.color
+            selectedColor = Asset.Color.Primary.main.color
         }
         
         if isSelected {
@@ -56,9 +63,9 @@ class NBCircleButton: UIButton {
             setTitleColor(.white, for: .normal)
             titleLabel?.font = .nbFont(type: .body3Semibold)
         } else {
-            backgroundColor = .white
-            layer.borderColor = Asset.Color.gray40.color.cgColor
-            setTitleColor(Asset.Color.gray80.color, for: .normal)
+            backgroundColor = .clear
+            layer.borderColor = Asset.Color.borderLine.color.cgColor
+            setTitleColor(Asset.Color.Text.secondary.color, for: .normal)
             titleLabel?.font = .nbFont(type: .body3)
         }
     }

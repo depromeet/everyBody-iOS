@@ -19,7 +19,7 @@ class HomeViewController: BaseViewController {
     // MARK: - UI Components
     
     private lazy var cameraButton = UIButton().then {
-        $0.backgroundColor = Asset.Color.keyPurple.color
+        $0.backgroundColor = Asset.Color.Primary.main.color
         $0.setImage(Asset.Image.photoCamera.image, for: .normal)
         $0.makeRounded(radius: 28)
         $0.addTarget(self, action: #selector(pushToCameraViewController), for: .touchUpInside)
@@ -50,7 +50,7 @@ class HomeViewController: BaseViewController {
         $0.register(ListCollectionViewCell.self)
         $0.registerReusableView(FeedbackCollectionReusableView.self,
                                 kind: UICollectionView.elementKindSectionFooter)
-        $0.backgroundColor = .white
+        $0.backgroundColor = .clear
         $0.collectionViewLayout = layout
         $0.isSkeletonable = true
     }

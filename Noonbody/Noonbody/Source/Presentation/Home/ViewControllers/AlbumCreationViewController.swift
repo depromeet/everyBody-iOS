@@ -15,7 +15,7 @@ class AlbumCreationViewController: BaseViewController {
     
     private let titleLabel = UILabel().then {
         $0.font = .nbFont(type: .header2Semibold)
-        $0.textColor = Asset.Color.gray90.color
+        $0.textColor = Asset.Color.Text.primary.color
         $0.text = "폴더명을\n입력해주세요."
         $0.numberOfLines = 0
     }

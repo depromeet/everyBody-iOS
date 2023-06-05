@@ -17,7 +17,7 @@ protocol footerDelegate: AnyObject {
 class FeedbackCollectionReusableView: UICollectionReusableView {
     
     let feedbackButton = UIButton().then {
-        $0.backgroundColor = Asset.Color.gray10.color
+        $0.backgroundColor = Asset.Color.Background.neutral.color
         $0.makeRounded(radius: 4)
         $0.addTarget(self, action: #selector(feedbackButtonDidTap), for: .touchUpInside)
     }
@@ -29,7 +29,7 @@ class FeedbackCollectionReusableView: UICollectionReusableView {
     
     private let titleLabel = UILabel().then {
         $0.font = .nbFont(type: .body3)
-        $0.textColor = Asset.Color.gray90.color
+        $0.textColor = Asset.Color.Text.primary.color
         $0.text = "눈바디 사용경험을 알려주세요"
     }
     

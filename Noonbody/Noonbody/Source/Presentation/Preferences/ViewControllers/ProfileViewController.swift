@@ -19,6 +19,7 @@ class ProfileViewController: BaseViewController {
         $0.register(ProfileTableViewCell.self)
         $0.separatorStyle = .none
         $0.bounces = false
+        $0.backgroundColor = .clear
     }
     private let completeBarButtonItem = UIBarButtonItem(title: "완료",
                                                  style: .plain,

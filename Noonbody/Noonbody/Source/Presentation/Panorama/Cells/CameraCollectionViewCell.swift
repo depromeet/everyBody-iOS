@@ -49,6 +49,6 @@ class CameraCollectionViewCell: UICollectionViewCell {
     }
     
     func setCell() {
-        contentView.backgroundColor = Asset.Color.keyPurple.color
+        contentView.backgroundColor = Asset.Color.Primary.main.color
     }
 }

@@ -21,7 +21,7 @@ class AlbumSelectionViewController: BaseViewController {
         layout.minimumLineSpacing = 32
         layout.sectionInset = UIEdgeInsets(top: 17, left: 20, bottom: 0, right: 20)
         layout.itemSize = CGSize(width: (Constant.Size.screenWidth - 51) / 2, height: 211)
-        $0.backgroundColor = .white
+        $0.backgroundColor = Asset.Color.Background.default.color
         $0.showsHorizontalScrollIndicator = false
         $0.collectionViewLayout = layout
         $0.register(AlbumCollectionViewCell.self)
@@ -58,7 +58,7 @@ class AlbumSelectionViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         render()
         setDelegation()
         setupViewHierarchy()

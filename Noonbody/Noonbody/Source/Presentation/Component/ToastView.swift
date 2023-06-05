@@ -42,7 +42,7 @@ class ToastView: UIView {
     
     private func render() {
         makeRounded(radius: 10)
-        backgroundColor = Asset.Color.keyPurple.color
+        backgroundColor = Asset.Color.Primary.main.color
     }
 
     private func setLayout() {

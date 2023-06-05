@@ -9,7 +9,7 @@ import UIKit
 
 extension UITextField {
     
-    func addPlaceHolderAttributed(text: String, color: UIColor = Asset.Color.gray50.color) {
+    func addPlaceHolderAttributed(text: String, color: UIColor = Asset.Color.Text.disabled.color) {
         attributedPlaceholder = NSAttributedString(string: text, attributes: [
             .foregroundColor: color
         ])

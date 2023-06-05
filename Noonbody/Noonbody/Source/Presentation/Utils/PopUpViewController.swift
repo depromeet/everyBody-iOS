@@ -20,19 +20,19 @@ class PopUpViewController: BaseViewController {
     // MARK: - UI Components
     
     private let containerView = UIView().then {
-        $0.backgroundColor = .white
+        $0.backgroundColor = Asset.Color.Background.default.color
         $0.makeRounded(radius: 8)
     }
     
     lazy var titleLabel = UILabel().then {
         $0.font = .nbFont(type: .body1Bold)
-        $0.textColor = Asset.Color.gray90.color
+        $0.textColor = Asset.Color.Text.primary.color
     }
     
     let descriptionLabel = UILabel().then {
         $0.font = .nbFont(type: .body3)
         $0.textAlignment = .center
-        $0.textColor = Asset.Color.gray90.color
+        $0.textColor = Asset.Color.Text.tertirary.color
         $0.numberOfLines = 3
     }
     
@@ -49,15 +49,15 @@ class PopUpViewController: BaseViewController {
     let cancelButton = UIButton().then {
         $0.setTitle("취소", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body1)
-        $0.setTitleColor(Asset.Color.gray90.color, for: .normal)
+        $0.setTitleColor(Asset.Color.Text.secondary.color, for: .normal)
         $0.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
     }
     
     let confirmButton = UIButton().then {
         $0.setTitle("완료", for: .normal)
         $0.titleLabel?.font = .nbFont(type: .body1Bold)
-        $0.setTitleColor(Asset.Color.keyPurple.color, for: .normal)
-        $0.setTitleColor(Asset.Color.gray40.color, for: .disabled)
+        $0.setTitleColor(Asset.Color.Primary.main.color, for: .normal)
+        $0.setTitleColor(Asset.Color.Text.disabled.color, for: .disabled)
         $0.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
     }
     
@@ -94,7 +94,7 @@ class PopUpViewController: BaseViewController {
     // MARK: - Methods
     
     override func render() {
-        view.backgroundColor = Asset.Color.gray90.color.withAlphaComponent(0.3)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
     }
     
     private func setViewHierachy() {

@@ -103,7 +103,7 @@ extension SceneDelegate {
         appSwitcherModeImageView = UIImageView(frame: window.frame)
         appSwitcherModeImageView.image = Asset.Image.logo.image
         appSwitcherModeImageView.contentMode = .center
-        appSwitcherModeImageView.backgroundColor = Asset.Color.keyPurple.color
+        appSwitcherModeImageView.backgroundColor = Asset.Color.Primary.main.color
         window.addSubview(appSwitcherModeImageView)
     }
     
