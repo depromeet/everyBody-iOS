@@ -154,6 +154,7 @@
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
+		FC107F382A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC107F372A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift */; };
 		FC1F6A4127E9DB05005AB343 /* FetchAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F6A4027E9DB05005AB343 /* FetchAlbumUseCase.swift */; };
 		FC1F6A4327E9DB1F005AB343 /* CreateAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F6A4227E9DB1F005AB343 /* CreateAlbumUseCase.swift */; };
 		FC1F6A4527E9DB2F005AB343 /* DeleteAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F6A4427E9DB2F005AB343 /* DeleteAlbumUseCase.swift */; };
@@ -668,6 +669,7 @@
 			isa = PBXGroup;
 			children = (
 				FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */,
+				FC107F372A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1433,6 +1435,7 @@
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
 				FCF13C1C28ACFCC6003D3B60 /* BiometricsAuth.swift in Sources */,
 				AAEA239C27938E01005A08C9 /* DefaultVideoRepository.swift in Sources */,
+				FC107F382A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift in Sources */,
 				FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,
 				AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */,
