@@ -175,6 +175,7 @@
 		FC76A54427E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */; };
 		FC76A54627E4B2B600CFEA5A /* SendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54527E4B2B600CFEA5A /* SendFeedbackRepository.swift */; };
 		FC76A54827E4B38500CFEA5A /* SendFeedbackUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */; };
+		FC787CBC2A2E368100D0D2DF /* PanoramaAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC787CBB2A2E368100D0D2DF /* PanoramaAlbumViewController.swift */; };
 		FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */; };
 		FC7D798127D09A3E0022C223 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798027D09A3E0022C223 /* Realm */; };
 		FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798227D09A3E0022C223 /* RealmSwift */; };
@@ -375,6 +376,7 @@
 		FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSendFeedbackRepository.swift; sourceTree = "<group>"; };
 		FC76A54527E4B2B600CFEA5A /* SendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackRepository.swift; sourceTree = "<group>"; };
 		FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackUseCase.swift; sourceTree = "<group>"; };
+		FC787CBB2A2E368100D0D2DF /* PanoramaAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaAlbumViewController.swift; sourceTree = "<group>"; };
 		FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamedAlbum.swift; sourceTree = "<group>"; };
 		FC7D798527D0AA600022C223 /* RMAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAlbum.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -661,6 +663,7 @@
 			isa = PBXGroup;
 			children = (
 				FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */,
+				FC787CBB2A2E368100D0D2DF /* PanoramaAlbumViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -1338,6 +1341,7 @@
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
 				FC76A53127E39B0A00CFEA5A /* FetchAlbumsUseCase.swift in Sources */,
 				AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */,
+				FC787CBC2A2E368100D0D2DF /* PanoramaAlbumViewController.swift in Sources */,
 				AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
 				AA4EFD2327623F3F005017FC /* NBSegmentedControl.swift in Sources */,
