@@ -61,6 +61,17 @@ enum BodyPart: String, Codable {
     case lower
     case upper
     case whole
+
+    var title: String {
+        switch self {
+        case .lower:
+            return "하체"
+        case .upper:
+            return "상체"
+        case .whole:
+            return "전신"
+        }
+    }
 }
 
 typealias Albums = [Album]

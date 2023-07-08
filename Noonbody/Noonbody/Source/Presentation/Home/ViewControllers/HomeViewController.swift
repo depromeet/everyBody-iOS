@@ -259,7 +259,7 @@ extension HomeViewController {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let viewController = PanoramaViewController(albumId: albumData[indexPath.row].id, albumData: albumData[indexPath.row])
+        let viewController = GridAlbumViewController(albumId: albumData[indexPath.row].id, albumData: albumData[indexPath.row])
         Mixpanel.mainInstance().track(event: "main/album")
         self.navigationController?.pushViewController(viewController, animated: true)
     }

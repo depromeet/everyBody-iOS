@@ -10,14 +10,14 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class PanoramaViewModel {
+final class GridAlbumViewModel {
     private let fetchAlbumUseCase: FetchAlbumUseCase
     private let renameAlbumUseCase: RenameAlbumUseCase
     private let deleteAlbumUseCase: DeleteAlbumUseCase
     private let deletePictureUseCase: DeletePictureUseCase
     
     struct Input {
-        let cameraViewDidDisappear: Observable<Void>
+        let viewWillAppear: Observable<Void>
         let albumId: Int
         let albumNameTextField: Observable<String>
         let deletePictureData: Observable<[Int: Int]>
@@ -52,7 +52,7 @@ final class PanoramaViewModel {
             }
             .share()
 
-        let album = input.cameraViewDidDisappear
+        let album = input.viewWillAppear
             .flatMap { _ in
                 self.fetchAlbumUseCase.album(albumId: input.albumId) }
             .map { $0 }

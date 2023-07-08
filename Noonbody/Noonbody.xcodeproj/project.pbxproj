@@ -154,6 +154,7 @@
 		AAF2D42527240CC00029219D /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D42427240CC00029219D /* swiftgen.yml */; };
 		AAF2D42727240E4C0029219D /* Assets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF2D42627240E4C0029219D /* Assets+Generated.swift */; };
 		AAF2D4292724137E0029219D /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAF2D4282724137E0029219D /* Image.xcassets */; };
+		FC107F382A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC107F372A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift */; };
 		FC1F6A4127E9DB05005AB343 /* FetchAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F6A4027E9DB05005AB343 /* FetchAlbumUseCase.swift */; };
 		FC1F6A4327E9DB1F005AB343 /* CreateAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F6A4227E9DB1F005AB343 /* CreateAlbumUseCase.swift */; };
 		FC1F6A4527E9DB2F005AB343 /* DeleteAlbumUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1F6A4427E9DB2F005AB343 /* DeleteAlbumUseCase.swift */; };
@@ -174,6 +175,7 @@
 		FC76A54427E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */; };
 		FC76A54627E4B2B600CFEA5A /* SendFeedbackRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54527E4B2B600CFEA5A /* SendFeedbackRepository.swift */; };
 		FC76A54827E4B38500CFEA5A /* SendFeedbackUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */; };
+		FC787CBC2A2E368100D0D2DF /* PanoramaAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC787CBB2A2E368100D0D2DF /* PanoramaAlbumViewController.swift */; };
 		FC7D38D12799FFEB001D43D0 /* RenamedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */; };
 		FC7D798127D09A3E0022C223 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798027D09A3E0022C223 /* Realm */; };
 		FC7D798327D09A3E0022C223 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FC7D798227D09A3E0022C223 /* RealmSwift */; };
@@ -182,10 +184,10 @@
 		FC91997427A1552800A6CD0D /* FeedbackCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997327A1552800A6CD0D /* FeedbackCollectionReusableView.swift */; };
 		FC91997627A180D200A6CD0D /* FeedbackPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997527A180D200A6CD0D /* FeedbackPopUpViewController.swift */; };
 		FC91997C27A2CD3100A6CD0D /* FeedbackRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC91997B27A2CD3100A6CD0D /* FeedbackRequestModel.swift */; };
-		FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */; };
+		FC9A7268272D267100DD9B35 /* GridAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9A7267272D267100DD9B35 /* GridAlbumViewController.swift */; };
 		FC9B76D027DDEFA300F80F21 /* AlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9B76CF27DDEFA300F80F21 /* AlbumManager.swift */; };
 		FC9D30C128ABA79600E7FD48 /* MottoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9D30C028ABA79600E7FD48 /* MottoViewController.swift */; };
-		FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */; };
+		FC9E3B692730E8AD00FBFDBF /* GridAlbumViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3B682730E8AD00FBFDBF /* GridAlbumViewModel.swift */; };
 		FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */; };
 		FCAE821127832D3B007A729D /* PanoramaUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */; };
 		FCAE821227832D3B007A729D /* DefaultPanoramaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */; };
@@ -353,6 +355,7 @@
 		AAF2D42427240CC00029219D /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
 		AAF2D42627240E4C0029219D /* Assets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Assets+Generated.swift"; sourceTree = "<group>"; };
 		AAF2D4282724137E0029219D /* Image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Image.xcassets; sourceTree = "<group>"; };
+		FC107F372A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaAlbumViewModel.swift; sourceTree = "<group>"; };
 		FC1F6A4027E9DB05005AB343 /* FetchAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAlbumUseCase.swift; sourceTree = "<group>"; };
 		FC1F6A4227E9DB1F005AB343 /* CreateAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlbumUseCase.swift; sourceTree = "<group>"; };
 		FC1F6A4427E9DB2F005AB343 /* DeleteAlbumUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAlbumUseCase.swift; sourceTree = "<group>"; };
@@ -374,16 +377,17 @@
 		FC76A54327E4B18600CFEA5A /* DefaultSendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSendFeedbackRepository.swift; sourceTree = "<group>"; };
 		FC76A54527E4B2B600CFEA5A /* SendFeedbackRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackRepository.swift; sourceTree = "<group>"; };
 		FC76A54727E4B38500CFEA5A /* SendFeedbackUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFeedbackUseCase.swift; sourceTree = "<group>"; };
+		FC787CBB2A2E368100D0D2DF /* PanoramaAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaAlbumViewController.swift; sourceTree = "<group>"; };
 		FC7D38D02799FFEB001D43D0 /* RenamedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenamedAlbum.swift; sourceTree = "<group>"; };
 		FC7D798527D0AA600022C223 /* RMAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMAlbum.swift; sourceTree = "<group>"; };
 		FC87D7CC2746E80B003EEB9B /* CameraCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC91997327A1552800A6CD0D /* FeedbackCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCollectionReusableView.swift; sourceTree = "<group>"; };
 		FC91997527A180D200A6CD0D /* FeedbackPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackPopUpViewController.swift; sourceTree = "<group>"; };
 		FC91997B27A2CD3100A6CD0D /* FeedbackRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackRequestModel.swift; sourceTree = "<group>"; };
-		FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewController.swift; sourceTree = "<group>"; };
+		FC9A7267272D267100DD9B35 /* GridAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridAlbumViewController.swift; sourceTree = "<group>"; };
 		FC9B76CF27DDEFA300F80F21 /* AlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumManager.swift; sourceTree = "<group>"; };
 		FC9D30C028ABA79600E7FD48 /* MottoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MottoViewController.swift; sourceTree = "<group>"; };
-		FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanoramaViewModel.swift; sourceTree = "<group>"; };
+		FC9E3B682730E8AD00FBFDBF /* GridAlbumViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridAlbumViewModel.swift; sourceTree = "<group>"; };
 		FCA92EE82731C9360070CA2A /* BottomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewCell.swift; sourceTree = "<group>"; };
 		FCAE820E27832D3B007A729D /* PanoramaUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanoramaUseCase.swift; sourceTree = "<group>"; };
 		FCAE821027832D3B007A729D /* DefaultPanoramaRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultPanoramaRepository.swift; sourceTree = "<group>"; };
@@ -659,7 +663,8 @@
 		AA7E0A6526FB0BFD00106DC2 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FC9A7267272D267100DD9B35 /* PanoramaViewController.swift */,
+				FC9A7267272D267100DD9B35 /* GridAlbumViewController.swift */,
+				FC787CBB2A2E368100D0D2DF /* PanoramaAlbumViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -667,7 +672,8 @@
 		AA7E0A6626FB0C0300106DC2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				FC9E3B682730E8AD00FBFDBF /* PanoramaViewModel.swift */,
+				FC9E3B682730E8AD00FBFDBF /* GridAlbumViewModel.swift */,
+				FC107F372A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1336,6 +1342,7 @@
 				AAC7ACB22729F2B100B2BE1E /* Fonts.swift in Sources */,
 				FC76A53127E39B0A00CFEA5A /* FetchAlbumsUseCase.swift in Sources */,
 				AA73AFB9274FF8AC00FD7C70 /* BaseTargetType.swift in Sources */,
+				FC787CBC2A2E368100D0D2DF /* PanoramaAlbumViewController.swift in Sources */,
 				AA74A0E327497E0000FA6678 /* ProfileViewModel.swift in Sources */,
 				AAC7AD182735A11C00B2BE1E /* AppDate.swift in Sources */,
 				AA4EFD2327623F3F005017FC /* NBSegmentedControl.swift in Sources */,
@@ -1366,8 +1373,8 @@
 				FC76A54627E4B2B600CFEA5A /* SendFeedbackRepository.swift in Sources */,
 				AA2F317B2759F5E200855861 /* NotificationService.swift in Sources */,
 				AAE2FAB3276B4F6800FA2C5C /* UIImage+resizeImage.swift in Sources */,
-				FC9A7268272D267100DD9B35 /* PanoramaViewController.swift in Sources */,
-				FC9E3B692730E8AD00FBFDBF /* PanoramaViewModel.swift in Sources */,
+				FC9A7268272D267100DD9B35 /* GridAlbumViewController.swift in Sources */,
+				FC9E3B692730E8AD00FBFDBF /* GridAlbumViewModel.swift in Sources */,
 				FC751D4028B6172500A6F4E1 /* AuthenticationPopupViewController.swift in Sources */,
 				AA74A0DE27496F8E00FA6678 /* UITableView+Generic.swift in Sources */,
 				AA74A0E9274993CF00FA6678 /* DefaultPreferenceRepository.swift in Sources */,
@@ -1433,6 +1440,7 @@
 				AAE2FA7F27628A5E00FA2C5C /* UIViewController+ToastView.swift in Sources */,
 				FCF13C1C28ACFCC6003D3B60 /* BiometricsAuth.swift in Sources */,
 				AAEA239C27938E01005A08C9 /* DefaultVideoRepository.swift in Sources */,
+				FC107F382A4B5F3B00F51DE7 /* PanoramaAlbumViewModel.swift in Sources */,
 				FCC59B9E2842634E00702FA8 /* RealmMigrationService.swift in Sources */,
 				FCA92EE92731C9360070CA2A /* BottomCollectionViewCell.swift in Sources */,
 				AABD837B2784CC75004E8BF8 /* AlbumRepository.swift in Sources */,
